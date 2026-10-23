@@ -922,7 +922,7 @@ function colorize(){const app=$('#app');if(!app)return;document.body.classList.t
  $$('#app .li,#side .li,#app .gsi').forEach(el=>{if(el.dataset.lc)return;const oc=el.getAttribute('onclick')||'';const m=oc.match(/(?:openMat|go\('(?:diff|sujets|resumes|matiere)',\{id:)\s*\(?'([^']+)'/);if(m&&MATI[m[1]]){el.dataset.lc=1;el.classList.add('lic');el.style.setProperty('--lc',MATI[m[1]].col)}});
  const mid=(ctx&&ctx.id&&MATI[ctx.id])?ctx.id:(VIEW==='quiz'&&typeof QZ!=='undefined'&&QZ&&MATI[QZ.mid])?QZ.mid:(VIEW==='exam'&&typeof EX!=='undefined'&&EX&&MATI[EX.mid])?EX.mid:(VIEW==='flash'&&typeof FL!=='undefined'&&FL&&MATI[FL.mid])?FL.mid:'';
  app.classList.toggle('matc',!!mid);if(mid)app.style.setProperty('--mcol',MATI[mid].col);else app.style.removeProperty('--mcol')}
-function plusAfter(){gsSync();boldify($('#app'));try{colorize()}catch(e){}if(ctx&&ctx.id&&MATI[ctx.id]){S.seen=S.seen||{};const o=S.seen[ctx.id]||0;if(Date.now()-o>36e5){S.seen[ctx.id]=Date.now();save()}}
+function plusAfter(){try{brAfter()}catch(e){}gsSync();boldify($('#app'));try{colorize()}catch(e){}if(ctx&&ctx.id&&MATI[ctx.id]){S.seen=S.seen||{};const o=S.seen[ctx.id]||0;if(Date.now()-o>36e5){S.seen[ctx.id]=Date.now();save()}}
  rankCheck();notifSync()}
 (function w(){if(window.PORTAIL_READY){try{goParam()}catch(e){}setTimeout(nfAuto,4000);if(isIOS())setTimeout(()=>instAsk(),3000)}else setTimeout(w,60)})();
 /* rappels : activation automatique si déjà autorisés, sinon proposition au bon moment (le téléphone exige l’accord de l’utilisateur) */
@@ -1213,7 +1213,61 @@ function appExtra(m,src){const ri=appUiOf(m.id)==='ri';let css='',js='';const t=
  if(/id="pf-badges"|id="gm-badges-strip"|gCheckBadges/.test(src)){
   css+='#pf-badges,#gm-badges-strip{display:none!important}';
   js='<script>(function(){var P=window.parent;function fix(){try{['+"'pf-badges','gm-badges-strip'"+'].forEach(function(i){var e=document.getElementById(i);if(e){var b=e.closest(".blk")||e.parentElement;if(b&&b.dataset.riHid!=="1"){b.dataset.riHid="1";b.style.display="none"}}});var g=document.getElementById("gm-card");if(g&&P&&P.riGradeMini){var h=P.riGradeMini();if(g.dataset.ri!==h){g.dataset.ri=h;g.innerHTML=h}}if(typeof window.gCheckBadges==="function"&&!window.gCheckBadges.__ri){window.gCheckBadges=function(){};window.gCheckBadges.__ri=1}if(typeof window.showToast==="function"&&!window.showToast.__ri){var o=window.showToast;window.showToast=function(m){if(/^(🏅|🎉 Niveau)/.test(String(m)))return;return o.apply(this,arguments)};window.showToast.__ri=1}}catch(e){}}document.addEventListener("DOMContentLoaded",fix);setInterval(fix,700);fix()})();<'+'/script>'}
+ const P=appBridge(m,src,ri);css+=P.css;js+=P.js;
  return{css,js}}
+
+/* ---------- 12b. PONT PORTAIL → APPLIS INTÉGRÉES : taille du texte, couleurs, barre du bas ----------
+   Toute nouvelle réglage du portail qui doit atteindre les applis intégrées passe par appBridge() :
+   il reçoit l'appli (m), sa source (src) et le mode d'interface (ri) et renvoie {css,js} injectés dans l'iframe. */
+const BR_ROLE={bg:/^--(bg|bg0|bg1|bg2|bga|bgb|bgc|page|paper)$/i,card:/^--(card|card-flat|card2|white|surface|panel)$/i,ink:/^--(ink|tx|txt|text|fg)$/i,
+ soft:/^--(ink2|ink-soft|ink-faint|ink3|tx2|txt-dim|mu|mut|muted|sub)$/i,line:/^--(line|ln|border|bd|card-border|panel-brd)$/i,
+ h1:/^--(violet-deep|v950|v900|navy|nuit|b1|sec|s|sd|pri-d)$/i,h2:/^--(violet|violet2|v800|v700|v600|navy2|navy3|nuit2|b2|b3|menthe|fr|prune|chart|txt-h)$/i,
+ acc:/^--(a|acc|accent|or|or2|gold|gold2|saf|saf2|orange|amber|amb|am|yellow|btn|pri|p|pd|b)$/i,tint:/^--(lav|lav2|v100|goldt|goldl|soft|mint)$/i};
+const BR_TPL=['--h1','--h2','--coral','--coral-d','--turq','--turq-l','--gold','--plum1','--plum2','--mint','--peach','--amber'];
+function lumOf(c){try{const[r,g,b]=hx(c).map(x=>{x/=255;return x<=.03928?x/12.92:Math.pow((x+.055)/1.055,2.4)});return .2126*r+.7152*g+.0722*b}catch(e){return -1}}
+function rootVars(src){const o={};const re=/:root\s*\{([^}]*)\}/g;let m;while((m=re.exec(src))){m[1].replace(/(--[\w-]+)\s*:\s*([^;]+)/g,(_,k,v)=>{if(!(k in o))o[k]=v.trim()})}return o}
+function appBridge(m,src,ri){let css='',js='';const sc=(E.gts||1)*((S&&S.fz)||1);
+ /* 1. taille du texte du portail (A−/A+ et réglage auteur) : toujours appliquée, quel que soit le mode */
+ if(Math.abs(sc-1)>.001)css+='html{zoom:'+sc.toFixed(3)+'!important}';
+ if(ri){
+  /* 2. couleurs de l'interface : chaque variable de couleur de l'appli reçoit son équivalent dans la palette du portail */
+  const t=palette(),cs=getComputedStyle(document.documentElement),v=n=>cs.getPropertyValue(n).trim();
+  const R={bg:t.bg,card:v('--card')||'#fff',ink:v('--ink')||'#16231F',soft:v('--soft')||'#5E6E68',line:v('--line')||'#E1DDD2',h1:t.h1,h2:t.h2,acc:t.acc};
+  R.tint=mixc(t.h1,/^#/.test(R.card)?R.card:'#ffffff',.9);
+  const V=rootVars(src),tpl='--plum1' in V&&'--turq' in V,out=[];
+  Object.keys(V).forEach(k=>{const val=V[k];if(!/^#[0-9a-f]{3,8}$/i.test(val))return;
+   if(tpl&&BR_TPL.includes(k)){const r=v(k);if(r){out.push(k+':'+r);return}}
+   if(k==='--soft'){out.push(k+':'+(lumOf(val)<.35?R.soft:R.tint));return}
+   for(const role in BR_ROLE)if(BR_ROLE[role].test(k)){if(role==='card'&&lumOf(val)<.5&&!t.d)return;out.push(k+':'+R[role]);return}});
+  if(out.length)css+=':root,:root[data-theme],html[data-theme],body[data-theme],html.dark,body.dark{'+out.map(x=>x+'!important').join(';')+'}';
+  /* couleurs écrites « en dur » dans les styles de l'appli (dégradés, bandeaux…) : remplacées par la même correspondance */
+  const CM={};out.forEach(x=>{const i=x.indexOf(':'),k=x.slice(0,i),nv=x.slice(i+1),ov=V[k];if(/^#[0-9a-f]{6}$|^#[0-9a-f]{3}$/i.test(ov)&&/^#[0-9a-f]{3,6}$/i.test(nv)&&!/^--(bg|bg0|bg1|bg2|card|card2|white|ink|tx|txt|line|ln)$/i.test(k)){const a=hx(ov).join(', '),b=hx(nv).join(', ');if(a!==b)CM['rgb('+a+')']='rgb('+b+')'}});
+  if(Object.keys(CM).length)js+='<script>('+brColors.toString()+')('+JSON.stringify(CM)+')<'+'/script>';
+  /* 3. barre du bas : celle du portail ; les rubriques de l'appli passent en onglets sous la barre de titre */
+  css+='[data-ri-nav]{position:fixed!important;left:0!important;top:-9999px!important;bottom:auto!important;opacity:0!important;pointer-events:none!important}';
+  js+='<script>('+brNav.toString()+')()<'+'/script>';
+ }
+ return{css,js}}
+function brColors(CM){var re=new RegExp(Object.keys(CM).map(function(k){return k.replace(/[()]/g,'\\$&')}).join('|'),'g'),done=new WeakSet();
+ function fixSt(st){for(var i=0;i<st.length;i++){var p=st[i];if(p.indexOf('--')===0)continue;var v=st.getPropertyValue(p);if(v&&v.indexOf('rgb(')>-1){re.lastIndex=0;if(re.test(v)){re.lastIndex=0;st.setProperty(p,v.replace(re,function(m){return CM[m]}),st.getPropertyPriority(p))}}}}
+ function rules(rs){for(var i=0;i<rs.length;i++){var r=rs[i];if(r.style)fixSt(r.style);if(r.cssRules)rules(r.cssRules)}}
+ function run(){try{for(var i=0;i<document.styleSheets.length;i++){var sh=document.styleSheets[i];if(done.has(sh)||(sh.ownerNode&&sh.ownerNode.id==='portail-forms'))continue;try{rules(sh.cssRules);done.add(sh)}catch(e){}}var el=document.querySelectorAll('[style*="rgb"],[style*="#"]');for(var j=0;j<el.length&&j<600;j++)fixSt(el[j].style)}catch(e){}}
+ document.addEventListener('DOMContentLoaded',run);setInterval(run,900)}
+function brNav(){var P=window.parent,N=null,last='';
+ function btns(n){return Array.prototype.filter.call(n.querySelectorAll('button,a,[role=tab],[data-go],[data-v],[data-tab]'),function(b){return!b.parentElement.closest('button,a,[role=tab]')&&(b.textContent||'').trim()})}
+ function find(){var c=document.querySelectorAll('nav.nav,nav.bnav,nav.bottomnav,nav#nav,nav.bar,#bnav,.bottom-nav,.tabbar,nav');for(var i=0;i<c.length;i++){var n=c[i],st=getComputedStyle(n);var r=n.getBoundingClientRect();var fixedBottom=(st.position==='fixed'||st.position==='sticky')&&(n.dataset.riNav==='1'||(r.bottom>=innerHeight-40&&r.width>=innerWidth*.55));if(fixedBottom&&btns(n).length>=3)return n}return null}
+ function on(b){var c=(b.className||'')+'';return /(^|\s)(on|active|is-active|sel|selected|current|act)(\s|$)/.test(c)||b.getAttribute('aria-current')||b.getAttribute('aria-selected')==='true'}
+ function tick(){try{if(!N||!document.contains(N)){N=find();if(N)N.setAttribute('data-ri-nav','1')}var list=[],a=-1;
+  if(N&&getComputedStyle(N).display!=='none'){btns(N).forEach(function(b,i){list.push((b.textContent||'').replace(/\s+/g,' ').trim());if(a<0&&on(b))a=i})}
+  var k=JSON.stringify([list,a]);if(k!==last&&P&&P.riAppTabs){last=k;P.riAppTabs(list,a)}}catch(e){}}
+ window.__riNav=function(i){var b=N&&btns(N)[i];if(b){b.click();setTimeout(tick,60)}};
+ document.addEventListener('DOMContentLoaded',tick);document.addEventListener('click',function(){setTimeout(tick,80)},true);setInterval(tick,600);tick()}
+function riAppTabs(list,a){const w=$('.appwrap');if(!w)return;let d=$('#appTabs');if(!list.length){if(d)d.remove();return}
+ if(!d){d=document.createElement('div');d.id='appTabs';d.className='apptabs';const f=$('#appFrame');w.insertBefore(d,f&&f.previousElementSibling&&f.previousElementSibling.id==='appLoad'?f.previousElementSibling:f)}
+ d.innerHTML=list.map((l,i)=>`<button class="${i===a?'on':''}" onclick="riAppNav(${i})">${esc(l)}</button>`).join('');const o=d.querySelector('.on');if(o)try{o.scrollIntoView({block:'nearest',inline:'center'})}catch(e){}}
+function riAppNav(i){const f=$('#appFrame');try{f.contentWindow.__riNav(i)}catch(e){}}
+/* la barre du bas du portail reste visible dans l'appli complète */
+function brAfter(){const nv=$('#nav'),inApp=VIEW==='appview';document.body.classList.toggle('appnav',inApp);if(inApp&&nv){nv.classList.remove('hide');requestAnimationFrame(()=>{const r=nv.getBoundingClientRect();if(r.height)document.body.style.setProperty('--navH',Math.ceil(innerHeight-r.top+6)+'px')});const m=matOf(ctx.id);const k=m&&m.de?'home':'matieres';$$('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===k))}}
 
 /* ---------- 13. FENÊTRE DE CONFIRMATION DE L'APPLI (remplace confirm(), bloqué par certains lecteurs de fichiers et navigateurs intégrés) ---------- */
 function askRI(msg,ok,okLbl,noLbl){let o=$('#askRI');if(o)o.remove();o=document.createElement('div');o.id='askRI';o.className='rkup';
