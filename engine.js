@@ -15,7 +15,7 @@ const EMB=JSON.parse(($('#app-edits')||{}).textContent||'{}');
 const META=Object.assign({appId:'revInfas',brand:['RÉVISION','INFAS'],welcome:'Bienvenue',tagline:'En marche vers la maîtrise et l’excellence',signature:'Créé par <b>Daniel Noufe</b> · INFAS',title:'Révision INFAS',defaultPalette:0,sujet:50},DATA0.meta||{});
 const APPID=META.appId, SKEY=APPID+'_progress_v1', EKEY=APPID+'_edits_v1', HKEY=APPID+'_edits_hist_v1';
 let RO=true, EDITMODE=false;
-function blankE(){return{rev:0,ui:null,oui:null,blkv:0,nocol:false,icons:'emoji',custom:{},appColors:true,texts:{},layout:{},tiles:{},menu:null,palette:null,font:null,fontH:null,fontFiles:[],fontApps:false,gts:1,shape:null,look:null,content:{}}}
+function blankE(){return{rev:0,ui:null,oui:null,blkv:0,nocol:false,covers:{},soonk:{},icons:'emoji',custom:{},appColors:true,texts:{},layout:{},tiles:{},menu:null,palette:null,font:null,fontH:null,fontFiles:[],fontApps:false,gts:1,shape:null,look:null,content:{}}}
 function normE(e){const b=blankE();e=e&&typeof e==='object'?clone(e):{};Object.keys(b).forEach(k=>{if(e[k]!==undefined&&e[k]!==null)b[k]=e[k]});if(!Array.isArray(b.fontFiles))b.fontFiles=[];b.base=e.base;b.rev=e.rev||0;return b}
 let E=normE(EMB);
 
@@ -265,7 +265,7 @@ function isWide(){const w=!!(window.matchMedia&&window.matchMedia('(min-width:10
 function renderBody(sc){const present=[];const body=layoutOf(sc).map(b=>{const d=BLK[b.id]||custBlk(b.id);if(!d)return'';if(b.hidden&&!EDITMODE)return'';const _ou=uiOf(b)==='s';let h='';try{h=(_ou&&d.oneui?d.oneui():d.html())||''}catch(e){console.error(b.id,e);h=''}
   if(!h&&!EDITMODE)return'';if(!present.includes(d))present.push(d);
   return `<section class="blk${b.hidden?' blk-hid':''}${_ou?' oui':''}" data-n="${present.length}" data-inst="${esc(b.inst)}" data-bid="${esc(b.id)}" style="${bstyle(b,d)}"${battrs(b)}>${h||'<div class="emptyblk">'+esc(d.label)+' — vide ici</div>'}</section>`}).join('');return{body,present}}
-function render(){if(ctx&&ctx.id&&needX(ctx.id)){ensureX(ctx.id).then(()=>render());return}let sc=SCREENS[VIEW]?VIEW:'home';if(sc!==VIEW)VIEW=sc;const spec=SCREENS[sc];
+function render(){if(ctx&&ctx.id&&needX(ctx.id)){const _v=VIEW;document.body.classList.add('xload');ensureX(ctx.id).then(()=>{document.body.classList.remove('xload');if(VIEW===_v)render()});if(VIEW!=='matiere')return}let sc=SCREENS[VIEW]?VIEW:'home';if(sc!==VIEW)VIEW=sc;const spec=SCREENS[sc];
  if(!S.onb&&!spec.onb&&!EDITMODE){VIEW=sc='welcome'}
  const sp=SCREENS[sc];
  const root=VSTACK.length?VSTACK[0].v:VIEW;$$('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===VIEW||b.dataset.v===root));
@@ -922,7 +922,7 @@ function colorize(){const app=$('#app');if(!app)return;document.body.classList.t
  $$('#app .li,#side .li,#app .gsi').forEach(el=>{if(el.dataset.lc)return;const oc=el.getAttribute('onclick')||'';const m=oc.match(/(?:openMat|go\('(?:diff|sujets|resumes|matiere)',\{id:)\s*\(?'([^']+)'/);if(m&&MATI[m[1]]){el.dataset.lc=1;el.classList.add('lic');el.style.setProperty('--lc',MATI[m[1]].col)}});
  const mid=(ctx&&ctx.id&&MATI[ctx.id])?ctx.id:(VIEW==='quiz'&&typeof QZ!=='undefined'&&QZ&&MATI[QZ.mid])?QZ.mid:(VIEW==='exam'&&typeof EX!=='undefined'&&EX&&MATI[EX.mid])?EX.mid:(VIEW==='flash'&&typeof FL!=='undefined'&&FL&&MATI[FL.mid])?FL.mid:'';
  app.classList.toggle('matc',!!mid);if(mid)app.style.setProperty('--mcol',MATI[mid].col);else app.style.removeProperty('--mcol')}
-function plusAfter(){try{brAfter()}catch(e){}gsSync();boldify($('#app'));try{colorize()}catch(e){}if(ctx&&ctx.id&&MATI[ctx.id]){S.seen=S.seen||{};const o=S.seen[ctx.id]||0;if(Date.now()-o>36e5){S.seen[ctx.id]=Date.now();save()}}
+function plusAfter(){try{brAfter()}catch(e){}try{multiAfter()}catch(e){console.error(e)}try{prefetchAfter()}catch(e){}try{qiAfter()}catch(e){}try{soonAfter()}catch(e){console.error(e)}try{coverAfter()}catch(e){}try{edAfter()}catch(e){console.error(e)}gsSync();boldify($('#app'));try{colorize()}catch(e){}if(ctx&&ctx.id&&MATI[ctx.id]){S.seen=S.seen||{};const o=S.seen[ctx.id]||0;if(Date.now()-o>36e5){S.seen[ctx.id]=Date.now();save()}}
  rankCheck();notifSync()}
 (function w(){if(window.PORTAIL_READY){try{goParam()}catch(e){}setTimeout(nfAuto,4000);if(isIOS())setTimeout(()=>instAsk(),3000)}else setTimeout(w,60)})();
 /* rappels : activation automatique si déjà autorisés, sinon proposition au bon moment (le téléphone exige l’accord de l’utilisateur) */
@@ -1274,6 +1274,358 @@ function askRI(msg,ok,okLbl,noLbl){let o=$('#askRI');if(o)o.remove();o=document.
  o.innerHTML=`<div class="rkbox" role="dialog" aria-modal="true"><div class="rkn" style="font-size:18px">${esc(msg)}</div><div class="row2" style="width:100%;margin-top:6px"><button class="btn coral" id="askY">${esc(okLbl||Tx('ask.y','Oui'))}</button><button class="btn light" id="askN">${esc(noLbl||Tx('ask.n','Annuler'))}</button></div></div>`;
  document.body.appendChild(o);const close=()=>o.remove();$('#askN',o).onclick=close;o.onclick=e=>{if(e.target===o)close()};$('#askY',o).onclick=()=>{close();try{ok()}catch(e){console.error(e)}};setTimeout(()=>{const y=$('#askY',o);y&&y.focus()},30)}
 leaveApp=function(){{const a=$('#askRI');if(a){a.remove();return}}askRI(Tx('app.leave','Voulez-vous revenir au menu principal ?'),()=>{closeApp();VSTACK=[];PANE=false;go('home',{},false)},Tx('app.leave.y','Oui, revenir'),Tx('app.leave.n','Rester ici'))};
+/* ---------- 14. QCM À PLUSIEURS RÉPONSES (q.am = indices des bonnes réponses) ---------- */
+function isM(q){return!!(q&&q.t==='qcm'&&Array.isArray(q.am)&&q.am.length>1)}
+function sameSet(a,b){a=(a||[]).slice().sort();b=(b||[]).slice().sort();return a.length===b.length&&a.every((x,i)=>x===b[i])}
+const _correctText0=correctText;correctText=function(q){if(isM(q))return q.am.map(i=>(q.o||[])[i]).join(' · ');return _correctText0(q)};
+const _ansQ0=ansQ;ansQ=function(v){const q=curQ();if(!isM(q))return _ansQ0(v);if(QZ.ans[q.id])return;QZ.msel=QZ.msel||{};const s=QZ.msel[q.id]=QZ.msel[q.id]||[];const i=s.indexOf(v);if(i>=0)s.splice(i,1);else s.push(v);render()};
+function ansM(){const q=curQ();if(!q||QZ.ans[q.id])return;const s=(QZ.msel&&QZ.msel[q.id])||[];if(!s.length){toast(Tx('qm.none','Coche au moins une réponse'));return}const ok=sameSet(s,q.am);QZ.ans[q.id]={sel:-1,ms:s.slice(),ok};if(ok)QZ.ok++;rec(q,ok);S.cur=QZ;save();render()}
+const _exAns0=exAns;exAns=function(v){const q=QI[EX.ids[EX.idx]];if(!isM(q))return _exAns0(v);const s=Array.isArray(EX.ans[q.id])?EX.ans[q.id]:[];const i=s.indexOf(v);if(i>=0)s.splice(i,1);else s.push(v);if(s.length)EX.ans[q.id]=s;else delete EX.ans[q.id];render()};
+const _finishExam0=finishExam;finishExam=function(abort){if(!abort&&EX)EX.ids.forEach(id=>{const q=QI[id],v=EX.ans[id];if(isM(q)&&Array.isArray(v))EX.ans[id]=sameSet(v,q.am)?q.a:-1});return _finishExam0.apply(this,arguments)};
+function multiAfter(){let q=null,s=[],a=null,fn='';
+ if(VIEW==='quiz'&&typeof QZ!=='undefined'&&QZ&&QZ.idx<QZ.ids.length){q=curQ();if(!isM(q))return;a=QZ.ans[q.id];s=(a?a.ms:(QZ.msel||{})[q.id])||[];fn='ansQ'}
+ else if(VIEW==='exam'&&typeof EX!=='undefined'&&EX){q=QI[EX.ids[EX.idx]];if(!isM(q))return;s=Array.isArray(EX.ans[q.id])?EX.ans[q.id]:[];fn='exAns'}else return;
+ const qq=$('#app .qq');if(qq&&!qq.nextElementSibling.classList.contains('qmhint'))qq.insertAdjacentHTML('afterend',`<div class="qmhint">${T('qm.hint','☑️ Plusieurs bonnes réponses : coche-les toutes.')}</div>`);
+ const ops=$$('#app .opt');ops.forEach(b=>{const m=(b.getAttribute('onclick')||'').match(new RegExp(fn+'\\((\\d+)\\)'));if(!m)return;const oi=+m[1];b.classList.add('mopt');b.classList.toggle('sel',s.includes(oi));if(a){b.classList.remove('ok','ko');if(q.am.includes(oi))b.classList.add('ok');else if(s.includes(oi))b.classList.add('ko')}});
+ if(fn==='ansQ'&&!a&&ops.length&&!$('#qmGo'))ops[ops.length-1].insertAdjacentHTML('afterend',`<button class="btn" id="qmGo" onclick="ansM()">${T('qm.go','✔ Valider ma réponse ({n} cochée(s))',{n:s.length})}</button>`)}
+
+
+/* raccourci D.E : un chapitre d'un cours (ex. Exercices corrigés INFAS de Pédiatrie) */
+SCREENS.dech={n:'Sujet D.E (chapitre)',ctx:1,hdr:()=>{const m=matOf(ctx.id);return miniHeader(T('dech.small','🎓 Sujets préparation D.E')+' · '+esc(m.short),esc(chName(ctx.id,ctx.c)))},blocks:['dech.main']};
+B('dech.main','Lancer le sujet',()=>{const mid=ctx.id,c=ctx.c,ids=(QBM[mid]||[]).filter(q=>q.c===c).map(q=>q.id),lb=chName(mid,c),rv=ids.filter(id=>!S.qs[id]||!S.qs[id].l),st=mStat(mid);
+ if(!ids.length)return `<div class="empty">${T('toast.noq','Aucune question ici')}</div>`;
+ return `<div class="card sf"><h3>${esc(lb)}</h3><div class="muted small">${T('dech.sub','{n} questions corrigées · {d} déjà réussies',{n:ids.length,d:ids.length-rv.length})}</div></div>
+ <button class="btn" onclick="startQuiz('${jsq(mid)}',QBM['${jsq(mid)}'].filter(q=>q.c===${c}).map(q=>q.id),'${jsq(lb)}','chap')">${T('dech.all','▶ Toutes les questions ({n})',{n:ids.length})}</button>
+ <button class="btn light" onclick="startQuiz('${jsq(mid)}',shuffle(QBM['${jsq(mid)}'].filter(q=>q.c===${c}).map(q=>q.id)).slice(0,20),'${jsq(lb)}','chap')">${T('dech.rand','🎲 20 questions au hasard')}</button>
+ <button class="btn coral" onclick="startTimed('${jsq(mid)}',shuffle(QBM['${jsq(mid)}'].filter(q=>q.c===${c}).map(q=>q.id)).slice(0,40),'${jsq(lb)}')">${T('dech.timed','⏱️ Sujet chronométré · 40 questions')}</button>
+ ${rv.length?`<button class="btn light" onclick="startQuiz('${jsq(mid)}',QBM['${jsq(mid)}'].filter(q=>q.c===${c}&&(!S.qs[q.id]||!S.qs[q.id].l)).map(q=>q.id),'${jsq(lb)}','chap')">${T('dech.weak','🔁 Jamais vues ou à revoir ({n})',{n:rv.length})}</button>`:''}
+ <button class="btn ghost" onclick="openMat('${jsq(mid)}')">${T('dech.mat','Voir tout le cours de {m}',{m:esc(matOf(mid).short)})}</button>`});
+
+
+/* ---------- 15. RUBRIQUES DÉDIÉES : certaines « matières » techniques ne s'affichent pas dans la liste des cours ---------- */
+const _groups0=groups;groups=function(){const G=_groups0.apply(this,arguments);G.forEach(g=>(g.subs||[]).forEach(s=>s.mats=(s.mats||[]).filter(id=>!(MATI[id]&&MATI[id].rub))));return G.filter(g=>(g.subs||[]).some(s=>s.mats.length))};
+
+/* ---------- 16. OUVERTURE RAPIDE ---------- */
+/* une seule copie d'une appli complète en téléchargement, même si on touche plusieurs fois */
+if(typeof loadAppFile==='function'){const _laf=loadAppFile,LAFP={};loadAppFile=function(k){return LAFP[k]||(LAFP[k]=_laf(k).then(v=>{if(v==null)delete LAFP[k];return v}))}}
+function fastNet(){try{const c=navigator.connection;return!c||(!c.saveData&&!/2g/.test(c.effectiveType||''))}catch(e){return true}}
+function prefetchApp(mid){try{const m=MATI[mid];if(m&&m.src&&typeof loadAppFile==='function'&&(window.__APPF||{})[m.src])loadAppFile(m.src)}catch(e){}}
+/* on prépare l'appli complète et les données dès que le doigt touche le bouton (avant même le « clic ») */
+document.addEventListener('pointerdown',e=>{try{const el=e.target.closest&&e.target.closest('[onclick]');if(!el)return;const oc=el.getAttribute('onclick')||'';const m=oc.match(/(?:openMat|openDE)\('([^']+)'|\{id:'([^']+)'/);const id=m&&(m[1]||m[2]);if(!id)return;if(typeof ensureX==='function')ensureX(id);if(/appview|openDE/.test(oc))prefetchApp(id);if(/'gloss'/.test(oc)&&typeof ensureX==='function')ensureX('__gloss')}catch(x){}},{capture:true,passive:true});
+/* sur la fiche d'une matière, l'appli complète se télécharge en arrière-plan (bonne connexion seulement) */
+let PFT=null;function prefetchAfter(){if(VIEW==='appview'&&ctx&&ctx.id&&S.lastApp!==ctx.id){S.lastApp=ctx.id;save()}clearTimeout(PFT);if(VIEW==='matiere'&&ctx&&ctx.id&&fastNet()){const id=ctx.id;PFT=setTimeout(()=>{if(VIEW==='matiere'&&ctx.id===id)prefetchApp(id)},1200)}}
+(function(){const f=()=>{try{if(S&&S.lastApp&&fastNet())prefetchApp(S.lastApp);if(typeof ensureX!=='function')return;setTimeout(()=>ensureX('__gloss'),3000)}catch(e){}};if('requestIdleCallback'in window)requestIdleCallback(()=>setTimeout(f,1500));else setTimeout(f,4000)})();
+/* l'appli s'affiche dès que sa page est prête, sans attendre toutes les images */
+window.__riAppReady=function(){const f=$('#appFrame');if(f&&f.classList.contains('hide')){f.classList.remove('hide');const l=$('#appLoad');if(l)l.remove()}};
+const _appExtra0=appExtra;appExtra=function(m,src){const r=_appExtra0(m,src);r.js+='<script>document.addEventListener("DOMContentLoaded",function(){setTimeout(function(){try{parent.__riAppReady&&parent.__riAppReady()}catch(e){}},0)})<'+'/script>';return r};
+
+/* ---------- 17. SUJETS TYPE EXAMEN, ORGANISÉS PAR MATIÈRE ---------- */
+const SX_SRC=[{mid:'xmvkq4zed',k:'nat',t:'🏛️ Sujets d’examen nationaux (Correction 2025)'},{mid:'xprepade',k:'prep',t:'🎓 Prépa D.E corrigée avec les cours'},{mid:'xmvkq5gqn',k:'exo',rx:/exercices corrig/i,t:'📝 Exercices corrigés des évaluations INFAS'}];
+function sxKey(g){const n=nrm(g.n||'');return n.replace(/\b(et|des|de|la|le|les)\b/g,' ').split(' ').filter(w=>w.length>3)}
+const SX_ALIAS={pediatrie:['sante infantile','pediatrie'],gyneco:['gyneco','obstetri']};
+function sxMatch(kw,c){const n=nrm(c);if(!kw.length)return false;for(const w of kw)if(SX_ALIAS[w])return SX_ALIAS[w].some(a=>n.includes(a));return kw.every(w=>n.includes(w))}
+function sxDomains(){const mine=new Set(myMats().map(m=>m.id));return groups().filter(g=>g.id!=='de'&&g.id!=='_autres').map(g=>{const mats=[].concat(...g.subs.map(s=>s.mats)).filter(id=>mine.has(id));const kw=sxKey(g);
+  const ex=[];SX_SRC.forEach(s=>{if(!MATI[s.mid])return;const chs=(MATI[s.mid].ch||[]).map((c,i)=>[c,i]).filter(([c])=>s.rx?(s.rx.test(c)&&mats.includes(s.mid)):sxMatch(kw,c));
+   chs.forEach(([c,i])=>{const n=(QBM[s.mid]||[]).filter(q=>q.c===i).length;if(n)ex.push({mid:s.mid,c:i,k:s.k,t:s.t,n,name:c})})});
+  return{g,mats,ex}}).filter(d=>d.mats.length||d.ex.length)}
+function sxRow(x){const st=(QBM[x.mid]||[]).filter(q=>q.c===x.c);const done=st.filter(q=>S.qs[q.id]).length;const nm=String(x.name).replace(/^J DE PRÉPARATION AU D\.E · /,'J · ').replace(/^(Santé infantile|Santé publique) · /,'');
+ return `<div class="li" onclick="go('dech',{id:'${jsq(x.mid)}',c:${x.c}})"><span class="em">${x.k==='nat'?'🏛️':x.k==='prep'?'🎓':'📝'}</span><span class="tx"><b>${esc(nm)}</b><small>${T('sx.n','{n} questions · {d} déjà faites',{n:x.n,d:done})}</small></span><span class="go">›</span></div>`}
+B('home.sujexam','Sujets type examen (par matière)',()=>{const D=sxDomains();if(!D.length)return'';const n=D.reduce((a,d)=>a+d.ex.length+d.mats.length,0);
+ return `<div class="card sf"><h3>${T('sx.h','📝 Sujets type examen')}</h3><div class="muted small">${T('sx.sub','Classés par matière : sujets nationaux, prépa D.E et sujets de chaque cours, avec ou sans chrono.')}</div>
+ <div class="glchips">${D.map(d=>`<button style="--lc:${esc(d.g.col||'')}" onclick="go('sujexam',{g:'${jsq(d.g.id)}'})">${esc(d.g.e||'📘')} ${esc(d.g.n)} <small>${d.ex.length+d.mats.length}</small></button>`).join('')}</div></div>`});
+SCREENS.sujexam={n:'Sujets type examen',hdr:()=>miniHeader(T('sx.small','📝 Sujets type examen'),T('sx.title','Par matière')),blocks:['sujexam.main']};
+B('sujexam.main','Sujets par matière',()=>{const D=sxDomains();if(!D.length)return `<div class="empty">${T('sx.none','Aucun sujet pour ta filière pour le moment.')}</div>`;const sel=ctx.g||D[0].g.id;
+ return `<div class="glchips sxtabs">${D.map(d=>`<button class="${d.g.id===sel?'on':''}" style="--lc:${esc(d.g.col||'')}" onclick="ctx.g='${jsq(d.g.id)}';render()">${esc(d.g.e||'📘')} ${esc(d.g.n)}</button>`).join('')}</div>`+D.filter(d=>d.g.id===sel).map(d=>{
+  const by={};d.ex.forEach(x=>(by[x.t]=by[x.t]||[]).push(x));
+  return Object.keys(by).map(t=>`<div class="secT">${esc(t)}<span class="ln"></span></div><div class="card sf">${by[t].map(sxRow).join('')}</div>`).join('')+
+  (d.mats.length?`<div class="secT">${T('sx.cours','📚 Sujets de chaque cours')}<span class="ln"></span></div><div class="card sf">${d.mats.map(id=>{const m=MATI[id],n=sujets(id).length;return `<div class="li" onclick="S.lastMat='${jsq(id)}';save();go('sujets',{id:'${jsq(id)}'})"><span class="em">${esc(m.emo)}</span><span class="tx"><b>${esc(m.title)}</b><small>${T('sx.suj','{s} sujets type examen · {n} questions',{s:n,n:(QBM[id]||[]).length})}</small></span><span class="go">›</span></div>`}).join('')}</div>`:'')}).join('')});
+
+/* ---------- 18. RÉVISER LES FORMULES, PAR MATIÈRE ET PAR CHAPITRE ---------- */
+function fmChs(){const m=MATI.xformules;if(!m)return[];return(m.ch||[]).map((c,i)=>{const p=String(c).split(' · ');return{i,mat:p[0],ch:p.slice(1).join(' · ')||p[0],n:(QBM.xformules||[]).filter(q=>q.c===i).length}})}
+function fmMats(){const o={};fmChs().forEach(c=>(o[c.mat]=o[c.mat]||[]).push(c));return o}
+B('home.formules','Réviser les formules (par matière)',()=>{const F=fmMats(),ks=Object.keys(F);if(!ks.length)return'';const nf=(cardsOf('xformules')||[]).length;
+ return `<div class="card sf"><h3>${T('fm.h','🧮 Réviser les formules')}</h3><div class="muted small">${T('fm.sub','{n} formules et scores, classés par matière puis par chapitre, avec exercices corrigés.',{n:nf})}</div>
+ <div class="glchips">${ks.map(k=>`<button onclick="go('formules',{m:'${jsq(k)}'})">${esc(k)} <small>${F[k].length} ch.</small></button>`).join('')}</div></div>`});
+SCREENS.formules={n:'Réviser les formules',hdr:()=>miniHeader(T('fm.small','🧮 Réviser les formules'),T('fm.title','Par matière et par chapitre')),blocks:['formules.main']};
+B('formules.main','Formules par matière',()=>{const F=fmMats(),ks=Object.keys(F);if(!ks.length)return `<div class="empty">${T('fm.none','Bientôt disponible.')}</div>`;const sel=F[ctx.m]?ctx.m:ks[0];
+ return `<div class="glchips sxtabs">${ks.map(k=>`<button class="${k===sel?'on':''}" onclick="ctx.m='${jsq(k)}';render()">${esc(k)}</button>`).join('')}</div><div class="card sf">${F[sel].map(c=>`<div class="li" onclick="go('formch',{id:'xformules',c:${c.i},m:'${jsq(sel)}'})"><span class="em">🧮</span><span class="tx"><b>${esc(c.ch)}</b><small>${T('fm.n','{f} formule(s) · {n} exercice(s)',{f:(cardsOf('xformules')||[]).filter(k=>k.c===c.i).length,n:c.n})}</small></span><span class="go">›</span></div>`).join('')}</div>
+ <button class="btn coral" onclick="startQuiz('xformules',QBM.xformules.filter(q=>(MATI.xformules.ch[q.c]||'').startsWith('${jsq(sel)} · ')).map(q=>q.id),'${jsq(Tx('fm.all','Formules · {m}',{m:sel}))}','chap')">${T('fm.train','✍️ M’entraîner sur toutes les formules de {m}',{m:esc(sel)})}</button>`});
+SCREENS.formch={n:'Formules d’un chapitre',ctx:1,hdr:()=>{const p=String((MATI.xformules.ch||[])[ctx.c]||'').split(' · ');return miniHeader(T('fm.small','🧮 Réviser les formules')+' · '+esc(p[0]),esc(p.slice(1).join(' · ')))},blocks:['formch.main']};
+B('formch.main','Formules du chapitre',()=>{const c=ctx.c,h=((DATA.course||{}).xformules||[])[c]||'',ids=(QBM.xformules||[]).filter(q=>q.c===c).map(q=>q.id),lb=chName('xformules',c);
+ return `${ids.length?`<button class="btn" onclick="startQuiz('xformules',QBM.xformules.filter(q=>q.c===${c}).map(q=>q.id),'${jsq(lb)}','chap')">${T('fm.go','✍️ M’entraîner : {n} exercice(s) corrigé(s)',{n:ids.length})}</button>`:''}<div class="card sf crtx fmtx">${h||`<div class="empty">${T('fm.load','Chargement…')}</div>`}</div>`});
+
+/* ---------- 19. GLOSSAIRE PAR MATIÈRE, SELON LA FILIÈRE ---------- */
+let GLQ='',GLALL=false;
+function glossAll(){const x=XD.__gloss;return(x&&x.course&&x.course.gl)||null}
+function glossLoad(){if(glossAll())return Promise.resolve(glossAll());const p=(typeof ensureX==='function')?ensureX('__gloss'):Promise.resolve();return p.then(()=>glossAll())}
+function glossN(){return(XD.__gloss&&XD.__gloss.n)||{}}
+function glossMats(all){const n=glossN();return MAT.filter(m=>n[m.id]&&!m.off&&(all||!S.fil||(m.fil||[]).includes(S.fil)))}
+function filName(){const f=FIL&&FIL[S.fil];return f?(f.n||f.name||f.short||S.fil):(S.fil||'')}
+B('home.gloss','Glossaire (par matière, selon ta filière)',()=>{const n=glossN(),L=glossMats(false);if(!L.length)return'';const tot=L.reduce((a,m)=>a+n[m.id],0);
+ return `<div class="card sf glh"><h3>${T('gl.h','🔤 Glossaire')}</h3><div class="muted small">${T('gl.sub2','{n} termes expliqués · {m} matières de ta filière {f}',{n:tot,m:L.length,f:esc(filName())})}</div>
+ <div class="search" onclick="GLQ='';go('gloss',{})" style="margin-top:10px">🔍<input class="srch" readonly placeholder="${esc(Tx('gl.ph','Chercher un mot (ex. : anémie, Glasgow…)'))}"></div>
+ <div class="glchips">${L.map(m=>`<button style="--lc:${esc(m.col)}" onclick="GLQ='';go('gloss',{id:'${jsq(m.id)}'})">${esc(m.emo)} ${esc(m.short)} <small>${n[m.id]}</small></button>`).join('')}</div></div>`});
+SCREENS.gloss={n:'Glossaire',hdr:()=>{const m=ctx.id&&MATI[ctx.id];return miniHeader(T('gl.small','🔤 Glossaire'),m?esc(m.emo+' '+m.short):(GLALL?T('gl.all','Toutes les filières'):T('gl.fil','Filière {f}',{f:esc(filName())})))},blocks:['gloss.main']};
+B('gloss.main','Termes et définitions',()=>`<div class="search glsearch">🔍<input class="srch" id="glIn" placeholder="${esc(Tx('gl.ph','Chercher un mot (ex. : anémie, Glasgow…)'))}" value="${esc(GLQ)}" autocomplete="off"></div>${ctx.id?'':`<div class="seg" style="margin-bottom:10px"><button class="${GLALL?'':'on'}" onclick="GLALL=false;render()">${T('gl.mine','Ma filière ({f})',{f:esc(filName())})}</button><button class="${GLALL?'on':''}" onclick="GLALL=true;render()">${T('gl.every','Toutes les filières')}</button></div>`}<div id="glOut"><div class="empty">${T('gl.load','Chargement du glossaire…')}</div></div>`,{after:()=>{const i=$('#glIn');if(i)i.oninput=()=>{GLQ=i.value;glossDraw()};glossLoad().then(glossDraw)}});
+function glossDraw(){const o=$('#glOut');if(!o)return;const G=glossAll();if(!G){o.innerHTML=`<div class="empty">${T('gl.err','Glossaire indisponible pour le moment (connexion ?).')}</div>`;return}
+ const mid=ctx.id&&G[ctx.id]?ctx.id:'',q=nrm(GLQ||''),n=glossN(),scope=mid?[mid]:glossMats(GLALL).map(m=>m.id);
+ if(!mid&&!q){const ids=new Set(scope);o.innerHTML=groups().map(g=>{const L=[].concat(...g.subs.map(s=>s.mats)).filter(id=>ids.has(id));return L.length?`<div class="secT">${esc((g.e||'')+' '+g.n)}<span class="ln"></span></div><div class="card sf">${L.map(id=>{const m=MATI[id];return `<div class="li" onclick="go('gloss',{id:'${jsq(id)}'})"><span class="em">${esc(m.emo)}</span><span class="tx"><b>${esc(m.title)}</b><small>${T('gl.n','{n} termes',{n:n[id]})}</small></span><span class="go">›</span></div>`}).join('')}</div>`:''}).join('');colorize();return}
+ let L=[];scope.forEach(k=>(G[k]||[]).forEach(e=>{if(!q||nrm(e[0]).includes(q)||(q.length>3&&nrm(e[1]).includes(q)))L.push([e[0],e[1],k])}));
+ const rk=e=>{const t=nrm(e[0]);return t.startsWith(q)?0:t.includes(q)?1:2};if(q)L.sort((a,b)=>rk(a)-rk(b)||a[0].localeCompare(b[0],'fr'));else L.sort((a,b)=>a[0].localeCompare(b[0],'fr'));
+ if(!L.length){o.innerHTML=`<div class="empty">${T('gl.none','Aucun terme trouvé.')}</div>`;return}
+ const lt=e=>(nrm(e[0])[0]||'#').toUpperCase(),letters=[...new Set(L.map(lt))];let cur='',h='';const max=600;
+ L.slice(0,max).forEach(e=>{const l=lt(e);if(!q&&l!==cur){cur=l;h+=`<div class="gll" id="gl-${l}">${l}</div>`}h+=`<div class="gli"><b>${esc(e[0])}</b>${!mid?`<small>${esc((MATI[e[2]]||{}).short||'')}</small>`:''}<span>${esc(e[1])}</span></div>`});
+ o.innerHTML=(!q&&letters.length>3?`<div class="glk">${letters.map(l=>`<button onclick="var t=document.getElementById('gl-${l}');t&&t.scrollIntoView({block:'start',behavior:'smooth'})">${l}</button>`).join('')}</div>`:'')+`<div class="muted small" style="margin:4px 2px 8px">${T('gl.count','{n} terme(s)',{n:L.length})}${L.length>max?' · '+T('gl.more','affine ta recherche pour voir la suite'):''}</div><div class="card sf glbox">${h}</div>`}
+
+/* ---------- 20. PLACE DES NOUVELLES RUBRIQUES SUR L'ACCUEIL ---------- */
+(function(){const H=SCREENS.home.blocks;const ins=(id,after)=>{if(H.includes(id))return;const i=H.indexOf(after);H.splice(i<0?H.length:i+1,0,id)};ins('home.sujexam','home.de');ins('home.formules','home.sujexam');if(!H.includes('home.gloss')){const i=H.indexOf('home.commu');H.splice(i<0?H.length:i,0,'home.gloss')}})();
+const _blkMigrate1=blkMigrate;blkMigrate=function(){_blkMigrate1();if((E.blkv||0)===3&&E.layout){const L=E.layout.home;if(Array.isArray(L)){const ins=(id,after)=>{if(L.some(b=>b.id===id))return;const i=L.findIndex(b=>b.id===after);L.splice(i<0?L.length:i+1,0,{id,inst:id})};ins('home.sujexam','home.de');ins('home.formules','home.sujexam');if(!L.some(b=>b.id==='home.gloss')){const i=L.findIndex(b=>b.id==='home.commu');L.splice(i<0?L.length:i,0,{id:'home.gloss',inst:'home.gloss'})}}E.blkv=4}};
+
+/* ---------- 21. AUCUN ÉDITEUR CHEZ LES ÉTUDIANTS : l'éditeur propre à certaines applis intégrées est retiré ---------- */
+function stripAppEditor(t){if(!t)return t;const cut=(s,open,closeRx)=>{const i=s.indexOf(open);if(i<0)return s;closeRx.lastIndex=i+open.length;const m=closeRx.exec(s);return m?s.slice(0,i)+s.slice(m.index+m[0].length):s};
+ let o=t;for(let k=0;k<3;k++){const b=o;o=cut(o,'<script id="ed-js">',/<%?\/script>/g);o=cut(o,'<style id="ed-css">',/<%?\/style>/g);if(o===b)break}
+ /* ceinture et bretelles : si un éditeur subsiste, il ne peut pas démarrer */
+ return o.replace(/<head([^>]*)>/i,'<head$1><script>try{Object.defineProperty(window,"PORTAIL_EDITOR",{get:function(){return undefined},set:function(){},configurable:false})}catch(e){}<'+'/script>')}
+const _appSource0=appSource;appSource=async function(m){const h=await _appSource0.apply(this,arguments);return(h&&RO)?stripAppEditor(h):h};
+
+/* ---------- 22. QUESTIONS SUR SCHÉMA : l'image s'affiche avec la question ---------- */
+function qiAfter(){let q=null;if(VIEW==='quiz'&&typeof QZ!=='undefined'&&QZ&&QZ.idx<QZ.ids.length)q=curQ();else if(VIEW==='exam'&&typeof EX!=='undefined'&&EX)q=QI[EX.ids[EX.idx]];
+ if(!q||!q.qi||q.img==null)return;const qq=$('#app .qq');if(!qq||$('#app .qifig'))return;const src=imgSrc(q.img);if(!src)return;
+ qq.insertAdjacentHTML('afterend',`<figure class="xfig qifig"><img loading="lazy" decoding="async" src="${src}" alt="" loading="eager" onclick="zoomImg('${jsq(String(q.img))}','')"></figure>`);$$('#app .xbox .xfig').forEach(f=>f.remove())}
+
+/* ---------- 23. FICHE MATIÈRE : ce que l'appli complète propose en plus apparaît sous « Faire les quiz » ---------- */
+const FICHE_LINKS=[{mid:'xmvkq5cba',k:'prep',pre:'Santé infantile · '},{mid:'xmvkq66ok',k:'prep',pre:'Santé publique · '},{mid:'xmvkq66ok',k:'form',m:'Santé publique'},{mid:'chir',k:'form',m:'Chirurgie'},{mid:'xmvkq5gqn',k:'chap',rx:/exercices corrig/i}];
+function prepChs(pre){const m=MATI.xprepade;return m?(m.ch||[]).map((c,i)=>({c:String(c),i})).filter(x=>x.c.startsWith(pre)):[]}
+function ficheLinks(mid){const out=[];FICHE_LINKS.filter(l=>l.mid===mid).forEach(l=>{
+ if(l.k==='prep'){const L=prepChs(l.pre);if(!L.length)return;const n=(QBM.xprepade||[]).filter(q=>L.some(x=>x.i===q.c)).length;out.push(actBtn(`go('prepmat',{id:'${jsq(mid)}'})`,'star','🎓',T('fx.prep','Prépa examen D.E'),T('fx.prep.s','{n} questions d’examen corrigées avec le cours · {s} séries',{n,s:L.length})))}
+ if(l.k==='form'){const F=fmMats()[l.m];if(!F)return;out.push(actBtn(`go('formules',{m:'${jsq(l.m)}'})`,'calc','🧮',T('fx.form','Réviser les formules'),T('fx.form.s','{n} chapitre(s) · formules, scores et exercices corrigés',{n:F.length})))}
+ if(l.k==='chap'){const c=chIdx(mid,l.rx);if(c<0)return;out.push(actBtn(`go('dech',{id:'${jsq(mid)}',c:${c}})`,'edit','📝',esc(chName(mid,c)),T('fx.chap.s','{n} questions corrigées',{n:(QBM[mid]||[]).filter(q=>q.c===c).length})))}});return out}
+function actBtn(on,ic,em,t,s){return `<button class="act sf" onclick="${on}"><span class="dot"><span>${ico(ic,em)}</span></span><span><b>${t}</b><small>${s}</small></span><span class="arr">›</span></button>`}
+const _matAct1=BLK['matiere.actions'].html;BLK['matiere.actions'].html=function(){const h=_matAct1.apply(this,arguments),mid=ctx.id,add=ficheLinks(mid);if(!add.length)return h;
+ const parts=h.split(/(?=<button class="act)/);const i=parts.findIndex(p=>/go\('sujets'/.test(p));parts.splice(i<0?0:i+1,0,...add);return parts.join('')};
+SCREENS.prepmat={n:'Prépa examen D.E (matière)',ctx:1,hdr:()=>{const m=matOf(ctx.id);return miniHeader(T('pm.small','🎓 Prépa examen D.E'),esc(m.emo+' '+m.short))},blocks:['prepmat.main']};
+B('prepmat.main','Séries de la prépa D.E',()=>{const l=FICHE_LINKS.find(x=>x.mid===ctx.id&&x.k==='prep');const L=l?prepChs(l.pre):[];if(!L.length)return `<div class="empty">${T('fm.none','Bientôt disponible.')}</div>`;
+ const ids=(QBM.xprepade||[]).filter(q=>L.some(x=>x.i===q.c)).map(q=>q.id),lb=Tx('pm.lbl','Prépa D.E · {m}',{m:matOf(ctx.id).short});
+ return `<div class="card sf"><div class="muted small">${T('pm.sub','{n} questions d’examen, corrigées et justifiées avec le cours.',{n:ids.length})}</div></div>
+ <button class="btn coral" onclick="startTimed('xprepade',shuffle(${JSON.stringify(ids).replace(/"/g,'&quot;')}).slice(0,40),'${jsq(lb)}')">${T('pm.blanc','⏱️ Examen blanc · 40 questions')}</button>
+ <div class="card sf">${L.map(x=>{const n=(QBM.xprepade||[]).filter(q=>q.c===x.i),d=n.filter(q=>S.qs[q.id]).length;return `<div class="li" onclick="go('dech',{id:'xprepade',c:${x.i}})"><span class="em">🎓</span><span class="tx"><b>${esc(x.c.slice(l.pre.length))}</b><small>${T('sx.n','{n} questions · {d} déjà faites',{n:n.length,d})}</small></span><span class="go">›</span></div>`}).join('')}</div>`});
+function chIdx(mid,rx){return((MATI[mid]||{}).ch||[]).findIndex(c=>rx.test(c))}
+
+/* ---------- 24. SUJETS TYPE EXAMEN : totaux par matière et sujets classés par antenne ---------- */
+function sxTot(d){const ex=d.ex.length,exq=d.ex.reduce((a,x)=>a+x.n,0),cs=d.mats.reduce((a,id)=>a+sujets(id).length,0),cq=d.mats.reduce((a,id)=>a+(QBM[id]||[]).length,0);return{s:ex+cs,q:exq+cq}}
+function sxAnt(x){const nm=String(x.name);if(x.k==='prep')return{a:Tx('sx.a.prep','Prépa D.E corrigée'),l:nm.split(' · ').pop()};if(x.k==='exo')return{a:Tx('sx.a.exo','Évaluations INFAS'),l:nm};
+ if(/^J DE PRÉPARATION/i.test(nm)){const p=nm.split(' · ');return{a:Tx('sx.a.j','Préparation D.E (J)'),l:p.slice(1).join(' · ')}}
+ const p=nm.split(' · '),h=p[0],ss=h.match(/\(([^)]*)\)/);const a=h.replace(/\s*\([^)]*\)\s*/,'').trim();return{a:a.toLowerCase().replace(/(^|[\s'’-])(\p{L})/gu,(m,s,c)=>s+c.toUpperCase()),l:ss?ss[1]:Tx('sx.s1','Session 1')}}
+B('home.sujexam','Sujets type examen (par matière)',()=>{const D=sxDomains();if(!D.length)return'';
+ return `<div class="card sf"><h3>${T('sx.h','📝 Sujets type examen')}</h3><div class="muted small">${T('sx.sub2','Classés par matière, puis par antenne.')}</div>
+ <div class="sxgrid">${D.map(d=>{const t=sxTot(d);return `<button class="sxm" style="--lc:${esc(d.g.col||'')}" onclick="go('sujexam',{g:'${jsq(d.g.id)}'})"><span class="sxe">${esc(d.g.e||'📘')}</span><b>${esc(d.g.n)}</b><small>${T('sx.tot','{s} sujets · {q} questions',{s:t.s,q:t.q})}</small></button>`}).join('')}</div></div>`});
+B('sujexam.main','Sujets par matière',()=>{const D=sxDomains();if(!D.length)return `<div class="empty">${T('sx.none','Aucun sujet pour ta filière pour le moment.')}</div>`;const sel=ctx.g&&D.find(d=>d.g.id===ctx.g)?ctx.g:D[0].g.id,d=D.find(x=>x.g.id===sel),tt=sxTot(d);
+ const by={};d.ex.forEach(x=>{const a=sxAnt(x);(by[a.a]=by[a.a]||[]).push(Object.assign({lab:a.l},x))});
+ const row=x=>{const st=(QBM[x.mid]||[]).filter(q=>q.c===x.c),dn=st.filter(q=>S.qs[q.id]).length;return `<div class="li" onclick="go('dech',{id:'${jsq(x.mid)}',c:${x.c}})"><span class="em">${x.k==='nat'?'🏛️':x.k==='prep'?'🎓':'📝'}</span><span class="tx"><b>${esc(x.lab)}</b><small>${T('sx.n','{n} questions · {d} déjà faites',{n:x.n,d:dn})}</small></span><span class="go">›</span></div>`};
+ return `<div class="glchips sxtabs">${D.map(x=>`<button class="${x.g.id===sel?'on':''}" style="--lc:${esc(x.g.col||'')}" onclick="ctx.g='${jsq(x.g.id)}';render()">${esc(x.g.e||'📘')} ${esc(x.g.n)}</button>`).join('')}</div>
+ <div class="card sf sxsum"><b>${esc((d.g.e||'')+' '+d.g.n)}</b><span>${T('sx.tot','{s} sujets · {q} questions',{s:tt.s,q:tt.q})}</span></div>`+
+ Object.keys(by).map(a=>{const L=by[a],nq=L.reduce((s,x)=>s+x.n,0);return `<div class="secT">📍 ${esc(a)}<span class="ln"></span><small class="sxc">${T('sx.ant','{s} sujet(s) · {q} questions',{s:L.length,q:nq})}</small></div><div class="card sf${L.every(x=>x.k==='nat')?' sxrow2':''}">${L.map(row).join('')}</div>`}).join('')+
+ (d.mats.length?`<div class="secT">${T('sx.cours','📚 Sujets de chaque cours')}<span class="ln"></span></div><div class="card sf">${d.mats.map(id=>{const m=MATI[id],n=sujets(id).length;return `<div class="li" onclick="S.lastMat='${jsq(id)}';save();go('sujets',{id:'${jsq(id)}'})"><span class="em">${esc(m.emo)}</span><span class="tx"><b>${esc(m.title)}</b><small>${T('sx.suj','{s} sujets type examen · {n} questions',{s:n,n:(QBM[id]||[]).length})}</small></span><span class="go">›</span></div>`}).join('')}</div>`:'')});
+
+/* ---------- 25. ACCUEIL : plus de bouton « Examen blanc chronométré » ---------- */
+['html','oneui'].forEach(k=>{const f=BLK['home.de']&&BLK['home.de'][k];if(!f)return;BLK['home.de'][k]=function(){return String(f.apply(this,arguments)).replace(/<button[^>]*onclick="examBlanc\(40\)"[\s\S]*?<\/button>/,'')}});
+
+/* ---------- 26. RECHERCHE AUSSI DANS LES APPLICATIONS COMPLÈTES ---------- */
+let AXL=null,AXR=[],AXQ='';
+function axShow(el,i){const x=AXR[i];if(!x)return;const nx=el.nextElementSibling;if(nx&&nx.classList.contains('gsd')){nx.remove();return}const d=document.createElement('div');d.className='gsd';d.innerHTML=`<div class="ra" style="white-space:pre-line">${esc(x.full)}</div><button class="btn light" onclick="gsClose();axOpen('${jsq(x.mid)}','${jsq(AXQ)}')">${esc(Tx('gs.axgo','📱 Ouvrir l’application complète'))}</button>`;el.after(d)}
+function axAll(){const x=XD.__appsx;return(x&&x.course&&x.course.ix)||null}
+function axLoad(){if(axAll())return Promise.resolve(axAll());if(typeof ensureX!=='function')return Promise.resolve(null);return AXL||(AXL=ensureX('__appsx').then(()=>axAll()))}
+function axSearch(W){const A=axAll();if(!A)return[];const out=[],mine=new Set(myMats().map(m=>m.id));Object.keys(A).forEach(src=>{const m=MAT.find(z=>z.src===src&&!z.rub)||MATI[src];if(!m||!mine.has(m.id))return;let n=0;
+ A[src].forEach((t,ti)=>{if(n>=15)return;const k=nrm(t);if(W.every(w=>k.includes(w))){const i=k.indexOf(W[0]),raw=String(t);n++;out.push({mid:m.id,src,ti,full:raw,t:raw.length>220?raw.slice(Math.max(0,Math.round(i*raw.length/Math.max(1,k.length))-80)).slice(0,220)+'…':raw})}})});return out}
+const _gsRun0=gsRun;gsRun=function(){_gsRun0.apply(this,arguments);const v=nrm(($('#gsQ')||{}).value||''),box=$('#gsR');if(!box||v.length<3||!(GSK==='all'||GSK==='ch'))return;const W=v.split(' ').filter(Boolean);
+ const draw=()=>{if(nrm(($('#gsQ')||{}).value||'')!==v)return;let z=$('#gsAx');if(z)z.remove();const R=axSearch(W);AXR=R;AXQ=v;z=document.createElement('div');z.id='gsAx';
+  z.innerHTML=R.length?`<div class="secT" style="margin-top:12px">${T('gs.ax','📱 Dans les applications complètes ({n})',{n:R.length})}<span class="ln"></span></div>`+R.slice(0,40).map((x,i)=>{const m=matOf(x.mid);return `<button class="gsi" onclick="axShow(this,${i})"><span class="gse">📱</span><span class="gst"><small style="color:${esc(m.col)}">${esc(m.emo+' '+m.short)} · ${esc(Tx('gs.axo','appli complète'))}</small><span>${esc(x.t)}</span></span></button>`}).join(''):'';
+  if(R.length){const em=box.querySelector('.empty');if(em)em.remove();box.appendChild(z)}};
+ if(axAll())draw();else{const w=document.createElement('div');w.id='gsAx';w.className='muted small';w.style.padding='10px 4px';w.textContent=Tx('gs.axl','Recherche dans les applications complètes…');box.appendChild(w);axLoad().then(draw)}};
+let axOpen=function(mid,q){window.__axQ=q;VSTACK=[];go('appview',{id:mid})};
+/* dans l'appli complète : le mot cherché est surligné et affiché */
+const _appExtra1=appExtra;appExtra=function(m,src){const r=_appExtra1(m,src);if(window.__axQ){const q=String(window.__axQ);window.__axQ=null;
+ r.js+='<script>(function(Q){var tries=0;function nm(s){return String(s).toLowerCase().normalize("NFD").replace(/[\\u0300-\\u036f]/g,"")}function go(){tries++;var w=document.createTreeWalker(document.body,4),n,q=nm(Q).split(" ")[0];while(n=w.nextNode()){if(n.parentElement&&n.parentElement.offsetParent!==null&&nm(n.nodeValue).indexOf(q)>-1){var p=n.parentElement;p.style.background="#FFE08A";p.style.borderRadius="6px";p.scrollIntoView({block:"center"});return}}if(tries<8)setTimeout(go,500)}document.addEventListener("DOMContentLoaded",function(){setTimeout(go,600)})})('+JSON.stringify(q).replace(/</g,'\\u003c')+')<'+'/script>'}return r};
+/* préchargement de l'index quand on ouvre la recherche (bonne connexion) */
+const _gsOpen0=gsOpen;gsOpen=function(){_gsOpen0.apply(this,arguments);try{if(fastNet())axLoad()}catch(e){}};
+
+/* ---------- 27. « BIENTÔT DISPONIBLE » (réglé dans l'éditeur) ---------- */
+function soonMat(id){const m=MATI[id];return!!(m&&m.soon)}
+function soonKey(k){return!!(E.soonk&&E.soonk[k])}
+function soonPop(){askRI(Tx('soon.msg','⏳ Bientôt disponible — ce contenu arrive très vite !'),()=>{},Tx('soon.ok','D’accord'),Tx('soon.no','Fermer'))}
+function soonBlocked(){return RO||!EDITMODE}
+const _openMat0=openMat;openMat=function(id){if(soonMat(id)&&soonBlocked()){soonPop();return}return _openMat0.apply(this,arguments)};
+const _go0=go;go=function(v,c){c=c||{};if(soonBlocked()&&c.id&&soonMat(c.id)&&v!=='matiere'){soonPop();return}if(soonBlocked()&&v==='dech'&&c.id!=null&&soonKey('ch:'+c.id+':'+c.c)){soonPop();return}return _go0.apply(this,arguments)};
+function soonAfter(){const ed=!RO&&EDITMODE;
+ $$('#app [onclick]').forEach(el=>{if(el.closest('.ed-tb,.ed-panel'))return;const oc=el.getAttribute('onclick')||'';let m=oc.match(/(?:openMat|openDE)\('([^']+)'|go\('(?:matiere|sujets|appview|prepmat)',\{id:'([^']+)'/);let on=false;
+  if(m&&soonMat(m[1]||m[2]))on=true;const d=oc.match(/go\('dech',\{id:'([^']+)',c:(\d+)/);if(d&&soonKey('ch:'+d[1]+':'+d[2]))on=true;
+  el.classList.toggle('soon',on);if(on&&!el.querySelector('.soonb')){const tg=el.querySelector('.tx,.ou-tx,.gst')||el;tg.insertAdjacentHTML('beforeend',`<span class="soonb">${esc(Tx('soon.b','⏳ Bientôt disponible'))}</span>`)}
+  if(ed&&d&&!el.querySelector(':scope > .soont'))el.insertAdjacentHTML('beforeend',`<span class="soont" title="Bientôt disponible" onclick="event.stopPropagation();soonToggle('ch:${d[1]}:${d[2]}')">⏳</span>`)});
+ /* blocs entiers marqués « bientôt » */
+ const sc=SCREENS[VIEW]?VIEW:'home',L=layoutOf(sc);$$('#app section.blk').forEach(sec=>{const b=L.find(x=>x.inst===sec.dataset.inst);const on=!!(b&&b.soon);sec.classList.toggle('soonblk',on);
+  if(on&&!sec.querySelector(':scope > .soonov'))sec.insertAdjacentHTML('beforeend',`<div class="soonov"><span>${esc(Tx('soon.b','⏳ Bientôt disponible'))}</span></div>`);
+  const tb=sec.querySelector(':scope > .ed-tb');if(ed&&tb&&!tb.querySelector('.ed-soon')){const bt=document.createElement('button');bt.className='ed-soon';bt.title='Bientôt disponible';bt.textContent=on?'⏳✓':'⏳';bt.onclick=e=>{e.stopPropagation();soonBlock(sc,sec.dataset.inst)};tb.appendChild(bt)}})}
+document.addEventListener('click',e=>{if(!soonBlocked())return;const s=e.target.closest&&e.target.closest('.soonblk,.soon');if(s&&!e.target.closest('.ed-tb')){e.preventDefault();e.stopPropagation();soonPop()}},true);
+function soonToggle(k){E.soonk=E.soonk||{};if(E.soonk[k])delete E.soonk[k];else E.soonk[k]=1;try{window.PORTAIL_EDITOR.commit('Bientôt disponible : '+k)}catch(e){}render()}
+function soonBlock(sc,inst){if(!E.layout)E.layout={};if(!Array.isArray(E.layout[sc]))E.layout[sc]=layoutOf(sc).map(b=>Object.assign({},b));const b=E.layout[sc].find(x=>x.inst===inst);if(!b)return;b.soon=!b.soon;if(!b.soon)delete b.soon;try{window.PORTAIL_EDITOR.commit('Bloc bientôt disponible')}catch(e){}render()}
+function soonMatToggle(id){E.content=E.content||{};E.content.mat=E.content.mat||{};const o=E.content.mat[id]=E.content.mat[id]||{};o.soon=!o.soon;if(!o.soon)delete o.soon;try{window.PORTAIL_EDITOR.commit('Matière bientôt disponible')}catch(e){}applyContent();render()}
+
+/* ---------- 28. IMAGES DE COUVERTURE (cours, sujets) : compressées dans l'éditeur, publiées en fichiers séparés ---------- */
+function coverOf(k){const v=E.covers&&E.covers[k];return v||''}
+function coverPick(k){const i=document.createElement('input');i.type='file';i.accept='image/*';i.onchange=()=>{const f=i.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const W=Math.min(900,im.width),c=document.createElement('canvas');c.width=W;c.height=Math.round(im.height*W/im.width);c.getContext('2d').drawImage(im,0,0,c.width,c.height);let u=c.toDataURL('image/webp',.72);if(!/^data:image\/webp/.test(u))u=c.toDataURL('image/jpeg',.72);
+  E.covers=E.covers||{};E.covers[k]=u;try{window.PORTAIL_EDITOR.commit('Image de couverture')}catch(e){}toast(Tx('cv.ok','🖼️ Couverture ajoutée ({n} Ko)',{n:Math.round(u.length*.75/1024)}));render()};im.src=r.result};r.readAsDataURL(f)};i.click()}
+function coverDel(k){if(E.covers){delete E.covers[k];try{window.PORTAIL_EDITOR.commit('Couverture retirée')}catch(e){}render()}}
+function coverEd(k){if(RO||!EDITMODE)return'';return `<div class="cved"><button onclick="event.stopPropagation();coverPick('${jsq(k)}')">🖼️ ${coverOf(k)?esc(Tx('cv.chg','Changer la couverture')):esc(Tx('cv.add','Ajouter une couverture'))}</button>${coverOf(k)?`<button onclick="event.stopPropagation();coverDel('${jsq(k)}')">✕</button>`:''}</div>`}
+/* fiche matière : bannière + réglages de l'éditeur */
+const _mBadge0=BLK['matiere.badge'].html;BLK['matiere.badge'].html=function(){const h=_mBadge0.apply(this,arguments),mid=ctx.id,cv=coverOf('mat:'+mid);
+ const ed=(!RO&&EDITMODE)?`<div class="cved">${coverEd('mat:'+mid).replace(/^<div class="cved">|<\/div>$/g,'')}<button onclick="soonMatToggle('${jsq(mid)}')">${soonMat(mid)?'⏳✓ '+esc(Tx('soon.on','Bientôt disponible (activé)')):'⏳ '+esc(Tx('soon.set','Marquer « Bientôt disponible »'))}</button></div>`:'';
+ return (cv?`<div class="cvban"><img loading="lazy" decoding="async" src="${cv}" alt="" loading="lazy"></div>`:'')+ed+h};
+/* écran d'un sujet D.E / d'une série : bannière */
+const _dech0=BLK['dech.main'].html;BLK['dech.main'].html=function(){const k='ch:'+ctx.id+':'+ctx.c,cv=coverOf(k);return (cv?`<div class="cvban"><img loading="lazy" decoding="async" src="${cv}" alt="" loading="lazy"></div>`:'')+coverEd(k)+_dech0.apply(this,arguments)};
+/* vignettes dans les listes et les tuiles */
+function coverAfter(){$$('#app [onclick]').forEach(el=>{if(el.dataset.cv||el.closest('.ed-tb'))return;const oc=el.getAttribute('onclick')||'';let k='';let m=oc.match(/(?:openMat|openDE)\('([^']+)'/);if(m)k='mat:'+m[1];const d=oc.match(/go\('dech',\{id:'([^']+)',c:(\d+)/);if(d)k='ch:'+d[1]+':'+d[2];const cv=k&&coverOf(k);if(!cv)return;el.dataset.cv=1;
+ const em=el.querySelector('.em,.e,.ou-ic,.sxe');if(em){em.classList.add('cvth');em.innerHTML=`<img loading="lazy" decoding="async" src="${cv}" alt="" loading="lazy">`}else el.insertAdjacentHTML('afterbegin',`<img class="cvth2" src="${cv}" alt="" loading="lazy">`)})}
+
+/* ---------- 29. CORRECTION NATIONALE : même apparence que Révision INFAS, antennes regroupées, J par matière, sans profil ---------- */
+function corrPatch(){var J='j-preparation-de';function city(n){return String(n).replace(/\s*\([^)]*\)\s*/,'').trim()}function sess(n){var m=String(n).match(/session\s*(\d+)/i);return m?+m[1]:1}
+ function sortA(){var A=QUIZ_DATA.antennes,first={};A.forEach(function(a,i){var c=city(a.name);if(!(c in first))first[c]=i});A.sort(function(x,y){if(x.slug===J)return -1;if(y.slug===J)return 1;var cx=city(x.name),cy=city(y.name);return cx===cy?sess(x.name)-sess(y.name):first[cx]-first[cy]})}
+ try{var _rb=rebuildData;rebuildData=function(){_rb.apply(this,arguments);sortA();buildIndex()};sortA();buildIndex()}catch(e){}
+ /* liste des antennes : sessions 1 et 2 d'une même antenne dans la même carte ; J classé par matière */
+ function fixList(){var L=document.getElementById('antennes-list');if(!L||L.dataset.ri===String(L.childElementCount))return;var cards=[].slice.call(L.querySelectorAll('.antenne-card'));var byIdx=QUIZ_DATA.antennes;var prev=null,prevA=null;
+  cards.forEach(function(card,i){var a=byIdx[i];if(!a)return;var body=card.querySelector('.antenne-body');
+   if(a.slug===J){var rows=[].slice.call(body.querySelectorAll('.sujet-row'));var mats=[];a.sujets.forEach(function(s,k){var m=s.matiere||'Autres';if(mats.indexOf(m)<0)mats.push(m)});body.innerHTML='';mats.forEach(function(m){var h=document.createElement('div');h.className='ri-subh';h.textContent='J · '+m;body.appendChild(h);a.sujets.forEach(function(s,k){if((s.matiere||'Autres')===m&&rows[k])body.appendChild(rows[k])})});prev=null;return}
+   if(prev&&city(prevA.name)===city(a.name)){var pb=prev.querySelector('.antenne-body');if(!pb.querySelector('.ri-subh')){var h1=document.createElement('div');h1.className='ri-subh';h1.textContent='Session '+sess(prevA.name);pb.insertBefore(h1,pb.firstChild)}
+    var h2=document.createElement('div');h2.className='ri-subh';h2.textContent='Session '+sess(a.name);pb.appendChild(h2);[].slice.call(body.children).forEach(function(r){pb.appendChild(r)});
+    var nS=prev.__ns=(prev.__ns||prevA.sujets.length)+a.sujets.length,nQ=prev.__nq=(prev.__nq||prevA.count)+a.count;var mt=prev.querySelector('.ant-meta');if(mt)mt.textContent='Sessions 1 et 2 · '+nS+' sujets · '+nQ+' questions';var nm=prev.querySelector('.ant-name');if(nm)nm.textContent=city(prevA.name);card.remove();return}
+   prev=card;prevA=a});L.dataset.ri=String(L.childElementCount)}
+ /* configuration : une session choisie → toutes ses questions (pas de choix du nombre) ; filtre « non traitées » */
+ try{var _gf=getFilteredPool;getFilteredPool=function(){var p=_gf.apply(this,arguments);if(cfgState&&cfgState.unseen)p=p.filter(function(q){return statusOf(q.id)==='unseen'});return p}}catch(e){}
+ try{var _rc=renderConfig;renderConfig=function(){if(cfgState)cfgState.allAnt=true;_rc.apply(this,arguments);var $=function(i){return document.getElementById(i)};
+  var aw=$('cfg-antennes');if(aw){[].slice.call(aw.querySelectorAll('.chip.more')).forEach(function(c){c.remove()});[].slice.call(aw.children).forEach(function(c){var tn=null;for(var k=0;k<c.childNodes.length;k++)if(c.childNodes[k].nodeType===3&&c.childNodes[k].nodeValue.trim()){tn=c.childNodes[k];break}if(!tn)return;var t=tn.nodeValue.trim();if(t==='Toutes')return;var cty=city(t),ss=sess(t);var nmc=cty.charAt(0)+cty.slice(1).toLowerCase();tn.nodeValue=(/session/i.test(t)?'S'+ss:'S1');c.dataset.city=nmc;c.dataset.s=/session/i.test(t)?ss:1});
+   var rows={},order=[];[].slice.call(aw.children).forEach(function(c){if(!c.dataset.city)return;var k=c.dataset.city;if(!rows[k]){rows[k]=document.createElement('div');rows[k].className='ri-antrow';rows[k].innerHTML='<span class="ri-antc">'+k+'</span><span class="ri-ants"></span><span class="ri-ants"></span>';order.push(k)}var slot=rows[k].querySelectorAll('.ri-ants')[(+c.dataset.s===2)?1:0];slot.appendChild(c)});order.forEach(function(k){aw.appendChild(rows[k])})}
+  var one=(cfgState.antenneSlug&&cfgState.antenneSlug!=='all'&&cfgState.antenneSlug!==J)||(cfgState.mode==='j'&&cfgState.sujetSlug&&cfgState.sujetSlug!=='all');
+  var cc=$('cfg-count-presets');var card=cc&&cc.closest('.config-card');var pool=getFilteredPool();
+  if(card)card.style.display=one?'none':'';if(one){cfgState.count=pool.length;cfgState.countAll=true;var s=$('sum-session');if(s)s.textContent=pool.length;var av=$('sum-available');if(av)av.textContent=pool.length}
+  var u=$('ri-unseen');if(!u){u=document.createElement('div');u.id='ri-unseen';u.className='config-card';var m=$('cfg-mode');m.parentNode.insertBefore(u,m.nextSibling)}
+  var nu=_gf().filter(function(q){return statusOf(q.id)==='unseen'}).length;u.innerHTML='<label class="ri-unseen"><input type="checkbox" '+(cfgState.unseen?'checked':'')+'> 🆕 Seulement les questions pas encore traitées <b>'+nu+'</b></label>';u.querySelector('input').onchange=function(e){cfgState.unseen=e.target.checked;renderConfig()}}}catch(e){}
+ var ub=document.getElementById('btn-start-unseen');if(ub){var nb=ub.cloneNode(true);ub.parentNode.replaceChild(nb,ub);nb.addEventListener('click',function(){if(nb.classList.contains('disabled'))return;openConfigWith({});cfgState.unseen=true;renderConfig()})}
+ document.querySelectorAll('[id="btn-start-unseen"]').forEach(function(x){if(x!==document.getElementById('btn-start-unseen')){var c=x.cloneNode(true);x.parentNode.replaceChild(c,x);c.addEventListener('click',function(){openConfigWith({});cfgState.unseen=true;renderConfig()})}});
+ /* plus de profil dans cette appli (le grade et les couleurs sont ceux de Révision INFAS) */
+ function noProfile(){var b=document.querySelector('#bnav button[data-go="profile"]');if(b)b.remove()}
+ var st=document.createElement('style');st.textContent='#cfg-antennes{display:flex!important;flex-direction:column!important;gap:5px!important}#cfg-antennes>.chip{align-self:flex-start}.ri-antrow{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) minmax(0,1fr);gap:6px;align-items:center}.ri-ants{min-width:0}.ri-antc{font-weight:800;font-size:13.5px}.ri-ants .chip{width:100%!important;box-sizing:border-box!important;overflow:hidden;display:flex!important;justify-content:space-between!important;gap:4px;padding:6px 8px!important;font-size:12.5px!important;min-height:0!important;margin:0!important;white-space:nowrap}#cfg-antennes .chip-count{font-size:10.5px!important;padding:1px 5px!important}.ri-subh{font-weight:900;font-size:13px;text-transform:uppercase;letter-spacing:.4px;margin:12px 4px 4px;opacity:.85}';document.head.appendChild(st);
+ noProfile();fixList();setInterval(function(){noProfile();fixList()},500);try{renderHome()}catch(e){}}
+function corrCss(){const t=palette(),cs=getComputedStyle(document.documentElement),v=n=>cs.getPropertyValue(n).trim();const card=v('--card')||'#fff',ink=v('--ink')||'#16231F',soft=v('--soft')||'#5E6E68',line=v('--line')||'#E1DDD2';
+ return `.sig.top,.wrap>.sig,body>.sig,.sig-divider{display:none!important}
+ body{background:${t.bg}!important}
+ .masthead{background:linear-gradient(135deg,${t.h1},${t.h2})!important;border:0!important;border-radius:24px!important;box-shadow:0 10px 26px rgba(0,0,0,.16)!important;padding:20px 18px!important;text-align:left!important;color:#fff!important}
+ .masthead svg{display:none!important}.masthead h1,.masthead h1 *{color:#fff!important;font-weight:900!important;letter-spacing:-.4px!important;text-align:left!important;-webkit-text-fill-color:#fff!important}
+ .masthead .eyebrow{background:rgba(255,255,255,.16)!important;color:#fff!important;border:0!important}.masthead .sub{color:rgba(255,255,255,.9)!important;text-align:left!important}
+ .tile,.global-progress,.config-card,.antenne-card,.q-card,.results-hero,.search-entry,.stat-card,.st-card,.gm-card,.day-card{background:${card}!important;border:1px solid ${line}!important;border-radius:22px!important;box-shadow:0 6px 22px rgba(0,0,0,.06)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+ .tile::before,.tile::after,.antenne-card::before,.config-card::before{display:none!important}
+ .scr-title{font-weight:900!important;letter-spacing:-.3px!important;color:${ink}!important}
+ .ttl,.ant-name,.sj-name,.mn,.config-label{color:${ink}!important;font-weight:800!important;letter-spacing:normal!important;text-transform:none!important}
+ .desc,.ant-meta,.sj-meta,.mc{color:${soft}!important}
+ .tile .icon,.ant-icon{background:${t.acc}!important;color:#fff!important;border-radius:16px!important;border:0!important;box-shadow:none!important}
+ .btn-primary{background:${t.h1}!important;color:#fff!important;border:0!important;border-radius:18px!important;box-shadow:none!important;font-weight:800!important}
+ .mat-tile{border-radius:16px!important;background:${card}!important;border:1px solid ${line}!important}.mat-tile.on,.chip.active,.chip.on,.cfg-mode button.on,.count-presets .on{background:${t.h1}!important;color:#fff!important;border-color:${t.h1}!important}
+ .mat-tile.on .mn,.mat-tile.on .mc{color:#fff!important}
+ #cfg-antennes{display:flex!important;flex-direction:column!important;gap:5px!important}#cfg-antennes>.chip{align-self:flex-start}.ri-antrow{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) minmax(0,1fr);gap:6px;align-items:center}.ri-ants{min-width:0}.ri-antc{font-weight:800;font-size:13.5px;color:${ink}}.ri-ants .chip{width:100%!important;box-sizing:border-box!important;overflow:hidden;display:flex!important;justify-content:space-between!important;gap:4px;padding:6px 8px!important;font-size:12.5px!important;min-height:0!important;margin:0!important;white-space:nowrap}#cfg-antennes .chip-count{font-size:10.5px!important;padding:1px 5px!important}
+ .ri-subh{font-weight:900;font-size:13px;color:${t.h2};text-transform:uppercase;letter-spacing:.4px;margin:12px 4px 4px}
+ .ri-unseen{display:flex;gap:10px;align-items:center;font-weight:800;color:${ink}}.ri-unseen input{width:22px;height:22px;accent-color:${t.h1}}.ri-unseen b{margin-left:auto;color:${t.acc}}`}
+const _appExtra2=appExtra;appExtra=function(m,src){const r=_appExtra2(m,src);if(/id="antennes-list"/.test(src)&&/function renderConfig/.test(src)){r.js+='<script>document.addEventListener("DOMContentLoaded",function(){setTimeout(function(){('+corrPatch.toString()+')()},0)})<'+'/script>';if(appUiOf(m.id)==='ri')r.css+=corrCss()}return r};
+
+/* ---------- 30. PALETTES « Vert nuit » et « Bleu nuit » (reprises de la Correction nationale) ---------- */
+(function(){const add=[{n:'Vert nuit (sombre)',h1:'#0d2216',h2:'#1c8f45',acc:'#ff8a3d',acc2:'#37e066',bg:'#050f09',card:'#0d2216',d:1},{n:'Bleu nuit (sombre)',h1:'#0d1a38',h2:'#2f6fe0',acc:'#ff8a3d',acc2:'#5b9bff',bg:'#060b18',card:'#0d1a38',d:1}];
+ [PALETTES_DEF].concat(Array.isArray(META.palettes)&&META.palettes!==PALETTES_DEF?[META.palettes]:[]).forEach(L=>add.forEach(p=>{if(!L.some(x=>x.n===p.n))L.push(p)}))})();
+
+/* ---------- 31. RECHERCHE → l'appli complète s'ouvre sur le passage ----------
+   1) recherche de l'appli (route « search », champ de recherche…) ; 2) sinon on retrouve le chapitre qui contient le passage
+   dans les données de l'appli et on ouvre sa page de cours ; le passage est surligné. */
+function axFind(Q,CTX){var done=false;function nm(s){return String(s==null?'':s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/\s+/g,' ')}
+ var W=nm(Q).split(' ').filter(function(w){return w.length>1}),q0=W.slice().sort(function(a,b){return b.length-a.length})[0]||'';
+ function G(n){try{return(0,eval)(n)}catch(e){return undefined}}
+ function vis(el){return el&&el.offsetParent!==null&&el.getClientRects().length}
+ function hl(){var w=document.createTreeWalker(document.body,4),n,best=null;while(n=w.nextNode()){var p=n.parentElement;if(!p||!vis(p)||p.closest('script,style,input,textarea,#ri-axbar'))continue;if(nm(n.nodeValue).indexOf(q0)<0||/[«»]/.test(n.nodeValue)||/^(r(e|é)sultats?|aucun)/.test(nm(n.nodeValue).trim()))continue;var blk=p.closest('p,li,td,div,section,article')||p;if(W.every(function(x){return nm(blk.textContent).indexOf(x)>-1})&&!/aucun r(e|é)sultat|r(e|é)sultats? pour|«/.test(nm(blk.textContent).slice(0,80))&&!p.closest('input,header,.search,.srch,[class*=search]')){best=p;break}}
+  if(best){best.style.background='#FFE08A';best.style.borderRadius='6px';best.style.boxShadow='0 0 0 3px #FFE08A';best.scrollIntoView({block:'center'});return best}return null}
+ /* chapitre contenant le passage, retrouvé dans les données de l'appli */
+ function findCh(){var roots=['DATA','D','__D','QUIZ_DATA','COURSE','PAGES','CH','CHAPTERS','SUMMARIES','PG'].map(function(k){return[k,G(k)]}).filter(function(x){return x[1]&&typeof x[1]==='object'});var seen=0,hit=null;
+  function walk(o,stack,d){if(hit||d>7||++seen>400000)return;if(typeof o==='string'){if(o.length>15&&W.every(function(x){return nm(o).indexOf(x)>-1}))hit=stack.slice();return}if(!o||typeof o!=='object')return;
+   if(Array.isArray(o)){for(var i=0;i<o.length&&!hit;i++)walk(o[i],stack.concat([[o,i]]),d+1)}else{for(var k in o){if(hit)break;walk(o[k],stack.concat([[o,k]]),d+1)}}}
+  roots.forEach(function(r){if(!hit)walk(r[1],[[null,r[0]]],0)});if(!hit)return null;
+  for(var i=hit.length-1;i>=0;i--){var o=hit[i][0];if(!o||Array.isArray(o))continue;var v=o.ch!=null?o.ch:o.c!=null?o.c:o.chapter!=null?o.chapter:o.chap!=null?o.chap:null;if(v!=null&&typeof v!=='object')return{ch:v,obj:o}}
+  for(var j=hit.length-1;j>=0;j--){var k=hit[j][1];if(typeof k==='string'&&/^[A-Za-z]{0,3}\d+$/.test(k))return{ch:k}}return null}
+ function tryRoutes(c){var go=G('go');if(typeof go!=='function')return false;var ch=c.ch,L=[['reader',{ch:ch}],['course',{ch:ch}],['chapter',{id:ch}],['read',{c:ch}],['chapter',{ch:ch}],['cours',{ch:ch}]];var i=0;
+  (function next(){if(done)return;if(i>=L.length){return}var r=L[i++];try{go(r[0],r[1])}catch(e){}setTimeout(function(){if(hl()){done=true;return}next()},450)})();return true}
+ function search(){var go=G('go'),os=G('openSearch'),rs=G('runSearch');if(typeof os==='function'&&typeof rs==='function'){os();var si=document.getElementById('search-input');if(si)si.value=Q;rs(Q);return}
+  if(typeof go==='function'&&/search/.test(String(G('SCREENS')?Object.keys(G('SCREENS')):'')+' '+String(G('V')?Object.keys(G('V')):'')+' '+(document.documentElement.innerHTML.indexOf("go('search'")>-1||document.documentElement.innerHTML.indexOf('go("search"')>-1?'search':''))){try{go('search',{q:Q});return}catch(e){}}
+  var ins=[].slice.call(document.querySelectorAll('input')).filter(function(i){return /search/.test(i.type)||/echerch|search|srch|^gs$|^q$|^sq$/i.test((i.placeholder||'')+' '+(i.id||'')+' '+(i.className||''))});var i=ins.filter(vis)[0]||ins[0];if(!i)return;
+  i.focus();i.value=Q;['input','keyup','change'].forEach(function(t){i.dispatchEvent(new Event(t,{bubbles:true}))});i.dispatchEvent(new KeyboardEvent('keydown',{key:'Enter',code:'Enter',keyCode:13,which:13,bubbles:true}));
+  var ds=G('doSearch');if(typeof ds==='function'){try{ds(i)}catch(e){try{ds(Q)}catch(e2){}}}}
+ function bar(){if(document.getElementById('ri-axbar'))return;var d=document.createElement('div');d.id='ri-axbar';d.style.cssText='position:fixed;left:8px;right:8px;top:8px;z-index:99999;background:#FFE08A;color:#3a2a00;border-radius:14px;padding:9px 12px;font:700 14px system-ui;box-shadow:0 6px 18px rgba(0,0,0,.2);display:flex;gap:8px;align-items:center';d.innerHTML='<span style="flex:1">🔎 « '+String(Q).replace(/[<&]/g,'')+' »</span><button style="border:0;background:#fff;border-radius:10px;padding:6px 10px;font-weight:800">✕</button>';d.querySelector('button').onclick=function(){d.remove()};document.body.appendChild(d);setTimeout(function(){d.remove()},9000)}
+ function sheet(){if(done||!CTX||!CTX.t)return;done=true;var e=function(t){return String(t||'').replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})};var d=document.createElement('div');d.id='ri-axsheet';
+  d.style.cssText='position:fixed;left:0;right:0;bottom:0;max-height:72vh;overflow:auto;z-index:99998;background:#fff;color:#16231F;border-radius:22px 22px 0 0;box-shadow:0 -10px 30px rgba(0,0,0,.25);padding:16px 16px 22px;font:16px/1.5 system-ui';
+  d.innerHTML='<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><b style="flex:1">📍 Passage trouvé dans cette application</b><button style="border:0;background:#eef2f0;border-radius:10px;padding:7px 11px;font-weight:800">✕</button></div>'+(CTX.b||[]).map(function(t){return'<p style="opacity:.6;margin:6px 0">'+e(t)+'</p>'}).join('')+'<p style="background:#FFE08A;border-radius:10px;padding:8px 10px;margin:8px 0;font-weight:600">'+e(CTX.t)+'</p>'+(CTX.a||[]).map(function(t){return'<p style="opacity:.6;margin:6px 0">'+e(t)+'</p>'}).join('');
+  d.querySelector('button').onclick=function(){d.remove()};document.body.appendChild(d)}
+ setTimeout(function(){bar();if(hl()){done=true;return}var c=findCh();if(c&&tryRoutes(c)){setTimeout(function(){if(!done){if(hl())done=true;else sheet()}},3000);return}search();setTimeout(function(){if(hl())done=true;else sheet()},1300)},400)}
+const _appExtra3=appExtra;appExtra=function(m,src){const r=_appExtra3(m,src);if(window.__axQ2){const o=window.__axQ2;window.__axQ2=null;r.js+='<script>document.addEventListener("DOMContentLoaded",function(){setTimeout(function(){('+axFind.toString()+')('+JSON.stringify(String(o.q)).replace(/</g,'\\u003c')+','+JSON.stringify(o.ctx||null).replace(/</g,'\\u003c')+')},300)})<'+'/script>'}return r};
+axOpen=function(mid,q,ri){const x=AXR[ri],A=axAll();let ctx=null;if(x&&A&&A[x.src]){const L=A[x.src];ctx={b:L.slice(Math.max(0,x.ti-3),x.ti),t:L[x.ti],a:L.slice(x.ti+1,x.ti+4)}}window.__axQ2={q,ctx};window.__axQ=null;VSTACK=[];go('appview',{id:mid})};
+
+/* ---------- 32. ÉDITION LOCALE : questions, flashcards, glossaire depuis l'écran où on les voit ; compte à rebours D.E ---------- */
+function edOn(){return!RO&&EDITMODE}
+function edCommit(l){try{window.PORTAIL_EDITOR.commit(l)}catch(e){}}
+function edBox(title,fields,onOk,extra){let o=$('#riEd');if(o)o.remove();o=document.createElement('div');o.id='riEd';o.className='rkup';
+ o.innerHTML=`<div class="rkbox riedbox" role="dialog"><div class="rkn" style="font-size:18px">${esc(title)}</div>${fields.map(f=>`<label class="riedl">${esc(f.l)}${f.t==='date'?`<input type="date" data-k="${f.k}" value="${esc(f.v||'')}">`:f.t==='line'?`<input data-k="${f.k}" value="${esc(f.v||'')}">`:`<textarea data-k="${f.k}" rows="${f.r||3}">${esc(f.v||'')}</textarea>`}</label>`).join('')}
+ <div class="row2" style="width:100%;margin-top:6px"><button class="btn coral" id="riEdOk">${esc(Tx('ed.ok','Enregistrer'))}</button><button class="btn light" id="riEdNo">${esc(Tx('ask.n','Annuler'))}</button></div>${extra?`<button class="btn ghost" id="riEdX" style="margin-top:6px">${esc(extra.l)}</button>`:''}</div>`;
+ document.body.appendChild(o);$('#riEdNo',o).onclick=()=>o.remove();$('#riEdOk',o).onclick=()=>{const v={};$$('[data-k]',o).forEach(i=>v[i.dataset.k]=i.value.trim());if(onOk(v)!==false)o.remove()};if(extra)$('#riEdX',o).onclick=()=>{o.remove();extra.f()}}
+/* questions : bouton sur la question affichée (quiz, examen, notions à revoir) */
+function qEdBtn(id){return `<button class="riedbtn" onclick="event.stopPropagation();riQEdit('${jsq(id)}')">✏️ ${esc(Tx('ed.q','Modifier cette question'))}</button>`}
+function riQEdit(id){const q=QI[id];if(q&&window.PORTAIL_qForm)window.PORTAIL_qForm(q)}
+/* flashcards : modifications, ajouts et suppressions gardés dans les réglages (E.content) */
+const _cardsOf0=cardsOf;cardsOf=function(mid){const fresh=!CARDC[mid];const L=_cardsOf0.apply(this,arguments);if(fresh&&!L.__ed){const c=(E.content||{}),ed=c.cardEd||{},del=new Set(c.cardDel||[]),add=(c.cardAdd||{})[mid]||[];
+ for(let i=L.length-1;i>=0;i--){const k=L[i];if(del.has(k.id)){L.splice(i,1);continue}if(ed[k.id])Object.assign(k,ed[k.id])}
+ add.forEach((k,i)=>{const id=mid+'.a'+(k.k||i);if(!del.has(id))L.push(Object.assign({id,m:mid,c:0},k,ed[id]||{}))});L.__ed=1}return L};
+function riCardEdit(id){const c=cardById(id);if(!c)return;edBox(Tx('ed.card','Modifier la flashcard'),[{k:'f',l:Tx('ed.f','Recto (question)'),v:c.f},{k:'b',l:Tx('ed.b','Verso (réponse)'),v:c.b,r:4}],v=>{if(!v.f||!v.b){toast(Tx('ed.empty','Recto et verso obligatoires'));return false}
+ E.content.cardEd=E.content.cardEd||{};E.content.cardEd[id]={f:v.f,b:v.b};edCommit('Flashcard modifiée');recalc();render()},{l:'🗑 '+Tx('ed.del','Supprimer cette flashcard'),f:()=>askRI(Tx('ed.delq','Supprimer cette flashcard ?'),()=>{E.content.cardDel=(E.content.cardDel||[]).concat([id]);edCommit('Flashcard supprimée');recalc();render()},Tx('ed.del2','Supprimer'),Tx('ask.n','Annuler'))})}
+function riCardAdd(mid,c){edBox(Tx('ed.cadd','Nouvelle flashcard'),[{k:'f',l:Tx('ed.f','Recto (question)')},{k:'b',l:Tx('ed.b','Verso (réponse)'),r:4}],v=>{if(!v.f||!v.b){toast(Tx('ed.empty','Recto et verso obligatoires'));return false}
+ E.content.cardAdd=E.content.cardAdd||{};const L=E.content.cardAdd[mid]=E.content.cardAdd[mid]||[];L.push({k:Date.now().toString(36),c:c||0,f:v.f,b:v.b});edCommit('Flashcard ajoutée');recalc();render();toast(Tx('ed.cok','Flashcard ajoutée ✅'))})}
+/* glossaire */
+const _glossAll0=glossAll;glossAll=function(){const G=_glossAll0();if(!G)return G;const X=(E.content||{}).gl||{};if(G.__k===JSON.stringify(X).length)return G;
+ if(!G.__orig){const O={};Object.keys(G).forEach(k=>{if(k.indexOf('__')&&Array.isArray(G[k]))O[k]=G[k].slice()});Object.defineProperty(G,'__orig',{value:O,configurable:true,enumerable:false})}
+ Object.keys(G.__orig).concat(Object.keys(X)).forEach(mid=>{const o=G.__orig[mid]||[],x=X[mid]||{},del=new Set(x.del||[]),ed=x.ed||{};G[mid]=o.filter(e=>!del.has(e[0])).map(e=>ed[e[0]]||e).concat(x.add||[]).sort((a,b)=>a[0].localeCompare(b[0],'fr'))});
+ Object.defineProperty(G,'__k',{value:JSON.stringify(X).length,configurable:true,enumerable:false});return G};
+function glX(mid){E.content.gl=E.content.gl||{};return E.content.gl[mid]=E.content.gl[mid]||{}}
+function riGlEdit(mid,t){const G=glossAll(),e=(G[mid]||[]).find(x=>x[0]===t);if(!e)return;edBox(Tx('ed.gl','Modifier le terme'),[{k:'t',l:Tx('ed.gt','Terme'),v:e[0],t:'line'},{k:'d',l:Tx('ed.gd','Définition'),v:e[1],r:4}],v=>{if(!v.t||!v.d)return false;const x=glX(mid);
+ const add=(x.add||[]).findIndex(a=>a[0]===t);if(add>=0)x.add[add]=[v.t,v.d];else{x.ed=x.ed||{};x.ed[t]=[v.t,v.d]}edCommit('Glossaire modifié');glossDraw()},{l:'🗑 '+Tx('ed.gdel','Supprimer ce terme'),f:()=>{const x=glX(mid);const ai=(x.add||[]).findIndex(a=>a[0]===t);if(ai>=0)x.add.splice(ai,1);else x.del=(x.del||[]).concat([t]);edCommit('Terme supprimé');glossDraw()}})}
+function riGlAdd(mid){edBox(Tx('ed.gadd','Nouveau terme du glossaire'),[{k:'t',l:Tx('ed.gt','Terme'),t:'line'},{k:'d',l:Tx('ed.gd','Définition'),r:4}],v=>{if(!v.t||!v.d)return false;const x=glX(mid);x.add=(x.add||[]).concat([[v.t,v.d]]);edCommit('Terme ajouté');glossDraw()})}
+const _glossDraw0=glossDraw;glossDraw=function(){_glossDraw0.apply(this,arguments);if(!edOn())return;const o=$('#glOut');if(!o)return;const mid=ctx.id;
+ if(mid&&!$('#glAdd'))o.insertAdjacentHTML('afterbegin',`<button class="btn coral" id="glAdd" onclick="riGlAdd('${jsq(mid)}')">＋ ${esc(Tx('ed.gadd2','Ajouter un terme'))}</button>`);
+ if(mid)$$('.gli',o).forEach(el=>{if(el.querySelector('.riedbtn'))return;const t=el.querySelector('b').textContent;const b=document.createElement('button');b.className='riedbtn';b.textContent='✏️';b.onclick=()=>riGlEdit(mid,t);el.appendChild(b)})};
+/* compte à rebours avant le D.E (date réglée dans l'éditeur) */
+B('home.countdown','Compte à rebours D.E',()=>{const c=(E.content||{}).countdown||{};const ed=edOn();if(!c.d&&!ed)return'';
+ if(!c.d)return `<div class="card sf cdwn"><b>⏳ ${esc(Tx('cd.none','Compte à rebours D.E'))}</b><button class="btn light" onclick="riCdEdit()">${esc(Tx('cd.set','Choisir la date de l’examen'))}</button></div>`;
+ const d=new Date(c.d+'T08:00:00'),n=Math.ceil((d-Date.now())/864e5);const ds=d.toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'});
+ return `<div class="card sf cdwn"><div class="cdn">${n>0?'J-'+n:n===0?Tx('cd.today','C’est aujourd’hui !'):'✅'}</div><div><b>${esc(c.t||Tx('cd.t','Avant le D.E'))}</b><small>📅 ${esc(ds)}</small></div>${ed?`<button class="riedbtn" onclick="riCdEdit()">✏️</button>`:''}</div>`});
+function riCdEdit(){const c=(E.content||{}).countdown||{};edBox(Tx('cd.h','Compte à rebours'),[{k:'t',l:Tx('cd.tl','Titre'),v:c.t||'Avant le D.E',t:'line'},{k:'d',l:Tx('cd.dl','Date'),v:c.d||'',t:'date'}],v=>{E.content.countdown=v.d?{t:v.t,d:v.d}:null;edCommit('Compte à rebours');render()})}
+(function(){const H=SCREENS.home.blocks;if(!H.includes('home.countdown')){const i=H.indexOf('home.hello');H.splice(i<0?0:i+1,0,'home.countdown')}})();
+const _blkMigrate2=blkMigrate;blkMigrate=function(){_blkMigrate2();if((E.blkv||0)===4&&E.layout){const L=E.layout.home;if(Array.isArray(L)&&!L.some(b=>b.id==='home.countdown')){const i=L.findIndex(b=>b.id==='home.hello');L.splice(i<0?0:i+1,0,{id:'home.countdown',inst:'home.countdown'})}E.blkv=5}};
+/* boutons d'édition placés après l'affichage */
+function edAfter(){if(!edOn())return;
+ if(VIEW==='quiz'&&typeof QZ!=='undefined'&&QZ&&QZ.idx<QZ.ids.length){const q=curQ(),c=$('#app .qq');if(q&&c&&!$('#app .riedq'))c.insertAdjacentHTML('beforebegin',`<div class="riedq">${qEdBtn(q.id)}</div>`)}
+ if(VIEW==='exam'&&typeof EX!=='undefined'&&EX){const q=QI[EX.ids[EX.idx]],c=$('#app .qq');if(q&&c&&!$('#app .riedq'))c.insertAdjacentHTML('beforebegin',`<div class="riedq">${qEdBtn(q.id)}</div>`)}
+ if(VIEW==='flash'&&typeof FL!=='undefined'&&FL&&FL.i<FL.deck.length){const c=$('#app .fcard');if(c&&!$('#app .riedq'))c.insertAdjacentHTML('beforebegin',`<div class="riedq"><button class="riedbtn" onclick="riCardEdit('${jsq(FL.deck[FL.i])}')">✏️ ${esc(Tx('ed.card2','Modifier cette flashcard'))}</button><button class="riedbtn" onclick="riCardAdd('${jsq(FL.mid||'')}',(cardById('${jsq(FL.deck[FL.i])}')||{}).c)">＋ ${esc(Tx('ed.cadd2','Nouvelle flashcard'))}</button></div>`)}
+ if(VIEW==='flashcfg'&&ctx&&ctx.id&&!$('#app .riedq'))$('#app').insertAdjacentHTML('afterbegin',`<div class="riedq"><button class="riedbtn" onclick="riCardAdd('${jsq(ctx.id)}',0)">＋ ${esc(Tx('ed.cadd2','Nouvelle flashcard'))}</button></div>`);
+ if(VIEW==='diff')$$('#app details.dl').forEach(d=>{if(d.querySelector('.riedbtn'))return;const b=d.querySelector('[onclick*="togglePin"]');const m=b&&(b.getAttribute('onclick')||'').match(/togglePin\('([^']+)'/);if(m)d.insertAdjacentHTML('beforeend',qEdBtn(m[1]))})}
+
+/* ---------- 33. PALETTES BLANC & NOIR / NOIR & BLANC + MODE JOUR / MODE NUIT ---------- */
+(function(){const add=[{n:'Blanc & noir',h1:'#000000',h2:'#262626',acc:'#111111',acc2:'#6B6B6B',bg:'#FFFFFF',w:1},{n:'Noir & blanc (sombre)',h1:'#000000',h2:'#2A2A2A',acc:'#8A8A8A',acc2:'#E0E0E0',bg:'#000000',card:'#151515',d:1}];
+ [PALETTES_DEF].concat(Array.isArray(META.palettes)&&META.palettes!==PALETTES_DEF?[META.palettes]:[]).forEach(L=>add.forEach(p=>{if(!L.some(x=>x.n===p.n))L.push(p)}))})();
+const _palette0=palette;palette=function(){const t=_palette0.apply(this,arguments),m=S&&S.night;if(!t||!m)return t;
+ if(m==='nuit'&&!t.d)return Object.assign({},t,{bg:mixc(t.h1,'#000000',.82),card:mixc(t.h2,'#121212',.84),d:1,w:0});
+ if(m==='jour'&&t.d)return Object.assign({},t,{bg:'#F4F4F2',card:null,d:0,w:0});return t};
+function setNight(v){S.night=v||null;save();applyLook();render()}
+const _pText0=BLK['profile.text']&&BLK['profile.text'].html;if(_pText0)BLK['profile.text'].html=function(){const h=_pText0.apply(this,arguments),m=S.night||'';
+ const seg=`<div class="lbl3">${T('nt.h','🌗 Mode d’affichage')}</div><div class="seg"><button class="${!m?'on':''}" onclick="setNight('')">${T('nt.a','🎨 Couleur choisie')}</button><button class="${m==='jour'?'on':''}" onclick="setNight('jour')">${T('nt.d','☀️ Jour')}</button><button class="${m==='nuit'?'on':''}" onclick="setNight('nuit')">${T('nt.n','🌙 Nuit')}</button></div>`;
+ return h.replace(/<\/div>\s*$/,seg+'</div>')};
 
 /* ======================= DÉMARRAGE ======================= */
 const SHELL=()=>`<div class="layout" id="layout"><aside class="side" id="side"></aside><div class="app" id="app"></div></div><nav class="nav" id="nav"></nav><div class="toast" id="toast"></div><input type="file" id="imp" accept=".json,application/json" class="hide">`;

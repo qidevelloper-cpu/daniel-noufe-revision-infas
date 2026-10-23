@@ -1,0 +1,1 @@
+(window.__XDATA=window.__XDATA||{})["__appsx"]={"ch":[],"q":[],"cards":[],"n":{"sonu":820,"gyneco":2673,"vih":862,"pathotrop":2378,"orl":375,"dermato":1059,"endo":576,"chir":2134,"xmvkq4zed":1488,"xmvkq53re":1027,"xmvkq580o":948,"xmvkq5cba":3592,"xmvkq5gqn":5800,"xmvkq5l1e":3402,"xmvkq5pc5":1361,"xmvkq5tml":812,"xmvkq5y0h":857,"xmvkq62d4":1148,"xmvkq66ok":1847}};

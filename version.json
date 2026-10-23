@@ -1,91 +1,276 @@
 {
- "v": "4cdfdaade7",
+ "v": "0b8483f491",
  "date": "2026-10-23",
- "sig": "87b555071a2cb48be2765729f3ec744f0a954fcc",
+ "sig": "98ca7aa5a25f39188f2f79c1a1e1a0e939452198",
  "notes": [
   {
-   "t": "✨ Nouveau : dans les cours et les Sujets D.E, la barre du bas est maintenant celle de Révision INFAS (les rubriques du cours passent en onglets en haut). La taille du texte et les couleurs que tu choisis s'appliquent aussi à tous les cours intégrés."
+   "t": "✨ Grande mise à jour : chaque cours a autant de quiz et de flashcards que son application complète (questions à plusieurs réponses et sur schéma). Nouvelles rubriques « Sujets type examen » (par matière et par antenne) et « Réviser les formules », glossaire par filière, recherche dans les applications complètes, Correction nationale aux couleurs de l’appli. Nouvelles couleurs : Blanc & noir, Noir & blanc, Vert nuit, Bleu nuit, et le mode Jour / Nuit dans le Profil."
+  },
+  {
+   "t": "🔄 Cours mis à jour : SONU — Soins obstétricaux et néonatals d’urgence",
+   "m": "sonu"
+  },
+  {
+   "t": "🔄 Cours mis à jour : Gynéco-Obstétrique",
+   "m": "gyneco"
+  },
+  {
+   "t": "🔄 Cours mis à jour : VIH & traitement ARV",
+   "m": "vih"
+  },
+  {
+   "t": "🔄 Cours mis à jour : Pathologies tropicales & maladies infectieuses",
+   "m": "pathotrop"
+  },
+  {
+   "t": "🔄 Cours mis à jour : ORL — Oto-rhino-laryngologie",
+   "m": "orl"
+  },
+  {
+   "t": "🔄 Cours mis à jour : Dermatologie-Vénérologie",
+   "m": "dermato"
+  },
+  {
+   "t": "🔄 Cours mis à jour : Chirurgie — L1 · L2 · L3",
+   "m": "chir"
+  },
+  {
+   "t": "🔄 Cours mis à jour : Endocrinologie & Oncologie",
+   "m": "endo"
+  },
+  {
+   "t": "🔄 Cours mis à jour : Correction Nationale 2025 — Examens blancs infirmier",
+   "m": "xmvkq4zed"
+  },
+  {
+   "t": "🔄 Cours mis à jour : Pharmacologie",
+   "m": "xmvkq53re"
+  },
+  {
+   "t": "🔄 Cours mis à jour : SSR · Planification familiale",
+   "m": "xmvkq580o"
+  },
+  {
+   "t": "🔄 Cours mis à jour : Santé infantile",
+   "m": "xmvkq5cba"
+  },
+  {
+   "t": "🔄 Cours mis à jour : Pédiatrie",
+   "m": "xmvkq5gqn"
+  },
+  {
+   "t": "🔄 Cours mis à jour : Médecine IDE 2 — pathologies",
+   "m": "xmvkq5l1e"
+  },
+  {
+   "t": "🔄 Cours mis à jour : Appareil digestif",
+   "m": "xmvkq5pc5"
+  },
+  {
+   "t": "🔄 Cours mis à jour : Système nerveux",
+   "m": "xmvkq5tml"
+  },
+  {
+   "t": "🔄 Cours mis à jour : Ostéologie & Arthrologie",
+   "m": "xmvkq5y0h"
+  },
+  {
+   "t": "🔄 Cours mis à jour : Cytologie, Histologie & Myologie",
+   "m": "xmvkq62d4"
+  },
+  {
+   "t": "🔄 Cours mis à jour : Santé publique L1 · L2 · L3",
+   "m": "xmvkq66ok"
+  },
+  {
+   "t": "📘 Nouveau cours : Tous les sujets prépa D.E",
+   "m": "xprepade"
+  },
+  {
+   "t": "📘 Nouveau cours : Réviser les formules",
+   "m": "xformules"
   }
  ],
  "mats": {
   "sonu": {
    "t": "SONU — Soins obstétricaux et néonatals d’urgence",
-   "h": "2366aeeff1f8e92142027163bad177ab224e2abb"
+   "h": "0c38eb72e51b08b58d537f32eabc8daadf4b7052"
   },
   "gyneco": {
    "t": "Gynéco-Obstétrique",
-   "h": "f377e86b6e2976755b89d7989f8ded0e8df5bbf3"
+   "h": "eef4004fe76f1dccb2df8dc88ebc9ede7fb341a9"
   },
   "vih": {
    "t": "VIH & traitement ARV",
-   "h": "80ef08037b19d91c3e40f8b7c5e6793589a8c841"
+   "h": "d73db429b969cf64b5b2e4ade244ad767aeb8998"
   },
   "pathotrop": {
    "t": "Pathologies tropicales & maladies infectieuses",
-   "h": "e3fa6846100c4b9b80d41508ebc86f90c7574013"
+   "h": "9c705f302ed7f38dca2bdb89d5d9c2fed86e40ca"
   },
   "orl": {
    "t": "ORL — Oto-rhino-laryngologie",
-   "h": "42a52824b7242ca137d8213adc8c245c25c3eb75"
+   "h": "bc84d72fcff20e484f297f3bdce883a97b27bc3b"
   },
   "dermato": {
    "t": "Dermatologie-Vénérologie",
-   "h": "b93eaf9349c2cc3ec3820f4c0b85bc5d074d7d60"
+   "h": "24a4da6cf8dcff347701b08f899657784c4edf50"
   },
   "chir": {
    "t": "Chirurgie — L1 · L2 · L3",
-   "h": "6e85aa843b3c9c048ab1caf66749ca772f2a964a"
+   "h": "45c67477a92e6153173276636b94bb80ed3503ae"
   },
   "endo": {
    "t": "Endocrinologie & Oncologie",
-   "h": "f2d6e8d1d7039b72bd78cc379673bf5e763e077d"
+   "h": "cc58c4abda2f9150c902b0bf78c71b6cee39ef42"
   },
   "xmvkq4zed": {
    "t": "Correction Nationale 2025 — Examens blancs infirmier",
-   "h": "a2f7296a42ffcae8f2b3e71ce5d4168bbe93fbfe"
+   "h": "afcb167c5df482124afce92cb6e83f82fa286297"
   },
   "xmvkq53re": {
    "t": "Pharmacologie",
-   "h": "5e811dc16791bea4c00c7002ebc32acdec496c6e"
+   "h": "7b2cb0688e341bfe06d2debbfb929c056533f97c"
   },
   "xmvkq580o": {
    "t": "SSR · Planification familiale",
-   "h": "cf4a6b4bfc82729c2a64ace1d5213628001293c9"
+   "h": "9129f94eecfc57e5beef373cca0332fefb8272f4"
   },
   "xmvkq5cba": {
    "t": "Santé infantile",
-   "h": "0091d9a7471d78385479439a3b1ffcba44a84c6e"
+   "h": "5417f6d4e43f6a00733fadaa2701eab07b0da154"
   },
   "xmvkq5gqn": {
    "t": "Pédiatrie",
-   "h": "78ce1ed0d075482a01cc79fd78947ad6e37a1c9d"
+   "h": "fc8d2cdede205f27a97dacf031d5504891071844"
   },
   "xmvkq5l1e": {
    "t": "Médecine IDE 2 — pathologies",
-   "h": "46d5bcef47bffe8d29ffe72085606ed1e1649de6"
+   "h": "b000deddf63d30db83d23b21d2202bb92804a312"
   },
   "xmvkq5pc5": {
    "t": "Appareil digestif",
-   "h": "130c29e71a8acd81fede6f1208059f5af90d666a"
+   "h": "1f0d6db12fd71060f4c050812fb863b693b53336"
   },
   "xmvkq5tml": {
    "t": "Système nerveux",
-   "h": "50fb69ffe879a8163b5f60ce46838add62bbf247"
+   "h": "dfefd0144cc2ac885e50d67b7f286d7a317039d2"
   },
   "xmvkq5y0h": {
    "t": "Ostéologie & Arthrologie",
-   "h": "05d3bc2d856fd0cf1b8f8ace32789f3dc9a250f8"
+   "h": "44fcef9c55e037fef4a2fcfe82e44d610fc8d1b7"
   },
   "xmvkq62d4": {
    "t": "Cytologie, Histologie & Myologie",
-   "h": "7c2bbc9a5819e81999c87c72b903551712562a0d"
+   "h": "698b334b13aeda07ff2f4b58d3de6331cce487c7"
   },
   "xmvkq66ok": {
    "t": "Santé publique L1 · L2 · L3",
-   "h": "615d006bf0e276ec5e822653dbebcdb07871078a"
+   "h": "411bd6acc559c310af06e746af5095fb186bfd0a"
+  },
+  "xprepade": {
+   "t": "Tous les sujets prépa D.E",
+   "h": "6062aad8d5368b6f520739ab23b51737fac1dad0"
+  },
+  "xformules": {
+   "t": "Réviser les formules",
+   "h": "806077a53b56c4e6454feaba55b0578ec062c8b6"
   }
  },
  "hist": [
+  {
+   "v": "0b8483f491",
+   "date": "2026-10-23",
+   "notes": [
+    {
+     "t": "✨ Grande mise à jour : chaque cours a autant de quiz et de flashcards que son application complète (questions à plusieurs réponses et sur schéma). Nouvelles rubriques « Sujets type examen » (par matière et par antenne) et « Réviser les formules », glossaire par filière, recherche dans les applications complètes, Correction nationale aux couleurs de l’appli. Nouvelles couleurs : Blanc & noir, Noir & blanc, Vert nuit, Bleu nuit, et le mode Jour / Nuit dans le Profil."
+    },
+    {
+     "t": "🔄 Cours mis à jour : SONU — Soins obstétricaux et néonatals d’urgence",
+     "m": "sonu"
+    },
+    {
+     "t": "🔄 Cours mis à jour : Gynéco-Obstétrique",
+     "m": "gyneco"
+    },
+    {
+     "t": "🔄 Cours mis à jour : VIH & traitement ARV",
+     "m": "vih"
+    },
+    {
+     "t": "🔄 Cours mis à jour : Pathologies tropicales & maladies infectieuses",
+     "m": "pathotrop"
+    },
+    {
+     "t": "🔄 Cours mis à jour : ORL — Oto-rhino-laryngologie",
+     "m": "orl"
+    },
+    {
+     "t": "🔄 Cours mis à jour : Dermatologie-Vénérologie",
+     "m": "dermato"
+    },
+    {
+     "t": "🔄 Cours mis à jour : Chirurgie — L1 · L2 · L3",
+     "m": "chir"
+    },
+    {
+     "t": "🔄 Cours mis à jour : Endocrinologie & Oncologie",
+     "m": "endo"
+    },
+    {
+     "t": "🔄 Cours mis à jour : Correction Nationale 2025 — Examens blancs infirmier",
+     "m": "xmvkq4zed"
+    },
+    {
+     "t": "🔄 Cours mis à jour : Pharmacologie",
+     "m": "xmvkq53re"
+    },
+    {
+     "t": "🔄 Cours mis à jour : SSR · Planification familiale",
+     "m": "xmvkq580o"
+    },
+    {
+     "t": "🔄 Cours mis à jour : Santé infantile",
+     "m": "xmvkq5cba"
+    },
+    {
+     "t": "🔄 Cours mis à jour : Pédiatrie",
+     "m": "xmvkq5gqn"
+    },
+    {
+     "t": "🔄 Cours mis à jour : Médecine IDE 2 — pathologies",
+     "m": "xmvkq5l1e"
+    },
+    {
+     "t": "🔄 Cours mis à jour : Appareil digestif",
+     "m": "xmvkq5pc5"
+    },
+    {
+     "t": "🔄 Cours mis à jour : Système nerveux",
+     "m": "xmvkq5tml"
+    },
+    {
+     "t": "🔄 Cours mis à jour : Ostéologie & Arthrologie",
+     "m": "xmvkq5y0h"
+    },
+    {
+     "t": "🔄 Cours mis à jour : Cytologie, Histologie & Myologie",
+     "m": "xmvkq62d4"
+    },
+    {
+     "t": "🔄 Cours mis à jour : Santé publique L1 · L2 · L3",
+     "m": "xmvkq66ok"
+    },
+    {
+     "t": "📘 Nouveau cours : Tous les sujets prépa D.E",
+     "m": "xprepade"
+    },
+    {
+     "t": "📘 Nouveau cours : Réviser les formules",
+     "m": "xformules"
+    }
+   ]
+  },
   {
    "v": "4cdfdaade7",
    "date": "2026-10-23",
