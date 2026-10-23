@@ -1,10 +1,34 @@
 {
- "v": "4cdfdaade7",
+ "v": "0745081ad1",
  "date": "2026-10-23",
- "sig": "87b555071a2cb48be2765729f3ec744f0a954fcc",
+ "sig": "91bfdf34b4b789e41b1d809d964e364ddb7dce11",
  "notes": [
   {
-   "t": "✨ Nouveau : dans les cours et les Sujets D.E, la barre du bas est maintenant celle de Révision INFAS (les rubriques du cours passent en onglets en haut). La taille du texte et les couleurs que tu choisis s'appliquent aussi à tous les cours intégrés."
+   "t": "✨ Nouveau : tout le contenu de chaque matière s’ouvre directement (quiz, résumés, cours, flashcards, glossaire), sans attendre. Dans Sujets D.E : tous les sujets prépa D.E, les formules à réviser et les exercices corrigés INFAS de Pédiatrie. Et un glossaire de toutes les matières en bas de l’accueil."
+  },
+  {
+   "t": "🔄 Cours mis à jour : Pharmacologie",
+   "m": "xmvkq53re"
+  },
+  {
+   "t": "🔄 Cours mis à jour : Médecine IDE 2 — pathologies",
+   "m": "xmvkq5l1e"
+  },
+  {
+   "t": "🔄 Cours mis à jour : Appareil digestif",
+   "m": "xmvkq5pc5"
+  },
+  {
+   "t": "🔄 Cours mis à jour : Santé publique L1 · L2 · L3",
+   "m": "xmvkq66ok"
+  },
+  {
+   "t": "📘 Nouveau cours : Tous les sujets prépa D.E",
+   "m": "xprepade"
+  },
+  {
+   "t": "📘 Nouveau cours : Réviser les formules",
+   "m": "xformules"
   }
  ],
  "mats": {
@@ -46,7 +70,7 @@
   },
   "xmvkq53re": {
    "t": "Pharmacologie",
-   "h": "5e811dc16791bea4c00c7002ebc32acdec496c6e"
+   "h": "b158828167d5c89afb6c61f017a7e81f65b699ea"
   },
   "xmvkq580o": {
    "t": "SSR · Planification familiale",
@@ -62,11 +86,11 @@
   },
   "xmvkq5l1e": {
    "t": "Médecine IDE 2 — pathologies",
-   "h": "46d5bcef47bffe8d29ffe72085606ed1e1649de6"
+   "h": "f51a0e9542dc2a6aaf6b2cb0fac61931ecd2ab13"
   },
   "xmvkq5pc5": {
    "t": "Appareil digestif",
-   "h": "130c29e71a8acd81fede6f1208059f5af90d666a"
+   "h": "d4cad5609fc326b1e6bb30d920cb689d6dc2ad6e"
   },
   "xmvkq5tml": {
    "t": "Système nerveux",
@@ -82,10 +106,51 @@
   },
   "xmvkq66ok": {
    "t": "Santé publique L1 · L2 · L3",
-   "h": "615d006bf0e276ec5e822653dbebcdb07871078a"
+   "h": "617039e5824177d1b66935e5383dc7fa668e8d31"
+  },
+  "xprepade": {
+   "t": "Tous les sujets prépa D.E",
+   "h": "6062aad8d5368b6f520739ab23b51737fac1dad0"
+  },
+  "xformules": {
+   "t": "Réviser les formules",
+   "h": "ad93f4f0c72b089d3d3dcbbb1abd5e224588b40b"
   }
  },
  "hist": [
+  {
+   "v": "0745081ad1",
+   "date": "2026-10-23",
+   "notes": [
+    {
+     "t": "✨ Nouveau : tout le contenu de chaque matière s’ouvre directement (quiz, résumés, cours, flashcards, glossaire), sans attendre. Dans Sujets D.E : tous les sujets prépa D.E, les formules à réviser et les exercices corrigés INFAS de Pédiatrie. Et un glossaire de toutes les matières en bas de l’accueil."
+    },
+    {
+     "t": "🔄 Cours mis à jour : Pharmacologie",
+     "m": "xmvkq53re"
+    },
+    {
+     "t": "🔄 Cours mis à jour : Médecine IDE 2 — pathologies",
+     "m": "xmvkq5l1e"
+    },
+    {
+     "t": "🔄 Cours mis à jour : Appareil digestif",
+     "m": "xmvkq5pc5"
+    },
+    {
+     "t": "🔄 Cours mis à jour : Santé publique L1 · L2 · L3",
+     "m": "xmvkq66ok"
+    },
+    {
+     "t": "📘 Nouveau cours : Tous les sujets prépa D.E",
+     "m": "xprepade"
+    },
+    {
+     "t": "📘 Nouveau cours : Réviser les formules",
+     "m": "xformules"
+    }
+   ]
+  },
   {
    "v": "4cdfdaade7",
    "date": "2026-10-23",
