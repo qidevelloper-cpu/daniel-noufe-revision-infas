@@ -1,0 +1,55 @@
+{
+ "v": "29a67cc6e2",
+ "date": "2026-10-23",
+ "sig": "5d976db6df560b8e7a3b648e6bcd3b74a2868df5",
+ "notes": [
+  {
+   "t": "🥋 Nouveau : ceintures & grades de la L1 au D.E, sujets de préparation au D.E avec examen blanc chronométré, recherche dans tous les cours, taille du texte réglable, rappels sur le téléphone et calculatrice dans les quiz !"
+  }
+ ],
+ "mats": {
+  "sonu": {
+   "t": "SONU — Soins obstétricaux et néonatals d’urgence",
+   "h": "2366aeeff1f8e92142027163bad177ab224e2abb"
+  },
+  "gyneco": {
+   "t": "Gynéco-Obstétrique",
+   "h": "f377e86b6e2976755b89d7989f8ded0e8df5bbf3"
+  },
+  "vih": {
+   "t": "VIH & traitement ARV",
+   "h": "80ef08037b19d91c3e40f8b7c5e6793589a8c841"
+  },
+  "pathotrop": {
+   "t": "Pathologies tropicales & maladies infectieuses",
+   "h": "e3fa6846100c4b9b80d41508ebc86f90c7574013"
+  },
+  "orl": {
+   "t": "ORL — Oto-rhino-laryngologie",
+   "h": "42a52824b7242ca137d8213adc8c245c25c3eb75"
+  },
+  "dermato": {
+   "t": "Dermatologie-Vénérologie",
+   "h": "b93eaf9349c2cc3ec3820f4c0b85bc5d074d7d60"
+  },
+  "chir": {
+   "t": "Chirurgie — L1 · L2 · L3",
+   "h": "6e85aa843b3c9c048ab1caf66749ca772f2a964a"
+  },
+  "endo": {
+   "t": "Endocrinologie & Oncologie",
+   "h": "f2d6e8d1d7039b72bd78cc379673bf5e763e077d"
+  }
+ },
+ "hist": [
+  {
+   "v": "29a67cc6e2",
+   "date": "2026-10-23",
+   "notes": [
+    {
+     "t": "🥋 Nouveau : ceintures & grades de la L1 au D.E, sujets de préparation au D.E avec examen blanc chronométré, recherche dans tous les cours, taille du texte réglable, rappels sur le téléphone et calculatrice dans les quiz !"
+    }
+   ]
+  }
+ ]
+}
