@@ -265,7 +265,7 @@ function isWide(){const w=!!(window.matchMedia&&window.matchMedia('(min-width:10
 function renderBody(sc){const present=[];const body=layoutOf(sc).map(b=>{const d=BLK[b.id]||custBlk(b.id);if(!d)return'';if(b.hidden&&!EDITMODE)return'';const _ou=uiOf(b)==='s';let h='';try{h=(_ou&&d.oneui?d.oneui():d.html())||''}catch(e){console.error(b.id,e);h=''}
   if(!h&&!EDITMODE)return'';if(!present.includes(d))present.push(d);
   return `<section class="blk${b.hidden?' blk-hid':''}${_ou?' oui':''}" data-n="${present.length}" data-inst="${esc(b.inst)}" data-bid="${esc(b.id)}" style="${bstyle(b,d)}"${battrs(b)}>${h||'<div class="emptyblk">'+esc(d.label)+' — vide ici</div>'}</section>`}).join('');return{body,present}}
-function render(){if(ctx&&ctx.id&&needX(ctx.id)){const _v=VIEW;document.body.classList.add('xload');ensureX(ctx.id).then(()=>{document.body.classList.remove('xload');if(VIEW===_v)render()});if(VIEW!=='matiere')return}let sc=SCREENS[VIEW]?VIEW:'home';if(sc!==VIEW)VIEW=sc;const spec=SCREENS[sc];
+function render(){if(ctx&&ctx.id&&needX(ctx.id)){ensureX(ctx.id).then(()=>render());return}let sc=SCREENS[VIEW]?VIEW:'home';if(sc!==VIEW)VIEW=sc;const spec=SCREENS[sc];
  if(!S.onb&&!spec.onb&&!EDITMODE){VIEW=sc='welcome'}
  const sp=SCREENS[sc];
  const root=VSTACK.length?VSTACK[0].v:VIEW;$$('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===VIEW||b.dataset.v===root));
@@ -765,18 +765,14 @@ function examBlanc(n){n=n||40;const mats=myMats().filter(m=>(QBM[m.id]||[]).some
  const per=Math.max(1,Math.ceil(n/mats.length));let ids=[];shuffle(mats).forEach(m=>{ids=ids.concat(shuffle((QBM[m.id]||[]).filter(q=>q.t!=='open').map(q=>q.id)).slice(0,per))});
  startTimed(mats[0].id,shuffle(ids).slice(0,n),Tx('de.blanc.lbl','Examen blanc D.E (toutes matières)'))}
 function deLists(){const L=myMats().map(m=>({m,k:deKind(m)})).filter(x=>x.k);return{bl:L.filter(x=>x.k==='blanc').map(x=>x.m),ex:L.filter(x=>x.k==='examen').map(x=>x.m)}}
-function openDE(id){openMat(id)}
-/* raccourcis D.E vers un chapitre d'un cours (le chapitre est retrouvé par son nom) */
-const DE_LINKS=[{mid:'xmvkq5gqn',rx:/exercices corrig/i,t:'Pédiatrie · Exercices corrigés INFAS',e:'👶'}];
-function chIdx(mid,rx){return((MATI[mid]||{}).ch||[]).findIndex(c=>rx.test(c))}
-function deLinks(){return DE_LINKS.filter(l=>MATI[l.mid]&&myMats().some(m=>m.id===l.mid)&&chIdx(l.mid,l.rx)>=0).map(l=>{const c=chIdx(l.mid,l.rx);return Object.assign({c,n:(QBM[l.mid]||[]).filter(q=>q.c===c).length},l)})}
+function openDE(id){S.lastMat=id;save();VSTACK=[];go('appview',{id})}
 B('home.de','Sujets préparation D.E',()=>{const{bl,ex}=deLists();const li=m=>{const s=mStat(m.id);return `<div class="li" onclick="openDE('${jsq(m.id)}')"><span class="em">${esc(m.emo)}</span><span class="tx"><b>${esc(m.title)}</b><small>${s.pct} % · ${(QBM[m.id]||[]).length} ${esc(Tx('de.q','questions'))}</small></span><span class="go">›</span></div>`};
  return `<div class="card sf dec"><h3>${T('de.h','🎓 Sujets préparation D.E')}</h3><div class="muted small">${T('de.sub','Sujets d’examen blanc et d’examen, pour t’entraîner dans les conditions du D.E.')}</div>
  <button class="btn coral" onclick="examBlanc(40)">${T('de.blanc.btn','⏱️ Examen blanc chronométré · 40 questions de tous tes cours')}</button>
  <div class="lbl3">${T('de.bl','📝 Sujets d’examen blanc')}</div>${bl.length?bl.map(li).join(''):`<div class="empty">${T('de.none','Bientôt disponibles.')}</div>`}
- <div class="lbl3">${T('de.ex','🏛️ Sujets d’examen (D.E)')}</div>${ex.length?ex.map(li).join(''):`<div class="empty">${T('de.none2','Bientôt disponibles.')}</div>`}${deLinks().map(l=>`<div class="li" onclick="go('dech',{id:'${jsq(l.mid)}',c:${l.c}})"><span class="em">${esc(l.e)}</span><span class="tx"><b>${esc(l.t)}</b><small>${l.n} ${esc(Tx('de.q','questions'))}</small></span><span class="go">›</span></div>`).join('')}</div>`});
+ <div class="lbl3">${T('de.ex','🏛️ Sujets d’examen (D.E)')}</div>${ex.length?ex.map(li).join(''):`<div class="empty">${T('de.none2','Bientôt disponibles.')}</div>`}</div>`});
 BLK['home.de'].oneui=()=>{const{bl,ex}=deLists();const grid=(L,t)=>`<div class="ou-card">${ouHead(t,L.length?String(L.length):'')}${L.length?`<div class="ou-grid">${L.map(m=>ouMatTile(m).replace("onclick=\"openMat(","onclick=\"openDE(")).join('')}</div>`:`<div class="ou-empty">${T('de.none','Bientôt disponibles.')}</div>`}</div>`;
- return `<div class="secT">${T('de.h','🎓 Sujets préparation D.E')}<span class="ln"></span></div><button class="ou-pill ou-wide" onclick="examBlanc(40)">${ouIc('⏱️','on')}<span class="ou-tx"><b>${T('de.blanc.t','Examen blanc chronométré')}</b><small>${T('de.blanc.s','40 questions de tous tes cours · 40 min')}</small></span></button>`+grid(bl,T('de.bl','📝 Sujets d’examen blanc'))+grid(ex,T('de.ex','🏛️ Sujets d’examen (D.E)'))+(deLinks().length?`<div class="ou-card">${deLinks().map(l=>`<button class="ou-pill ou-wide" onclick="go('dech',{id:'${jsq(l.mid)}',c:${l.c}})">${ouIc(l.e,'on')}<span class="ou-tx"><b>${esc(l.t)}</b><small>${l.n} ${esc(Tx('de.q','questions'))}</small></span></button>`).join('')}</div>`:'')};
+ return `<div class="secT">${T('de.h','🎓 Sujets préparation D.E')}<span class="ln"></span></div><button class="ou-pill ou-wide" onclick="examBlanc(40)">${ouIc('⏱️','on')}<span class="ou-tx"><b>${T('de.blanc.t','Examen blanc chronométré')}</b><small>${T('de.blanc.s','40 questions de tous tes cours · 40 min')}</small></span></button>`+grid(bl,T('de.bl','📝 Sujets d’examen blanc'))+grid(ex,T('de.ex','🏛️ Sujets d’examen (D.E)'))};
 
 /* ---------- 3. COURS EN MUSIQUE (liens YouTube « musique » de chaque cours) ---------- */
 function musicList(){const L=[];myMats().forEach(m=>linksOf(m.id).filter(l=>l.t==='musique').forEach(l=>L.push({m,l})));return L}
@@ -926,7 +922,7 @@ function colorize(){const app=$('#app');if(!app)return;document.body.classList.t
  $$('#app .li,#side .li,#app .gsi').forEach(el=>{if(el.dataset.lc)return;const oc=el.getAttribute('onclick')||'';const m=oc.match(/(?:openMat|go\('(?:diff|sujets|resumes|matiere)',\{id:)\s*\(?'([^']+)'/);if(m&&MATI[m[1]]){el.dataset.lc=1;el.classList.add('lic');el.style.setProperty('--lc',MATI[m[1]].col)}});
  const mid=(ctx&&ctx.id&&MATI[ctx.id])?ctx.id:(VIEW==='quiz'&&typeof QZ!=='undefined'&&QZ&&MATI[QZ.mid])?QZ.mid:(VIEW==='exam'&&typeof EX!=='undefined'&&EX&&MATI[EX.mid])?EX.mid:(VIEW==='flash'&&typeof FL!=='undefined'&&FL&&MATI[FL.mid])?FL.mid:'';
  app.classList.toggle('matc',!!mid);if(mid)app.style.setProperty('--mcol',MATI[mid].col);else app.style.removeProperty('--mcol')}
-function plusAfter(){try{brAfter()}catch(e){}try{multiAfter()}catch(e){console.error(e)}gsSync();boldify($('#app'));try{colorize()}catch(e){}if(ctx&&ctx.id&&MATI[ctx.id]){S.seen=S.seen||{};const o=S.seen[ctx.id]||0;if(Date.now()-o>36e5){S.seen[ctx.id]=Date.now();save()}}
+function plusAfter(){try{brAfter()}catch(e){}gsSync();boldify($('#app'));try{colorize()}catch(e){}if(ctx&&ctx.id&&MATI[ctx.id]){S.seen=S.seen||{};const o=S.seen[ctx.id]||0;if(Date.now()-o>36e5){S.seen[ctx.id]=Date.now();save()}}
  rankCheck();notifSync()}
 (function w(){if(window.PORTAIL_READY){try{goParam()}catch(e){}setTimeout(nfAuto,4000);if(isIOS())setTimeout(()=>instAsk(),3000)}else setTimeout(w,60)})();
 /* rappels : activation automatique si déjà autorisés, sinon proposition au bon moment (le téléphone exige l’accord de l’utilisateur) */
@@ -1278,85 +1274,6 @@ function askRI(msg,ok,okLbl,noLbl){let o=$('#askRI');if(o)o.remove();o=document.
  o.innerHTML=`<div class="rkbox" role="dialog" aria-modal="true"><div class="rkn" style="font-size:18px">${esc(msg)}</div><div class="row2" style="width:100%;margin-top:6px"><button class="btn coral" id="askY">${esc(okLbl||Tx('ask.y','Oui'))}</button><button class="btn light" id="askN">${esc(noLbl||Tx('ask.n','Annuler'))}</button></div></div>`;
  document.body.appendChild(o);const close=()=>o.remove();$('#askN',o).onclick=close;o.onclick=e=>{if(e.target===o)close()};$('#askY',o).onclick=()=>{close();try{ok()}catch(e){console.error(e)}};setTimeout(()=>{const y=$('#askY',o);y&&y.focus()},30)}
 leaveApp=function(){{const a=$('#askRI');if(a){a.remove();return}}askRI(Tx('app.leave','Voulez-vous revenir au menu principal ?'),()=>{closeApp();VSTACK=[];PANE=false;go('home',{},false)},Tx('app.leave.y','Oui, revenir'),Tx('app.leave.n','Rester ici'))};
-
-/* ---------- 14. QCM À PLUSIEURS RÉPONSES (q.am = indices des bonnes réponses) ---------- */
-function isM(q){return!!(q&&q.t==='qcm'&&Array.isArray(q.am)&&q.am.length>1)}
-function sameSet(a,b){a=(a||[]).slice().sort();b=(b||[]).slice().sort();return a.length===b.length&&a.every((x,i)=>x===b[i])}
-const _correctText0=correctText;correctText=function(q){if(isM(q))return q.am.map(i=>(q.o||[])[i]).join(' · ');return _correctText0(q)};
-const _ansQ0=ansQ;ansQ=function(v){const q=curQ();if(!isM(q))return _ansQ0(v);if(QZ.ans[q.id])return;QZ.msel=QZ.msel||{};const s=QZ.msel[q.id]=QZ.msel[q.id]||[];const i=s.indexOf(v);if(i>=0)s.splice(i,1);else s.push(v);render()};
-function ansM(){const q=curQ();if(!q||QZ.ans[q.id])return;const s=(QZ.msel&&QZ.msel[q.id])||[];if(!s.length){toast(Tx('qm.none','Coche au moins une réponse'));return}const ok=sameSet(s,q.am);QZ.ans[q.id]={sel:-1,ms:s.slice(),ok};if(ok)QZ.ok++;rec(q,ok);S.cur=QZ;save();render()}
-const _exAns0=exAns;exAns=function(v){const q=QI[EX.ids[EX.idx]];if(!isM(q))return _exAns0(v);const s=Array.isArray(EX.ans[q.id])?EX.ans[q.id]:[];const i=s.indexOf(v);if(i>=0)s.splice(i,1);else s.push(v);if(s.length)EX.ans[q.id]=s;else delete EX.ans[q.id];render()};
-const _finishExam0=finishExam;finishExam=function(abort){if(!abort&&EX)EX.ids.forEach(id=>{const q=QI[id],v=EX.ans[id];if(isM(q)&&Array.isArray(v))EX.ans[id]=sameSet(v,q.am)?q.a:-1});return _finishExam0.apply(this,arguments)};
-function multiAfter(){let q=null,s=[],a=null,fn='';
- if(VIEW==='quiz'&&typeof QZ!=='undefined'&&QZ&&QZ.idx<QZ.ids.length){q=curQ();if(!isM(q))return;a=QZ.ans[q.id];s=(a?a.ms:(QZ.msel||{})[q.id])||[];fn='ansQ'}
- else if(VIEW==='exam'&&typeof EX!=='undefined'&&EX){q=QI[EX.ids[EX.idx]];if(!isM(q))return;s=Array.isArray(EX.ans[q.id])?EX.ans[q.id]:[];fn='exAns'}else return;
- const qq=$('#app .qq');if(qq&&!qq.nextElementSibling.classList.contains('qmhint'))qq.insertAdjacentHTML('afterend',`<div class="qmhint">${T('qm.hint','☑️ Plusieurs bonnes réponses : coche-les toutes.')}</div>`);
- const ops=$$('#app .opt');ops.forEach(b=>{const m=(b.getAttribute('onclick')||'').match(new RegExp(fn+'\\((\\d+)\\)'));if(!m)return;const oi=+m[1];b.classList.add('mopt');b.classList.toggle('sel',s.includes(oi));if(a){b.classList.remove('ok','ko');if(q.am.includes(oi))b.classList.add('ok');else if(s.includes(oi))b.classList.add('ko')}});
- if(fn==='ansQ'&&!a&&ops.length&&!$('#qmGo'))ops[ops.length-1].insertAdjacentHTML('afterend',`<button class="btn" id="qmGo" onclick="ansM()">${T('qm.go','✔ Valider ma réponse ({n} cochée(s))',{n:s.length})}</button>`)}
-
-/* ---------- 15. FICHE MATIÈRE : tout le contenu listé, sans « application complète » ---------- */
-const DE_FROM={xprepade:{from:['xmvkq5cba','xmvkq66ok'],e:'🎓',t:'Sujets prépa D.E corrigés'},xformules:{from:['chir','xmvkq66ok'],e:'🧮',t:'Réviser les formules'}};
-function courseList(mid){const C=(DATA.course||{})[mid];const o=[];if(Array.isArray(C))C.forEach((h,i)=>{if(h&&String(h).replace(/<[^>]+>/g,'').trim().length>20)o.push(i)});return o}
-function bookOf(mid){const c=(XD[mid]&&XD[mid].course)||{};return Object.keys(c).filter(k=>/^b\d+$/.test(k)).sort((a,b)=>a.slice(1)-b.slice(1)).map(k=>c[k])}
-function hasRes(mid){const R=(DATA.res||{})[mid];return!!(R&&R.ch&&R.ch.some(c=>(c.pts||[]).length||(c.tabs||[]).length||(c.imgs||[]).length))}
-function actBtn(on,ic,em,t,s){return `<button class="act sf" onclick="${on}"><span class="dot"><span>${ico(ic,em)}</span></span><span><b>${t}</b><small>${s}</small></span><span class="arr">›</span></button>`}
-function glossN(mid){const x=XD.__gloss;return(x&&x.n&&x.n[mid])||0}
-const _matAct0=BLK['matiere.actions'].html;BLK['matiere.actions'].html=function(){const m=matOf(ctx.id),mid=m.id,h=_matAct0.apply(this,arguments);
- const parts=h.split(/(?=<button class="act)/).filter(p=>{if(/go\('appview'/.test(p))return!RO&&EDITMODE;if(/go\('resumes'/.test(p))return hasRes(mid)||courseList(mid).length>0;if(/go\('flashcfg'/.test(p))return cardsOf(mid).length>0;if(/go\('sujets'/.test(p))return(QBM[mid]||[]).length>0;if(/go\('heures'/.test(p))return!deKind(m);return true});
- const add=[],cl=courseList(mid).length+bookOf(mid).length;
- if(cl)add.push(actBtn(`go('cours',{id:'${jsq(mid)}'})`,'book','📖',T('mx.cours','Lire le cours'),T('mx.cours.s','{n} chapitre(s) ou partie(s) à lire',{n:cl})));
- const gn=glossN(mid);if(gn)add.push(actBtn(`go('gloss',{id:'${jsq(mid)}'})`,'abc','🔤',T('mx.gl','Glossaire de la matière'),T('mx.gl.s','{n} termes et définitions, de A à Z',{n:gn})));
- Object.keys(DE_FROM).forEach(k=>{const d=DE_FROM[k];if(d.from.includes(mid)&&MATI[k])add.push(actBtn(`openMat('${k}')`,'star',d.e,esc(Tx('mx.de.'+k,d.t)),T('mx.de.s','{n} questions · rubrique Sujets D.E',{n:(QBM[k]||[]).length})))});
- deLinks().filter(l=>l.mid===mid).forEach(l=>add.push(actBtn(`go('dech',{id:'${jsq(mid)}',c:${l.c}})`,'edit','📝',esc(chName(mid,l.c)),T('mx.dech.s','{n} questions · aussi dans Sujets D.E',{n:l.n}))));
- const i=parts.findIndex(p=>/go\('heures'/.test(p));parts.splice(i<0?parts.length:i,0,...add);return parts.join('')};
-
-/* lecture du cours */
-SCREENS.cours={n:'Lire le cours',ctx:1,hdr:()=>{const m=matOf(ctx.id);return miniHeader(T('cours.small','📖 Cours'),esc(m.emo+' '+m.short))},blocks:['cours.list']};
-B('cours.list','Chapitres à lire',()=>{const mid=ctx.id,L=courseList(mid),bk=bookOf(mid);if(!L.length&&!bk.length)return `<div class="empty">${T('cours.none','Pas encore de cours pour cette matière.')}</div>`;
- return `<div class="card sf">${L.map((c,k)=>`<div class="li" onclick="readC('${jsq(mid)}',${c})"><span class="em">${k+1}</span><span class="tx"><b>${esc(chName(mid,c))}</b></span><span class="go">›</span></div>`).join('')}${bk.map((s,k)=>`<div class="li" onclick="readBook('${jsq(mid)}',${k})"><span class="em">📄</span><span class="tx"><b>${esc(s[0])}</b></span><span class="go">›</span></div>`).join('')}</div>`});
-function readC(mid,c){readCourse(mid,c);const x=$('#crX');if(x)x.textContent=Tx('read.close2','✕ Fermer')}
-function readBook(mid,k){const m=matOf(mid),s=bookOf(mid)[k];if(!s)return;let o=$('#crd');if(o)o.remove();o=document.createElement('div');o.id='crd';o.className='crd';
- o.innerHTML=`<div class="crbox"><div class="crbar"><div class="tt"><small>${esc(m.emo+' '+m.short)}</small><b>${esc(s[0])}</b></div><button class="btn coral" id="crX" style="width:auto;margin:0;padding:9px 14px">${esc(Tx('read.close2','✕ Fermer'))}</button></div><div class="crtx">${s[1]}</div>${k+1<bookOf(mid).length?`<button class="btn" style="margin:12px 0 0" onclick="readBook('${jsq(mid)}',${k+1})">${T('read.next','Partie suivante →')}</button>`:''}</div>`;
- document.body.appendChild(o);$('#crX',o).onclick=()=>o.remove();o.onclick=e=>{if(e.target===o)o.remove()};const b=$('.crbox',o);if(b)b.scrollTop=0}
-
-/* raccourci D.E : un chapitre d'un cours (ex. Exercices corrigés INFAS de Pédiatrie) */
-SCREENS.dech={n:'Sujet D.E (chapitre)',ctx:1,hdr:()=>{const m=matOf(ctx.id);return miniHeader(T('dech.small','🎓 Sujets préparation D.E')+' · '+esc(m.short),esc(chName(ctx.id,ctx.c)))},blocks:['dech.main']};
-B('dech.main','Lancer le sujet',()=>{const mid=ctx.id,c=ctx.c,ids=(QBM[mid]||[]).filter(q=>q.c===c).map(q=>q.id),lb=chName(mid,c),rv=ids.filter(id=>!S.qs[id]||!S.qs[id].l),st=mStat(mid);
- if(!ids.length)return `<div class="empty">${T('toast.noq','Aucune question ici')}</div>`;
- return `<div class="card sf"><h3>${esc(lb)}</h3><div class="muted small">${T('dech.sub','{n} questions corrigées · {d} déjà réussies',{n:ids.length,d:ids.length-rv.length})}</div></div>
- <button class="btn" onclick="startQuiz('${jsq(mid)}',QBM['${jsq(mid)}'].filter(q=>q.c===${c}).map(q=>q.id),'${jsq(lb)}','chap')">${T('dech.all','▶ Toutes les questions ({n})',{n:ids.length})}</button>
- <button class="btn light" onclick="startQuiz('${jsq(mid)}',shuffle(QBM['${jsq(mid)}'].filter(q=>q.c===${c}).map(q=>q.id)).slice(0,20),'${jsq(lb)}','chap')">${T('dech.rand','🎲 20 questions au hasard')}</button>
- <button class="btn coral" onclick="startTimed('${jsq(mid)}',shuffle(QBM['${jsq(mid)}'].filter(q=>q.c===${c}).map(q=>q.id)).slice(0,40),'${jsq(lb)}')">${T('dech.timed','⏱️ Sujet chronométré · 40 questions')}</button>
- ${rv.length?`<button class="btn light" onclick="startQuiz('${jsq(mid)}',QBM['${jsq(mid)}'].filter(q=>q.c===${c}&&(!S.qs[q.id]||!S.qs[q.id].l)).map(q=>q.id),'${jsq(lb)}','chap')">${T('dech.weak','🔁 Jamais vues ou à revoir ({n})',{n:rv.length})}</button>`:''}
- <button class="btn ghost" onclick="openMat('${jsq(mid)}')">${T('dech.mat','Voir tout le cours de {m}',{m:esc(matOf(mid).short)})}</button>`});
-
-/* ---------- 16. GLOSSAIRE (par matière, toutes matières regroupées) ---------- */
-let GLQ='';
-function glossAll(){const x=XD.__gloss;return(x&&x.course&&x.course.gl)||null}
-function glossLoad(){if(glossAll())return Promise.resolve(glossAll());const p=(typeof ensureX==='function')?ensureX('__gloss'):Promise.resolve();return p.then(()=>glossAll())}
-function glossMats(){const n=(XD.__gloss&&XD.__gloss.n)||{};return myMats().filter(m=>n[m.id]).concat(MAT.filter(m=>n[m.id]&&!myMats().includes(m)))}
-B('home.gloss','Glossaire (toutes les matières)',()=>{const n=(XD.__gloss&&XD.__gloss.n)||{},tot=Object.values(n).reduce((a,b)=>a+b,0);if(!tot)return'';const L=glossMats();
- return `<div class="card sf glh"><h3>${T('gl.h','🔤 Glossaire')}</h3><div class="muted small">${T('gl.sub','{n} termes expliqués · {m} matières',{n:tot,m:L.length})}</div>
- <div class="search" onclick="go('gloss',{})" style="margin-top:10px">🔍<input class="srch" readonly placeholder="${esc(Tx('gl.ph','Chercher un mot (ex. : anémie, Glasgow…)'))}"></div>
- <div class="glchips">${L.slice(0,40).map(m=>`<button style="--lc:${esc(m.col)}" onclick="go('gloss',{id:'${jsq(m.id)}'})">${esc(m.emo)} ${esc(m.short)} <small>${n[m.id]}</small></button>`).join('')}</div></div>`});
-SCREENS.gloss={n:'Glossaire',hdr:()=>{const m=ctx.id&&MATI[ctx.id];return miniHeader(T('gl.small','🔤 Glossaire'),m?esc(m.emo+' '+m.short):T('gl.all','Toutes les matières'))},blocks:['gloss.main']};
-B('gloss.main','Termes et définitions',()=>`<div class="search glsearch">🔍<input class="srch" id="glIn" placeholder="${esc(Tx('gl.ph','Chercher un mot (ex. : anémie, Glasgow…)'))}" value="${esc(GLQ)}" autocomplete="off"></div><div id="glOut"><div class="empty">${T('gl.load','Chargement du glossaire…')}</div></div>`,{after:()=>{const i=$('#glIn');if(i)i.oninput=()=>{GLQ=i.value;glossDraw()};glossLoad().then(glossDraw)}});
-function glossDraw(){const o=$('#glOut');if(!o)return;const G=glossAll();if(!G){o.innerHTML=`<div class="empty">${T('gl.err','Glossaire indisponible hors connexion pour le moment.')}</div>`;return}
- const mid=ctx.id&&G[ctx.id]?ctx.id:'',q=nrm(GLQ||'');const n=(XD.__gloss&&XD.__gloss.n)||{};
- if(!mid&&!q){o.innerHTML=`<div class="card sf">${glossMats().map(m=>`<div class="li" onclick="go('gloss',{id:'${jsq(m.id)}'})"><span class="em">${esc(m.emo)}</span><span class="tx"><b>${esc(m.title)}</b><small>${T('gl.n','{n} termes',{n:n[m.id]})}</small></span><span class="go">›</span></div>`).join('')}</div>`;colorize();return}
- let L=[];(mid?[mid]:Object.keys(G)).forEach(k=>(G[k]||[]).forEach(e=>{if(!q||nrm(e[0]).includes(q)||(q.length>3&&nrm(e[1]).includes(q)))L.push([e[0],e[1],k])}));
- if(q)L.sort((a,b)=>{const A=nrm(a[0]).startsWith(q)?0:nrm(a[0]).includes(q)?1:2,Bv=nrm(b[0]).startsWith(q)?0:nrm(b[0]).includes(q)?1:2;return A-Bv||a[0].localeCompare(b[0],'fr')});else L.sort((a,b)=>a[0].localeCompare(b[0],'fr'));
- if(!L.length){o.innerHTML=`<div class="empty">${T('gl.none','Aucun terme trouvé.')}</div>`;return}
- const lt=e=>(nrm(e[0])[0]||'#').toUpperCase(),letters=[...new Set(L.map(lt))];let cur='',h='';
- const max=600;L.slice(0,max).forEach(e=>{const l=lt(e);if(!q&&l!==cur){cur=l;h+=`<div class="gll" id="gl-${l}">${l}</div>`}h+=`<div class="gli"><b>${esc(e[0])}</b>${!mid?`<small>${esc((MATI[e[2]]||{}).short||'')}</small>`:''}<span>${esc(e[1])}</span></div>`});
- o.innerHTML=(!q&&letters.length>3?`<div class="glk">${letters.map(l=>`<button onclick="var t=document.getElementById('gl-${l}');t&&t.scrollIntoView({block:'start',behavior:'smooth'})">${l}</button>`).join('')}</div>`:'')+`<div class="muted small" style="margin:4px 2px 8px">${T('gl.count','{n} terme(s)',{n:L.length})}${L.length>max?' · '+T('gl.more','affine ta recherche pour voir la suite'):''}</div><div class="card sf glbox">${h}</div>`}
-
-/* ---------- 17. OUVERTURE PLUS RAPIDE : le contenu d'une matière se charge dès qu'on pose le doigt ---------- */
-document.addEventListener('pointerdown',e=>{try{if(typeof ensureX!=='function')return;const el=e.target.closest&&e.target.closest('[onclick]');if(!el)return;const m=(el.getAttribute('onclick')||'').match(/(?:openMat|openDE)\('([^']+)'|\{id:'([^']+)'/);const id=m&&(m[1]||m[2]);if(id)ensureX(id);if(/'gloss'/.test(el.getAttribute('onclick')||''))ensureX('__gloss')}catch(x){}},{capture:true,passive:true});
-(function(){const f=()=>{try{if(typeof ensureX!=='function')return;if(S&&S.lastMat)ensureX(S.lastMat);setTimeout(()=>ensureX('__gloss'),3000)}catch(e){}};if('requestIdleCallback'in window)requestIdleCallback(()=>setTimeout(f,1500));else setTimeout(f,4000)})();
-/* nouvelle rubrique « Glossaire » en bas de l'accueil (avant la communauté) */
-(function(){const H=SCREENS.home.blocks;if(!H.includes('home.gloss')){const i=H.indexOf('home.commu');H.splice(i<0?H.length:i,0,'home.gloss')}})();
-const _blkMigrate1=blkMigrate;blkMigrate=function(){_blkMigrate1();if((E.blkv||0)===3&&E.layout){const L=E.layout.home;if(Array.isArray(L)&&!L.some(b=>b.id==='home.gloss')){const i=L.findIndex(b=>b.id==='home.commu');L.splice(i<0?L.length:i,0,{id:'home.gloss',inst:'home.gloss'})}E.blkv=4}};
 
 /* ======================= DÉMARRAGE ======================= */
 const SHELL=()=>`<div class="layout" id="layout"><aside class="side" id="side"></aside><div class="app" id="app"></div></div><nav class="nav" id="nav"></nav><div class="toast" id="toast"></div><input type="file" id="imp" accept=".json,application/json" class="hide">`;

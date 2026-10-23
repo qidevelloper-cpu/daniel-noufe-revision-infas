@@ -1,1 +1,0 @@
-(window.__XDATA=window.__XDATA||{})["__gloss"]={"ch":[],"q":[],"cards":[],"n":{"chir":292,"dermato":157,"endo":110,"gyneco":101,"orl":140,"pathotrop":182,"sonu":133,"vih":111,"xmvkq53re":165,"xmvkq580o":242,"xmvkq5cba":257,"xmvkq5gqn":150,"xmvkq5l1e":126,"xmvkq5pc5":204,"xmvkq5tml":133,"xmvkq5y0h":101,"xmvkq62d4":280,"xmvkq66ok":225}};
