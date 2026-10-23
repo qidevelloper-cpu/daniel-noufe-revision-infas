@@ -1,0 +1,99 @@
+{
+ "v": "e3788d90ce",
+ "date": "2026-10-23",
+ "sig": "9ff594859592799d5a8030ed74fe56106a8d7aac",
+ "notes": [
+  {
+   "t": "🎉 Grande mise à jour : 11 nouveaux cours (Pédiatrie, Santé infantile, Pharmacologie, SSR · PF, Médecine IDE 2, Santé publique, Anatomie…) et la Correction Nationale 2025 dans « Sujets préparation D.E ». Nouveau : ceintures & grades, examen blanc chronométré, recherche partout, taille du texte, rappels et calculatrice !"
+  }
+ ],
+ "mats": {
+  "sonu": {
+   "t": "SONU — Soins obstétricaux et néonatals d’urgence",
+   "h": "2366aeeff1f8e92142027163bad177ab224e2abb"
+  },
+  "gyneco": {
+   "t": "Gynéco-Obstétrique",
+   "h": "f377e86b6e2976755b89d7989f8ded0e8df5bbf3"
+  },
+  "vih": {
+   "t": "VIH & traitement ARV",
+   "h": "80ef08037b19d91c3e40f8b7c5e6793589a8c841"
+  },
+  "pathotrop": {
+   "t": "Pathologies tropicales & maladies infectieuses",
+   "h": "e3fa6846100c4b9b80d41508ebc86f90c7574013"
+  },
+  "orl": {
+   "t": "ORL — Oto-rhino-laryngologie",
+   "h": "42a52824b7242ca137d8213adc8c245c25c3eb75"
+  },
+  "dermato": {
+   "t": "Dermatologie-Vénérologie",
+   "h": "b93eaf9349c2cc3ec3820f4c0b85bc5d074d7d60"
+  },
+  "chir": {
+   "t": "Chirurgie — L1 · L2 · L3",
+   "h": "6e85aa843b3c9c048ab1caf66749ca772f2a964a"
+  },
+  "endo": {
+   "t": "Endocrinologie & Oncologie",
+   "h": "f2d6e8d1d7039b72bd78cc379673bf5e763e077d"
+  },
+  "xmvkq4zed": {
+   "t": "Correction Nationale 2025 — Examens blancs infirmier",
+   "h": "a2f7296a42ffcae8f2b3e71ce5d4168bbe93fbfe"
+  },
+  "xmvkq53re": {
+   "t": "Pharmacologie",
+   "h": "5e811dc16791bea4c00c7002ebc32acdec496c6e"
+  },
+  "xmvkq580o": {
+   "t": "SSR · Planification familiale",
+   "h": "cf4a6b4bfc82729c2a64ace1d5213628001293c9"
+  },
+  "xmvkq5cba": {
+   "t": "Santé infantile",
+   "h": "0091d9a7471d78385479439a3b1ffcba44a84c6e"
+  },
+  "xmvkq5gqn": {
+   "t": "Pédiatrie",
+   "h": "78ce1ed0d075482a01cc79fd78947ad6e37a1c9d"
+  },
+  "xmvkq5l1e": {
+   "t": "Médecine IDE 2 — pathologies",
+   "h": "46d5bcef47bffe8d29ffe72085606ed1e1649de6"
+  },
+  "xmvkq5pc5": {
+   "t": "Appareil digestif",
+   "h": "130c29e71a8acd81fede6f1208059f5af90d666a"
+  },
+  "xmvkq5tml": {
+   "t": "Système nerveux",
+   "h": "50fb69ffe879a8163b5f60ce46838add62bbf247"
+  },
+  "xmvkq5y0h": {
+   "t": "Ostéologie & Arthrologie",
+   "h": "05d3bc2d856fd0cf1b8f8ace32789f3dc9a250f8"
+  },
+  "xmvkq62d4": {
+   "t": "Cytologie, Histologie & Myologie",
+   "h": "7c2bbc9a5819e81999c87c72b903551712562a0d"
+  },
+  "xmvkq66ok": {
+   "t": "Santé publique L1 · L2 · L3",
+   "h": "615d006bf0e276ec5e822653dbebcdb07871078a"
+  }
+ },
+ "hist": [
+  {
+   "v": "e3788d90ce",
+   "date": "2026-10-23",
+   "notes": [
+    {
+     "t": "🎉 Grande mise à jour : 11 nouveaux cours (Pédiatrie, Santé infantile, Pharmacologie, SSR · PF, Médecine IDE 2, Santé publique, Anatomie…) et la Correction Nationale 2025 dans « Sujets préparation D.E ». Nouveau : ceintures & grades, examen blanc chronométré, recherche partout, taille du texte, rappels et calculatrice !"
+    }
+   ]
+  }
+ ]
+}
