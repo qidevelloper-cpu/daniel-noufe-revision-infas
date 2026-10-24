@@ -1,14 +1,10 @@
 {
- "v": "1bc0f7c6bc",
+ "v": "902f861593",
  "date": "2026-10-24",
- "sig": "25b207284e01da84e343d85aab8b026615596038",
+ "sig": "94776de33a994206f5ad0cea54d032dcb75e1477",
  "notes": [
   {
-   "t": "🔪 Chirurgie : nouvelle version de l’application complète."
-  },
-  {
-   "t": "🔄 Cours mis à jour : Chirurgie — L1 · L2 · L3",
-   "m": "chir"
+   "t": "🔊 Nouveau : un son et une voix à chaque réponse — « Docta ! » quand c’est juste, « Référé ! Référé ! » quand c’est faux (à couper dans le Profil)."
   }
  ],
  "mats": {
@@ -102,6 +98,15 @@
   }
  },
  "hist": [
+  {
+   "v": "902f861593",
+   "date": "2026-10-24",
+   "notes": [
+    {
+     "t": "🔊 Nouveau : un son et une voix à chaque réponse — « Docta ! » quand c’est juste, « Référé ! Référé ! » quand c’est faux (à couper dans le Profil)."
+    }
+   ]
+  },
   {
    "v": "1bc0f7c6bc",
    "date": "2026-10-24",

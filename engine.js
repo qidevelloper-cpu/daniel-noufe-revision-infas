@@ -15,7 +15,7 @@ const EMB=JSON.parse(($('#app-edits')||{}).textContent||'{}');
 const META=Object.assign({appId:'revInfas',brand:['RÉVISION','INFAS'],welcome:'Bienvenue',tagline:'En marche vers la maîtrise et l’excellence',signature:'Créé par <b>Daniel Noufe</b> · INFAS',title:'Révision INFAS',defaultPalette:0,sujet:50},DATA0.meta||{});
 const APPID=META.appId, SKEY=APPID+'_progress_v1', EKEY=APPID+'_edits_v1', HKEY=APPID+'_edits_hist_v1';
 let RO=true, EDITMODE=false;
-function blankE(){return{rev:0,ui:null,oui:null,blkv:0,nocol:false,covers:{},soonk:{},icons:'emoji',custom:{},appColors:true,texts:{},layout:{},tiles:{},menu:null,palette:null,font:null,fontH:null,fontFiles:[],fontApps:false,gts:1,shape:null,look:null,content:{}}}
+function blankE(){return{rev:0,ui:null,oui:null,blkv:0,nocol:false,covers:{},soonk:{},covers:{},soonk:{},covers:{},soonk:{},covers:{},soonk:{},icons:'emoji',custom:{},appColors:true,texts:{},layout:{},tiles:{},menu:null,palette:null,font:null,fontH:null,fontFiles:[],fontApps:false,gts:1,shape:null,look:null,content:{}}}
 function normE(e){const b=blankE();e=e&&typeof e==='object'?clone(e):{};Object.keys(b).forEach(k=>{if(e[k]!==undefined&&e[k]!==null)b[k]=e[k]});if(!Array.isArray(b.fontFiles))b.fontFiles=[];b.base=e.base;b.rev=e.rev||0;return b}
 let E=normE(EMB);
 
@@ -1804,6 +1804,45 @@ function riElEdit(el){let tn=null;const w=document.createTreeWalker(el,4);let n;
  $('#peOk',o).onclick=()=>{if(tn){const v=$('#peT',o).value.trim();if(v&&v!==orig)R[orig]=v;else delete R[orig]}s.c=cset?$('#peC',o).value:null;s.f=$('#peF',o).value||null;put(s)};
  $('#peHide',o).onclick=()=>{s.h=!s.h;put(s)};const up=$('#peUp',o);if(up)up.onclick=()=>{const big=el.parentElement.closest('.li,.act,.tile,.card,button,.chip,.sxm,.gsi,.ou-pill,.ou-tile,.glchips>button,.lic,section>*');o.remove();if(big)riElEdit(big)};$('#peRst',o).onclick=()=>{if(orig)delete R[orig];put({})}}
 function pickBarAfter(){const bar=$('#edBar');document.body.dataset.view=VIEW;document.body.dataset.ctx=(ctx&&ctx.id)||'';if(!bar||$('#edPick'))return;const b=document.createElement('button');b.id='edPick';b.textContent='🧩';b.title='Éléments : modifier ou masquer n’importe quoi';b.onclick=e=>{e.stopPropagation();riPickToggle()};const sv=$('#edSave');bar.insertBefore(b,sv||null)}
+
+/* ---------- 44. Apparence par défaut : en mode édition, on voit toujours la palette choisie pour les étudiants ---------- */
+const _palE44=palette;palette=function(){if(typeof EDITMODE!=='undefined'&&EDITMODE&&!RO)return authorPalette();return _palE44.apply(this,arguments)};
+let LOOKEM=null;const _render44=render;render=function(){if(LOOKEM!==EDITMODE){LOOKEM=EDITMODE;try{applyLook()}catch(e){}}_render44.apply(this,arguments)};
+
+/* ---------- 45. Palette imposée par l'auteur : remplace une fois le choix personnel des étudiants ---------- */
+function palForce(){const v=E&&E.palv;if(!v||(typeof EDITMODE!=='undefined'&&EDITMODE))return;if(S.palv===v)return;S.palv=v;S.theme=null;S.night=null;save();try{applyLook()}catch(e){}}
+const _render45=render;render=function(){try{palForce()}catch(e){}_render45.apply(this,arguments)};
+
+/* ---------- 46. Sons des réponses : « Docta ! » quand c'est juste, « Référé ! Référé ! » quand c'est faux ---------- */
+let RISND_AC=null,RISND_T=0;
+function sndOn(){return S.snd!==false&&E.snd!==false}
+function sndAc(){try{if(!RISND_AC){const C=window.AudioContext||window.webkitAudioContext;if(!C)return null;RISND_AC=new C()}if(RISND_AC.state==='suspended')RISND_AC.resume();return RISND_AC}catch(e){return null}}
+function sndTone(ac,t0,f0,f1,d,type,vol){const o=ac.createOscillator(),g=ac.createGain();o.type=type;o.frequency.setValueAtTime(f0,t0);o.frequency.exponentialRampToValueAtTime(f1,t0+d);g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(vol,t0+.02);g.gain.exponentialRampToValueAtTime(0.0001,t0+d);o.connect(g);g.connect(ac.destination);o.start(t0);o.stop(t0+d+.05)}
+function sndVoice(txt,pitch,rate){try{const sy=window.speechSynthesis;if(!sy)return;sy.cancel();const u=new SpeechSynthesisUtterance(txt);const vs=sy.getVoices()||[];const v=vs.find(x=>/^fr[-_]FR/i.test(x.lang))||vs.find(x=>/^fr/i.test(x.lang));if(v)u.voice=v;u.lang=(v&&v.lang)||'fr-FR';u.pitch=pitch;u.rate=rate;u.volume=1;sy.speak(u)}catch(e){}}
+function riSnd(ok){if(!sndOn())return;const now=Date.now();if(now-RISND_T<500)return;RISND_T=now;const ac=sndAc();
+ if(ac){const t=ac.currentTime+.01;
+  if(ok){[[784,.0],[988,.07],[1319,.14],[1568,.21]].forEach(([f,d])=>sndTone(ac,t+d,f,f*1.01,.22,'triangle',.22));sndTone(ac,t+.3,2093,2637,.25,'sine',.12)}
+  else{[[392,0],[370,.22],[349,.44]].forEach(([f,d])=>sndTone(ac,t+d,f,f*.97,.2,'sawtooth',.09));sndTone(ac,t+.66,330,220,.6,'sawtooth',.1)}}
+ if(ok)sndVoice('Doctaaa !',1.9,1.05);else sndVoice('Référé ! Référé !',1.7,1.3)}
+window.riSnd=riSnd;
+try{if(window.speechSynthesis){speechSynthesis.getVoices();speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices()}}catch(e){}
+const _rec46=rec;rec=function(q,ok){const r=_rec46.apply(this,arguments);try{if(!(QZ&&QZ.mode==='exam'))riSnd(!!ok)}catch(e){}return r};
+/* dans les applications complètes : détection d'une réponse juste ou fausse après un appui */
+function brSnd(){var P=window.parent,done=true,before=null,TOK=0;
+ var GOOD=/(^|\s)(good|correct|right|ok|success|juste|is-correct|ans-ok|win)(\s|$)/i,BAD=/(^|\s)(bad|wrong|ko|incorrect|faux|error|is-wrong|ans-ko|fail)(\s|$)/i;
+ var TG=/^\s*(✅|✔️?|✓|🎉|👏)?\s*(bonne réponse(?!\s*:)|bravo\b|correct\s*!|exact\s*!|juste\s*!|bien joué|très bien\s*!)/i,TB=/^\s*(❌|✖️?|✗|✘)?\s*(mauvaise réponse|réponse incorrecte|incorrect\b|raté\b|faux\s*!|dommage|pas tout à fait|perdu\b)/i;
+ function fire(ok){if(done)return;done=true;try{if(P&&P.riSnd)P.riSnd(ok)}catch(e){}}
+ function scan(){var out=[],L=document.querySelectorAll('div,p,span,b,strong,h2,h3,h4,h5,section,label');for(var i=0;i<L.length;i++){var el=L[i],t=el.textContent;if(!t||t.length>400)continue;t=t.trim().slice(0,60);var g=TG.test(t),k=!g&&TB.test(t);if((g||k)&&el.offsetParent!==null)out.push([el,g])}return out}
+ function check(b){if(done)return;var c=(b&&b.className)+'';if(GOOD.test(c)){fire(true);return}if(BAD.test(c)){fire(false);return}
+  var now=scan();for(var i=0;i<now.length;i++){if(before.indexOf(now[i][0])<0){fire(now[i][1]);return}}}
+ document.addEventListener('click',function(e){var b=e.target.closest('button,.opt,.option,.choice,.ans,li,label,[role=button],[data-i],[data-oi],[data-v]');if(!b)return;var t=(b.innerText||'').toLowerCase();if(/je savais|à revoir|suivant|retour|accueil|lancer|commencer|démarrer|continuer|valider la carte|question suivante/.test(t))return;
+  before=scan().map(function(x){return x[0]});done=false;var k=++TOK;
+  [150,400,800,1300].forEach(function(d){setTimeout(function(){if(k===TOK)check(b)},d)});setTimeout(function(){if(k===TOK)done=true},1600)},true)}
+const _appBridge46=appBridge;appBridge=function(m,src,ri){const r=_appBridge46.apply(this,arguments);try{r.js+='<script>('+brSnd.toString()+')()<'+'/script>'}catch(e){}return r};
+/* réglage dans le Profil */
+const _pText46=BLK['profile.text']&&BLK['profile.text'].html;if(_pText46)BLK['profile.text'].html=function(){const h=_pText46.apply(this,arguments);
+ const seg=`<div class="lbl3">${T('snd.h','🔊 Sons et voix des réponses')}</div><div class="seg"><button class="${S.snd!==false?'on':''}" onclick="S.snd=true;save();render();riSnd(true)">${T('snd.on','🔊 Activés')}</button><button class="${S.snd===false?'on':''}" onclick="S.snd=false;save();render()">${T('snd.off','🔇 Coupés')}</button></div>`;
+ const i=h.lastIndexOf('</div>');return i>0?h.slice(0,i)+seg+h.slice(i):h+seg};
 
 /* ======================= DÉMARRAGE ======================= */
 const SHELL=()=>`<div class="layout" id="layout"><aside class="side" id="side"></aside><div class="app" id="app"></div></div><nav class="nav" id="nav"></nav><div class="toast" id="toast"></div><input type="file" id="imp" accept=".json,application/json" class="hide">`;
