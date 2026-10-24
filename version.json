@@ -1,14 +1,14 @@
 {
- "v": "d889ee0470",
+ "v": "54acdd5e65",
  "date": "2026-10-24",
- "sig": "249066796d9ac4379da1dff70e8adbc987e308da",
+ "sig": "6270f80183dfa1a5519fb84fd4500998e42f75b6",
  "notes": [
   {
-   "t": "👁️ L’Ophtalmologie (L3 · IDE) arrive : 297 questions, 414 flashcards, son glossaire et l’application complète."
+   "t": "🔪 Chirurgie : nouvel examen blanc chronométré noté sur 20, et une seule rubrique « Résumés & tableaux » (fiches maladies, résumés, comparatifs)."
   },
   {
-   "t": "📘 Nouveau cours : Ophtalmologie",
-   "m": "xmvm9jr75"
+   "t": "🔄 Cours mis à jour : Chirurgie — L1 · L2 · L3",
+   "m": "chir"
   }
  ],
  "mats": {
@@ -38,7 +38,7 @@
   },
   "chir": {
    "t": "Chirurgie — L1 · L2 · L3",
-   "h": "45c67477a92e6153173276636b94bb80ed3503ae"
+   "h": "ee0018c66721c82c88ffb0dee11f225ebacbb615"
   },
   "endo": {
    "t": "Endocrinologie & Oncologie",
@@ -102,6 +102,19 @@
   }
  },
  "hist": [
+  {
+   "v": "54acdd5e65",
+   "date": "2026-10-24",
+   "notes": [
+    {
+     "t": "🔪 Chirurgie : nouvel examen blanc chronométré noté sur 20, et une seule rubrique « Résumés & tableaux » (fiches maladies, résumés, comparatifs)."
+    },
+    {
+     "t": "🔄 Cours mis à jour : Chirurgie — L1 · L2 · L3",
+     "m": "chir"
+    }
+   ]
+  },
   {
    "v": "d889ee0470",
    "date": "2026-10-24",
