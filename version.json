@@ -1,10 +1,10 @@
 {
- "v": "54acdd5e65",
+ "v": "1bc0f7c6bc",
  "date": "2026-10-24",
- "sig": "6270f80183dfa1a5519fb84fd4500998e42f75b6",
+ "sig": "25b207284e01da84e343d85aab8b026615596038",
  "notes": [
   {
-   "t": "🔪 Chirurgie : nouvel examen blanc chronométré noté sur 20, et une seule rubrique « Résumés & tableaux » (fiches maladies, résumés, comparatifs)."
+   "t": "🔪 Chirurgie : nouvelle version de l’application complète."
   },
   {
    "t": "🔄 Cours mis à jour : Chirurgie — L1 · L2 · L3",
@@ -38,7 +38,7 @@
   },
   "chir": {
    "t": "Chirurgie — L1 · L2 · L3",
-   "h": "ee0018c66721c82c88ffb0dee11f225ebacbb615"
+   "h": "35cade549c5034ab5b782d93143d330c565a3b25"
   },
   "endo": {
    "t": "Endocrinologie & Oncologie",
@@ -102,6 +102,19 @@
   }
  },
  "hist": [
+  {
+   "v": "1bc0f7c6bc",
+   "date": "2026-10-24",
+   "notes": [
+    {
+     "t": "🔪 Chirurgie : nouvelle version de l’application complète."
+    },
+    {
+     "t": "🔄 Cours mis à jour : Chirurgie — L1 · L2 · L3",
+     "m": "chir"
+    }
+   ]
+  },
   {
    "v": "54acdd5e65",
    "date": "2026-10-24",
