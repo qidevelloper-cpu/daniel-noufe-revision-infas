@@ -1,94 +1,14 @@
 {
- "v": "0b8483f491",
- "date": "2026-10-23",
- "sig": "98ca7aa5a25f39188f2f79c1a1e1a0e939452198",
+ "v": "d889ee0470",
+ "date": "2026-10-24",
+ "sig": "249066796d9ac4379da1dff70e8adbc987e308da",
  "notes": [
   {
-   "t": "✨ Grande mise à jour : chaque cours a autant de quiz et de flashcards que son application complète (questions à plusieurs réponses et sur schéma). Nouvelles rubriques « Sujets type examen » (par matière et par antenne) et « Réviser les formules », glossaire par filière, recherche dans les applications complètes, Correction nationale aux couleurs de l’appli. Nouvelles couleurs : Blanc & noir, Noir & blanc, Vert nuit, Bleu nuit, et le mode Jour / Nuit dans le Profil."
+   "t": "👁️ L’Ophtalmologie (L3 · IDE) arrive : 297 questions, 414 flashcards, son glossaire et l’application complète."
   },
   {
-   "t": "🔄 Cours mis à jour : SONU — Soins obstétricaux et néonatals d’urgence",
-   "m": "sonu"
-  },
-  {
-   "t": "🔄 Cours mis à jour : Gynéco-Obstétrique",
-   "m": "gyneco"
-  },
-  {
-   "t": "🔄 Cours mis à jour : VIH & traitement ARV",
-   "m": "vih"
-  },
-  {
-   "t": "🔄 Cours mis à jour : Pathologies tropicales & maladies infectieuses",
-   "m": "pathotrop"
-  },
-  {
-   "t": "🔄 Cours mis à jour : ORL — Oto-rhino-laryngologie",
-   "m": "orl"
-  },
-  {
-   "t": "🔄 Cours mis à jour : Dermatologie-Vénérologie",
-   "m": "dermato"
-  },
-  {
-   "t": "🔄 Cours mis à jour : Chirurgie — L1 · L2 · L3",
-   "m": "chir"
-  },
-  {
-   "t": "🔄 Cours mis à jour : Endocrinologie & Oncologie",
-   "m": "endo"
-  },
-  {
-   "t": "🔄 Cours mis à jour : Correction Nationale 2025 — Examens blancs infirmier",
-   "m": "xmvkq4zed"
-  },
-  {
-   "t": "🔄 Cours mis à jour : Pharmacologie",
-   "m": "xmvkq53re"
-  },
-  {
-   "t": "🔄 Cours mis à jour : SSR · Planification familiale",
-   "m": "xmvkq580o"
-  },
-  {
-   "t": "🔄 Cours mis à jour : Santé infantile",
-   "m": "xmvkq5cba"
-  },
-  {
-   "t": "🔄 Cours mis à jour : Pédiatrie",
-   "m": "xmvkq5gqn"
-  },
-  {
-   "t": "🔄 Cours mis à jour : Médecine IDE 2 — pathologies",
-   "m": "xmvkq5l1e"
-  },
-  {
-   "t": "🔄 Cours mis à jour : Appareil digestif",
-   "m": "xmvkq5pc5"
-  },
-  {
-   "t": "🔄 Cours mis à jour : Système nerveux",
-   "m": "xmvkq5tml"
-  },
-  {
-   "t": "🔄 Cours mis à jour : Ostéologie & Arthrologie",
-   "m": "xmvkq5y0h"
-  },
-  {
-   "t": "🔄 Cours mis à jour : Cytologie, Histologie & Myologie",
-   "m": "xmvkq62d4"
-  },
-  {
-   "t": "🔄 Cours mis à jour : Santé publique L1 · L2 · L3",
-   "m": "xmvkq66ok"
-  },
-  {
-   "t": "📘 Nouveau cours : Tous les sujets prépa D.E",
-   "m": "xprepade"
-  },
-  {
-   "t": "📘 Nouveau cours : Réviser les formules",
-   "m": "xformules"
+   "t": "📘 Nouveau cours : Ophtalmologie",
+   "m": "xmvm9jr75"
   }
  ],
  "mats": {
@@ -175,9 +95,26 @@
   "xformules": {
    "t": "Réviser les formules",
    "h": "806077a53b56c4e6454feaba55b0578ec062c8b6"
+  },
+  "xmvm9jr75": {
+   "t": "Ophtalmologie",
+   "h": "864477f569d744990ba9ccbbd3a43fd64a031847"
   }
  },
  "hist": [
+  {
+   "v": "d889ee0470",
+   "date": "2026-10-24",
+   "notes": [
+    {
+     "t": "👁️ L’Ophtalmologie (L3 · IDE) arrive : 297 questions, 414 flashcards, son glossaire et l’application complète."
+    },
+    {
+     "t": "📘 Nouveau cours : Ophtalmologie",
+     "m": "xmvm9jr75"
+    }
+   ]
+  },
   {
    "v": "0b8483f491",
    "date": "2026-10-23",
