@@ -1,10 +1,10 @@
 {
- "v": "7e68e34de3",
+ "v": "ff1b40bac5",
  "date": "2026-10-25",
- "sig": "d84dfaaf184facce2b2d3c86ffad365be2b443c6",
+ "sig": "68e8c3f49cd8af824b8ae13014ec0e702f8925a1",
  "notes": [
   {
-   "t": "🔇 Les sons et voix des réponses ont été retirés."
+   "t": "🔠 Accueil : certains textes sont plus grands et plus lisibles."
   }
  ],
  "mats": {
@@ -98,6 +98,15 @@
   }
  },
  "hist": [
+  {
+   "v": "ff1b40bac5",
+   "date": "2026-10-25",
+   "notes": [
+    {
+     "t": "🔠 Accueil : certains textes sont plus grands et plus lisibles."
+    }
+   ]
+  },
   {
    "v": "7e68e34de3",
    "date": "2026-10-25",
