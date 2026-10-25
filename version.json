@@ -1,10 +1,10 @@
 {
- "v": "902f861593",
- "date": "2026-10-24",
- "sig": "94776de33a994206f5ad0cea54d032dcb75e1477",
+ "v": "7e68e34de3",
+ "date": "2026-10-25",
+ "sig": "d84dfaaf184facce2b2d3c86ffad365be2b443c6",
  "notes": [
   {
-   "t": "🔊 Nouveau : un son et une voix à chaque réponse — « Docta ! » quand c’est juste, « Référé ! Référé ! » quand c’est faux (à couper dans le Profil)."
+   "t": "🔇 Les sons et voix des réponses ont été retirés."
   }
  ],
  "mats": {
@@ -98,6 +98,15 @@
   }
  },
  "hist": [
+  {
+   "v": "7e68e34de3",
+   "date": "2026-10-25",
+   "notes": [
+    {
+     "t": "🔇 Les sons et voix des réponses ont été retirés."
+    }
+   ]
+  },
   {
    "v": "902f861593",
    "date": "2026-10-24",
