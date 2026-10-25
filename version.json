@@ -1,10 +1,13 @@
 {
- "v": "ff1b40bac5",
+ "v": "8d71d4b829",
  "date": "2026-10-25",
- "sig": "68e8c3f49cd8af824b8ae13014ec0e702f8925a1",
+ "sig": "15b5d48d2787068c3b4b7cd85616e0fc741d158f",
  "notes": [
   {
-   "t": "🔠 Accueil : certains textes sont plus grands et plus lisibles."
+   "t": "🎨 Nouvelle palette par défaut : Blanc & azur."
+  },
+  {
+   "t": "🔠 Accueil : titres des groupes de matières agrandis."
   }
  ],
  "mats": {
@@ -98,6 +101,18 @@
   }
  },
  "hist": [
+  {
+   "v": "8d71d4b829",
+   "date": "2026-10-25",
+   "notes": [
+    {
+     "t": "🎨 Nouvelle palette par défaut : Blanc & azur."
+    },
+    {
+     "t": "🔠 Accueil : titres des groupes de matières agrandis."
+    }
+   ]
+  },
   {
    "v": "ff1b40bac5",
    "date": "2026-10-25",
