@@ -1,13 +1,13 @@
 {
- "v": "8d71d4b829",
+ "v": "64b43f344c",
  "date": "2026-10-25",
- "sig": "15b5d48d2787068c3b4b7cd85616e0fc741d158f",
+ "sig": "c75c36bfa5e3fa9954d1494ac13ded819531e5e8",
  "notes": [
   {
-   "t": "🎨 Nouvelle palette par défaut : Blanc & azur."
+   "t": "🏛️ Accueil : rubrique des sujets d’examen et D.E blanc renommée et mise en avant."
   },
   {
-   "t": "🔠 Accueil : titres des groupes de matières agrandis."
+   "t": "🛠️ Corrections dans « Correction Nationale » et réorganisation des cours par année."
   }
  ],
  "mats": {
@@ -101,6 +101,18 @@
   }
  },
  "hist": [
+  {
+   "v": "64b43f344c",
+   "date": "2026-10-25",
+   "notes": [
+    {
+     "t": "🏛️ Accueil : rubrique des sujets d’examen et D.E blanc renommée et mise en avant."
+    },
+    {
+     "t": "🛠️ Corrections dans « Correction Nationale » et réorganisation des cours par année."
+    }
+   ]
+  },
   {
    "v": "8d71d4b829",
    "date": "2026-10-25",
@@ -278,15 +290,6 @@
    "notes": [
     {
      "t": "✨ Nouveau : dans les cours et les Sujets D.E, la barre du bas est maintenant celle de Révision INFAS (les rubriques du cours passent en onglets en haut). La taille du texte et les couleurs que tu choisis s'appliquent aussi à tous les cours intégrés."
-    }
-   ]
-  },
-  {
-   "v": "e3788d90ce",
-   "date": "2026-10-23",
-   "notes": [
-    {
-     "t": "🎉 Grande mise à jour : 11 nouveaux cours (Pédiatrie, Santé infantile, Pharmacologie, SSR · PF, Médecine IDE 2, Santé publique, Anatomie…) et la Correction Nationale 2025 dans « Sujets préparation D.E ». Nouveau : ceintures & grades, examen blanc chronométré, recherche partout, taille du texte, rappels et calculatrice !"
     }
    ]
   }
