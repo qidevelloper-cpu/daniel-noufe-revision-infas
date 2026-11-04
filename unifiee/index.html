@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0E3B33">
+<title>Révision INFAS · Révision unifiée</title>
+<!--
+  RÉVISION UNIFIÉE (Lot 2, version d'essai) — page liée au portail : la tuile « Révision unifiée » de l'accueil ouvre
+  unifiee/index.html, placé à côté du portail. Les 20 applis du portail restent inchangées.
+  Données : donnees/index.json puis un fichier par application (python3 scripts/migrer_banque.py --export source/unifiee/donnees).
+  Autre dossier de données pour un essai : ?donnees=../../data/export/ (ex. données modifiées par l'éditeur pédagogique).
+  Ouverture : par un serveur (GitHub Pages, ou python3 -m http.server à la racine du dépôt), pas en double-clic (file://).
+  Progression : au premier affichage, fusion automatique des 21 clés existantes (20 applis + portail) dans la clé unique
+  ri_progression_v1 (migrer_progression.js) ; les anciennes clés sont lues seulement, jamais modifiées ni supprimées ;
+  relancée à chaque ouverture, la fusion ne refait rien tant que les anciennes clés n'ont pas changé.
+  Autres stockages : cache IndexedDB « ri_unifiee_cache » (fichiers d'applis, vérifiés par SHA-256) ;
+  localStorage « ri_unifiee_doutes_v1 » (doutes signalés) et « ri_unifiee_prefs_v1 » (dernier choix d'affichage).
+-->
+<style>
+:root{
+  --bg:#F4F7F5; --surface:#FFFFFF; --surface2:#EEF3F0; --text:#14231F; --muted:#5B6B66; --border:#D5DFDA;
+  --primary:#0E3B33; --primary-text:#FFFFFF; --accent:#1F8A70;
+  --ok:#1E7B4D; --ok-bg:#E3F4EA; --ko:#B3261E; --ko-bg:#FBE7E5; --warn:#8A5A00; --warn-bg:#FFF3D6;
+  --doute:#C2410C; --doute-bg:#FFEDD5; --shadow:0 1px 3px rgba(0,0,0,.08);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0F1614; --surface:#18221F; --surface2:#1F2B27; --text:#E6EEEA; --muted:#9AAAA4; --border:#2E3C37;
+    --primary:#2BA88A; --primary-text:#06120F; --accent:#4CC3A3;
+    --ok:#5FD79A; --ok-bg:#163326; --ko:#FF8A80; --ko-bg:#3A1A18; --warn:#F5C35B; --warn-bg:#352A12;
+    --doute:#FB923C; --doute-bg:#3A2312; --shadow:none;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow-anchor:none}
+body{padding-bottom:40px}
+button,select,textarea,input{font:inherit;color:inherit}
+header{position:sticky;top:0;z-index:5;background:var(--primary);color:var(--primary-text);padding:10px 16px 8px;box-shadow:var(--shadow)}
+header h1{font-size:17px;margin:0 0 6px;font-weight:700;letter-spacing:.2px}
+header h1 small{font-weight:500;opacity:.8;font-size:12px;margin-left:6px}
+.barre{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.barre select{flex:1 1 160px;min-width:0;padding:7px 8px;border-radius:8px;border:0;background:var(--surface);color:var(--text)}
+.puces{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.puce{border:1px solid rgba(255,255,255,.45);background:transparent;color:var(--primary-text);border-radius:999px;padding:3px 10px;font-size:13px;cursor:pointer}
+.puce[aria-pressed="true"]{background:var(--primary-text);color:var(--primary);font-weight:600}
+#etat{font-size:12px;opacity:.85;margin-top:6px;min-height:18px}
+main{max-width:760px;margin:0 auto;padding:12px 16px}
+#espaceHaut{height:0}
+.sentinelle{height:1px}
+.carte{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px;margin:0 0 12px;box-shadow:var(--shadow)}
+.tete{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:8px}
+.badge{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;padding:2px 8px;border-radius:999px;background:var(--surface2);color:var(--accent)}
+.tete .chap{flex:1 1 140px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.btn-doute{margin-left:auto;border:1px solid var(--border);background:transparent;color:var(--muted);border-radius:999px;padding:3px 10px;font-size:12px;cursor:pointer}
+.btn-doute[aria-pressed="true"]{background:var(--doute-bg);border-color:var(--doute);color:var(--doute);font-weight:600}
+.contexte{background:var(--surface2);border-left:3px solid var(--accent);padding:8px 10px;border-radius:6px;font-size:14px;margin-bottom:8px;white-space:pre-wrap}
+.contexte b{display:block;margin-bottom:2px}
+.enonce{font-weight:600;margin:0 0 10px}
+.props{display:flex;flex-direction:column;gap:6px}
+.prop{display:flex;gap:8px;align-items:flex-start;text-align:left;width:100%;padding:9px 10px;border:1px solid var(--border);border-radius:10px;background:var(--surface);cursor:pointer}
+.prop .cle{font-weight:700;min-width:20px;color:var(--accent)}
+.prop[aria-pressed="true"]{border-color:var(--accent);background:var(--surface2)}
+.prop.juste{border-color:var(--ok);background:var(--ok-bg)}
+.prop.faux{border-color:var(--ko);background:var(--ko-bg)}
+.prop:disabled{cursor:default;opacity:1}
+.vf{display:flex;gap:8px}
+.vf .prop{justify-content:center;font-weight:600}
+textarea{width:100%;min-height:70px;padding:8px 10px;border:1px solid var(--border);border-radius:10px;background:var(--surface);resize:vertical}
+.actions{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.btn{border:0;background:var(--primary);color:var(--primary-text);border-radius:10px;padding:8px 14px;font-weight:600;cursor:pointer}
+.btn.sec{background:var(--surface2);color:var(--text)}
+.verdict{margin-top:10px;padding:8px 10px;border-radius:10px;font-weight:600}
+.verdict.ok{background:var(--ok-bg);color:var(--ok)}
+.verdict.ko{background:var(--ko-bg);color:var(--ko)}
+.verdict.info{background:var(--warn-bg);color:var(--warn)}
+.corr{margin-top:8px;font-size:14px}
+.corr p{margin:6px 0}
+.corr ul{margin:6px 0;padding-left:20px}
+.corr .lab{font-weight:700}
+.points label{display:flex;gap:8px;align-items:flex-start;padding:4px 0}
+.src{font-size:12px;color:var(--muted);margin-top:8px}
+.vide{text-align:center;color:var(--muted);padding:40px 10px}
+#outils{display:flex;gap:8px;justify-content:flex-end;margin-bottom:8px;font-size:13px;color:var(--muted);flex-wrap:wrap;align-items:center}
+#outils .btn{padding:5px 10px;font-size:13px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Révision INFAS · Révision unifiée <small>version d'essai</small></h1>
+  <div class="barre">
+    <select id="selAppli" aria-label="Application"></select>
+    <select id="selChap" aria-label="Chapitre"></select>
+  </div>
+  <div class="puces" id="puces" role="group" aria-label="Type de question"></div>
+  <div id="etat" aria-live="polite">Chargement de l'index…</div>
+</header>
+<main>
+  <div id="outils">
+    <span id="compteDoutes"></span>
+    <button class="btn sec" id="btnExportDoutes" type="button">Exporter mes doutes</button>
+  </div>
+  <div id="espaceHaut"></div>
+  <div class="sentinelle" id="sentHaut"></div>
+  <div id="liste"></div>
+  <div class="sentinelle" id="sentBas"></div>
+</main>
+<script src="migrer_progression.js"></script>
+<script>
+"use strict";
+/* ======================= réglages ======================= */
+const BASE = (() => { try { const d = new URLSearchParams(location.search).get('donnees'); if (d && /^[\w./-]+\/$/.test(d)) return d } catch(e){} return 'donnees/' })();
+const CLE_DOUTES = 'ri_unifiee_doutes_v1';
+const CLE_PREFS = 'ri_unifiee_prefs_v1';
+const LOT = 15;          // cartes ajoutées à chaque déclenchement
+const MAX_DOM = 60;      // cartes au plus dans la page (virtualisation)
+const TYPES = [['tous','Tous'],['qcm','QCM'],['vf','Vrai/Faux'],['ouverte','Ouverte'],['fiche','Fiche'],['doutes','🚩 Mes doutes']];
+
+/* ======================= état ======================= */
+const S = { index:null, appli:null, questions:[], items:[], debut:0, fin:0, filtreType:'tous', chap:'',
+            reponses:new Map() };   // réponses données pendant la session (non enregistrées : progression hors périmètre)
+
+/* ======================= outils ======================= */
+const $ = s => document.querySelector(s);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+/* HTML simple autorisé dans les données (gras, italique, retour à la ligne…), tout le reste est neutralisé */
+function sur(s){
+  return esc(s).replace(/&lt;(\/?)(b|i|u|br|strong|em|sup|sub)\s*\/?&gt;/gi, '<$1$2>').replace(/\n/g, '<br>');
+}
+function norm(t){
+  return String(t || '').replace(/<[^>]+>/g, ' ').toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]+/g, ' ').trim();
+}
+function lireLS(cle, defaut){ try { const v = localStorage.getItem(cle); return v ? JSON.parse(v) : defaut } catch(e){ return defaut } }
+function ecrireLS(cle, v){ try { localStorage.setItem(cle, JSON.stringify(v)); return true } catch(e){ return false } }
+function etat(msg){ $('#etat').textContent = msg }
+
+/* ======================= cache IndexedDB ======================= */
+function idb(){
+  return new Promise((ok, ko) => {
+    if (!window.indexedDB) return ko(new Error('IndexedDB indisponible'));
+    const r = indexedDB.open('ri_unifiee_cache', 1);
+    r.onupgradeneeded = () => r.result.createObjectStore('applis');
+    r.onsuccess = () => ok(r.result);
+    r.onerror = () => ko(r.error);
+  });
+}
+async function idbLire(cle){
+  try { const db = await idb(); return await new Promise(ok => { const q = db.transaction('applis').objectStore('applis').get(cle);
+    q.onsuccess = () => { db.close(); ok(q.result || null) }; q.onerror = () => { db.close(); ok(null) } }) } catch(e){ return null }
+}
+async function idbEcrire(cle, v){
+  try { const db = await idb(); await new Promise(ok => { const t = db.transaction('applis', 'readwrite'); t.objectStore('applis').put(v, cle);
+    t.oncomplete = () => { db.close(); ok() }; t.onerror = t.onabort = () => { db.close(); ok() } }) } catch(e){}
+}
+async function sha256(txt){
+  if (!(window.crypto && crypto.subtle)) return null;
+  const h = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(txt));
+  return [...new Uint8Array(h)].map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+/* ======================= chargement fractionné ======================= */
+async function chargerIndex(){
+  const r = await fetch(BASE + 'index.json', {cache:'no-cache'});
+  if (!r.ok) throw new Error('index.json introuvable (' + r.status + ')');
+  return r.json();
+}
+async function chargerAppli(a){
+  const t0 = performance.now();
+  const rec = await idbLire(a.prefixe);
+  if (rec && rec.sha256 === a.sha256 && rec.donnees) return {donnees:rec.donnees, origine:'cache local', ms:Math.round(performance.now() - t0)};
+  const r = await fetch(BASE + a.fichierExport, {cache:'no-cache'});
+  if (!r.ok) throw new Error(a.fichierExport + ' introuvable (' + r.status + ')');
+  const txt = await r.text();
+  const h = await sha256(txt);
+  if (h && h !== a.sha256) throw new Error('empreinte différente de l\'index pour ' + a.fichierExport + ' : relancer la migration');
+  const donnees = JSON.parse(txt);
+  await idbEcrire(a.prefixe, {sha256:a.sha256, donnees});
+  return {donnees, origine:'réseau local' + (h ? ', empreinte vérifiée' : ''), ms:Math.round(performance.now() - t0)};
+}
+
+/* ======================= doutes ======================= */
+function doutes(){ return lireLS(CLE_DOUTES, {}) }
+function basculerDoute(q){
+  const d = doutes();
+  if (d[q.id]) delete d[q.id]; else d[q.id] = {t:Date.now(), app:q.origine && q.origine.app, enonce:String(q.enonce || '').slice(0, 160)};
+  if (!ecrireLS(CLE_DOUTES, d)) etat('⚠️ Impossible d\'enregistrer le doute dans ce navigateur (stockage indisponible).');
+  majCompteDoutes();
+  return !!d[q.id];
+}
+function majCompteDoutes(){ const n = Object.keys(doutes()).length; $('#compteDoutes').textContent = n ? n + ' doute(s) signalé(s)' : 'Aucun doute signalé' }
+function exporterDoutes(){
+  const d = doutes();
+  const blob = new Blob([JSON.stringify({format:'ri-doutes', version:1, exporte:Date.now(), doutes:d}, null, 1)], {type:'application/json'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'doutes-revision-infas.json';
+  document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove() }, 500);
+}
+
+/* ======================= filtres ======================= */
+function cleChap(q){ const m = q.meta || {}; const c = m.chapitre || m.rubrique; return c ? String(c.id == null ? '' : c.id) : '' }
+function filtrer(){
+  const d = S.filtreType === 'doutes' ? doutes() : null;
+  S.items = S.questions.filter(q => (!S.chap || cleChap(q) === S.chap) &&
+    (S.filtreType === 'tous' || (d ? d[q.id] : q.type === S.filtreType)));
+  reinitialiserListe();
+}
+function remplirChapitres(){
+  const sel = $('#selChap'); const a = S.appli;
+  sel.innerHTML = '<option value="">Tous les chapitres (' + a.nbQuestions + ')</option>' +
+    (a.chapitres || []).map(c => '<option value="' + esc(c.id) + '">' + esc(c.titre) + ' (' + c.nb + ')</option>').join('');
+  sel.value = S.chap;
+  if (sel.value !== S.chap) { S.chap = ''; sel.value = '' }
+}
+function remplirPuces(){
+  $('#puces').innerHTML = TYPES.filter(([k]) => k === 'tous' || k === 'doutes' || (S.appli && S.appli.types[k]) || S.filtreType === k).map(([k, l]) => {
+    const n = k === 'tous' || k === 'doutes' ? '' : ' ' + ((S.appli && S.appli.types[k]) || 0);
+    return '<button type="button" class="puce" data-t="' + k + '" aria-pressed="' + (S.filtreType === k) + '">' + l + n + '</button>';
+  }).join('');
+}
+
+/* ======================= défilement continu virtualisé ======================= */
+const liste = $('#liste'), espace = $('#espaceHaut');
+function hauteur(el){ const cs = getComputedStyle(el); return el.offsetHeight + parseFloat(cs.marginTop) + parseFloat(cs.marginBottom) }
+function reinitialiserListe(){
+  liste.innerHTML = ''; espace.style.height = '0px'; S.debut = S.fin = 0;
+  window.scrollTo(0, 0);
+  if (!S.items.length) { liste.innerHTML = '<div class="vide">Aucune question pour ce filtre.</div>'; majEtatListe(); return }
+  tours = 0; ajouterBas(); remplir();
+}
+function ajouterBas(){
+  if (S.fin >= S.items.length) return;
+  const frag = document.createDocumentFragment();
+  const fin = Math.min(S.items.length, S.fin + LOT);
+  for (let i = S.fin; i < fin; i++) frag.appendChild(carte(S.items[i], i));
+  liste.appendChild(frag); S.fin = fin;
+  // au-delà de MAX_DOM cartes : on retire celles du haut et on garde leur hauteur dans l'espaceur (aucun saut)
+  let trop = (S.fin - S.debut) - MAX_DOM, h = 0;
+  while (trop-- > 0 && liste.firstElementChild) { h += hauteur(liste.firstElementChild); liste.firstElementChild.remove(); S.debut++ }
+  if (h) espace.style.height = (parseFloat(espace.style.height) || 0) + h + 'px';
+  majEtatListe();
+}
+function ajouterHaut(){
+  if (S.debut <= 0) return;
+  const deb = Math.max(0, S.debut - LOT);
+  const frag = document.createDocumentFragment(), cartes = [];
+  for (let i = deb; i < S.debut; i++) { const c = carte(S.items[i], i); cartes.push(c); frag.appendChild(c) }
+  liste.insertBefore(frag, liste.firstElementChild);
+  const h = cartes.reduce((s, c) => s + hauteur(c), 0);
+  S.debut = deb;
+  espace.style.height = (S.debut === 0 ? 0 : Math.max(0, (parseFloat(espace.style.height) || 0) - h)) + 'px';
+  let trop = (S.fin - S.debut) - MAX_DOM;
+  while (trop-- > 0 && liste.lastElementChild) { liste.lastElementChild.remove(); S.fin-- }
+  majEtatListe();
+}
+/* reconstruit la fenêtre de cartes à l'endroit où se trouve l'écran (hauteur moyenne des cartes déjà mesurées) */
+function sauter(){
+  const esp = parseFloat(espace.style.height) || 0;
+  const moy = S.debut ? esp / S.debut : 200;
+  const pos = window.scrollY - espace.offsetTop;                    // position de l'écran dans l'espaceur
+  const cible = Math.max(0, Math.min(S.debut, Math.floor(pos / moy) - 5));
+  liste.innerHTML = ''; S.debut = S.fin = cible;
+  espace.style.height = (cible ? cible * moy : 0) + 'px';
+  tours = 0; ajouterBas(); remplir();
+}
+function majEtatListe(){
+  if (!S.appli) return;
+  etat(S.appli.titre + ' · ' + S.items.length + ' question(s) · affichées ' + (S.items.length ? (S.debut + 1) + '–' + S.fin : '0') +
+       ' · ' + liste.children.length + ' carte(s) dans la page' + (S.source ? ' · ' + S.source : '') + (S.migration ? ' · ' + S.migration : ''));
+}
+const MARGE = 900;   // px d'avance : les cartes sont prêtes avant d'arriver à l'écran
+const obs = new IntersectionObserver(ents => {
+  for (const e of ents) if (e.isIntersecting) { if (e.target.id === 'sentBas') ajouterBas(); else ajouterHaut() }
+  remplir();
+}, {rootMargin:MARGE + 'px 0px'});
+/* l'observateur ne se redéclenche pas si un repère reste visible après un ajout : on complète tant qu'il l'est */
+let remplissage = 0, tours = 0;
+window.addEventListener('scroll', () => { tours = 0; remplir() }, {passive:true});   // au plus une vérification par image
+function remplir(){
+  if (remplissage || ++tours > 40) return;   // garde-fou : jamais plus de 40 ajouts sans geste de l'utilisateur
+  remplissage = requestAnimationFrame(() => {
+    remplissage = 0;
+    const vh = window.innerHeight;
+    const bas = $('#sentBas').getBoundingClientRect().top, haut = $('#sentHaut').getBoundingClientRect().top;
+    // défilement rapide vers le haut : l'écran est dans l'espaceur, loin au-dessus des cartes rendues → saut direct
+    if (S.debut > 0 && haut > vh + MARGE) { sauter(); return }
+    if (bas < vh + MARGE && S.fin < S.items.length) { ajouterBas(); remplir() }
+    else if (haut > -MARGE && S.debut > 0) { ajouterHaut(); remplir() }
+  });
+}
+
+/* ======================= cartes et correction immédiate ======================= */
+const LIB = {qcm:'QCM', vf:'Vrai / Faux', ouverte:'Ouverte', fiche:'Fiche'};
+function carte(q, i){
+  const el = document.createElement('article');
+  el.className = 'carte'; el.dataset.id = q.id;
+  const m = q.meta || {}, c = m.chapitre || m.rubrique || {};
+  const multi = q.type === 'qcm' && q.reponse && q.reponse.choix && q.reponse.choix.multiple;
+  const doute = !!doutes()[q.id];
+  let h = '<div class="tete"><span class="badge">' + esc(LIB[q.type] || q.type) + (multi ? ' · plusieurs réponses' : '') + '</span>' +
+          '<span>n° ' + (i + 1) + '/' + S.items.length + '</span><span class="chap">' + esc(c.titre || '') + '</span>' +
+          '<button type="button" class="btn-doute" data-a="doute" aria-pressed="' + doute + '">' + (doute ? '🚩 Doute signalé' : '🚩 Signaler un doute') + '</button></div>';
+  if (q.contexte && (q.contexte.titre || q.contexte.texte))
+    h += '<div class="contexte">' + (q.contexte.titre ? '<b>' + sur(q.contexte.titre) + '</b>' : '') + sur(q.contexte.texte || '') + '</div>';
+  h += '<p class="enonce">' + sur(q.enonce) + '</p><div class="corps"></div><div class="resultat"></div>';
+  el.innerHTML = h;
+  corps(el, q);
+  const r = S.reponses.get(q.id);
+  if (r) corriger(el, q, r, true);
+  return el;
+}
+function corps(el, q){
+  const b = el.querySelector('.corps'), R = q.reponse || {};
+  if (q.type === 'qcm' && R.choix && (R.choix.propositions || []).length) {
+    b.innerHTML = '<div class="props">' + R.choix.propositions.map(p =>
+      '<button type="button" class="prop" data-a="choix" data-cle="' + esc(p.cle) + '" aria-pressed="false"><span class="cle">' + esc(p.cle) + '</span><span>' + sur(p.texte) + '</span></button>').join('') + '</div>' +
+      (R.choix.multiple ? '<div class="actions"><button type="button" class="btn" data-a="valider">Valider</button></div>' : '');
+  } else if (q.type === 'vf') {
+    b.innerHTML = '<div class="vf"><button type="button" class="prop" data-a="vf" data-v="1">Vrai</button><button type="button" class="prop" data-a="vf" data-v="0">Faux</button></div>';
+  } else if (q.type === 'fiche') {
+    b.innerHTML = '<textarea placeholder="Rédigez votre réponse (facultatif)…" aria-label="Votre réponse"></textarea>' +
+      '<div class="actions"><button type="button" class="btn" data-a="voir">Voir les points attendus</button></div>';
+  } else {   // ouverte (et toute question sans données de choix)
+    const court = R.ouverte && R.ouverte.reponsesAcceptees && !R.ouverte.motsCles;
+    b.innerHTML = (court ? '<input type="text" placeholder="Votre réponse…" aria-label="Votre réponse" style="width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:10px;background:var(--surface)">'
+                         : '<textarea placeholder="Rédigez votre réponse…" aria-label="Votre réponse"></textarea>') +
+      '<div class="actions"><button type="button" class="btn" data-a="voir">Voir la correction</button></div>';
+  }
+}
+function texteSaisi(el){ const t = el.querySelector('textarea, input[type=text]'); return t ? t.value : '' }
+function corriger(el, q, r, restauration){
+  const R = q.reponse || {}, res = el.querySelector('.resultat');
+  let v = '', corr = '';
+  if (q.type === 'qcm' && R.choix) {
+    const bonnes = R.choix.bonnes || [], choisis = r.choix || [];
+    el.querySelectorAll('.prop').forEach(p => {
+      p.disabled = true; const k = p.dataset.cle;
+      p.setAttribute('aria-pressed', choisis.includes(k));
+      if (bonnes.includes(k)) p.classList.add('juste'); else if (choisis.includes(k)) p.classList.add('faux');
+    });
+    const v1 = el.querySelector('[data-a=valider]'); if (v1) v1.remove();
+    const juste = bonnes.length && choisis.length === bonnes.length && choisis.every(k => bonnes.includes(k));
+    v = juste ? '<div class="verdict ok">✅ Bonne réponse</div>' : '<div class="verdict ko">❌ Réponse juste : ' + esc(bonnes.join(', ') || '—') + '</div>';
+  } else if (q.type === 'vf') {
+    const val = R.vf && R.vf.valeur, choisi = r.vf;
+    el.querySelectorAll('.prop').forEach(p => {
+      p.disabled = true; const pv = p.dataset.v === '1';
+      if (pv === val) p.classList.add('juste'); else if (pv === choisi) p.classList.add('faux');
+    });
+    v = choisi === val ? '<div class="verdict ok">✅ Bonne réponse</div>' : '<div class="verdict ko">❌ C\'est ' + (val ? 'VRAI' : 'FAUX') + '</div>';
+    if (R.vf && R.vf.rectification) corr += '<p><span class="lab">Correction : </span>' + sur(R.vf.rectification) + '</p>';
+  } else if (q.type === 'fiche') {
+    const F = R.fiche || {};
+    v = '<div class="verdict info">📝 Points attendus' + (F.bareme ? ' (barème : ' + esc(F.bareme) + ' pts)' : '') + ' — cochez ceux que vous avez cités</div>';
+    corr += '<div class="points">' + (F.points || []).map((p, j) => '<label><input type="checkbox" data-pt="' + j + '"><span>' + sur(p) + '</span></label>').join('') + '</div>';
+  } else {
+    const O = R.ouverte || {}, saisi = norm(r.texte);
+    if (O.reponsesAcceptees && O.reponsesAcceptees.length) {
+      const ok = saisi && O.reponsesAcceptees.some(a => norm(a) === saisi);
+      v = saisi ? (ok ? '<div class="verdict ok">✅ Réponse acceptée</div>' : '<div class="verdict ko">❌ Réponse non reconnue</div>') : '';
+      corr += '<p><span class="lab">Réponses acceptées : </span>' + O.reponsesAcceptees.map(sur).join(' · ') + '</p>';
+    }
+    if (O.motsCles && O.motsCles.length) {
+      const trouves = O.motsCles.filter(g => g.some(m => saisi.includes(norm(m)))).length, min = O.minimumMotsCles || O.motsCles.length;
+      if (saisi) v = trouves >= min ? '<div class="verdict ok">✅ ' + trouves + '/' + O.motsCles.length + ' idées clés trouvées (minimum ' + min + ')</div>'
+                                    : '<div class="verdict ko">❌ ' + trouves + '/' + O.motsCles.length + ' idées clés trouvées (minimum ' + min + ')</div>';
+    }
+    if (O.reponseModele) corr += '<p><span class="lab">Réponse attendue : </span>' + sur(O.reponseModele) + '</p>';
+    if (!O.reponseModele && !(O.reponsesAcceptees || []).length && !(O.motsCles || []).length) {
+      v = '<div class="verdict info">ℹ️ Aucune correction dans la source pour cette question : correction manuelle.</div>';
+      if (R.choix && (R.choix.propositions || []).length)
+        corr += '<p><span class="lab">Propositions présentes dans la source (réponse juste non indiquée) :</span></p><ul>' +
+                R.choix.propositions.map(p => '<li>' + esc(p.cle) + '. ' + sur(p.texte) + '</li>').join('') + '</ul>';
+    }
+    const t = el.querySelector('textarea, input[type=text]'); if (t) { t.value = r.texte || ''; t.readOnly = true }
+    const bt = el.querySelector('[data-a=voir]'); if (bt) bt.remove();
+  }
+  if (q.type === 'fiche') {
+    const t = el.querySelector('textarea'); if (t) { t.value = r.texte || ''; t.readOnly = true }
+    const bt = el.querySelector('[data-a=voir]'); if (bt) bt.remove();
+  }
+  const X = q.explications || {};
+  [['principale', 'Explication'], ['retenir', '📌 À retenir'], ['memo', '💡 Moyen mnémotechnique'], ['simple', '👶 En simple'], ['schema', '🧭 Schéma']]
+    .forEach(([k, l]) => { if (X[k]) corr += '<p><span class="lab">' + l + ' : </span>' + sur(X[k]) + '</p>' });
+  const src = (q.meta || {}).source || {};
+  const ligne = [src.document, src.fichier, src.pages ? 'p. ' + src.pages.join(', ') : ''].filter(Boolean).join(' · ');
+  res.innerHTML = v + '<div class="corr">' + corr + '</div>' +
+    (ligne ? '<div class="src">Source : ' + esc(ligne) + '</div>' : '') +
+    ((q.images || []).length ? '<div class="src">🖼️ Image du cours associée (non incluse dans le prototype)</div>' : '');
+  if (!restauration) S.reponses.set(q.id, r);
+}
+
+/* clics délégués : une seule écoute pour toutes les cartes */
+liste.addEventListener('click', ev => {
+  const b = ev.target.closest('button'); if (!b || b.disabled) return;
+  const el = b.closest('.carte'); if (!el) return;
+  const q = S.items.find(x => x.id === el.dataset.id) || S.questions.find(x => x.id === el.dataset.id); if (!q) return;
+  const a = b.dataset.a;
+  if (a === 'doute') {
+    const on = basculerDoute(q);
+    b.setAttribute('aria-pressed', on); b.textContent = on ? '🚩 Doute signalé' : '🚩 Signaler un doute';
+    return;
+  }
+  if (S.reponses.has(q.id)) return;
+  if (a === 'choix') {
+    if (q.reponse.choix.multiple) { b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') !== 'true'); return }
+    corriger(el, q, {choix:[b.dataset.cle]});
+  } else if (a === 'valider') {
+    const ch = [...el.querySelectorAll('.prop[aria-pressed="true"]')].map(p => p.dataset.cle);
+    if (!ch.length) return;
+    corriger(el, q, {choix:ch});
+  } else if (a === 'vf') {
+    corriger(el, q, {vf:b.dataset.v === '1'});
+  } else if (a === 'voir') {
+    corriger(el, q, {texte:texteSaisi(el)});
+  }
+});
+
+/* ======================= sélection d'application ======================= */
+async function ouvrirAppli(prefixe){
+  const a = S.index.applis.find(x => x.prefixe === prefixe) || S.index.applis[0];
+  S.appli = a; S.source = ''; etat('Chargement de ' + a.titre + '…');
+  liste.innerHTML = ''; espace.style.height = '0px';
+  try {
+    const r = await chargerAppli(a);
+    if (S.appli !== a) return;               // un autre choix a été fait pendant le chargement
+    S.questions = r.donnees.questions || [];
+    S.source = 'chargé depuis ' + r.origine + ' en ' + r.ms + ' ms';
+  } catch(e) {
+    S.questions = []; etat('❌ ' + e.message); return;
+  }
+  remplirChapitres(); remplirPuces(); filtrer();
+  ecrireLS(CLE_PREFS, {appli:a.prefixe, chap:S.chap, type:S.filtreType});
+}
+async function demarrer(){
+  try { S.index = await chargerIndex() } catch(e) {
+    etat('❌ ' + e.message + ' — cette page doit être ouverte par un serveur (GitHub Pages, ou « python3 -m http.server » à la racine du dépôt).'); return;
+  }
+  const p = lireLS(CLE_PREFS, {});
+  S.chap = p.chap || ''; S.filtreType = TYPES.some(t => t[0] === p.type) ? p.type : 'tous';
+  $('#selAppli').innerHTML = S.index.applis.map(a => '<option value="' + esc(a.prefixe) + '">' + esc(a.titre) + ' (' + a.nbQuestions + ')</option>').join('');
+  const dep = S.index.applis.some(a => a.prefixe === p.appli) ? p.appli : S.index.applis[0].prefixe;
+  $('#selAppli').value = dep;
+  $('#selAppli').addEventListener('change', e => { S.chap = ''; ouvrirAppli(e.target.value) });
+  $('#selChap').addEventListener('change', e => { S.chap = e.target.value; filtrer(); ecrireLS(CLE_PREFS, {appli:S.appli.prefixe, chap:S.chap, type:S.filtreType}) });
+  $('#puces').addEventListener('click', e => {
+    const b = e.target.closest('.puce'); if (!b) return;
+    S.filtreType = b.dataset.t; remplirPuces(); filtrer();
+    ecrireLS(CLE_PREFS, {appli:S.appli.prefixe, chap:S.chap, type:S.filtreType});
+  });
+  $('#btnExportDoutes').addEventListener('click', exporterDoutes);
+  majCompteDoutes();
+  obs.observe($('#sentBas')); obs.observe($('#sentHaut'));
+  ouvrirAppli(dep);
+  setTimeout(fusionnerProgression, 1500);   // après le premier affichage : ne retarde pas l'ouverture
+}
+/* ======================= fusion des progressions (une fois, transparente) ======================= */
+async function fusionnerProgression(){
+  if (!window.RIMigrationProgression) return;
+  let corr;
+  try { const r = await fetch(BASE + 'correspondances.json', {cache:'no-cache'}); if (!r.ok) return; corr = await r.json() } catch(e) { return }
+  try {
+    const st = { getItem: k => { try { return localStorage.getItem(k) } catch(e) { return null } },
+                 setItem: (k, v) => localStorage.setItem(k, v) };
+    const res = await RIMigrationProgression.migrer({stockage:st, correspondances:corr});
+    const n = Object.keys((res.progression || {}).questions || {}).length;
+    S.migration = res.statut === 'refuse' ? 'progression : fusion non faite (' + res.raison + ')'
+               : res.statut === 'inchange' ? '' : 'progression : ' + n + ' question(s) reprise(s) de l\'historique';
+    if (S.migration) majEtatListe();
+  } catch(e) { S.migration = 'progression : fusion non faite (' + e.message + ')'; majEtatListe() }
+}
+demarrer();
+</script>
+</body>
+</html>

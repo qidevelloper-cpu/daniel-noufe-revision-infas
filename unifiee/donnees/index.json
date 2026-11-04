@@ -1,0 +1,3143 @@
+{
+ "format": "ri-questions-index",
+ "version": 1,
+ "total": 14267,
+ "types": {
+  "qcm": 9526,
+  "vf": 3089,
+  "ouverte": 1532,
+  "fiche": 120
+ },
+ "applis": [
+  {
+   "prefixe": "sonu",
+   "idPortail": "sonu",
+   "titre": "SONU — Soins obstétricaux et néonatals d’urgence",
+   "fichier": "source/master/apps/sonu.html",
+   "fichierExport": "sonu.json",
+   "nbQuestions": 800,
+   "octets": 837583,
+   "sha256": "3474f58354e8e8716d3965647ed8a1b01afbc5a018cebb581c3b4a542c063df6",
+   "types": {
+    "qcm": 488,
+    "vf": 209,
+    "ouverte": 103,
+    "fiche": 0
+   },
+   "chapitres": [
+    {
+     "id": "0",
+     "titre": "Terminologie en gynéco-obstétrique",
+     "nb": 24
+    },
+    {
+     "id": "1",
+     "titre": "SONU et mortalité maternelle",
+     "nb": 23
+    },
+    {
+     "id": "2",
+     "titre": "Référence et contre-référence",
+     "nb": 23
+    },
+    {
+     "id": "3",
+     "titre": "Diagnostic positif de la grossesse au début",
+     "nb": 23
+    },
+    {
+     "id": "4",
+     "titre": "Consultation prénatale recentrée",
+     "nb": 24
+    },
+    {
+     "id": "5",
+     "titre": "Consultation prénatale du 1er trimestre",
+     "nb": 23
+    },
+    {
+     "id": "6",
+     "titre": "Consultation prénatale des 2e et 3e trimestres",
+     "nb": 24
+    },
+    {
+     "id": "7",
+     "titre": "Alimentation de la femme enceinte et allaitante",
+     "nb": 23
+    },
+    {
+     "id": "8",
+     "titre": "Hygiène de la grossesse",
+     "nb": 23
+    },
+    {
+     "id": "9",
+     "titre": "Anémie et grossesse",
+     "nb": 23
+    },
+    {
+     "id": "10",
+     "titre": "Paludisme et grossesse",
+     "nb": 23
+    },
+    {
+     "id": "11",
+     "titre": "HTA et grossesse (pré-éclampsie)",
+     "nb": 25
+    },
+    {
+     "id": "12",
+     "titre": "Éclampsie",
+     "nb": 25
+    },
+    {
+     "id": "13",
+     "titre": "Avortements et AMIU",
+     "nb": 24
+    },
+    {
+     "id": "14",
+     "titre": "Grossesse extra-utérine (GEU)",
+     "nb": 23
+    },
+    {
+     "id": "15",
+     "titre": "Grossesse et avortement molaires",
+     "nb": 23
+    },
+    {
+     "id": "16",
+     "titre": "Placenta prævia",
+     "nb": 23
+    },
+    {
+     "id": "17",
+     "titre": "Hématome rétroplacentaire (HRP)",
+     "nb": 23
+    },
+    {
+     "id": "18",
+     "titre": "Rupture utérine",
+     "nb": 23
+    },
+    {
+     "id": "19",
+     "titre": "Bassin obstétrical",
+     "nb": 24
+    },
+    {
+     "id": "20",
+     "titre": "Présentations et variétés de position",
+     "nb": 24
+    },
+    {
+     "id": "21",
+     "titre": "Admission de la parturiente en salle de travail",
+     "nb": 23
+    },
+    {
+     "id": "22",
+     "titre": "Travail d'accouchement et score de Bishop",
+     "nb": 24
+    },
+    {
+     "id": "23",
+     "titre": "Partogramme",
+     "nb": 24
+    },
+    {
+     "id": "24",
+     "titre": "Mécanisme et conduite de l'accouchement du sommet",
+     "nb": 24
+    },
+    {
+     "id": "25",
+     "titre": "Délivrance normale",
+     "nb": 23
+    },
+    {
+     "id": "26",
+     "titre": "Gestion active de la troisième phase de l'accouchement (GATPA)",
+     "nb": 24
+    },
+    {
+     "id": "27",
+     "titre": "Examen du placenta",
+     "nb": 23
+    },
+    {
+     "id": "28",
+     "titre": "Hémorragies du post-partum (HPP)",
+     "nb": 24
+    },
+    {
+     "id": "29",
+     "titre": "Soins à l'accouchée et au nouveau-né en salle de naissance",
+     "nb": 24
+    },
+    {
+     "id": "30",
+     "titre": "Suites de couches normales",
+     "nb": 23
+    },
+    {
+     "id": "31",
+     "titre": "Suivi post-natal",
+     "nb": 23
+    },
+    {
+     "id": "32",
+     "titre": "Fistule obstétricale",
+     "nb": 23
+    },
+    {
+     "id": "33",
+     "titre": "Aider les bébés à respirer (détresse respiratoire du nouveau-né)",
+     "nb": 25
+    }
+   ]
+  },
+  {
+   "prefixe": "gyneco",
+   "idPortail": "gyneco",
+   "titre": "Gynéco-Obstétrique",
+   "fichier": "source/master/apps/gyneco.html",
+   "fichierExport": "gyneco.json",
+   "nbQuestions": 900,
+   "octets": 1236020,
+   "sha256": "0feafd18c8d88148ca06239d0c4137a6b0a3f95fa25cef59f1aaaa3a12e5ccf0",
+   "types": {
+    "qcm": 549,
+    "vf": 189,
+    "ouverte": 162,
+    "fiche": 0
+   },
+   "chapitres": [
+    {
+     "id": "0",
+     "titre": "La CPN au 1er trimestre de grossesse",
+     "nb": 34
+    },
+    {
+     "id": "1",
+     "titre": "La CPN au 2e trimestre de grossesse",
+     "nb": 31
+    },
+    {
+     "id": "2",
+     "titre": "La CPN au 3e trimestre de grossesse",
+     "nb": 35
+    },
+    {
+     "id": "3",
+     "titre": "Les grossesses à risque",
+     "nb": 26
+    },
+    {
+     "id": "4",
+     "titre": "La pré-éclampsie",
+     "nb": 35
+    },
+    {
+     "id": "5",
+     "titre": "L’éclampsie",
+     "nb": 36
+    },
+    {
+     "id": "6",
+     "titre": "Paludisme et grossesse",
+     "nb": 45
+    },
+    {
+     "id": "7",
+     "titre": "Anémie et grossesse",
+     "nb": 40
+    },
+    {
+     "id": "8",
+     "titre": "La souffrance fœtale chronique",
+     "nb": 22
+    },
+    {
+     "id": "9",
+     "titre": "La souffrance fœtale aiguë",
+     "nb": 27
+    },
+    {
+     "id": "10",
+     "titre": "Métrorragies du 2e et 3e trimestre : généralités",
+     "nb": 10
+    },
+    {
+     "id": "11",
+     "titre": "Le cancer du col utérin",
+     "nb": 35
+    },
+    {
+     "id": "12",
+     "titre": "La rupture utérine",
+     "nb": 29
+    },
+    {
+     "id": "13",
+     "titre": "Le placenta prævia",
+     "nb": 29
+    },
+    {
+     "id": "14",
+     "titre": "L’hématome rétroplacentaire",
+     "nb": 26
+    },
+    {
+     "id": "15",
+     "titre": "CAT de l’IDE durant l’accouchement eutocique",
+     "nb": 34
+    },
+    {
+     "id": "16",
+     "titre": "CAT de l’IDE devant l’hémorragie du post-partum",
+     "nb": 39
+    },
+    {
+     "id": "17",
+     "titre": "Le suivi post-natal (CPoN)",
+     "nb": 37
+    },
+    {
+     "id": "18",
+     "titre": "Les fistules obstétricales",
+     "nb": 22
+    },
+    {
+     "id": "19",
+     "titre": "Hémorragies du 1er trimestre : généralités",
+     "nb": 8
+    },
+    {
+     "id": "20",
+     "titre": "La grossesse extra-utérine (GEU)",
+     "nb": 35
+    },
+    {
+     "id": "21",
+     "titre": "La môle hydatiforme",
+     "nb": 25
+    },
+    {
+     "id": "22",
+     "titre": "Complications des avortements provoqués",
+     "nb": 23
+    },
+    {
+     "id": "23",
+     "titre": "Les soins après avortement (SAA)",
+     "nb": 44
+    },
+    {
+     "id": "24",
+     "titre": "Les troubles du cycle menstruel",
+     "nb": 32
+    },
+    {
+     "id": "25",
+     "titre": "Le cancer du sein",
+     "nb": 32
+    },
+    {
+     "id": "26",
+     "titre": "Le fibrome utérin",
+     "nb": 26
+    },
+    {
+     "id": "27",
+     "titre": "Les kystes de l’ovaire",
+     "nb": 25
+    },
+    {
+     "id": "28",
+     "titre": "Infections génitales basses (leucorrhées)",
+     "nb": 35
+    },
+    {
+     "id": "29",
+     "titre": "Infections génitales hautes (salpingites aiguës)",
+     "nb": 23
+    }
+   ]
+  },
+  {
+   "prefixe": "vih",
+   "idPortail": "vih",
+   "titre": "VIH & traitement ARV",
+   "fichier": "source/master/apps/vih.html",
+   "fichierExport": "vih.json",
+   "nbQuestions": 380,
+   "octets": 366976,
+   "sha256": "70a06281d88e77b301f98b0e83cc9697ae7e4c9dc4783c8491b1652e00eab85e",
+   "types": {
+    "qcm": 171,
+    "vf": 58,
+    "ouverte": 31,
+    "fiche": 120
+   },
+   "chapitres": [
+    {
+     "id": "c01",
+     "titre": "Définition et intérêt du HAART/TARV",
+     "nb": 14
+    },
+    {
+     "id": "c02",
+     "titre": "Préparer le patient : tâches du prestataire, 5A",
+     "nb": 12
+    },
+    {
+     "id": "c03",
+     "titre": "Associer les ARV et suivi clinique/paraclinique",
+     "nb": 13
+    },
+    {
+     "id": "c04",
+     "titre": "Observance et résistance virale",
+     "nb": 10
+    },
+    {
+     "id": "c05",
+     "titre": "Classes et mode d'action des ARV",
+     "nb": 20
+    },
+    {
+     "id": "c06",
+     "titre": "INRT : AZT, 3TC, ABC, TDF, FTC",
+     "nb": 22
+    },
+    {
+     "id": "c07",
+     "titre": "INNRT : éfavirenz, névirapine",
+     "nb": 12
+    },
+    {
+     "id": "c08",
+     "titre": "Inhibiteurs de l'intégrase : DTG, RAL",
+     "nb": 12
+    },
+    {
+     "id": "c09",
+     "titre": "Inhibiteurs de protéase : RTV, LPV/r",
+     "nb": 13
+    },
+    {
+     "id": "c10",
+     "titre": "Table de posologies (annexe 2)",
+     "nb": 8
+    },
+    {
+     "id": "c11",
+     "titre": "Identification et classification OMS des effets indésirables",
+     "nb": 13
+    },
+    {
+     "id": "c12",
+     "titre": "Prévention des effets indésirables et interruption",
+     "nb": 12
+    },
+    {
+     "id": "c13",
+     "titre": "Effets toxiques potentiellement mortels",
+     "nb": 27
+    },
+    {
+     "id": "c14",
+     "titre": "Complications métaboliques",
+     "nb": 11
+    },
+    {
+     "id": "c15",
+     "titre": "Interactions alimentaires",
+     "nb": 7
+    },
+    {
+     "id": "c16",
+     "titre": "Interactions entre ARV et avec les antituberculeux",
+     "nb": 12
+    },
+    {
+     "id": "c17",
+     "titre": "Autres médicaments et médications traditionnelles",
+     "nb": 12
+    },
+    {
+     "id": "c18",
+     "titre": "Site Liverpool et rapports d'interaction",
+     "nb": 7
+    },
+    {
+     "id": "c19",
+     "titre": "TARV de 1re ligne sans co-morbidité",
+     "nb": 17
+    },
+    {
+     "id": "c20",
+     "titre": "Co-morbidités et régime ABC + 3TC + LPV/r",
+     "nb": 12
+    },
+    {
+     "id": "c21",
+     "titre": "Prophylaxie du nouveau-né exposé",
+     "nb": 8
+    },
+    {
+     "id": "c22",
+     "titre": "Prophylaxie pré-exposition (PrEP)",
+     "nb": 12
+    },
+    {
+     "id": "c23",
+     "titre": "Prophylaxie post-exposition (PEP / AES)",
+     "nb": 8
+    },
+    {
+     "id": "c24",
+     "titre": "Observance : définition, critères, causes",
+     "nb": 15
+    },
+    {
+     "id": "c25",
+     "titre": "Avantages, outils et stratégies d'observance",
+     "nb": 11
+    },
+    {
+     "id": "c26",
+     "titre": "Principes du suivi, patient stable / non stable",
+     "nb": 14
+    },
+    {
+     "id": "c27",
+     "titre": "Calendrier de suivi de l'adulte et de l'adolescent",
+     "nb": 9
+    },
+    {
+     "id": "c28",
+     "titre": "Suivi de l'enfant",
+     "nb": 9
+    },
+    {
+     "id": "c29",
+     "titre": "Gestion d'un arrêt du TARV",
+     "nb": 8
+    },
+    {
+     "id": "c30",
+     "titre": "Échec thérapeutique et résistances",
+     "nb": 9
+    },
+    {
+     "id": "c31",
+     "titre": "Algorithme CV chez la femme et conditions de référence",
+     "nb": 11
+    }
+   ]
+  },
+  {
+   "prefixe": "pathotrop",
+   "idPortail": "pathotrop",
+   "titre": "Pathologies tropicales & maladies infectieuses",
+   "fichier": "source/master/apps/pathotrop.html",
+   "fichierExport": "pathotrop.json",
+   "nbQuestions": 296,
+   "octets": 283764,
+   "sha256": "d8c590c9c3ae1a3332e21ffe805a536db6c7f0b6a6ade346e9cf81a99d585bf0",
+   "types": {
+    "qcm": 192,
+    "vf": 68,
+    "ouverte": 36,
+    "fiche": 0
+   },
+   "chapitres": [
+    {
+     "id": "0",
+     "titre": "Ascaridiose",
+     "nb": 8
+    },
+    {
+     "id": "1",
+     "titre": "Ankylostomiase",
+     "nb": 8
+    },
+    {
+     "id": "2",
+     "titre": "Anguillulose",
+     "nb": 7
+    },
+    {
+     "id": "3",
+     "titre": "Oxyurose",
+     "nb": 8
+    },
+    {
+     "id": "4",
+     "titre": "Téniasis (cestodoses)",
+     "nb": 8
+    },
+    {
+     "id": "5",
+     "titre": "Dracunculose (ver de Guinée)",
+     "nb": 8
+    },
+    {
+     "id": "6",
+     "titre": "Onchocercose",
+     "nb": 8
+    },
+    {
+     "id": "7",
+     "titre": "Bilharzioses",
+     "nb": 10
+    },
+    {
+     "id": "8",
+     "titre": "Paludisme",
+     "nb": 15
+    },
+    {
+     "id": "9",
+     "titre": "Trypanosomiase humaine africaine",
+     "nb": 8
+    },
+    {
+     "id": "10",
+     "titre": "Syndromes dysentériques : shigellose, giardiase",
+     "nb": 8
+    },
+    {
+     "id": "11",
+     "titre": "Amibiase intestinale et hépatique",
+     "nb": 7
+    },
+    {
+     "id": "12",
+     "titre": "Syphilis vénérienne",
+     "nb": 8
+    },
+    {
+     "id": "13",
+     "titre": "Pian",
+     "nb": 7
+    },
+    {
+     "id": "14",
+     "titre": "Lèpre (maladie de Hansen)",
+     "nb": 10
+    },
+    {
+     "id": "15",
+     "titre": "Morsures de serpents",
+     "nb": 8
+    },
+    {
+     "id": "16",
+     "titre": "Rage",
+     "nb": 9
+    },
+    {
+     "id": "17",
+     "titre": "Fièvre jaune",
+     "nb": 8
+    },
+    {
+     "id": "18",
+     "titre": "Dengue",
+     "nb": 8
+    },
+    {
+     "id": "19",
+     "titre": "MAL-INF · Page 6 / 75",
+     "nb": 9
+    },
+    {
+     "id": "20",
+     "titre": "MAL-INF · Page 12 / 75 — partagée Typhoïde",
+     "nb": 11
+    },
+    {
+     "id": "21",
+     "titre": "MAL-INF · Page 17 / 75",
+     "nb": 10
+    },
+    {
+     "id": "22",
+     "titre": "MAL-INF · Page 23 / 75",
+     "nb": 13
+    },
+    {
+     "id": "23",
+     "titre": "MAL-INF · Page 34 / 75 — fin du chapitre Méningites",
+     "nb": 9
+    },
+    {
+     "id": "24",
+     "titre": "MAL-INF · Page 38 / 75",
+     "nb": 9
+    },
+    {
+     "id": "25",
+     "titre": "MAL-INF · Page 64 / 75",
+     "nb": 8
+    },
+    {
+     "id": "26",
+     "titre": "MAL-INF · Page 72 / 75",
+     "nb": 8
+    },
+    {
+     "id": "27",
+     "titre": "MAL-INF · Page 29 / 75",
+     "nb": 9
+    },
+    {
+     "id": "28",
+     "titre": "MAL-INF · Page 42 / 75",
+     "nb": 8
+    },
+    {
+     "id": "29",
+     "titre": "MAL-INF · Page 46 / 75",
+     "nb": 8
+    },
+    {
+     "id": "30",
+     "titre": "MAL-INF · Page 50 / 75",
+     "nb": 8
+    },
+    {
+     "id": "31",
+     "titre": "MAL-INF · Page 68 / 75",
+     "nb": 9
+    },
+    {
+     "id": "32",
+     "titre": "MAL-INF · Page 55 / 75",
+     "nb": 8
+    },
+    {
+     "id": "33",
+     "titre": "MAL-INF · Page 59 / 75",
+     "nb": 8
+    }
+   ]
+  },
+  {
+   "prefixe": "orl",
+   "idPortail": "orl",
+   "titre": "ORL — Oto-rhino-laryngologie",
+   "fichier": "source/master/apps/orl.html",
+   "fichierExport": "orl.json",
+   "nbQuestions": 200,
+   "octets": 219364,
+   "sha256": "964a65ad86c49b7fad94b93537787530fc9fbb25ae5af2eb7e6cf233a0456a54",
+   "types": {
+    "qcm": 124,
+    "vf": 50,
+    "ouverte": 26,
+    "fiche": 0
+   },
+   "chapitres": [
+    {
+     "id": "0",
+     "titre": "Anatomie et physiologie de l'oreille",
+     "nb": 9
+    },
+    {
+     "id": "1",
+     "titre": "Anatomie et physiologie du nez",
+     "nb": 8
+    },
+    {
+     "id": "2",
+     "titre": "Anatomie et physiologie des sinus",
+     "nb": 7
+    },
+    {
+     "id": "3",
+     "titre": "Anatomie et physiologie du pharynx",
+     "nb": 8
+    },
+    {
+     "id": "4",
+     "titre": "Larynx et trachée",
+     "nb": 10
+    },
+    {
+     "id": "5",
+     "titre": "Les otalgies",
+     "nb": 9
+    },
+    {
+     "id": "6",
+     "titre": "Les surdités",
+     "nb": 8
+    },
+    {
+     "id": "7",
+     "titre": "Les acouphènes",
+     "nb": 8
+    },
+    {
+     "id": "8",
+     "titre": "Pathologies de l'oreille externe",
+     "nb": 11
+    },
+    {
+     "id": "9",
+     "titre": "Otite moyenne aiguë du nourrisson",
+     "nb": 10
+    },
+    {
+     "id": "10",
+     "titre": "Les épistaxis",
+     "nb": 11
+    },
+    {
+     "id": "11",
+     "titre": "Les rhinites",
+     "nb": 9
+    },
+    {
+     "id": "12",
+     "titre": "Les sinusites aiguës",
+     "nb": 9
+    },
+    {
+     "id": "13",
+     "titre": "Les végétations adénoïdes",
+     "nb": 8
+    },
+    {
+     "id": "14",
+     "titre": "Les rhinopharyngites",
+     "nb": 8
+    },
+    {
+     "id": "15",
+     "titre": "Les pharyngites",
+     "nb": 9
+    },
+    {
+     "id": "16",
+     "titre": "Angines et amygdalites aiguës",
+     "nb": 8
+    },
+    {
+     "id": "17",
+     "titre": "La dyspnée laryngée",
+     "nb": 10
+    },
+    {
+     "id": "18",
+     "titre": "Corps étrangers des voies aéro-digestives",
+     "nb": 9
+    },
+    {
+     "id": "19",
+     "titre": "Lavage d'oreille",
+     "nb": 8
+    },
+    {
+     "id": "20",
+     "titre": "Lavage de nez",
+     "nb": 8
+    },
+    {
+     "id": "21",
+     "titre": "Méchage antérieur",
+     "nb": 8
+    },
+    {
+     "id": "22",
+     "titre": "Soins de trachéotomie",
+     "nb": 7
+    }
+   ]
+  },
+  {
+   "prefixe": "dermato",
+   "idPortail": "dermato",
+   "titre": "Dermatologie-Vénérologie",
+   "fichier": "source/master/apps/dermato.html",
+   "fichierExport": "dermato.json",
+   "nbQuestions": 330,
+   "octets": 340022,
+   "sha256": "ccb6e0e7a275855fef0d0667b3ac01122dd52a438e8113ef944181fee577ce5e",
+   "types": {
+    "qcm": 200,
+    "vf": 86,
+    "ouverte": 44,
+    "fiche": 0
+   },
+   "chapitres": [
+    {
+     "id": "0",
+     "titre": "Peau : structure et rôles",
+     "nb": 11
+    },
+    {
+     "id": "1",
+     "titre": "Lésions élémentaires",
+     "nb": 13
+    },
+    {
+     "id": "2",
+     "titre": "Prurit",
+     "nb": 11
+    },
+    {
+     "id": "3",
+     "titre": "Impétigo",
+     "nb": 11
+    },
+    {
+     "id": "4",
+     "titre": "Folliculites et furoncle",
+     "nb": 11
+    },
+    {
+     "id": "5",
+     "titre": "Érysipèle et fasciite nécrosante",
+     "nb": 13
+    },
+    {
+     "id": "6",
+     "titre": "Lèpre (maladie de Hansen)",
+     "nb": 14
+    },
+    {
+     "id": "7",
+     "titre": "Ulcère de Buruli",
+     "nb": 8
+    },
+    {
+     "id": "8",
+     "titre": "Varicelle",
+     "nb": 13
+    },
+    {
+     "id": "9",
+     "titre": "Zona",
+     "nb": 13
+    },
+    {
+     "id": "10",
+     "titre": "Herpès cutanéo-muqueux",
+     "nb": 13
+    },
+    {
+     "id": "11",
+     "titre": "Papillomavirus, épidermodysplasie verruciforme et molluscum",
+     "nb": 10
+    },
+    {
+     "id": "12",
+     "titre": "Dermatophyties",
+     "nb": 13
+    },
+    {
+     "id": "13",
+     "titre": "Intertrigo",
+     "nb": 11
+    },
+    {
+     "id": "14",
+     "titre": "Gale (scabiose)",
+     "nb": 14
+    },
+    {
+     "id": "15",
+     "titre": "Larva migrans et myiase (ver de Cayor)",
+     "nb": 8
+    },
+    {
+     "id": "16",
+     "titre": "Prurigo",
+     "nb": 7
+    },
+    {
+     "id": "17",
+     "titre": "Dermatite atopique",
+     "nb": 12
+    },
+    {
+     "id": "18",
+     "titre": "Eczéma de contact et dermite d'irritation",
+     "nb": 12
+    },
+    {
+     "id": "19",
+     "titre": "Urticaire",
+     "nb": 9
+    },
+    {
+     "id": "20",
+     "titre": "Psoriasis",
+     "nb": 10
+    },
+    {
+     "id": "21",
+     "titre": "Lichen",
+     "nb": 7
+    },
+    {
+     "id": "22",
+     "titre": "Pityriasis rosé de Gibert",
+     "nb": 8
+    },
+    {
+     "id": "23",
+     "titre": "Escarres",
+     "nb": 13
+    },
+    {
+     "id": "24",
+     "titre": "Chéloïdes et vitiligo",
+     "nb": 8
+    },
+    {
+     "id": "25",
+     "titre": "Angiome et botryomycome",
+     "nb": 8
+    },
+    {
+     "id": "26",
+     "titre": "Généralités sur les IST",
+     "nb": 14
+    },
+    {
+     "id": "27",
+     "titre": "Complications des IST et relation IST-VIH",
+     "nb": 10
+    },
+    {
+     "id": "28",
+     "titre": "Prise en charge syndromique des IST",
+     "nb": 14
+    },
+    {
+     "id": "29",
+     "titre": "Condylomes acuminés",
+     "nb": 11
+    }
+   ]
+  },
+  {
+   "prefixe": "chir",
+   "idPortail": "chir",
+   "titre": "Chirurgie — L1 · L2 · L3",
+   "fichier": "source/master/apps/chir.html",
+   "fichierExport": "chir.json",
+   "nbQuestions": 595,
+   "octets": 548380,
+   "sha256": "20201aa6f6b2164f680ea2c162cddd6edb1a15fbc52e93e887a150f5ab7b9125",
+   "types": {
+    "qcm": 375,
+    "vf": 120,
+    "ouverte": 100,
+    "fiche": 0
+   },
+   "chapitres": [
+    {
+     "id": "G2",
+     "titre": "Asepsie et étude de l'inflammation",
+     "nb": 8
+    },
+    {
+     "id": "G3",
+     "titre": "Infectiologie et infection en chirurgie",
+     "nb": 8
+    },
+    {
+     "id": "G4",
+     "titre": "Septicémie",
+     "nb": 8
+    },
+    {
+     "id": "G5",
+     "titre": "Panaris",
+     "nb": 8
+    },
+    {
+     "id": "G6",
+     "titre": "Phlegmon des gaines de la main",
+     "nb": 8
+    },
+    {
+     "id": "G7",
+     "titre": "Lymphangite",
+     "nb": 8
+    },
+    {
+     "id": "G8",
+     "titre": "Abcès chaud",
+     "nb": 8
+    },
+    {
+     "id": "G9",
+     "titre": "Abcès froid",
+     "nb": 8
+    },
+    {
+     "id": "G10",
+     "titre": "Furoncles",
+     "nb": 8
+    },
+    {
+     "id": "G11",
+     "titre": "Anthrax",
+     "nb": 8
+    },
+    {
+     "id": "G12",
+     "titre": "Gangrène gazeuse",
+     "nb": 8
+    },
+    {
+     "id": "G13",
+     "titre": "Ostéomyélite aiguë",
+     "nb": 8
+    },
+    {
+     "id": "G14",
+     "titre": "Plaies",
+     "nb": 8
+    },
+    {
+     "id": "G15",
+     "titre": "Contusions",
+     "nb": 8
+    },
+    {
+     "id": "N1",
+     "titre": "Traumatismes crâniens",
+     "nb": 17
+    },
+    {
+     "id": "N2",
+     "titre": "Fractures du rachis",
+     "nb": 14
+    },
+    {
+     "id": "N3",
+     "titre": "Sciatalgies et hernie discale",
+     "nb": 8
+    },
+    {
+     "id": "N4",
+     "titre": "Mal de Pott",
+     "nb": 8
+    },
+    {
+     "id": "T1",
+     "titre": "Traumatismes du thorax",
+     "nb": 8
+    },
+    {
+     "id": "T2",
+     "titre": "Fractures de la clavicule",
+     "nb": 8
+    },
+    {
+     "id": "T3",
+     "titre": "Luxation de l'épaule",
+     "nb": 8
+    },
+    {
+     "id": "T4",
+     "titre": "Fractures de l'humérus",
+     "nb": 8
+    },
+    {
+     "id": "T5",
+     "titre": "Fractures des deux os de l'avant-bras",
+     "nb": 8
+    },
+    {
+     "id": "T6",
+     "titre": "Fractures du poignet (Pouteau-Colles, scaphoïde)",
+     "nb": 8
+    },
+    {
+     "id": "T7",
+     "titre": "Fractures de la diaphyse fémorale et rôle de l'IDE dans les fractures des membres",
+     "nb": 15
+    },
+    {
+     "id": "T8",
+     "titre": "Fractures des deux os de la jambe",
+     "nb": 8
+    },
+    {
+     "id": "T9",
+     "titre": "Traumatismes des ménisques",
+     "nb": 8
+    },
+    {
+     "id": "T10",
+     "titre": "Fracture de la rotule",
+     "nb": 8
+    },
+    {
+     "id": "T11",
+     "titre": "Traumatismes du bassin",
+     "nb": 8
+    },
+    {
+     "id": "G16",
+     "titre": "Généralités sur les fractures",
+     "nb": 8
+    },
+    {
+     "id": "G17",
+     "titre": "Entorses",
+     "nb": 8
+    },
+    {
+     "id": "G18",
+     "titre": "Luxations (généralités)",
+     "nb": 8
+    },
+    {
+     "id": "G19",
+     "titre": "Pieds bots congénitaux",
+     "nb": 8
+    },
+    {
+     "id": "D1",
+     "titre": "Contusions abdominales",
+     "nb": 8
+    },
+    {
+     "id": "D2",
+     "titre": "Hernies de la paroi abdominale",
+     "nb": 8
+    },
+    {
+     "id": "D3",
+     "titre": "Appendicite aiguë",
+     "nb": 9
+    },
+    {
+     "id": "D4",
+     "titre": "Occlusions intestinales aiguës",
+     "nb": 8
+    },
+    {
+     "id": "D5",
+     "titre": "Péritonites",
+     "nb": 8
+    },
+    {
+     "id": "D6",
+     "titre": "Cancer de l'œsophage",
+     "nb": 8
+    },
+    {
+     "id": "D7",
+     "titre": "Cancer de l'estomac",
+     "nb": 8
+    },
+    {
+     "id": "D8",
+     "titre": "Cancer du côlon",
+     "nb": 8
+    },
+    {
+     "id": "D9",
+     "titre": "Cancer du rectum",
+     "nb": 8
+    },
+    {
+     "id": "U1",
+     "titre": "Cancer du rein",
+     "nb": 8
+    },
+    {
+     "id": "U2",
+     "titre": "Adénome de la prostate",
+     "nb": 8
+    },
+    {
+     "id": "U3",
+     "titre": "Rétention urinaire",
+     "nb": 8
+    },
+    {
+     "id": "U4",
+     "titre": "Rétrécissement de l'urètre",
+     "nb": 8
+    },
+    {
+     "id": "U5",
+     "titre": "Cryptorchidie (anomalies de descente du testicule)",
+     "nb": 8
+    },
+    {
+     "id": "U6",
+     "titre": "Hydrocèle",
+     "nb": 8
+    },
+    {
+     "id": "P2",
+     "titre": "Omphalocèle",
+     "nb": 8
+    },
+    {
+     "id": "P3",
+     "titre": "Spina bifida",
+     "nb": 8
+    },
+    {
+     "id": "P4",
+     "titre": "Malformations ano-rectales",
+     "nb": 8
+    },
+    {
+     "id": "P5",
+     "titre": "Occlusions aiguës néonatales",
+     "nb": 8
+    },
+    {
+     "id": "P6",
+     "titre": "Fente labio-palatine",
+     "nb": 8
+    },
+    {
+     "id": "P7",
+     "titre": "Ectopie testiculaire",
+     "nb": 8
+    },
+    {
+     "id": "T12",
+     "titre": "Chocs traumatiques",
+     "nb": 9
+    },
+    {
+     "id": "T13",
+     "titre": "Conduite à tenir auprès d'un traumatisé des voies publiques",
+     "nb": 8
+    },
+    {
+     "id": "T14",
+     "titre": "Le polytraumatisé",
+     "nb": 8
+    },
+    {
+     "id": "R1",
+     "titre": "États de choc (réanimation)",
+     "nb": 10
+    },
+    {
+     "id": "R2",
+     "titre": "Arrêt cardio-circulatoire",
+     "nb": 8
+    },
+    {
+     "id": "R3",
+     "titre": "Intoxication au paracétamol",
+     "nb": 8
+    },
+    {
+     "id": "R4",
+     "titre": "Intoxication à l'acide acétylsalicylique (aspirine)",
+     "nb": 9
+    },
+    {
+     "id": "R5",
+     "titre": "Intoxication au pétrole chez l'enfant",
+     "nb": 8
+    },
+    {
+     "id": "R6",
+     "titre": "Intoxication aux pesticides",
+     "nb": 8
+    },
+    {
+     "id": "R7",
+     "titre": "Intoxication aux produits caustiques et corrosifs",
+     "nb": 8
+    },
+    {
+     "id": "R8",
+     "titre": "Remplissage vasculaire",
+     "nb": 8
+    },
+    {
+     "id": "R9",
+     "titre": "Noyade",
+     "nb": 8
+    },
+    {
+     "id": "R10",
+     "titre": "Réanimation néonatale",
+     "nb": 10
+    },
+    {
+     "id": "X1",
+     "titre": "Malformations congénitales des membres",
+     "nb": 8
+    },
+    {
+     "id": "G20",
+     "titre": "Brûlures",
+     "nb": 22
+    }
+   ]
+  },
+  {
+   "prefixe": "endo",
+   "idPortail": "endo",
+   "titre": "Endocrinologie & Oncologie",
+   "fichier": "source/master/apps/endo.html",
+   "fichierExport": "endo.json",
+   "nbQuestions": 300,
+   "octets": 329295,
+   "sha256": "7d34e6787faff34cb1ce070373d66caef14fa0fc3aca0192208274d671744a7a",
+   "types": {
+    "qcm": 189,
+    "vf": 62,
+    "ouverte": 49,
+    "fiche": 0
+   },
+   "chapitres": [
+    {
+     "id": "0",
+     "titre": "Introduction à l'endocrinologie",
+     "nb": 8
+    },
+    {
+     "id": "1",
+     "titre": "Glandes et types d'hormones",
+     "nb": 10
+    },
+    {
+     "id": "2",
+     "titre": "Modes d'action et régulation hormonale",
+     "nb": 10
+    },
+    {
+     "id": "3",
+     "titre": "Organisation des glandes endocrines",
+     "nb": 16
+    },
+    {
+     "id": "4",
+     "titre": "Diabète",
+     "nb": 26
+    },
+    {
+     "id": "5",
+     "titre": "Acidocétose diabétique",
+     "nb": 12
+    },
+    {
+     "id": "6",
+     "titre": "Hypoglycémie",
+     "nb": 12
+    },
+    {
+     "id": "7",
+     "titre": "Hyperthyroïdie",
+     "nb": 12
+    },
+    {
+     "id": "8",
+     "titre": "Hypothyroïdie",
+     "nb": 12
+    },
+    {
+     "id": "9",
+     "titre": "Hypercorticisme et hypocorticisme",
+     "nb": 10
+    },
+    {
+     "id": "10",
+     "titre": "Insuffisance antéhypophysaire",
+     "nb": 12
+    },
+    {
+     "id": "11",
+     "titre": "Obésité et syndrome métabolique",
+     "nb": 11
+    },
+    {
+     "id": "12",
+     "titre": "Hypertension artérielle",
+     "nb": 22
+    },
+    {
+     "id": "13",
+     "titre": "Urgences hypertensives",
+     "nb": 12
+    },
+    {
+     "id": "14",
+     "titre": "Cancer : définition et épidémiologie",
+     "nb": 10
+    },
+    {
+     "id": "15",
+     "titre": "Physiopathologie et signes locaux du cancer",
+     "nb": 12
+    },
+    {
+     "id": "16",
+     "titre": "Manifestations générales et syndromes paranéoplasiques",
+     "nb": 12
+    },
+    {
+     "id": "17",
+     "titre": "Typologie, facteurs de risque et protecteurs",
+     "nb": 12
+    },
+    {
+     "id": "18",
+     "titre": "Prévention, dépistage, diagnostic et traitements",
+     "nb": 12
+    },
+    {
+     "id": "19",
+     "titre": "Cancer bronchique",
+     "nb": 12
+    },
+    {
+     "id": "20",
+     "titre": "Cancer de la prostate",
+     "nb": 10
+    },
+    {
+     "id": "21",
+     "titre": "Cancer du sein",
+     "nb": 11
+    },
+    {
+     "id": "22",
+     "titre": "Cancer du col de l'utérus",
+     "nb": 16
+    },
+    {
+     "id": "23",
+     "titre": "Cancer de la vessie",
+     "nb": 8
+    }
+   ]
+  },
+  {
+   "prefixe": "cn25",
+   "idPortail": "xmvkq4zed",
+   "titre": "Correction Nationale 2025 — Examens Blancs Infirmier",
+   "fichier": "source/master/apps/xmvkq4zed.html",
+   "fichierExport": "cn25.json",
+   "nbQuestions": 3302,
+   "octets": 3624538,
+   "sha256": "2bc25cfaa6ac6f496a958f5404631f7cbada1629e90a23da1331c5c58217cdbb",
+   "types": {
+    "qcm": 1939,
+    "vf": 1265,
+    "ouverte": 98,
+    "fiche": 0
+   },
+   "chapitres": [
+    {
+     "id": "sant--publique",
+     "titre": "Santé publique",
+     "nb": 145
+    },
+    {
+     "id": "m-decine",
+     "titre": "Médecine",
+     "nb": 179
+    },
+    {
+     "id": "",
+     "titre": "(sans chapitre)",
+     "nb": 2978
+    }
+   ]
+  },
+  {
+   "prefixe": "xmvkq53re",
+   "idPortail": "xmvkq53re",
+   "titre": "Pharmaco INFAS — Mon parcours de révision",
+   "fichier": "source/master/apps/xmvkq53re.html",
+   "fichierExport": "xmvkq53re.json",
+   "nbQuestions": 390,
+   "octets": 330880,
+   "sha256": "dc73933bfc973f63a5e24201eef121ff7cebc4ea11c47090983cababc81a8689",
+   "types": {
+    "qcm": 247,
+    "vf": 0,
+    "ouverte": 143,
+    "fiche": 0
+   },
+   "chapitres": [
+    {
+     "id": "0",
+     "titre": "Généralités",
+     "nb": 41
+    },
+    {
+     "id": "1",
+     "titre": "Antalgiques & fièvre",
+     "nb": 28
+    },
+    {
+     "id": "2",
+     "titre": "Anti-inflammatoires & anesthésiques",
+     "nb": 22
+    },
+    {
+     "id": "3",
+     "titre": "Anti-infectieux",
+     "nb": 56
+    },
+    {
+     "id": "6",
+     "titre": "Appareil respiratoire",
+     "nb": 20
+    },
+    {
+     "id": "7",
+     "titre": "Antihistaminiques",
+     "nb": 10
+    },
+    {
+     "id": "8",
+     "titre": "Appareil digestif",
+     "nb": 41
+    },
+    {
+     "id": "9",
+     "titre": "Médicaments du SNC (Psychotropes)",
+     "nb": 22
+    },
+    {
+     "id": "10",
+     "titre": "Hormonaux gynécologiques",
+     "nb": 22
+    },
+    {
+     "id": "11",
+     "titre": "Appareil cardio-vasculaire",
+     "nb": 31
+    },
+    {
+     "id": "12",
+     "titre": "Vitamines & Oligo-éléments",
+     "nb": 34
+    },
+    {
+     "id": "4",
+     "titre": "Prises en charge encadrées (Paludisme, VIH, TB, Lèpre)",
+     "nb": 21
+    },
+    {
+     "id": "5",
+     "titre": "Antidiabétiques",
+     "nb": 16
+    },
+    {
+     "id": "13",
+     "titre": "Antiseptiques, désinfectants & détergents",
+     "nb": 26
+    }
+   ]
+  },
+  {
+   "prefixe": "xmvkq580o",
+   "idPortail": "xmvkq580o",
+   "titre": "SSR · PF — INFAS L2 Sage-femme",
+   "fichier": "source/master/apps/xmvkq580o.html",
+   "fichierExport": "xmvkq580o.json",
+   "nbQuestions": 248,
+   "octets": 223930,
+   "sha256": "14d1792eeede19b38d487230a334aa7e901aae039cb383ca0d09d92d9b7a7fcd",
+   "types": {
+    "qcm": 221,
+    "vf": 0,
+    "ouverte": 27,
+    "fiche": 0
+   },
+   "chapitres": [
+    {
+     "id": "0",
+     "titre": "Concept de la santé de la reproduction",
+     "nb": 10
+    },
+    {
+     "id": "1",
+     "titre": "Concept de la planification familiale",
+     "nb": 10
+    },
+    {
+     "id": "2",
+     "titre": "Généralités sur la contraception",
+     "nb": 8
+    },
+    {
+     "id": "3",
+     "titre": "Critères médicaux d'éligibilité de l'OMS",
+     "nb": 8
+    },
+    {
+     "id": "4",
+     "titre": "Causerie éducative",
+     "nb": 8
+    },
+    {
+     "id": "5",
+     "titre": "Counseling en planification familiale",
+     "nb": 12
+    },
+    {
+     "id": "6",
+     "titre": "Consultation en planification familiale",
+     "nb": 8
+    },
+    {
+     "id": "7",
+     "titre": "Méthodes d’auto-observation (MAO)",
+     "nb": 18
+    },
+    {
+     "id": "8",
+     "titre": "Coït interrompu",
+     "nb": 6
+    },
+    {
+     "id": "9",
+     "titre": "Méthode de l’allaitement maternel et de l’aménorrhée (MAMA)",
+     "nb": 10
+    },
+    {
+     "id": "10",
+     "titre": "Méthodes de barrière",
+     "nb": 10
+    },
+    {
+     "id": "11",
+     "titre": "Contraceptifs hormonaux combinés (CHC)",
+     "nb": 26
+    },
+    {
+     "id": "12",
+     "titre": "Contraceptifs hormonaux progestatifs (CHP)",
+     "nb": 18
+    },
+    {
+     "id": "13",
+     "titre": "Dispositif intra-utérin (DIU)",
+     "nb": 15
+    },
+    {
+     "id": "14",
+     "titre": "DIU du post-partum (DIUPP)",
+     "nb": 30
+    },
+    {
+     "id": "15",
+     "titre": "Contraception chirurgicale volontaire (CCV)",
+     "nb": 10
+    },
+    {
+     "id": "16",
+     "titre": "Groupes particuliers",
+     "nb": 22
+    },
+    {
+     "id": "17",
+     "titre": "Organisation et gestion d’un centre de PF",
+     "nb": 9
+    },
+    {
+     "id": "18",
+     "titre": "Glossaire & annexes",
+     "nb": 10
+    }
+   ]
+  },
+  {
+   "prefixe": "xmvkq5cba",
+   "idPortail": "xmvkq5cba",
+   "titre": "Santé infantile — INFAS",
+   "fichier": "source/master/apps/xmvkq5cba.html",
+   "fichierExport": "xmvkq5cba.json",
+   "nbQuestions": 791,
+   "octets": 684543,
+   "sha256": "d9241926dc411e3bd91a1337ef44de3ad1a13cd4cada41e822f247b8d4dc4416",
+   "types": {
+    "qcm": 718,
+    "vf": 0,
+    "ouverte": 73,
+    "fiche": 0
+   },
+   "chapitres": [
+    {
+     "id": "0",
+     "titre": "Soins essentiels du nouveau-né",
+     "nb": 13
+    },
+    {
+     "id": "1",
+     "titre": "Examen du nouveau-né en salle de naissance",
+     "nb": 39
+    },
+    {
+     "id": "2",
+     "titre": "Toilette et bain de l'enfant",
+     "nb": 28
+    },
+    {
+     "id": "3",
+     "titre": "Soins des orifices",
+     "nb": 18
+    },
+    {
+     "id": "4",
+     "titre": "Soins ombilicaux",
+     "nb": 23
+    },
+    {
+     "id": "5",
+     "titre": "Incubateur néonatal",
+     "nb": 22
+    },
+    {
+     "id": "6",
+     "titre": "Carnet de santé mère-enfant",
+     "nb": 20
+    },
+    {
+     "id": "7",
+     "titre": "Mensurations",
+     "nb": 38
+    },
+    {
+     "id": "8",
+     "titre": "Allaitement maternel",
+     "nb": 73
+    },
+    {
+     "id": "9",
+     "titre": "ANJE dans le contexte du VIH/SIDA",
+     "nb": 12
+    },
+    {
+     "id": "10",
+     "titre": "Alimentation de remplacement",
+     "nb": 41
+    },
+    {
+     "id": "11",
+     "titre": "Exercices : soins aux enfants et préparation du bol de lait",
+     "nb": 9
+    },
+    {
+     "id": "12",
+     "titre": "Soins mère kangourou",
+     "nb": 15
+    },
+    {
+     "id": "13",
+     "titre": "Photothérapie",
+     "nb": 16
+    },
+    {
+     "id": "14",
+     "titre": "Moyens physiques contre l'hyperthermie",
+     "nb": 10
+    },
+    {
+     "id": "15",
+     "titre": "Gavage (alimentation à la tulipe)",
+     "nb": 21
+    },
+    {
+     "id": "16",
+     "titre": "Prélèvements d'urines",
+     "nb": 7
+    },
+    {
+     "id": "17",
+     "titre": "Administration des médicaments",
+     "nb": 11
+    },
+    {
+     "id": "18",
+     "titre": "Désobstruction rhinopharyngée",
+     "nb": 10
+    },
+    {
+     "id": "19",
+     "titre": "Ponction pleurale : rôle de l'IDE/SF",
+     "nb": 17
+    },
+    {
+     "id": "20",
+     "titre": "Ponction lombaire : rôle de l'IDE/SF",
+     "nb": 23
+    },
+    {
+     "id": "21",
+     "titre": "Alimentation de complément (diversification)",
+     "nb": 57
+    },
+    {
+     "id": "22",
+     "titre": "Recettes et démonstrations culinaires",
+     "nb": 78
+    },
+    {
+     "id": "23",
+     "titre": "Malnutrition : définitions et classification",
+     "nb": 18
+    },
+    {
+     "id": "24",
+     "titre": "Prise en charge de la malnutrition aiguë",
+     "nb": 77
+    },
+    {
+     "id": "25",
+     "titre": "Nouveau carnet de santé mère-enfant",
+     "nb": 32
+    },
+    {
+     "id": "26",
+     "titre": "Courbes de croissance",
+     "nb": 13
+    },
+    {
+     "id": "27",
+     "titre": "Développement psychomoteur de l'enfant sain",
+     "nb": 19
+    },
+    {
+     "id": "28",
+     "titre": "Conseils à la mère : hygiène de vie, alimentation et vaccination de l'enfant sain",
+     "nb": 21
+    },
+    {
+     "id": "29",
+     "titre": "Présentation clinique",
+     "nb": 10
+    }
+   ]
+  },
+  {
+   "prefixe": "xmvkq5gqn",
+   "idPortail": "xmvkq5gqn",
+   "titre": "Pédiatrie – Révision INFAS",
+   "fichier": "source/master/apps/xmvkq5gqn.html",
+   "fichierExport": "xmvkq5gqn.json",
+   "nbQuestions": 1879,
+   "octets": 1775016,
+   "sha256": "e8e351c20cf5c8fe2e68853176d88e6f9632f97904ae9401353d1f97d9279b04",
+   "types": {
+    "qcm": 1210,
+    "vf": 531,
+    "ouverte": 138,
+    "fiche": 0
+   },
+   "chapitres": [
+    {
+     "id": "0",
+     "titre": "Nouveau-né normal",
+     "nb": 45
+    },
+    {
+     "id": "1",
+     "titre": "Nouveau-né prématuré",
+     "nb": 36
+    },
+    {
+     "id": "2",
+     "titre": "Nouveau-né hypotrophe",
+     "nb": 27
+    },
+    {
+     "id": "3",
+     "titre": "Nouveau-né post-terme",
+     "nb": 24
+    },
+    {
+     "id": "4",
+     "titre": "Nouveau-né de mère diabétique",
+     "nb": 31
+    },
+    {
+     "id": "5",
+     "titre": "Détresse respiratoire du nouveau-né",
+     "nb": 22
+    },
+    {
+     "id": "6",
+     "titre": "Souffrance cérébrale du nouveau-né",
+     "nb": 22
+    },
+    {
+     "id": "7",
+     "titre": "Réanimation du nouveau-né en salle de naissance",
+     "nb": 27
+    },
+    {
+     "id": "8",
+     "titre": "Infections bactériennes du nouveau-né",
+     "nb": 39
+    },
+    {
+     "id": "9",
+     "titre": "Ictère du nouveau-né",
+     "nb": 34
+    },
+    {
+     "id": "10",
+     "titre": "Maladie hémorragique du nouveau-né",
+     "nb": 35
+    },
+    {
+     "id": "11",
+     "titre": "Traumatismes obstétricaux",
+     "nb": 32
+    },
+    {
+     "id": "12",
+     "titre": "Dermatoses du nouveau-né",
+     "nb": 25
+    },
+    {
+     "id": "13",
+     "titre": "Morbidité et mortalité infantiles en Côte d'Ivoire",
+     "nb": 30
+    },
+    {
+     "id": "14",
+     "titre": "Consultation de l'enfant",
+     "nb": 26
+    },
+    {
+     "id": "15",
+     "titre": "Allaitement maternel",
+     "nb": 49
+    },
+    {
+     "id": "16",
+     "titre": "Programme élargi de vaccination",
+     "nb": 24
+    },
+    {
+     "id": "17",
+     "titre": "Fièvre de l'enfant",
+     "nb": 42
+    },
+    {
+     "id": "18",
+     "titre": "Convulsions de l'enfant",
+     "nb": 26
+    },
+    {
+     "id": "19",
+     "titre": "Anémie aiguë de l'enfant",
+     "nb": 36
+    },
+    {
+     "id": "20",
+     "titre": "Vomissements de l'enfant",
+     "nb": 57
+    },
+    {
+     "id": "21",
+     "titre": "Diarrhée aiguë et déshydratation",
+     "nb": 23
+    },
+    {
+     "id": "22",
+     "titre": "Paludisme de l'enfant",
+     "nb": 28
+    },
+    {
+     "id": "23",
+     "titre": "Infections respiratoires aiguës",
+     "nb": 23
+    },
+    {
+     "id": "24",
+     "titre": "Rhinopharyngite de l'enfant",
+     "nb": 24
+    },
+    {
+     "id": "25",
+     "titre": "Otite de l'enfant",
+     "nb": 26
+    },
+    {
+     "id": "26",
+     "titre": "Staphylococcie pleuro-pulmonaire",
+     "nb": 23
+    },
+    {
+     "id": "27",
+     "titre": "Asthme de l'enfant",
+     "nb": 39
+    },
+    {
+     "id": "28",
+     "titre": "Anorexie du nourrisson",
+     "nb": 26
+    },
+    {
+     "id": "29",
+     "titre": "Malnutrition de l'enfant",
+     "nb": 31
+    },
+    {
+     "id": "30",
+     "titre": "Intoxications de l'enfant",
+     "nb": 24
+    },
+    {
+     "id": "31",
+     "titre": "Maladies métaboliques",
+     "nb": 21
+    },
+    {
+     "id": "32",
+     "titre": "Méningites bactériennes",
+     "nb": 21
+    },
+    {
+     "id": "33",
+     "titre": "Diagnostic infirmier",
+     "nb": 21
+    },
+    {
+     "id": "34",
+     "titre": "Plan de soins",
+     "nb": 21
+    },
+    {
+     "id": "35",
+     "titre": "Normes et développement de l'enfant (annexes)",
+     "nb": 20
+    },
+    {
+     "id": "36",
+     "titre": "Exercices corrigés des évaluations INFAS",
+     "nb": 519
+    },
+    {
+     "id": "37",
+     "titre": "Exercices de nutrition",
+     "nb": 300
+    }
+   ]
+  },
+  {
+   "prefixe": "xmvkq5l1e",
+   "idPortail": "xmvkq5l1e",
+   "titre": "MÉDECINE IDE 2 · Créé par Daniel Noufe · INFAS",
+   "fichier": "source/master/apps/xmvkq5l1e.html",
+   "fichierExport": "xmvkq5l1e.json",
+   "nbQuestions": 331,
+   "octets": 303188,
+   "sha256": "291b16465e24e46adedb1a6e5744ff13442d0ea773c0e239a69f1f5a5a14b01e",
+   "types": {
+    "qcm": 207,
+    "vf": 83,
+    "ouverte": 41,
+    "fiche": 0
+   },
+   "chapitres": [
+    {
+     "id": "0",
+     "titre": "Anatomie-physiologie respiratoire",
+     "nb": 8
+    },
+    {
+     "id": "1",
+     "titre": "Pneumonie franche lobaire aiguë (PFLA)",
+     "nb": 8
+    },
+    {
+     "id": "2",
+     "titre": "Bronchite aiguë",
+     "nb": 8
+    },
+    {
+     "id": "3",
+     "titre": "Pleurésies et ponction pleurale",
+     "nb": 8
+    },
+    {
+     "id": "4",
+     "titre": "Insuffisance respiratoire aiguë et chronique",
+     "nb": 8
+    },
+    {
+     "id": "5",
+     "titre": "Gazométrie sanguine",
+     "nb": 8
+    },
+    {
+     "id": "6",
+     "titre": "BPCO : DDB, bronchite chronique, asthme, emphysème",
+     "nb": 10
+    },
+    {
+     "id": "7",
+     "titre": "OAP – volet pneumologie",
+     "nb": 8
+    },
+    {
+     "id": "8",
+     "titre": "Cancers bronchopulmonaires",
+     "nb": 8
+    },
+    {
+     "id": "9",
+     "titre": "Tuberculose",
+     "nb": 8
+    },
+    {
+     "id": "10",
+     "titre": "Test tuberculinique (IDR)",
+     "nb": 8
+    },
+    {
+     "id": "11",
+     "titre": "Hypertension artérielle",
+     "nb": 9
+    },
+    {
+     "id": "12",
+     "titre": "Insuffisance veineuse des membres inférieurs",
+     "nb": 8
+    },
+    {
+     "id": "13",
+     "titre": "Thrombose veineuse profonde",
+     "nb": 8
+    },
+    {
+     "id": "14",
+     "titre": "AOMI",
+     "nb": 8
+    },
+    {
+     "id": "15",
+     "titre": "Embolie pulmonaire",
+     "nb": 8
+    },
+    {
+     "id": "16",
+     "titre": "OAP – volet cardiologie",
+     "nb": 8
+    },
+    {
+     "id": "17",
+     "titre": "Insuffisance ventriculaire gauche",
+     "nb": 8
+    },
+    {
+     "id": "18",
+     "titre": "Insuffisance ventriculaire droite",
+     "nb": 8
+    },
+    {
+     "id": "19",
+     "titre": "Insuffisance cardiaque globale",
+     "nb": 8
+    },
+    {
+     "id": "20",
+     "titre": "Angine de poitrine",
+     "nb": 8
+    },
+    {
+     "id": "21",
+     "titre": "Syndrome coronarien aigu",
+     "nb": 8
+    },
+    {
+     "id": "22",
+     "titre": "Péricardite aiguë",
+     "nb": 8
+    },
+    {
+     "id": "23",
+     "titre": "Anatomie et sémiologie digestive",
+     "nb": 8
+    },
+    {
+     "id": "24",
+     "titre": "Reflux gastro-œsophagien",
+     "nb": 8
+    },
+    {
+     "id": "25",
+     "titre": "Ulcère gastroduodénal et gastrite",
+     "nb": 8
+    },
+    {
+     "id": "26",
+     "titre": "Hépatites virales",
+     "nb": 8
+    },
+    {
+     "id": "27",
+     "titre": "Rôle infirmier dans les hépatites (+ colopathie fonctionnelle)",
+     "nb": 8
+    },
+    {
+     "id": "28",
+     "titre": "Cirrhoses",
+     "nb": 8
+    },
+    {
+     "id": "29",
+     "titre": "Ponction d'ascite",
+     "nb": 8
+    },
+    {
+     "id": "30",
+     "titre": "Aspirations digestives",
+     "nb": 8
+    },
+    {
+     "id": "31",
+     "titre": "Cancers primitifs du foie",
+     "nb": 8
+    },
+    {
+     "id": "32",
+     "titre": "Lithiase biliaire",
+     "nb": 8
+    },
+    {
+     "id": "33",
+     "titre": "Lithiase urinaire",
+     "nb": 8
+    },
+    {
+     "id": "34",
+     "titre": "Infections des voies urinaires",
+     "nb": 8
+    },
+    {
+     "id": "35",
+     "titre": "Infections urinaires chroniques",
+     "nb": 8
+    },
+    {
+     "id": "36",
+     "titre": "Tuberculose uro-génitale",
+     "nb": 8
+    },
+    {
+     "id": "37",
+     "titre": "Insuffisance rénale aiguë",
+     "nb": 8
+    },
+    {
+     "id": "38",
+     "titre": "Insuffisance rénale chronique",
+     "nb": 8
+    },
+    {
+     "id": "39",
+     "titre": "Syndrome néphrotique",
+     "nb": 8
+    },
+    {
+     "id": "40",
+     "titre": "Néphropathie gravidique",
+     "nb": 8
+    }
+   ]
+  },
+  {
+   "prefixe": "xmvkq5pc5",
+   "idPortail": "xmvkq5pc5",
+   "titre": "Appareil Digestif · Portail de révision",
+   "fichier": "source/master/apps/xmvkq5pc5.html",
+   "fichierExport": "xmvkq5pc5.json",
+   "nbQuestions": 325,
+   "octets": 231229,
+   "sha256": "68399a20a2aea1860c5dc2f87e6bbd3fb2e1437ad5078f28810e55cedb55afb2",
+   "types": {
+    "qcm": 195,
+    "vf": 33,
+    "ouverte": 97,
+    "fiche": 0
+   },
+   "chapitres": [
+    {
+     "id": "0",
+     "titre": "La bouche",
+     "nb": 32
+    },
+    {
+     "id": "1",
+     "titre": "Pharynx & œsophage",
+     "nb": 15
+    },
+    {
+     "id": "2",
+     "titre": "L'estomac",
+     "nb": 20
+    },
+    {
+     "id": "3",
+     "titre": "L'intestin grêle",
+     "nb": 20
+    },
+    {
+     "id": "4",
+     "titre": "Le gros intestin",
+     "nb": 20
+    },
+    {
+     "id": "5",
+     "titre": "Le foie & les voies biliaires",
+     "nb": 24
+    },
+    {
+     "id": "6",
+     "titre": "Le pancréas & la rate",
+     "nb": 18
+    },
+    {
+     "id": "7",
+     "titre": "Péritoine & régions de l'abdomen",
+     "nb": 23
+    },
+    {
+     "id": "8",
+     "titre": "Nutrition & phénomènes mécaniques",
+     "nb": 31
+    },
+    {
+     "id": "9",
+     "titre": "Le transit intestinal",
+     "nb": 13
+    },
+    {
+     "id": "10",
+     "titre": "Salive & suc gastrique",
+     "nb": 24
+    },
+    {
+     "id": "11",
+     "titre": "Le suc pancréatique",
+     "nb": 26
+    },
+    {
+     "id": "12",
+     "titre": "Bile & suc intestinal",
+     "nb": 24
+    },
+    {
+     "id": "13",
+     "titre": "L'absorption",
+     "nb": 8
+    },
+    {
+     "id": "14",
+     "titre": "Autres fonctions & foie",
+     "nb": 21
+    },
+    {
+     "id": "15",
+     "titre": "Faim et soif",
+     "nb": 6
+    }
+   ]
+  },
+  {
+   "prefixe": "xmvkq5tml",
+   "idPortail": "xmvkq5tml",
+   "titre": "Système Nerveux — Révision INFAS",
+   "fichier": "source/master/apps/xmvkq5tml.html",
+   "fichierExport": "xmvkq5tml.json",
+   "nbQuestions": 767,
+   "octets": 611868,
+   "sha256": "a0d9cc098638abc1060b904cd901e20c4189f1c090af6c0f9d077b85ef351670",
+   "types": {
+    "qcm": 548,
+    "vf": 124,
+    "ouverte": 95,
+    "fiche": 0
+   },
+   "chapitres": [
+    {
+     "id": "0",
+     "titre": "Structure du neurone",
+     "nb": 86
+    },
+    {
+     "id": "1",
+     "titre": "Connexions des cellules nerveuses (synapses)",
+     "nb": 24
+    },
+    {
+     "id": "2",
+     "titre": "Physiologie du neurone",
+     "nb": 34
+    },
+    {
+     "id": "3",
+     "titre": "Organisation structurelle",
+     "nb": 37
+    },
+    {
+     "id": "4",
+     "titre": "Organisation fonctionnelle",
+     "nb": 23
+    },
+    {
+     "id": "5",
+     "titre": "Moelle épinière : anatomie",
+     "nb": 43
+    },
+    {
+     "id": "6",
+     "titre": "Moelle épinière : physiologie, voies et réflexes",
+     "nb": 74
+    },
+    {
+     "id": "7",
+     "titre": "Le tronc cérébral",
+     "nb": 45
+    },
+    {
+     "id": "8",
+     "titre": "Le cervelet",
+     "nb": 32
+    },
+    {
+     "id": "9",
+     "titre": "Le cerveau",
+     "nb": 69
+    },
+    {
+     "id": "10",
+     "titre": "Les nerfs crâniens",
+     "nb": 52
+    },
+    {
+     "id": "11",
+     "titre": "Nerfs rachidiens, plexus cervical et brachial",
+     "nb": 49
+    },
+    {
+     "id": "12",
+     "titre": "Nerfs dorsaux, plexus lombaire, sacré et honteux",
+     "nb": 37
+    },
+    {
+     "id": "13",
+     "titre": "Système végétatif : le sympathique",
+     "nb": 50
+    },
+    {
+     "id": "14",
+     "titre": "Le parasympathique et les médiateurs",
+     "nb": 35
+    },
+    {
+     "id": "15",
+     "titre": "Les méninges",
+     "nb": 38
+    },
+    {
+     "id": "16",
+     "titre": "Le liquide céphalo-rachidien",
+     "nb": 39
+    }
+   ]
+  },
+  {
+   "prefixe": "xmvkq5y0h",
+   "idPortail": "xmvkq5y0h",
+   "titre": "Ostéo · Arthro — INFAS",
+   "fichier": "source/master/apps/xmvkq5y0h.html",
+   "fichierExport": "xmvkq5y0h.json",
+   "nbQuestions": 751,
+   "octets": 525524,
+   "sha256": "f4c72d80c23059570ed22efc224fb0490865e4006203dc787154c1c828428956",
+   "types": {
+    "qcm": 682,
+    "vf": 0,
+    "ouverte": 69,
+    "fiche": 0
+   },
+   "chapitres": [
+    {
+     "id": "0",
+     "titre": "Généralités & morphologie des os",
+     "nb": 30
+    },
+    {
+     "id": "1",
+     "titre": "Structure de l'os long",
+     "nb": 27
+    },
+    {
+     "id": "2",
+     "titre": "Composition chimique des os",
+     "nb": 22
+    },
+    {
+     "id": "3",
+     "titre": "Histologie du tissu osseux",
+     "nb": 31
+    },
+    {
+     "id": "4",
+     "titre": "Formation & croissance des os",
+     "nb": 31
+    },
+    {
+     "id": "5",
+     "titre": "Généralités sur le squelette",
+     "nb": 20
+    },
+    {
+     "id": "6",
+     "titre": "Le crâne",
+     "nb": 30
+    },
+    {
+     "id": "7",
+     "titre": "Les os de la face",
+     "nb": 29
+    },
+    {
+     "id": "8",
+     "titre": "La colonne vertébrale (rachis)",
+     "nb": 48
+    },
+    {
+     "id": "9",
+     "titre": "La cage thoracique",
+     "nb": 25
+    },
+    {
+     "id": "10",
+     "titre": "Ceinture scapulaire & bras",
+     "nb": 33
+    },
+    {
+     "id": "11",
+     "titre": "Avant-bras & main",
+     "nb": 40
+    },
+    {
+     "id": "12",
+     "titre": "Ceinture pelvienne (bassin) & cuisse",
+     "nb": 44
+    },
+    {
+     "id": "13",
+     "titre": "La jambe & le pied",
+     "nb": 34
+    },
+    {
+     "id": "14",
+     "titre": "Physiologie des os & nouvelle nomenclature",
+     "nb": 25
+    },
+    {
+     "id": "15",
+     "titre": "Classification des articulations",
+     "nb": 23
+    },
+    {
+     "id": "16",
+     "titre": "Diarthroses : surfaces articulaires",
+     "nb": 31
+    },
+    {
+     "id": "17",
+     "titre": "Diarthroses : moyens d'union & de glissement",
+     "nb": 19
+    },
+    {
+     "id": "18",
+     "titre": "Articulation de l'épaule",
+     "nb": 35
+    },
+    {
+     "id": "19",
+     "titre": "Articulation de la hanche",
+     "nb": 36
+    },
+    {
+     "id": "20",
+     "titre": "Articulation du genou",
+     "nb": 53
+    },
+    {
+     "id": "21",
+     "titre": "Accomplissement & mouvements fondamentaux",
+     "nb": 25
+    },
+    {
+     "id": "22",
+     "titre": "Mouvements complexes & plans/axes",
+     "nb": 32
+    },
+    {
+     "id": "23",
+     "titre": "Vocabulaire à connaître",
+     "nb": 28
+    }
+   ]
+  },
+  {
+   "prefixe": "xmvkq62d4",
+   "idPortail": "xmvkq62d4",
+   "titre": "Cellules & Muscles · Révision INFAS",
+   "fichier": "source/master/apps/xmvkq62d4.html",
+   "fichierExport": "xmvkq62d4.json",
+   "nbQuestions": 786,
+   "octets": 645745,
+   "sha256": "7fe44b5165da01e9b6a755599a922a105ada24c5af996493c70297c635ad8d53",
+   "types": {
+    "qcm": 598,
+    "vf": 91,
+    "ouverte": 97,
+    "fiche": 0
+   },
+   "chapitres": [
+    {
+     "id": "0",
+     "titre": "Généralités et constituants chimiques de la cellule",
+     "nb": 34
+    },
+    {
+     "id": "1",
+     "titre": "Morphologie cellulaire : moyens d’étude, taille, forme, noyau",
+     "nb": 25
+    },
+    {
+     "id": "2",
+     "titre": "Membrane, cytoplasme, organites et cytosquelette",
+     "nb": 59
+    },
+    {
+     "id": "3",
+     "titre": "Vie cellulaire : nutrition, respiration, croissance",
+     "nb": 21
+    },
+    {
+     "id": "4",
+     "titre": "Reproduction des cellules somatiques : amitose et mitose",
+     "nb": 28
+    },
+    {
+     "id": "5",
+     "titre": "Gamétogenèse, méiose, activité mécanique et mort cellulaire",
+     "nb": 34
+    },
+    {
+     "id": "6",
+     "titre": "Notions d’embryologie",
+     "nb": 31
+    },
+    {
+     "id": "7",
+     "titre": "Introduction et définitions (tissu, organe, appareil)",
+     "nb": 13
+    },
+    {
+     "id": "8",
+     "titre": "Épithéliums : origine et épithéliums de revêtement",
+     "nb": 28
+    },
+    {
+     "id": "9",
+     "titre": "Épithéliums glandulaires",
+     "nb": 23
+    },
+    {
+     "id": "10",
+     "titre": "Tissu conjonctif : fibres, cellules, substance fondamentale",
+     "nb": 21
+    },
+    {
+     "id": "11",
+     "titre": "Tissus conjonctifs lâches et denses",
+     "nb": 22
+    },
+    {
+     "id": "12",
+     "titre": "Tissus conjonctifs particuliers et physiologie",
+     "nb": 29
+    },
+    {
+     "id": "13",
+     "titre": "Rapport épithélium – tissu conjonctif",
+     "nb": 13
+    },
+    {
+     "id": "14",
+     "titre": "Morphologie des muscles striés et lisses",
+     "nb": 29
+    },
+    {
+     "id": "15",
+     "titre": "Histologie : la fibre musculaire striée",
+     "nb": 29
+    },
+    {
+     "id": "16",
+     "titre": "Fibre lisse et composition chimique des muscles",
+     "nb": 18
+    },
+    {
+     "id": "17",
+     "titre": "Physiologie : excitabilité, contractilité, myogramme",
+     "nb": 35
+    },
+    {
+     "id": "18",
+     "titre": "Élasticité, tonicité ; phénomènes thermiques, électriques, hormonaux",
+     "nb": 34
+    },
+    {
+     "id": "19",
+     "titre": "Phénomènes mécaniques et chimiques ; muscle lisse",
+     "nb": 28
+    },
+    {
+     "id": "20",
+     "titre": "Anatomie : muscles de la tête",
+     "nb": 31
+    },
+    {
+     "id": "21",
+     "titre": "Muscles du cou, de la nuque et du dos",
+     "nb": 37
+    },
+    {
+     "id": "22",
+     "titre": "Muscles du tronc : thorax, abdomen, diaphragme",
+     "nb": 39
+    },
+    {
+     "id": "23",
+     "titre": "Muscles de l’épaule et du bras",
+     "nb": 21
+    },
+    {
+     "id": "24",
+     "titre": "Muscles de l’avant-bras et de la main",
+     "nb": 40
+    },
+    {
+     "id": "25",
+     "titre": "Muscles du bassin et de la cuisse",
+     "nb": 31
+    },
+    {
+     "id": "26",
+     "titre": "Muscles de la jambe et du pied",
+     "nb": 33
+    }
+   ]
+  },
+  {
+   "prefixe": "xmvkq66ok",
+   "idPortail": "xmvkq66ok",
+   "titre": "SANTÉ PUBLIQUE · L1 L2 L3 · Daniel Noufe INFAS",
+   "fichier": "source/master/apps/xmvkq66ok.html",
+   "fichierExport": "xmvkq66ok.json",
+   "nbQuestions": 599,
+   "octets": 422233,
+   "sha256": "b6746d315bf824afc6f8357ec0902a6ca7e3b5f7ace5fd96f1d0abff5e7b718d",
+   "types": {
+    "qcm": 388,
+    "vf": 120,
+    "ouverte": 91,
+    "fiche": 0
+   },
+   "chapitres": [
+    {
+     "id": "0",
+     "titre": "Introduction à la santé publique",
+     "nb": 21
+    },
+    {
+     "id": "1",
+     "titre": "Système national de santé de Côte d'Ivoire",
+     "nb": 21
+    },
+    {
+     "id": "2",
+     "titre": "Soins de santé primaires (SSP / IB)",
+     "nb": 21
+    },
+    {
+     "id": "3",
+     "titre": "Programme national de santé scolaire et universitaire",
+     "nb": 17
+    },
+    {
+     "id": "4",
+     "titre": "Étude du milieu",
+     "nb": 21
+    },
+    {
+     "id": "5",
+     "titre": "Nutrition",
+     "nb": 21
+    },
+    {
+     "id": "6",
+     "titre": "Hygiène : eau potable",
+     "nb": 21
+    },
+    {
+     "id": "7",
+     "titre": "Habitat, déchets, excreta, vecteurs",
+     "nb": 21
+    },
+    {
+     "id": "8",
+     "titre": "Fléaux sociaux",
+     "nb": 17
+    },
+    {
+     "id": "9",
+     "titre": "PEV : concepts, maladies cibles, vaccins",
+     "nb": 21
+    },
+    {
+     "id": "10",
+     "titre": "Organisation du PEV, calendrier, injections, MAPI",
+     "nb": 21
+    },
+    {
+     "id": "11",
+     "titre": "Chaîne du froid",
+     "nb": 21
+    },
+    {
+     "id": "12",
+     "titre": "Gestion des vaccins et consommables",
+     "nb": 22
+    },
+    {
+     "id": "13",
+     "titre": "Organisation d'une séance de vaccination",
+     "nb": 22
+    },
+    {
+     "id": "14",
+     "titre": "Généralités sur l'épidémiologie",
+     "nb": 22
+    },
+    {
+     "id": "15",
+     "titre": "Indicateurs de santé (calculs)",
+     "nb": 22
+    },
+    {
+     "id": "16",
+     "titre": "Surveillance intégrée de la maladie et riposte",
+     "nb": 22
+    },
+    {
+     "id": "17",
+     "titre": "Gestion des catastrophes et épidémies",
+     "nb": 11
+    },
+    {
+     "id": "18",
+     "titre": "IEC / CCC",
+     "nb": 19
+    },
+    {
+     "id": "19",
+     "titre": "CCSC, communication interpersonnelle, plaidoyer",
+     "nb": 15
+    },
+    {
+     "id": "20",
+     "titre": "Mobilisation sociale",
+     "nb": 10
+    },
+    {
+     "id": "21",
+     "titre": "Mobilisation communautaire",
+     "nb": 11
+    },
+    {
+     "id": "22",
+     "titre": "Technique d'animation de groupe",
+     "nb": 19
+    },
+    {
+     "id": "23",
+     "titre": "Diagnostic communautaire",
+     "nb": 16
+    },
+    {
+     "id": "24",
+     "titre": "Participation communautaire",
+     "nb": 9
+    },
+    {
+     "id": "25",
+     "titre": "Monitorage et couverture des activités",
+     "nb": 22
+    },
+    {
+     "id": "26",
+     "titre": "Budgétisation des ressources d'un ESPC",
+     "nb": 18
+    },
+    {
+     "id": "27",
+     "titre": "Référence et contre-référence",
+     "nb": 10
+    },
+    {
+     "id": "28",
+     "titre": "Comité de gestion (COGES)",
+     "nb": 17
+    },
+    {
+     "id": "29",
+     "titre": "Gestion de l'information sanitaire",
+     "nb": 22
+    },
+    {
+     "id": "30",
+     "titre": "Supervision",
+     "nb": 19
+    },
+    {
+     "id": "31",
+     "titre": "Suivi et évaluation des programmes",
+     "nb": 13
+    },
+    {
+     "id": "32",
+     "titre": "Indicateurs et sources de données",
+     "nb": 14
+    }
+   ]
+  },
+  {
+   "prefixe": "xmvm9jr75",
+   "idPortail": "xmvm9jr75",
+   "titre": "Ophtalmologie L3 — INFAS",
+   "fichier": "source/master/apps/xmvm9jr75.html",
+   "fichierExport": "xmvm9jr75.json",
+   "nbQuestions": 297,
+   "octets": 226337,
+   "sha256": "a02cc2399bb1fd8bd2993eb6c2b2a52e5b173ec97283e8fecb3b9007e2a317a7",
+   "types": {
+    "qcm": 285,
+    "vf": 0,
+    "ouverte": 12,
+    "fiche": 0
+   },
+   "chapitres": [
+    {
+     "id": "0",
+     "titre": "Anatomie de l'œil",
+     "nb": 33
+    },
+    {
+     "id": "1",
+     "titre": "Examen de l'acuité visuelle",
+     "nb": 19
+    },
+    {
+     "id": "2",
+     "titre": "Les amétropies",
+     "nb": 25
+    },
+    {
+     "id": "3",
+     "titre": "Les conjonctivites",
+     "nb": 18
+    },
+    {
+     "id": "4",
+     "titre": "La cataracte sénile",
+     "nb": 15
+    },
+    {
+     "id": "5",
+     "titre": "Glaucome chronique à angle ouvert",
+     "nb": 13
+    },
+    {
+     "id": "6",
+     "titre": "Glaucome aigu",
+     "nb": 16
+    },
+    {
+     "id": "7",
+     "titre": "Chalazion et orgelet",
+     "nb": 13
+    },
+    {
+     "id": "8",
+     "titre": "Conjonctivites du nouveau-né",
+     "nb": 14
+    },
+    {
+     "id": "9",
+     "titre": "Limbo-conjonctivite",
+     "nb": 6
+    },
+    {
+     "id": "10",
+     "titre": "Cataracte congénitale",
+     "nb": 12
+    },
+    {
+     "id": "11",
+     "titre": "Le rétinoblastome",
+     "nb": 13
+    },
+    {
+     "id": "12",
+     "titre": "Glaucome congénital",
+     "nb": 6
+    },
+    {
+     "id": "13",
+     "titre": "Onchocercose",
+     "nb": 28
+    },
+    {
+     "id": "14",
+     "titre": "Trachome",
+     "nb": 20
+    },
+    {
+     "id": "15",
+     "titre": "Les traumatismes oculaires",
+     "nb": 24
+    },
+    {
+     "id": "16",
+     "titre": "Médicaments ophtalmiques",
+     "nb": 22
+    }
+   ]
+  }
+ ]
+}
