@@ -1,10 +1,10 @@
 {
- "v": "1ac06d90e3",
+ "v": "f9fba58c75",
  "date": "2026-10-25",
- "sig": "421d0071bf36df8406b95acc89f3e179bd14c315",
+ "sig": "729ea0ba99e0a7b7d7ddaedf050662e04e59194d",
  "notes": [
   {
-   "t": "📱 Paiement : seul le numéro qui a payé est demandé"
+   "t": "⚡ Premium activé en quelques secondes après validation du paiement"
   }
  ],
  "mats": {
@@ -98,6 +98,15 @@
   }
  },
  "hist": [
+  {
+   "v": "f9fba58c75",
+   "date": "2026-10-25",
+   "notes": [
+    {
+     "t": "⚡ Premium activé en quelques secondes après validation du paiement"
+    }
+   ]
+  },
   {
    "v": "1ac06d90e3",
    "date": "2026-10-25",
@@ -194,15 +203,6 @@
    "notes": [
     {
      "t": "🔇 Les sons et voix des réponses ont été retirés."
-    }
-   ]
-  },
-  {
-   "v": "902f861593",
-   "date": "2026-10-24",
-   "notes": [
-    {
-     "t": "🔊 Nouveau : un son et une voix à chaque réponse — « Docta ! » quand c’est juste, « Référé ! Référé ! » quand c’est faux (à couper dans le Profil)."
     }
    ]
   }
