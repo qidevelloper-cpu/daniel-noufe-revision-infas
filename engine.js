@@ -2241,7 +2241,7 @@ const RIC={
  RIC.paywall=function(key,what){track('offre_vue',{cle:key});let o=$('#ripay');if(o)o.remove();o=document.createElement('div');o.id='ripay';o.className='pmod';
   const c=(E.content&&E.content.commu)||{};const adm=linkOk(c.admin)?c.admin:'';
   const P=(RIC.cfg.plans||[]).map(p=>`<div class="li" style="cursor:default"><span class="em">⭐</span><span class="tx"><b>${esc(p.nom)}</b><small>${p.jours} jours d’accès complet</small></span><b style="white-space:nowrap">${fcfa(p.prix_xof)}</b></div>`).join('');
-  o.innerHTML=`<div class="pbox"><h3>🔒 ${esc(what||'Contenu Premium')}</h3><div class="muted small">Ce contenu fait partie de la version Premium de Révision INFAS : tous les sujets, les explications complètes et les applications complètes.</div>${P?`<div style="margin:12px 0">${P}</div>`:''}<div class="muted small">Le paiement Mobile Money dans l’appli arrive bientôt. En attendant, écris à l’administrateur pour obtenir ton accès.${RIC.session?'':' Il l’activera sur ton compte : crée-le ou connecte-toi d’abord.'}</div>${RIC.session?'':'<button class="btn coral" style="width:100%;margin-top:10px" onclick="document.getElementById(\'ripay\').remove();RIC.compte()">👤 Créer mon compte ou me connecter</button>'}<div class="row2" style="margin-top:12px">${adm?`<a class="btn coral" href="${esc(adm)}" target="_blank" rel="noopener" style="text-align:center;text-decoration:none">✉️ Écrire à l’administrateur</a>`:''}<button class="btn light" id="ripayX">Fermer</button></div></div>`;
+  o.innerHTML=`<div class="pbox"><h3>🔒 ${esc(what||'Contenu Premium')}</h3><div class="muted small">Ce contenu fait partie de la version Premium de Révision INFAS : tous les sujets, les explications complètes et les applications complètes.</div>${P?`<div style="margin:12px 0">${P}</div>`:''}<div class="muted small">Le paiement Mobile Money dans l’appli arrive bientôt. En attendant, écris à l’administrateur pour obtenir ton accès.${RIC.session?'':' Il l’activera sur ton compte : crée-le ou connecte-toi d’abord.'}</div>${RIC.session?'':'<button class="btn coral" style="width:100%;margin-top:10px" onclick="document.getElementById(\'ripay\').remove();RIC.compte()">👤 Me connecter à mon compte</button>'}<div class="row2" style="margin-top:12px">${adm?`<a class="btn coral" href="${esc(adm)}" target="_blank" rel="noopener" style="text-align:center;text-decoration:none">✉️ Écrire à l’administrateur</a>`:''}<button class="btn light" id="ripayX">Fermer</button></div></div>`;
   document.body.appendChild(o);$('#ripayX',o).onclick=()=>o.remove();o.onclick=e=>{if(e.target===o)o.remove()}};
 
  /* ---------- signalement d'erreur ---------- */
@@ -2315,26 +2315,30 @@ const RIC={
    o.innerHTML=`<div class="pbox"><h3>👤 Mon compte</h3><div class="li" style="cursor:default"><span class="em">✉️</span><span class="tx"><b>${esc(RIC.session.email||'Compte connecté')}</b><small>${s.statut==='bloque'?'Compte bloqué : contacte l’administrateur':prem?'⭐ Premium jusqu’au '+esc(finPremium()):'Version gratuite'}</small></span></div><div class="muted small" style="margin:8px 0">Ton compte garde ton accès Premium. Il fonctionne sur 2 téléphones au maximum.</div><div class="row2"><button class="btn light" id="ricRef">🔄 Actualiser</button><button class="btn light" id="ricOut">Se déconnecter</button></div><button class="btn light" style="width:100%;margin-top:8px" id="ricX">Fermer</button></div>`;
    document.body.appendChild(o);$('#ricX',o).onclick=()=>o.remove();$('#ricRef',o).onclick=async()=>{await RIC.syncCompte();o.remove();toast(RIC.isPremium()?'⭐ Premium actif':'Compte à jour')};
    $('#ricOut',o).onclick=async()=>{try{const t=await token();if(t)await fetch(RIC.url+'/auth/v1/logout',{method:'POST',headers:Object.assign(H(),{Authorization:'Bearer '+t})})}catch(e){}logoutLocal();o.remove();render();toast('Déconnecté')};return}
-  const cr=mode==='creer';
-  o.innerHTML=`<div class="pbox"><h3>👤 ${cr?'Créer mon compte':'Me connecter'}</h3><div class="muted small" style="margin-bottom:10px">${cr?'Gratuit. Ton compte permet à l’administrateur d’activer ton accès Premium.':'Avec l’e-mail et le mot de passe de ton compte.'}</div>
-   ${RIC.cfg.google?'<button class="btn light" style="width:100%" id="ricG"><b style="color:#4285F4">G</b> Continuer avec Google</button><div class="muted small" style="text-align:center;margin:8px 0">ou</div>':''}
+  const cr=mode==='creer',G=!!RIC.cfg.google,mail=mode==='email'||mode==='connexion'||!G,crm=mode!=='connexion';
+  o.innerHTML=`<div class="pbox"><h3>👤 ${G&&!mail?'Mon compte Révision INFAS':crm?'Créer mon compte':'Me connecter'}</h3>
+   ${G?`<div class="muted small" style="margin-bottom:10px">Un seul geste avec ton compte Google : pas de mot de passe à créer. Ton compte permet à l’administrateur d’activer ton accès Premium.</div>
+   <button class="btn coral" style="width:100%" id="ricG"><b>G</b>&nbsp; Continuer avec Google</button>`:`<div class="muted small" style="margin-bottom:10px">${crm?'Gratuit. Ton compte permet à l’administrateur d’activer ton accès Premium.':'Avec l’e-mail et le mot de passe de ton compte.'}</div>`}
+   <div id="ricMail" style="${mail?'':'display:none'}">
+   ${G?'<div class="muted small" style="text-align:center;margin:10px 0 8px">ou avec une adresse e-mail</div>':''}
    <input class="tin" id="ricE" type="email" autocomplete="username" placeholder="Ton adresse e-mail" style="margin-bottom:8px">
-   <input class="tin" id="ricP" type="password" autocomplete="${cr?'new-password':'current-password'}" placeholder="${cr?'Choisis un mot de passe (6 caractères min.)':'Ton mot de passe'}">
+   <input class="tin" id="ricP" type="password" autocomplete="${crm?'new-password':'current-password'}" placeholder="${crm?'Choisis un mot de passe (6 caractères min.)':'Ton mot de passe'}">
+   <button class="btn ${G?'light':'coral'}" style="width:100%;margin-top:8px" id="ricOk">${crm?'Créer mon compte':'Me connecter'}</button>
+   <div class="row2" style="margin-top:8px"><button class="btn light" id="ricSw">${crm?'J’ai déjà un compte':'Créer un compte'}</button>${crm?'':'<button class="btn light" id="ricLost">Mot de passe oublié</button>'}</div></div>
    <div id="ricM" class="small" style="margin-top:8px;color:#c0392b"></div>
-   <button class="btn coral" style="width:100%;margin-top:8px" id="ricOk">${cr?'Créer mon compte':'Me connecter'}</button>
-   <div class="row2" style="margin-top:8px"><button class="btn light" id="ricSw">${cr?'J’ai déjà un compte':'Créer un compte'}</button>${cr?'':'<button class="btn light" id="ricLost">Mot de passe oublié</button>'}</div>
+   ${G&&!mail?'<button class="btn light" style="width:100%;margin-top:10px;font-size:13px" id="ricShow">Je n’ai pas de compte Google : utiliser une adresse e-mail</button>':''}
    <button class="btn light" style="width:100%;margin-top:8px" id="ricX">Plus tard</button></div>`;
   document.body.appendChild(o);const msg=t=>{$('#ricM',o).textContent=t};
-  $('#ricX',o).onclick=()=>o.remove();$('#ricSw',o).onclick=()=>RIC.compte(cr?'connexion':'creer');if($('#ricG',o))$('#ricG',o).onclick=()=>RIC.google();
+  $('#ricX',o).onclick=()=>o.remove();$('#ricSw',o).onclick=()=>RIC.compte(crm?'connexion':'email');if($('#ricShow',o))$('#ricShow',o).onclick=()=>{$('#ricMail',o).style.display='';$('#ricShow',o).remove()};if($('#ricG',o))$('#ricG',o).onclick=()=>RIC.google();
   if($('#ricLost',o))$('#ricLost',o).onclick=async()=>{const e=$('#ricE',o).value.trim();if(!e){msg('Écris ton e-mail, puis touche « Mot de passe oublié ».');return}try{await authCall('recover',{email:e});msg('');toast('E-mail envoyé : suis le lien pour choisir un nouveau mot de passe.')}catch(x){msg(frAuth(x.message))}};
   $('#ricOk',o).onclick=async()=>{const e=$('#ricE',o).value.trim(),p=$('#ricP',o).value;if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e)){msg('Adresse e-mail invalide.');return}if(p.length<6){msg('Mot de passe : 6 caractères minimum.');return}
    msg('');$('#ricOk',o).disabled=true;
-   try{if(cr){const nm=String(S&&S.name||'').trim().split(/\s+/);const j=await authCall('signup',{email:e,password:p,data:{prenom:nm[0]||'',nom:nm.slice(1).join(' '),filiere:S&&S.fil?filBase(S.fil):'',annee:S&&S.niv||''}});
+   try{if(crm){const nm=String(S&&S.name||'').trim().split(/\s+/);const j=await authCall('signup',{email:e,password:p,data:{prenom:nm[0]||'',nom:nm.slice(1).join(' '),filiere:S&&S.fil?filBase(S.fil):'',annee:S&&S.niv||''}});
      if(!keepSession(j,e)){o.remove();RIC.info('Compte créé ✅','Ouvre l’e-mail de confirmation reçu, touche le lien, puis reviens te connecter.');return}}
     else{keepSession(await authCall('token?grant_type=password',{email:e,password:p}),e)}
-    o.remove();toast(cr?'Compte créé ✅':'Connecté ✅');await RIC.syncCompte()}
+    o.remove();toast(crm?'Compte créé ✅':'Connecté ✅');await RIC.syncCompte()}
    catch(x){msg(frAuth(x.message))}finally{const b=$('#ricOk',o);if(b)b.disabled=false}}};
- function chipCompte(){if(RIC.session){const prem=RIC.isPremium();return `<button class="ri-acc ${prem?'p':''}" onclick="RIC.compte()">${prem?'⭐ Premium · jusqu’au '+esc(finPremium()):'👤 Mon compte'}</button>`}return `<button class="ri-acc" onclick="RIC.compte('creer')">👤 Créer mon compte · se connecter</button>`}
+ function chipCompte(){if(RIC.session){const prem=RIC.isPremium();return `<button class="ri-acc ${prem?'p':''}" onclick="RIC.compte()">${prem?'⭐ Premium · jusqu’au '+esc(finPremium()):'👤 Mon compte'}</button>`}return `<button class="ri-acc" onclick="RIC.compte('creer')">${RIC.cfg.google?'👤 Me connecter avec Google':'👤 Créer mon compte · se connecter'}</button>`}
 
  /* ---------- décorations après chaque affichage ---------- */
  function annonces(){if(!S||!S.onb)return'';const vu=LS.get(RIC.VK,{}),t=today(),prem=RIC.isPremium(),niv=S.fil&&S.niv?filBase(S.fil)+'-'+S.niv:'';

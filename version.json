@@ -1,10 +1,10 @@
 {
- "v": "7d0395502e",
+ "v": "4334c4331f",
  "date": "2026-10-25",
- "sig": "8771a18dedfe71f4f2a886de61bf392d9207361b",
+ "sig": "5bc95147a9fe7009af8eb52bb560d069ea26ff00",
  "notes": [
   {
-   "t": "👤 Comptes élèves (e-mail, Google) reliés au tableau de bord · 📋 Liste des cours publiée pour le tableau de bord"
+   "t": "🔐 Connexion Google en un geste, e-mail en option"
   }
  ],
  "mats": {
@@ -98,6 +98,15 @@
   }
  },
  "hist": [
+  {
+   "v": "4334c4331f",
+   "date": "2026-10-25",
+   "notes": [
+    {
+     "t": "🔐 Connexion Google en un geste, e-mail en option"
+    }
+   ]
+  },
   {
    "v": "7d0395502e",
    "date": "2026-10-25",
@@ -202,19 +211,6 @@
     {
      "t": "🔄 Cours mis à jour : Chirurgie — L1 · L2 · L3",
      "m": "chir"
-    }
-   ]
-  },
-  {
-   "v": "d889ee0470",
-   "date": "2026-10-24",
-   "notes": [
-    {
-     "t": "👁️ L’Ophtalmologie (L3 · IDE) arrive : 297 questions, 414 flashcards, son glossaire et l’application complète."
-    },
-    {
-     "t": "📘 Nouveau cours : Ophtalmologie",
-     "m": "xmvm9jr75"
     }
    ]
   }
