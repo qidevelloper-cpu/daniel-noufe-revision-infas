@@ -1,10 +1,10 @@
 {
- "v": "32e2867350",
+ "v": "5d8acec691",
  "date": "2026-10-25",
- "sig": "afa542a20947bc7fe97a20df7cc3b5dcdbb8fdf1",
+ "sig": "f7859c743d0a9a857ad85131e8dbf68cfa8067f8",
  "notes": [
   {
-   "t": "📡 Présence en direct pour le tableau de bord"
+   "t": "🚚 Nouvelle adresse : revision-infas.pages.dev (progression transférée automatiquement)"
   }
  ],
  "mats": {
@@ -99,6 +99,15 @@
  },
  "hist": [
   {
+   "v": "5d8acec691",
+   "date": "2026-10-25",
+   "notes": [
+    {
+     "t": "🚚 Nouvelle adresse : revision-infas.pages.dev (progression transférée automatiquement)"
+    }
+   ]
+  },
+  {
    "v": "32e2867350",
    "date": "2026-10-25",
    "notes": [
@@ -176,27 +185,6 @@
    "notes": [
     {
      "t": "👤 Comptes élèves (e-mail, Google) reliés au tableau de bord · 📋 Liste des cours publiée pour le tableau de bord"
-    }
-   ]
-  },
-  {
-   "v": "805d8f71d0",
-   "date": "2026-10-25",
-   "notes": [
-    {
-     "t": "📚 Cours complets dans l'appli (sommaire, quiz, flashcards, prépa D.E, images) · 📝 Correction nationale : sujets en entier, correction dès qu'on coche, QCM/QCD rétablis · 📎 Questions hors cours remises dans leurs sujets"
-    },
-    {
-     "t": "🔄 Cours mis à jour : Chirurgie — L1 · L2 · L3",
-     "m": "chir"
-    },
-    {
-     "t": "🔄 Cours mis à jour : Correction Nationale 2025 — Examens blancs infirmier",
-     "m": "xmvkq4zed"
-    },
-    {
-     "t": "🔄 Cours mis à jour : Appareil digestif",
-     "m": "xmvkq5pc5"
     }
    ]
   }
