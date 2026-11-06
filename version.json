@@ -1,10 +1,10 @@
 {
- "v": "5812e6e067",
+ "v": "32e2867350",
  "date": "2026-10-25",
- "sig": "a1b1b8c04ddb8e6d7ffece59b3c7ffa7123454a9",
+ "sig": "afa542a20947bc7fe97a20df7cc3b5dcdbb8fdf1",
  "notes": [
   {
-   "t": "📚 Cours ouverts à plusieurs années · 💬 Liens WhatsApp de la communauté"
+   "t": "📡 Présence en direct pour le tableau de bord"
   }
  ],
  "mats": {
@@ -99,6 +99,15 @@
  },
  "hist": [
   {
+   "v": "32e2867350",
+   "date": "2026-10-25",
+   "notes": [
+    {
+     "t": "📡 Présence en direct pour le tableau de bord"
+    }
+   ]
+  },
+  {
    "v": "5812e6e067",
    "date": "2026-10-25",
    "notes": [
@@ -188,18 +197,6 @@
     {
      "t": "🔄 Cours mis à jour : Appareil digestif",
      "m": "xmvkq5pc5"
-    }
-   ]
-  },
-  {
-   "v": "64b43f344c",
-   "date": "2026-10-25",
-   "notes": [
-    {
-     "t": "🏛️ Accueil : rubrique des sujets d’examen et D.E blanc renommée et mise en avant."
-    },
-    {
-     "t": "🛠️ Corrections dans « Correction Nationale » et réorganisation des cours par année."
     }
    ]
   }
