@@ -1,10 +1,10 @@
 {
- "v": "4334c4331f",
+ "v": "b7d4653dae",
  "date": "2026-10-25",
- "sig": "5bc95147a9fe7009af8eb52bb560d069ea26ff00",
+ "sig": "44430641417d33bedc8a7224783b452210d40204",
  "notes": [
   {
-   "t": "🔐 Connexion Google en un geste, e-mail en option"
+   "t": "💳 Premium par Mobile Money"
   }
  ],
  "mats": {
@@ -98,6 +98,15 @@
   }
  },
  "hist": [
+  {
+   "v": "b7d4653dae",
+   "date": "2026-10-25",
+   "notes": [
+    {
+     "t": "💳 Premium par Mobile Money"
+    }
+   ]
+  },
   {
    "v": "4334c4331f",
    "date": "2026-10-25",
@@ -194,19 +203,6 @@
    "notes": [
     {
      "t": "🔪 Chirurgie : nouvelle version de l’application complète."
-    },
-    {
-     "t": "🔄 Cours mis à jour : Chirurgie — L1 · L2 · L3",
-     "m": "chir"
-    }
-   ]
-  },
-  {
-   "v": "54acdd5e65",
-   "date": "2026-10-24",
-   "notes": [
-    {
-     "t": "🔪 Chirurgie : nouvel examen blanc chronométré noté sur 20, et une seule rubrique « Résumés & tableaux » (fiches maladies, résumés, comparatifs)."
     },
     {
      "t": "🔄 Cours mis à jour : Chirurgie — L1 · L2 · L3",

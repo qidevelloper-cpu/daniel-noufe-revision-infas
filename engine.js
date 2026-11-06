@@ -2183,14 +2183,14 @@ const RIC={
   try{
    const [rules,sets,plans,ann]=await Promise.all([
     get('access_rules?select=cle,acces,quota_gratuit'),
-    get('app_settings?select=cle,valeur&cle=eq.public.access'),
+    get('app_settings?select=cle,valeur&cle=in.(public.access,public.paiement)'),
     get('plans?select=id,nom,jours,prix_xof&order=jours.asc'),
     get('announcements?select=id,titre,texte,cible,couleur,du,au')]);
    const regles={};rules.forEach(r=>{regles[r.cle]=r.quota_gratuit==null?{acces:r.acces}:{acces:r.acces,quotaGratuit:r.quota_gratuit}});
-   const pa=(sets[0]&&sets[0].valeur)||{};
+   const sv=k=>{const x=sets.find(r=>r.cle===k);return(x&&x.valeur)||{}};const pa=sv('public.access'),pay=sv('public.paiement');
    const old=JSON.stringify(RIC.cfg.regles)+RIC.cfg.defaut+JSON.stringify(RIC.cfg.annonces);
    let google=false;try{const r=await fetch(RIC.url+'/auth/v1/settings',{headers:H(),cache:'no-store'});if(r.ok){const j=await r.json();google=!!(j.external&&j.external.google)}}catch(e){}
-   RIC.cfg={regles,defaut:pa.defaut==='premium'?'premium':'gratuit',version:pa.version||0,plans,annonces:ann,google,t:Date.now()};
+   RIC.cfg={regles,defaut:pa.defaut==='premium'?'premium':'gratuit',version:pa.version||0,plans,annonces:ann,google,paiement:pay,t:Date.now()};
    LS.set(RIC.CK,RIC.cfg);RIC.ready=true;
    if(old!==JSON.stringify(regles)+RIC.cfg.defaut+JSON.stringify(ann)&&typeof render==='function'&&!EDITMODE)render();
   }catch(e){console.warn('RI cloud : règles non mises à jour',e)}
@@ -2231,7 +2231,8 @@ const RIC={
  RIC.track=track;
  let flushing=false;
  async function flush(){if(flushing||!navigator.onLine)return;const q=LS.get(RIC.QK,[]);if(!q.length)return;flushing=true;
-  try{await post('events',q.slice(0,100).map(e=>Object.assign({user_id:null},e)));LS.set(RIC.QK,LS.get(RIC.QK,[]).slice(Math.min(100,q.length)))}catch(e){console.warn('RI cloud : statistiques en attente',e)}
+  try{await post('events',q.slice(0,100).map(e=>Object.assign({user_id:null},e)));LS.set(RIC.QK,LS.get(RIC.QK,[]).slice(Math.min(100,q.length)))}
+  catch(e){/* refus définitif (4xx) : on écarte ce lot pour ne pas bloquer la file ; coupure réseau : on réessaiera */if(/^4\d\d /.test(e.message))LS.set(RIC.QK,LS.get(RIC.QK,[]).slice(Math.min(100,q.length)));console.warn('RI cloud : statistiques en attente',e)}
   flushing=false}
  RIC.flush=flush;
  window.addEventListener('online',()=>{if(!RIC.off())refresh(true)});
@@ -2240,8 +2241,9 @@ const RIC={
  function fcfa(n){return new Intl.NumberFormat('fr-FR').format(n)+' FCFA'}
  RIC.paywall=function(key,what){track('offre_vue',{cle:key});let o=$('#ripay');if(o)o.remove();o=document.createElement('div');o.id='ripay';o.className='pmod';
   const c=(E.content&&E.content.commu)||{};const adm=linkOk(c.admin)?c.admin:'';
-  const P=(RIC.cfg.plans||[]).map(p=>`<div class="li" style="cursor:default"><span class="em">⭐</span><span class="tx"><b>${esc(p.nom)}</b><small>${p.jours} jours d’accès complet</small></span><b style="white-space:nowrap">${fcfa(p.prix_xof)}</b></div>`).join('');
-  o.innerHTML=`<div class="pbox"><h3>🔒 ${esc(what||'Contenu Premium')}</h3><div class="muted small">Ce contenu fait partie de la version Premium de Révision INFAS : tous les sujets, les explications complètes et les applications complètes.</div>${P?`<div style="margin:12px 0">${P}</div>`:''}<div class="muted small">Le paiement Mobile Money dans l’appli arrive bientôt. En attendant, écris à l’administrateur pour obtenir ton accès.${RIC.session?'':' Il l’activera sur ton compte : crée-le ou connecte-toi d’abord.'}</div>${RIC.session?'':'<button class="btn coral" style="width:100%;margin-top:10px" onclick="document.getElementById(\'ripay\').remove();RIC.compte()">👤 Me connecter à mon compte</button>'}<div class="row2" style="margin-top:12px">${adm?`<a class="btn coral" href="${esc(adm)}" target="_blank" rel="noopener" style="text-align:center;text-decoration:none">✉️ Écrire à l’administrateur</a>`:''}<button class="btn light" id="ripayX">Fermer</button></div></div>`;
+  const payOk=RIC.payOuvert();
+  const P=(RIC.cfg.plans||[]).map(p=>`<div class="li" style="cursor:${payOk?'pointer':'default'}" ${payOk?`onclick="document.getElementById('ripay').remove();RIC.payer('${jsq(p.id)}')"`:''}><span class="em">⭐</span><span class="tx"><b>${esc(p.nom)}</b><small>${p.jours} jours d’accès complet</small></span><b style="white-space:nowrap">${fcfa(p.prix_xof)}</b></div>`).join('');
+  o.innerHTML=`<div class="pbox"><h3>🔒 ${esc(what||'Contenu Premium')}</h3><div class="muted small">Ce contenu fait partie de la version Premium de Révision INFAS : tous les sujets, les explications complètes et les applications complètes.</div>${P?`<div style="margin:12px 0">${P}</div>`:''}${payOk?`<div class="muted small">${RIC.session?'Touche un pass pour le payer par Mobile Money (Wave, Orange Money…).':'Pour payer, connecte-toi d’abord à ton compte : ton Premium y sera activé.'}</div>${RIC.session?`<button class="btn coral" style="width:100%;margin-top:10px" onclick="document.getElementById('ripay').remove();RIC.payer()">💳 Payer par Mobile Money</button>`:''}`:`<div class="muted small">Le paiement Mobile Money dans l’appli arrive bientôt. En attendant, écris à l’administrateur pour obtenir ton accès.${RIC.session?'':' Il l’activera sur ton compte : crée-le ou connecte-toi d’abord.'}</div>`}${RIC.session?'':'<button class="btn coral" style="width:100%;margin-top:10px" onclick="document.getElementById(\'ripay\').remove();RIC.compte()">👤 Me connecter à mon compte</button>'}<div class="row2" style="margin-top:12px">${adm?`<a class="btn coral" href="${esc(adm)}" target="_blank" rel="noopener" style="text-align:center;text-decoration:none">✉️ Écrire à l’administrateur</a>`:''}<button class="btn light" id="ripayX">Fermer</button></div></div>`;
   document.body.appendChild(o);$('#ripayX',o).onclick=()=>o.remove();o.onclick=e=>{if(e.target===o)o.remove()}};
 
  /* ---------- signalement d'erreur ---------- */
@@ -2301,7 +2303,9 @@ const RIC={
    if(a&&!a.ok){if(a.raison==='appareils'){logoutLocal();render();RIC.info('Compte déjà utilisé sur 2 appareils','Pour l’utiliser ici, demande à l’administrateur de retirer un ancien téléphone de ton compte.');return}
     if(a.raison==='bloque'){RIC.statut={statut:'bloque'};LS.set(STK,RIC.statut);render();toast('Compte bloqué : contacte l’administrateur.');return}}
    if(S&&S.onb){const nm=String(S.name||'').trim().split(/\s+/);await RIC.rpc('maj_mon_profil',{p_prenom:nm[0]||'',p_nom:nm.slice(1).join(' '),p_filiere:S.fil?filBase(S.fil):'',p_annee:S.niv||'',p_programme:null}).catch(()=>{})}
-   const st=await RIC.rpc('mon_statut',{});RIC.statut=Object.assign({t:Date.now()},st||{});LS.set(STK,RIC.statut);render()}
+   const st=await RIC.rpc('mon_statut',{});RIC.statut=Object.assign({t:Date.now()},st||{});LS.set(STK,RIC.statut);
+   try{const prevPrem=RIC.isPremium();RIC.paiements=(await RIC.rpc('mes_paiements',{}))||[];LS.set('ri_cloud_pay',RIC.paiements)}catch(e){}
+   render()}
   catch(e){console.warn('RI compte',e)}};
  RIC.google=function(){if(!navigator.onLine){toast('Pas de connexion internet.');return}location.href=RIC.url+'/auth/v1/authorize?provider=google&redirect_to='+encodeURIComponent(location.origin+location.pathname)};
  /* retour de Google : la session arrive dans l'adresse de la page */
@@ -2312,7 +2316,8 @@ const RIC={
  function finPremium(){const s=RIC.statut;return s&&s.premium_fin?new Date(s.premium_fin).toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'}):''}
  RIC.compte=function(mode){let o=$('#ricpt');if(o)o.remove();o=document.createElement('div');o.id='ricpt';o.className='pmod';mode=mode||'creer';
   if(RIC.session){const s=RIC.statut||{};const prem=RIC.isPremium();
-   o.innerHTML=`<div class="pbox"><h3>👤 Mon compte</h3><div class="li" style="cursor:default"><span class="em">✉️</span><span class="tx"><b>${esc(RIC.session.email||'Compte connecté')}</b><small>${s.statut==='bloque'?'Compte bloqué : contacte l’administrateur':prem?'⭐ Premium jusqu’au '+esc(finPremium()):'Version gratuite'}</small></span></div><div class="muted small" style="margin:8px 0">Ton compte garde ton accès Premium. Il fonctionne sur 2 téléphones au maximum.</div><div class="row2"><button class="btn light" id="ricRef">🔄 Actualiser</button><button class="btn light" id="ricOut">Se déconnecter</button></div><button class="btn light" style="width:100%;margin-top:8px" id="ricX">Fermer</button></div>`;
+   const PA=(RIC.paiements||LS.get('ri_cloud_pay',[])).slice(0,3).map(p=>`<div class="muted small" style="margin:4px 0">${p.statut==='a_verifier'?'⏳ En vérification':p.statut==='valide'?'✅ Validé':'❌ Refusé'} · ${esc(p.plan_nom)} · ${fcfa(p.montant_xof)} · ${esc((OPS[p.operateur]||[p.operateur])[0])}${p.statut==='refuse'&&p.motif?' — '+esc(p.motif):''}</div>`).join('');
+   o.innerHTML=`<div class="pbox"><h3>👤 Mon compte</h3><div class="li" style="cursor:default"><span class="em">✉️</span><span class="tx"><b>${esc(RIC.session.email||'Compte connecté')}</b><small>${s.statut==='bloque'?'Compte bloqué : contacte l’administrateur':prem?'⭐ Premium jusqu’au '+esc(finPremium()):'Version gratuite'}</small></span></div>${PA?`<div style="margin:8px 0"><b class="small">Mes paiements</b>${PA}</div>`:''}${!prem&&RIC.payOuvert()?`<button class="btn coral" style="width:100%;margin:6px 0" onclick="document.getElementById('ricpt').remove();RIC.payer()">💳 Passer Premium</button>`:''}<div class="muted small" style="margin:8px 0">Ton compte garde ton accès Premium. Il fonctionne sur 2 téléphones au maximum.</div><div class="row2"><button class="btn light" id="ricRef">🔄 Actualiser</button><button class="btn light" id="ricOut">Se déconnecter</button></div><button class="btn light" style="width:100%;margin-top:8px" id="ricX">Fermer</button></div>`;
    document.body.appendChild(o);$('#ricX',o).onclick=()=>o.remove();$('#ricRef',o).onclick=async()=>{await RIC.syncCompte();o.remove();toast(RIC.isPremium()?'⭐ Premium actif':'Compte à jour')};
    $('#ricOut',o).onclick=async()=>{try{const t=await token();if(t)await fetch(RIC.url+'/auth/v1/logout',{method:'POST',headers:Object.assign(H(),{Authorization:'Bearer '+t})})}catch(e){}logoutLocal();o.remove();render();toast('Déconnecté')};return}
   const cr=mode==='creer',G=!!RIC.cfg.google,mail=mode==='email'||mode==='connexion'||!G,crm=mode!=='connexion';
@@ -2340,6 +2345,40 @@ const RIC={
    catch(x){msg(frAuth(x.message))}finally{const b=$('#ricOk',o);if(b)b.disabled=false}}};
  function chipCompte(){if(RIC.session){const prem=RIC.isPremium();return `<button class="ri-acc ${prem?'p':''}" onclick="RIC.compte()">${prem?'⭐ Premium · jusqu’au '+esc(finPremium()):'👤 Mon compte'}</button>`}return `<button class="ri-acc" onclick="RIC.compte('creer')">${RIC.cfg.google?'👤 Me connecter avec Google':'👤 Créer mon compte · se connecter'}</button>`}
 
+
+ /* ---------- paiement manuel Mobile Money ---------- */
+ const OPS={wave:['Wave','#1DC3F0'],orange:['Orange Money','#FF7900'],mtn:['MTN MoMo','#FFCB05'],moov:['Moov Money','#0066B3']};
+ RIC.payOuvert=()=>{const c=RIC.cfg.paiement||{};return!!c.actif&&Object.keys(OPS).some(k=>c.numeros&&c.numeros[k])&&(RIC.cfg.plans||[]).length>0};
+ const RAISON={ferme:'Le paiement est fermé pour le moment.',operateur:'Ce moyen de paiement n’est pas disponible.',pass:'Ce pass n’est plus proposé.',reference:'Identifiant de transaction invalide : recopie-le depuis le SMS de confirmation.',telephone:'Numéro de téléphone invalide.',trop:'Tu as déjà 3 paiements en attente de vérification : attends la réponse de l’administrateur.',deja:'Cet identifiant de transaction a déjà été déclaré.',compte:'Ton compte est bloqué : contacte l’administrateur.',connexion:'Connecte-toi d’abord à ton compte.'};
+ RIC.payer=function(planId){if(!RIC.session){RIC.compte('creer');return}if(!RIC.payOuvert()){toast('Le paiement n’est pas encore ouvert.');return}
+  const c=RIC.cfg.paiement,ops=Object.keys(OPS).filter(k=>c.numeros[k]),plans=RIC.cfg.plans;let plan=planId&&plans.find(p=>p.id===planId)?planId:plans[0].id,op=ops[0];
+  let o=$('#ripayer');if(o)o.remove();o=document.createElement('div');o.id='ripayer';o.className='pmod';document.body.appendChild(o);
+  const draw=()=>{const P=plans.find(p=>p.id===plan),num=c.numeros[op];
+   o.innerHTML=`<div class="pbox"><h3>💳 Payer mon accès Premium</h3>
+    <div class="small" style="font-weight:700;margin:6px 0">1. Choisis ton pass</div>
+    ${plans.map(p=>`<div class="li ri-opt ${p.id===plan?'on':''}" data-plan="${esc(p.id)}"><span class="em">${p.id===plan?'🔘':'⚪'}</span><span class="tx"><b>${esc(p.nom)}</b><small>${p.jours} jours</small></span><b style="white-space:nowrap">${fcfa(p.prix_xof)}</b></div>`).join('')}
+    <div class="small" style="font-weight:700;margin:12px 0 6px">2. Choisis ton moyen de paiement</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">${ops.map(k=>`<button class="ri-op ${k===op?'on':''}" data-op="${k}" style="--c:${OPS[k][1]}">${OPS[k][0]}</button>`).join('')}</div>
+    <div class="ri-envoi"><div>Envoie <b>${fcfa(P.prix_xof)}</b> par <b>${OPS[op][0]}</b> au</div><div class="ri-num">${esc(num)} <button class="ri-copy" id="riCopy">Copier</button></div>${c.nom?`<div class="muted small">Au nom de ${esc(c.nom)}</div>`:''}${c.consigne?`<div class="muted small" style="margin-top:4px">${esc(c.consigne)}</div>`:''}</div>
+    <div class="small" style="font-weight:700;margin:12px 0 6px">3. Après l’envoi, recopie les informations du SMS</div>
+    <input class="tin" id="riTel" type="tel" inputmode="tel" placeholder="Le numéro qui a payé (ex. 07 01 02 03 04)" style="margin-bottom:8px" value="${esc(o.tel||'')}">
+    <input class="tin" id="riRef" placeholder="Identifiant de la transaction (dans le SMS)" autocapitalize="characters" value="${esc(o.ref||'')}">
+    <div id="riPM" class="small" style="margin-top:8px;color:#c0392b"></div>
+    <button class="btn coral" style="width:100%;margin-top:10px" id="riPOk">J’ai payé : envoyer pour vérification</button>
+    <button class="btn light" style="width:100%;margin-top:8px" id="riPX">Annuler</button></div>`;
+   const keep=()=>{o.tel=$('#riTel',o).value;o.ref=$('#riRef',o).value};
+   $$('[data-plan]',o).forEach(e=>e.onclick=()=>{keep();plan=e.dataset.plan;draw()});
+   $$('[data-op]',o).forEach(e=>e.onclick=()=>{keep();op=e.dataset.op;draw()});
+   $('#riCopy',o).onclick=()=>{try{navigator.clipboard.writeText(String(num).replace(/\s/g,''));toast('Numéro copié')}catch(e){toast(num)}};
+   $('#riPX',o).onclick=()=>o.remove();
+   $('#riPOk',o).onclick=async()=>{const tel=$('#riTel',o).value.trim(),ref=$('#riRef',o).value.trim(),m=t=>{$('#riPM',o).textContent=t};
+    if(tel.replace(/[^0-9]/g,'').length<8){m('Écris le numéro qui a envoyé l’argent.');return}if(ref.replace(/\s/g,'').length<4){m('Recopie l’identifiant de transaction du SMS.');return}
+    $('#riPOk',o).disabled=true;m('');
+    try{const r=await RIC.rpc('declarer_paiement',{p_plan:plan,p_operateur:op,p_telephone:tel,p_reference:ref});
+     if(!r||!r.ok){m(RAISON[r&&r.raison]||'Envoi impossible, réessaie.');$('#riPOk',o).disabled=false;return}
+     o.remove();track('paiement_declare',{plan,op});RIC.info('Paiement envoyé ✅','L’administrateur vérifie que l’argent est bien arrivé. Ton accès Premium s’activera tout seul après la validation : garde l’appli ouverte ou rouvre-la plus tard.');RIC.syncCompte()}
+    catch(e){m(/fetch|network|Load failed/i.test(e.message)?'Pas de connexion internet.':'Envoi impossible, réessaie.');$('#riPOk',o).disabled=false}}};
+  draw()};
  /* ---------- décorations après chaque affichage ---------- */
  function annonces(){if(!S||!S.onb)return'';const vu=LS.get(RIC.VK,{}),t=today(),prem=RIC.isPremium(),niv=S.fil&&S.niv?filBase(S.fil)+'-'+S.niv:'';
   return(RIC.cfg.annonces||[]).filter(a=>!vu[a.id]&&a.du<=t&&a.au>=t&&(a.cible==='tous'||(a.cible==='premium'&&prem)||(a.cible==='gratuit'&&!prem)||a.cible===niv))
@@ -2368,11 +2407,14 @@ const RIC={
  .ri-ann{display:flex;gap:10px;align-items:flex-start;color:#fff;border-radius:14px;padding:10px 12px;font-size:14px;line-height:1.4}
  .ri-ann>div{flex:1}.ri-ann button{background:rgba(255,255,255,.22);border:0;color:#fff;border-radius:9px;width:28px;height:28px;flex:none;cursor:pointer}
  .ri-accw{margin-top:8px}.ri-acc{border:0;border-radius:99px;padding:6px 12px;font:inherit;font-size:13px;font-weight:700;background:rgba(108,59,245,.12);color:#5B2BE0;cursor:pointer}.ri-acc.p{background:#6C3BF5;color:#fff}
+ .ri-opt.on{outline:2px solid #6C3BF5;border-radius:12px}.ri-op{border:2px solid var(--c);background:transparent;color:inherit;border-radius:12px;padding:8px 12px;font:inherit;font-weight:700;cursor:pointer}.ri-op.on{background:var(--c);color:#fff}
+ .ri-envoi{margin-top:12px;border-radius:14px;padding:12px;background:rgba(108,59,245,.08);font-size:15px}.ri-num{font-size:22px;font-weight:800;letter-spacing:.5px;margin:4px 0;display:flex;align-items:center;gap:10px;flex-wrap:wrap}.ri-copy{border:0;border-radius:9px;padding:4px 10px;background:#6C3BF5;color:#fff;font:inherit;font-size:13px;cursor:pointer}
  .ri-rep{display:block;margin:10px 0 0;background:none;border:0;color:inherit;opacity:.7;font-size:13px;text-decoration:underline;cursor:pointer;padding:0}`;
  document.head.appendChild(st);
 
  /* ---------- démarrage ---------- */
  setTimeout(()=>{if(RIC.off())return;const t=today();if(LS.get('ri_cloud_open','')!==t){LS.set('ri_cloud_open',t);track('ouverture',{})}refresh(true);flushReports();if(RIC.erreurGoogle)RIC.info('Connexion Google impossible',RIC.erreurGoogle);if(RIC.session)RIC.syncCompte().then(()=>{if(RIC.retourGoogle)toast('Connecté avec Google ✅')})},1200);
  setInterval(()=>{if(RIC.off())return;refresh(false);flushReports();if(RIC.session)RIC.syncCompte()},10*60e3);
+ setInterval(()=>{if(RIC.off()||!RIC.session)return;const p=(RIC.paiements||[]).some(x=>x.statut==='a_verifier');if(p){const avant=RIC.isPremium();RIC.syncCompte().then(()=>{if(!avant&&RIC.isPremium())RIC.info('⭐ Premium activé !','Ton paiement a été validé. Tout le contenu Premium est maintenant ouvert.')})}},60e3);
 })();
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
