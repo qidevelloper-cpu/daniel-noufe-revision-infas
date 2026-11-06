@@ -1,10 +1,10 @@
 {
- "v": "f9fba58c75",
+ "v": "0dfa6af78e",
  "date": "2026-10-25",
- "sig": "729ea0ba99e0a7b7d7ddaedf050662e04e59194d",
+ "sig": "50be287678b9977a798565b1dbff3ea7a2f1c48e",
  "notes": [
   {
-   "t": "⚡ Premium activé en quelques secondes après validation du paiement"
+   "t": "⏳ Compte à rebours du D.E 2026 · 🎨 Accueil retouché (tailles, titres de rubriques)"
   }
  ],
  "mats": {
@@ -98,6 +98,15 @@
   }
  },
  "hist": [
+  {
+   "v": "0dfa6af78e",
+   "date": "2026-10-25",
+   "notes": [
+    {
+     "t": "⏳ Compte à rebours du D.E 2026 · 🎨 Accueil retouché (tailles, titres de rubriques)"
+    }
+   ]
+  },
   {
    "v": "f9fba58c75",
    "date": "2026-10-25",
@@ -196,17 +205,8 @@
      "t": "🔠 Accueil : certains textes sont plus grands et plus lisibles."
     }
    ]
-  },
-  {
-   "v": "7e68e34de3",
-   "date": "2026-10-25",
-   "notes": [
-    {
-     "t": "🔇 Les sons et voix des réponses ont été retirés."
-    }
-   ]
   }
  ],
  "moteur": 2,
- "format": 1
+ "format": 2
 }
