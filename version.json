@@ -1,10 +1,10 @@
 {
- "v": "d24dea05ce",
+ "v": "5812e6e067",
  "date": "2026-10-25",
- "sig": "bdc49b838ed1f7f4e4cc2faf0c669ac5ce4fa0f1",
+ "sig": "a1b1b8c04ddb8e6d7ffece59b3c7ffa7123454a9",
  "notes": [
   {
-   "t": "👑 Badge « Membre Premium » ou « Version gratuite » sous le nom de l'élève"
+   "t": "📚 Cours ouverts à plusieurs années · 💬 Liens WhatsApp de la communauté"
   }
  ],
  "mats": {
@@ -33,7 +33,7 @@
    "h": "24a4da6cf8dcff347701b08f899657784c4edf50"
   },
   "chir": {
-   "t": "Chirurgie — L1 · L2 · L3",
+   "t": "Chirurgie ",
    "h": "318b901d2c73dc7a60704bc0452e8cc9046bcd22"
   },
   "endo": {
@@ -61,7 +61,7 @@
    "h": "fc8d2cdede205f27a97dacf031d5504891071844"
   },
   "xmvkq5l1e": {
-   "t": "Médecine IDE 2 — pathologies",
+   "t": "Médecine IDE L2 — pathologies",
    "h": "b000deddf63d30db83d23b21d2202bb92804a312"
   },
   "xmvkq5pc5": {
@@ -81,7 +81,7 @@
    "h": "698b334b13aeda07ff2f4b58d3de6331cce487c7"
   },
   "xmvkq66ok": {
-   "t": "Santé publique L1 · L2 · L3",
+   "t": "Santé publique",
    "h": "411bd6acc559c310af06e746af5095fb186bfd0a"
   },
   "xprepade": {
@@ -98,6 +98,15 @@
   }
  },
  "hist": [
+  {
+   "v": "5812e6e067",
+   "date": "2026-10-25",
+   "notes": [
+    {
+     "t": "📚 Cours ouverts à plusieurs années · 💬 Liens WhatsApp de la communauté"
+    }
+   ]
+  },
   {
    "v": "d24dea05ce",
    "date": "2026-10-25",
@@ -191,18 +200,6 @@
     },
     {
      "t": "🛠️ Corrections dans « Correction Nationale » et réorganisation des cours par année."
-    }
-   ]
-  },
-  {
-   "v": "8d71d4b829",
-   "date": "2026-10-25",
-   "notes": [
-    {
-     "t": "🎨 Nouvelle palette par défaut : Blanc & azur."
-    },
-    {
-     "t": "🔠 Accueil : titres des groupes de matières agrandis."
     }
    ]
   }
