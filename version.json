@@ -1,13 +1,22 @@
 {
- "v": "64b43f344c",
+ "v": "805d8f71d0",
  "date": "2026-10-25",
- "sig": "c75c36bfa5e3fa9954d1494ac13ded819531e5e8",
+ "sig": "968a67187b9a580ef805ce0c0a3d1c775514847c",
  "notes": [
   {
-   "t": "🏛️ Accueil : rubrique des sujets d’examen et D.E blanc renommée et mise en avant."
+   "t": "📚 Cours complets dans l'appli (sommaire, quiz, flashcards, prépa D.E, images) · 📝 Correction nationale : sujets en entier, correction dès qu'on coche, QCM/QCD rétablis · 📎 Questions hors cours remises dans leurs sujets"
   },
   {
-   "t": "🛠️ Corrections dans « Correction Nationale » et réorganisation des cours par année."
+   "t": "🔄 Cours mis à jour : Chirurgie — L1 · L2 · L3",
+   "m": "chir"
+  },
+  {
+   "t": "🔄 Cours mis à jour : Correction Nationale 2025 — Examens blancs infirmier",
+   "m": "xmvkq4zed"
+  },
+  {
+   "t": "🔄 Cours mis à jour : Appareil digestif",
+   "m": "xmvkq5pc5"
   }
  ],
  "mats": {
@@ -37,7 +46,7 @@
   },
   "chir": {
    "t": "Chirurgie — L1 · L2 · L3",
-   "h": "35cade549c5034ab5b782d93143d330c565a3b25"
+   "h": "318b901d2c73dc7a60704bc0452e8cc9046bcd22"
   },
   "endo": {
    "t": "Endocrinologie & Oncologie",
@@ -45,7 +54,7 @@
   },
   "xmvkq4zed": {
    "t": "Correction Nationale 2025 — Examens blancs infirmier",
-   "h": "afcb167c5df482124afce92cb6e83f82fa286297"
+   "h": "b05cb10876df6dc0a6847f0376518d0ab46a9134"
   },
   "xmvkq53re": {
    "t": "Pharmacologie",
@@ -69,7 +78,7 @@
   },
   "xmvkq5pc5": {
    "t": "Appareil digestif",
-   "h": "1f0d6db12fd71060f4c050812fb863b693b53336"
+   "h": "0887cb32a91204aba189de6f955a8c2f2d08bfa5"
   },
   "xmvkq5tml": {
    "t": "Système nerveux",
@@ -101,6 +110,27 @@
   }
  },
  "hist": [
+  {
+   "v": "805d8f71d0",
+   "date": "2026-10-25",
+   "notes": [
+    {
+     "t": "📚 Cours complets dans l'appli (sommaire, quiz, flashcards, prépa D.E, images) · 📝 Correction nationale : sujets en entier, correction dès qu'on coche, QCM/QCD rétablis · 📎 Questions hors cours remises dans leurs sujets"
+    },
+    {
+     "t": "🔄 Cours mis à jour : Chirurgie — L1 · L2 · L3",
+     "m": "chir"
+    },
+    {
+     "t": "🔄 Cours mis à jour : Correction Nationale 2025 — Examens blancs infirmier",
+     "m": "xmvkq4zed"
+    },
+    {
+     "t": "🔄 Cours mis à jour : Appareil digestif",
+     "m": "xmvkq5pc5"
+    }
+   ]
+  },
   {
    "v": "64b43f344c",
    "date": "2026-10-25",
@@ -283,15 +313,8 @@
      "m": "xformules"
     }
    ]
-  },
-  {
-   "v": "4cdfdaade7",
-   "date": "2026-10-23",
-   "notes": [
-    {
-     "t": "✨ Nouveau : dans les cours et les Sujets D.E, la barre du bas est maintenant celle de Révision INFAS (les rubriques du cours passent en onglets en haut). La taille du texte et les couleurs que tu choisis s'appliquent aussi à tous les cours intégrés."
-    }
-   ]
   }
- ]
+ ],
+ "moteur": 2,
+ "format": 1
 }
