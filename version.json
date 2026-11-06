@@ -1,10 +1,14 @@
 {
- "v": "f9fba58c75",
+ "v": "180894e65f",
  "date": "2026-10-25",
- "sig": "729ea0ba99e0a7b7d7ddaedf050662e04e59194d",
+ "sig": "45586512027d38e5bfd7cc6330e7a83ba6f5274b",
  "notes": [
   {
-   "t": "⚡ Premium activé en quelques secondes après validation du paiement"
+   "t": "🎨 Nouvelle présentation de l'accueil (couleurs, compte à rebours du D.E, titres) · ✏️ Corrections de questions"
+  },
+  {
+   "t": "🔄 Cours mis à jour : Correction Nationale 2025 — Examens blancs infirmier",
+   "m": "xmvkq4zed"
   }
  ],
  "mats": {
@@ -42,7 +46,7 @@
   },
   "xmvkq4zed": {
    "t": "Correction Nationale 2025 — Examens blancs infirmier",
-   "h": "b05cb10876df6dc0a6847f0376518d0ab46a9134"
+   "h": "297b9f58fb8b85b779ca4808fcaeef1638ace034"
   },
   "xmvkq53re": {
    "t": "Pharmacologie",
@@ -98,6 +102,19 @@
   }
  },
  "hist": [
+  {
+   "v": "180894e65f",
+   "date": "2026-10-25",
+   "notes": [
+    {
+     "t": "🎨 Nouvelle présentation de l'accueil (couleurs, compte à rebours du D.E, titres) · ✏️ Corrections de questions"
+    },
+    {
+     "t": "🔄 Cours mis à jour : Correction Nationale 2025 — Examens blancs infirmier",
+     "m": "xmvkq4zed"
+    }
+   ]
+  },
   {
    "v": "f9fba58c75",
    "date": "2026-10-25",
@@ -196,17 +213,8 @@
      "t": "🔠 Accueil : certains textes sont plus grands et plus lisibles."
     }
    ]
-  },
-  {
-   "v": "7e68e34de3",
-   "date": "2026-10-25",
-   "notes": [
-    {
-     "t": "🔇 Les sons et voix des réponses ont été retirés."
-    }
-   ]
   }
  ],
  "moteur": 2,
- "format": 1
+ "format": 2
 }
