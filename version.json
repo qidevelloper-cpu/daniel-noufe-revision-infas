@@ -1,10 +1,10 @@
 {
- "v": "0dfa6af78e",
+ "v": "d24dea05ce",
  "date": "2026-10-25",
- "sig": "50be287678b9977a798565b1dbff3ea7a2f1c48e",
+ "sig": "bdc49b838ed1f7f4e4cc2faf0c669ac5ce4fa0f1",
  "notes": [
   {
-   "t": "⏳ Compte à rebours du D.E 2026 · 🎨 Accueil retouché (tailles, titres de rubriques)"
+   "t": "👑 Badge « Membre Premium » ou « Version gratuite » sous le nom de l'élève"
   }
  ],
  "mats": {
@@ -98,6 +98,15 @@
   }
  },
  "hist": [
+  {
+   "v": "d24dea05ce",
+   "date": "2026-10-25",
+   "notes": [
+    {
+     "t": "👑 Badge « Membre Premium » ou « Version gratuite » sous le nom de l'élève"
+    }
+   ]
+  },
   {
    "v": "0dfa6af78e",
    "date": "2026-10-25",
@@ -194,15 +203,6 @@
     },
     {
      "t": "🔠 Accueil : titres des groupes de matières agrandis."
-    }
-   ]
-  },
-  {
-   "v": "ff1b40bac5",
-   "date": "2026-10-25",
-   "notes": [
-    {
-     "t": "🔠 Accueil : certains textes sont plus grands et plus lisibles."
     }
    ]
   }
