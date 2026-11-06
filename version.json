@@ -1,10 +1,10 @@
 {
- "v": "b7d4653dae",
+ "v": "1ac06d90e3",
  "date": "2026-10-25",
- "sig": "44430641417d33bedc8a7224783b452210d40204",
+ "sig": "421d0071bf36df8406b95acc89f3e179bd14c315",
  "notes": [
   {
-   "t": "💳 Premium par Mobile Money"
+   "t": "📱 Paiement : seul le numéro qui a payé est demandé"
   }
  ],
  "mats": {
@@ -98,6 +98,15 @@
   }
  },
  "hist": [
+  {
+   "v": "1ac06d90e3",
+   "date": "2026-10-25",
+   "notes": [
+    {
+     "t": "📱 Paiement : seul le numéro qui a payé est demandé"
+    }
+   ]
+  },
   {
    "v": "b7d4653dae",
    "date": "2026-10-25",
@@ -194,19 +203,6 @@
    "notes": [
     {
      "t": "🔊 Nouveau : un son et une voix à chaque réponse — « Docta ! » quand c’est juste, « Référé ! Référé ! » quand c’est faux (à couper dans le Profil)."
-    }
-   ]
-  },
-  {
-   "v": "1bc0f7c6bc",
-   "date": "2026-10-24",
-   "notes": [
-    {
-     "t": "🔪 Chirurgie : nouvelle version de l’application complète."
-    },
-    {
-     "t": "🔄 Cours mis à jour : Chirurgie — L1 · L2 · L3",
-     "m": "chir"
     }
    ]
   }
