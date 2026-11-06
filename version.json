@@ -1,10 +1,10 @@
 {
- "v": "5d8acec691",
+ "v": "338cbb640c",
  "date": "2026-10-25",
- "sig": "f7859c743d0a9a857ad85131e8dbf68cfa8067f8",
+ "sig": "afa542a20947bc7fe97a20df7cc3b5dcdbb8fdf1",
  "notes": [
   {
-   "t": "🚚 Nouvelle adresse : revision-infas.pages.dev (progression transférée automatiquement)"
+   "t": "↩️ Retour à l'adresse GitHub · 🛠️ correctif d'ouverture hors connexion"
   }
  ],
  "mats": {
@@ -99,6 +99,15 @@
  },
  "hist": [
   {
+   "v": "338cbb640c",
+   "date": "2026-10-25",
+   "notes": [
+    {
+     "t": "↩️ Retour à l'adresse GitHub · 🛠️ correctif d'ouverture hors connexion"
+    }
+   ]
+  },
+  {
    "v": "5d8acec691",
    "date": "2026-10-25",
    "notes": [
@@ -176,15 +185,6 @@
    "notes": [
     {
      "t": "🔐 Connexion Google en un geste, e-mail en option"
-    }
-   ]
-  },
-  {
-   "v": "7d0395502e",
-   "date": "2026-10-25",
-   "notes": [
-    {
-     "t": "👤 Comptes élèves (e-mail, Google) reliés au tableau de bord · 📋 Liste des cours publiée pour le tableau de bord"
     }
    ]
   }

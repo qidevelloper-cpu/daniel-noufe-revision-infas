@@ -1,39 +1,4 @@
 "use strict";
-/* ---------- 0. DÉMÉNAGEMENT de l'appli des étudiants vers https://revision-infas.pages.dev/ ----------
-   Ancienne adresse (GitHub Pages, …/daniel-noufe-revision-infas/) : la progression de l'élève (stockage du navigateur, sauf
-   réglages de l'éditeur et jeton de publication) est emballée, compressée et emportée dans l'adresse (#ri-migr=…, jamais
-   envoyée à un serveur), puis l'élève est redirigé. Nouvelle adresse : la progression est restaurée sans rien écraser de
-   plus récent, puis l'appli redémarre. « ?rester=1 » garde l'ancienne adresse (dépannage). L'éditeur n'est pas concerné. */
-(function(){
- const NEUF='https://revision-infas.pages.dev/',VH='qidevelloper-cpu.github.io',VP='/daniel-noufe-revision-infas/';
- const garder=k=>!!k&&!/^revInfas_(edits|pub)/.test(k)&&!/^ri_(cloud_test|test_premium)$/.test(k);
- const ecran=t=>{try{document.title='Révision INFAS';document.documentElement.innerHTML='<head><meta name="viewport" content="width=device-width,initial-scale=1"></head><body style="margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0f3d2e;color:#fff;font-family:system-ui,sans-serif;text-align:center;padding:24px"><div><div style="font-size:46px">🚚</div><h2 style="margin:.4em 0">'+t+'</h2><p style="opacity:.8">Révision INFAS · un instant…</p></div></body>'}catch(e){}};
- const b64=u8=>{let s='';for(let i=0;i<u8.length;i+=0x8000)s+=String.fromCharCode.apply(null,u8.subarray(i,i+0x8000));return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')};
- const deb64=s=>{s=s.replace(/-/g,'+').replace(/_/g,'/');while(s.length%4)s+='=';const b=atob(s),u=new Uint8Array(b.length);for(let i=0;i<b.length;i++)u[i]=b.charCodeAt(i);return u};
- const flux=async(u8,T)=>new Uint8Array(await new Response(new Blob([u8]).stream().pipeThrough(new T('gzip'))).arrayBuffer());
- const emballer=async txt=>{const u=new TextEncoder().encode(txt);if(typeof CompressionStream==='function'){try{return'g'+b64(await flux(u,CompressionStream))}catch(e){}}return'j'+b64(u)};
- const deballer=async p=>{const u=deb64(p.slice(1));return new TextDecoder().decode(p[0]==='g'?await flux(u,DecompressionStream):u)};
- const poids=v=>{try{const o=JSON.parse(v);return Object.keys(o.qs||{}).length*10+(+o.xp||0)}catch(e){return 0}};
- try{
-  if(location.hostname===VH&&location.pathname.indexOf(VP)===0&&!/[?&]rester=1/.test(location.search)){
-   window.__RI_DEMENAGE=1;ecran('Révision INFAS déménage');
-   (async()=>{let h='';try{const o={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(garder(k))o[k]=localStorage.getItem(k)}
-     if(Object.keys(o).length){const p=await emballer(JSON.stringify({v:1,t:Date.now(),ls:o}));if(p.length<1.8e6)h='#ri-migr='+p}}catch(e){}
-    location.replace(NEUF+location.pathname.slice(VP.length)+location.search+h)})();
-   throw new Error('RI : redirection vers la nouvelle adresse');
-  }
-  const m=location.hash.match(/^#ri-migr=([gj][A-Za-z0-9_-]+)/);
-  if(m){
-   window.__RI_DEMENAGE=1;ecran('Bienvenue sur la nouvelle adresse');
-   (async()=>{try{const d=JSON.parse(await deballer(m[1]));const L=(d&&d.ls)||{};
-     Object.keys(L).forEach(k=>{if(!garder(k)||typeof L[k]!=='string')return;const ici=localStorage.getItem(k);
-      if(ici==null||(/_progress_v1$/.test(k)&&poids(L[k])>poids(ici)))try{localStorage.setItem(k,L[k])}catch(e){}});
-     localStorage.setItem('ri_migre_le',String(Date.now()))}catch(e){}
-    location.replace(location.pathname+location.search)})();
-   throw new Error('RI : transfert de la progression');
-  }
- }catch(e){if(window.__RI_DEMENAGE)throw e}
-})();
 /* ============================================================
    RÉVISION INFAS — PORTAIL UNIFIÉ · MOTEUR (présent dans toutes les versions)
    Données : #app-data · Modifications : #app-edits · Applis complètes : #app-src-<id>
