@@ -1,14 +1,10 @@
 {
- "v": "f4c871c322",
+ "v": "995dc89b2b",
  "date": "2026-10-25",
- "sig": "c16f5ef04efb0f63f90d63478c2582e9810d4bb8",
+ "sig": "a21e920b93cce5094811a803ef761cc974d6c08d",
  "notes": [
   {
-   "t": "✍️ Pédiatrie — Exercices & Corrigés : 779 questions en quiz, 59 fiches et flashcards"
-  },
-  {
-   "t": "🔄 Cours mis à jour : Pédiatrie — Exercices & Corrigés",
-   "m": "xpedexo"
+   "t": "Codes d'activation, sujets Prépa D.E (ordre ou aléatoire), reprise d'un sujet, questions gratuites, images dans les cours, nouvelle calculatrice"
   }
  ],
  "mats": {
@@ -107,6 +103,15 @@
  },
  "hist": [
   {
+   "v": "995dc89b2b",
+   "date": "2026-10-25",
+   "notes": [
+    {
+     "t": "Codes d'activation, sujets Prépa D.E (ordre ou aléatoire), reprise d'un sujet, questions gratuites, images dans les cours, nouvelle calculatrice"
+    }
+   ]
+  },
+  {
    "v": "f4c871c322",
    "date": "2026-10-25",
    "notes": [
@@ -192,15 +197,6 @@
    "notes": [
     {
      "t": "📚 Cours ouverts à plusieurs années · 💬 Liens WhatsApp de la communauté"
-    }
-   ]
-  },
-  {
-   "v": "d24dea05ce",
-   "date": "2026-10-25",
-   "notes": [
-    {
-     "t": "👑 Badge « Membre Premium » ou « Version gratuite » sous le nom de l'élève"
     }
    ]
   }
