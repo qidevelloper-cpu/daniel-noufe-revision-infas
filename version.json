@@ -1,10 +1,14 @@
 {
- "v": "8909c592fd",
+ "v": "3a07caafa9",
  "date": "2026-10-25",
- "sig": "a53943fa8d180424136deffa4dcb18cb399c8b96",
+ "sig": "566ad4e89df1675546dd587b90a1d70eed3fd31b",
  "notes": [
   {
-   "t": "📷 Signaler une erreur avec une photo"
+   "t": "✍️ Nouveau : Pédiatrie — Exercices & Corrigés (779 questions expliquées)"
+  },
+  {
+   "t": "📘 Nouveau cours : Pédiatrie — Exercices & Corrigés",
+   "m": "xpedexo"
   }
  ],
  "mats": {
@@ -95,9 +99,26 @@
   "xmvm9jr75": {
    "t": "Ophtalmologie",
    "h": "864477f569d744990ba9ccbbd3a43fd64a031847"
+  },
+  "xpedexo": {
+   "t": "Pédiatrie — Exercices & Corrigés",
+   "h": "5bd0159259af52a99d787b349d682259127b8bc9"
   }
  },
  "hist": [
+  {
+   "v": "3a07caafa9",
+   "date": "2026-10-25",
+   "notes": [
+    {
+     "t": "✍️ Nouveau : Pédiatrie — Exercices & Corrigés (779 questions expliquées)"
+    },
+    {
+     "t": "📘 Nouveau cours : Pédiatrie — Exercices & Corrigés",
+     "m": "xpedexo"
+    }
+   ]
+  },
   {
    "v": "8909c592fd",
    "date": "2026-10-25",
@@ -176,15 +197,6 @@
    "notes": [
     {
      "t": "⏳ Compte à rebours du D.E 2026 · 🎨 Accueil retouché (tailles, titres de rubriques)"
-    }
-   ]
-  },
-  {
-   "v": "f9fba58c75",
-   "date": "2026-10-25",
-   "notes": [
-    {
-     "t": "⚡ Premium activé en quelques secondes après validation du paiement"
     }
    ]
   }
