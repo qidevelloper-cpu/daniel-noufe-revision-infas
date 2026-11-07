@@ -2180,7 +2180,7 @@ const RIC={
  RIC.post=post;
 
  /* ---------- règles d'accès ---------- */
- async function refresh(force){
+ async function refresh(force,quiet){
   if(RIC.busy)return;if(!force&&Date.now()-(RIC.cfg.t||0)<5*60e3&&RIC.ready)return;
   if(!navigator.onLine)return;RIC.busy=true;
   try{
@@ -2195,7 +2195,7 @@ const RIC={
    let google=false;try{const r=await fetch(RIC.url+'/auth/v1/settings',{headers:H(),cache:'no-store'});if(r.ok){const j=await r.json();google=!!(j.external&&j.external.google)}}catch(e){}
    RIC.cfg={regles,defaut:pa.defaut==='premium'?'premium':'gratuit',version:pa.version||0,plans,annonces:ann,google,paiement:pay,t:Date.now()};
    LS.set(RIC.CK,RIC.cfg);RIC.ready=true;
-   if(old!==JSON.stringify(regles)+RIC.cfg.defaut+JSON.stringify(ann)&&typeof render==='function'&&!EDITMODE)render();
+   if(old!==JSON.stringify(regles)+RIC.cfg.defaut+JSON.stringify(ann)&&typeof render==='function'&&!EDITMODE&&!quiet)render();
   }catch(e){console.warn('RI cloud : règles non mises à jour',e)}
   RIC.busy=false;flush()}
  RIC.refresh=refresh;
@@ -2239,6 +2239,8 @@ const RIC={
   flushing=false}
  RIC.flush=flush;
  window.addEventListener('online',()=>{if(!RIC.off())refresh(true)});
+ /* retour dans l'appli (téléphone rallumé, onglet revenu) : relire les réglages Gratuit / Premium du tableau de bord, sans redessiner l'écran en cours */
+ document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&!RIC.off())refresh(false,true)});
 
  /* ---------- écran « contenu Premium » ---------- */
  function fcfa(n){return new Intl.NumberFormat('fr-FR').format(n)+' FCFA'}

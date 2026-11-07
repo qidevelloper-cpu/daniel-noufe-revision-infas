@@ -1,10 +1,10 @@
 {
- "v": "754f1aeba1",
+ "v": "135d2245f1",
  "date": "2026-10-25",
- "sig": "a50f528ac80b70e073cdf4325db3bb8e60501059",
+ "sig": "6c684e86040600711f328043a405389cfa6a40d2",
  "notes": [
   {
-   "t": "Paiement Wave : bouton Wave avec montant prérempli"
+   "t": "📚 Cours gratuits / Premium mis à jour dès le retour dans l'appli"
   }
  ],
  "mats": {
@@ -99,6 +99,15 @@
  },
  "hist": [
   {
+   "v": "135d2245f1",
+   "date": "2026-10-25",
+   "notes": [
+    {
+     "t": "📚 Cours gratuits / Premium mis à jour dès le retour dans l'appli"
+    }
+   ]
+  },
+  {
    "v": "754f1aeba1",
    "date": "2026-10-25",
    "notes": [
@@ -176,15 +185,6 @@
    "notes": [
     {
      "t": "📱 Paiement : seul le numéro qui a payé est demandé"
-    }
-   ]
-  },
-  {
-   "v": "b7d4653dae",
-   "date": "2026-10-25",
-   "notes": [
-    {
-     "t": "💳 Premium par Mobile Money"
     }
    ]
   }
