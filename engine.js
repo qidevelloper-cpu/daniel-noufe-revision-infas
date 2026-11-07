@@ -2251,15 +2251,47 @@ const RIC={
   o.innerHTML=`<div class="pbox"><h3>🔒 ${esc(what||'Contenu Premium')}</h3><div class="muted small">Ce contenu fait partie de la version Premium de Révision INFAS : tous les sujets, les explications complètes et les applications complètes.</div>${P?`<div style="margin:12px 0">${P}</div>`:''}${payOk?`<div class="muted small">${RIC.session?'Touche un pass pour le payer par Mobile Money (Wave, Orange Money…).':'Pour payer, connecte-toi d’abord à ton compte : ton Premium y sera activé.'}</div>${RIC.session?`<button class="btn coral" style="width:100%;margin-top:10px" onclick="document.getElementById('ripay').remove();RIC.payer()">💳 Payer par Mobile Money</button>`:''}`:`<div class="muted small">Le paiement Mobile Money dans l’appli arrive bientôt. En attendant, écris à l’administrateur pour obtenir ton accès.${RIC.session?'':' Il l’activera sur ton compte : crée-le ou connecte-toi d’abord.'}</div>`}${RIC.session?'':'<button class="btn coral" style="width:100%;margin-top:10px" onclick="document.getElementById(\'ripay\').remove();RIC.compte()">👤 Me connecter à mon compte</button>'}<div class="row2" style="margin-top:12px">${adm?`<a class="btn coral" href="${esc(adm)}" target="_blank" rel="noopener" style="text-align:center;text-decoration:none">✉️ Écrire à l’administrateur</a>`:''}<button class="btn light" id="ripayX">Fermer</button></div></div>`;
   document.body.appendChild(o);$('#ripayX',o).onclick=()=>o.remove();o.onclick=e=>{if(e.target===o)o.remove()}};
 
- /* ---------- signalement d'erreur ---------- */
- RIC.report=function(qid){const q=QI[qid];if(!q)return;let o=$('#rirep');if(o)o.remove();o=document.createElement('div');o.id='rirep';o.className='pmod';
-  o.innerHTML=`<div class="pbox"><h3>⚑ Signaler une erreur</h3><div class="muted small" style="margin-bottom:8px">${esc(q.q).slice(0,240)}</div><textarea class="tin" id="rirepT" rows="4" maxlength="1000" placeholder="Explique l’erreur : mauvaise réponse, faute, image manquante…"></textarea><div class="row2" style="margin-top:10px"><button class="btn coral" id="rirepOk">Envoyer le signalement</button><button class="btn light" id="rirepX">Annuler</button></div></div>`;
+ /* ---------- signalement d'erreur (texte + photo facultative) ----------
+    La photo est réduite sur le téléphone (1280 px, JPEG), déposée dans le stockage privé « signalements » de Supabase,
+    puis le signalement est enregistré : le tableau de bord le reçoit, et l'administrateur est prévenu sur WhatsApp. */
+ function rirPhoto(file){return new Promise((ok,ko)=>{const u=URL.createObjectURL(file),im=new Image();im.onload=()=>{try{const M=1280,k=Math.min(1,M/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(u);c.toBlob(b=>b?ok(b):ko(new Error('photo')),'image/jpeg',.78)}catch(e){ko(e)}};im.onerror=()=>{URL.revokeObjectURL(u);ko(new Error('photo illisible'))};im.src=u})}
+ function rirB64(b){return new Promise((ok,ko)=>{const r=new FileReader();r.onload=()=>ok(String(r.result).split(',')[1]||'');r.onerror=ko;r.readAsDataURL(b)})}
+ async function rirDepot(b64){const bin=atob(b64),u=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);
+  const d=new Date(),path=d.toISOString().slice(0,7)+'/'+(window.crypto&&crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)+Math.random().toString(36).slice(2))+'.jpg';
+  const h={apikey:RIC.key,'Content-Type':'image/jpeg','x-upsert':'false'};try{const t=await token();if(t)h.Authorization='Bearer '+t}catch(e){}
+  const r=await fetch(RIC.url+'/storage/v1/object/signalements/'+path,{method:'POST',headers:h,body:u});if(!r.ok)throw new Error(r.status+' '+(await r.text()).slice(0,160));return path}
+ function rirEleve(){const st=RIC.statut||{},n=[st.prenom,st.nom].filter(Boolean).join(' ')||(S&&S.name)||'';const f=(S&&[S.fil,S.niv].filter(Boolean).join(' '))||'';return(n||f)?(n||'Élève')+(f?' · '+f:'')+(RIC.session?'':' (sans compte)'):''}
+ /* envoi : la photo d'abord (si besoin), puis la ligne ; si la base n'a pas encore les colonnes photo / eleve, on renvoie sans elles */
+ async function rirEnvoyer(it){const row=Object.assign({},it.row);
+  if(it.b64&&!row.photo){try{row.photo=await rirDepot(it.b64);it.row.photo=row.photo}catch(e){if(!/^4\d\d /.test(e.message))throw e;row.message=(row.message+' [📷 photo non reçue par le serveur]').slice(0,1100);it.row.message=row.message}delete it.b64}
+  if(!row.photo)delete row.photo;if(!row.eleve)delete row.eleve;
+  try{await post('reports',[row])}
+  catch(e){if(!/^4\d\d /.test(e.message)||!/photo|eleve|column/i.test(e.message))throw e;
+   const r2=Object.assign({},row);if(r2.photo)r2.message=(r2.message+'\n[📷 photo : '+r2.photo+']').slice(0,1100);if(r2.eleve)r2.message=(r2.message+'\n['+r2.eleve+']').slice(0,1200);delete r2.photo;delete r2.eleve;await post('reports',[r2])}}
+ RIC.report=function(qid){const q=QI[qid];if(!q)return;let o=$('#rirep');if(o)o.remove();o=document.createElement('div');o.id='rirep';o.className='pmod';let photo=null,b64=null;
+  const m=(typeof matOf==='function'&&matOf(q.m))||{};
+  o.innerHTML=`<div class="pbox"><h3>⚑ Signaler une erreur</h3><div class="muted small" style="margin-bottom:8px"><b>${esc(m.short||m.title||q.m)}</b> · ${esc(q.q).slice(0,240)}</div>
+   <textarea class="tin" id="rirepT" rows="4" maxlength="1000" placeholder="Explique l’erreur : mauvaise réponse, faute, image manquante… Tu peux proposer la bonne réponse."></textarea>
+   <div class="small" style="font-weight:700;margin:10px 0 6px">📷 Photo (facultatif) : ton cours, ton livre, la bonne réponse…</div>
+   <div id="rirepPh"></div>
+   <div class="row2" id="rirepPhB"><button class="btn light" id="rirepCam">📷 Prendre une photo</button><button class="btn light" id="rirepGal">🖼️ Joindre une image</button></div>
+   <input type="file" id="rirepFc" accept="image/*" capture="environment" style="display:none"><input type="file" id="rirepFg" accept="image/*" style="display:none">
+   <div id="rirepM" class="small" style="margin-top:8px;color:#c0392b"></div>
+   <div class="row2" style="margin-top:10px"><button class="btn coral" id="rirepOk">Envoyer le signalement</button><button class="btn light" id="rirepX">Annuler</button></div></div>`;
   document.body.appendChild(o);$('#rirepX',o).onclick=()=>o.remove();o.onclick=e=>{if(e.target===o)o.remove()};setTimeout(()=>$('#rirepT',o).focus(),50);
-  $('#rirepOk',o).onclick=async()=>{const msg=$('#rirepT',o).value.trim();if(msg.length<3){toast('Décris l’erreur en quelques mots.');return}
-   const row={user_id:null,mat:String(q.m).slice(0,80),qid:String(qid).slice(0,120),question:String((q.s?q.s+' — ':'')+q.q).slice(0,2000),message:msg.slice(0,1000),statut:'nouveau',note:'',appareil:device()};
-   try{await post('reports',[row]);o.remove();toast('Merci ! Ton signalement a été envoyé ✅')}
-   catch(e){const L=LS.get('ri_cloud_rq',[]);L.push(row);LS.set('ri_cloud_rq',L.slice(-50));o.remove();toast('Hors ligne : le signalement partira dès le retour de la connexion')}}};
- async function flushReports(){const L=LS.get('ri_cloud_rq',[]);if(!L.length||!navigator.onLine)return;try{await post('reports',L);LS.set('ri_cloud_rq',[])}catch(e){}}
+  const montrer=()=>{const ph=$('#rirepPh',o);$('#rirepPhB',o).style.display=photo?'none':'';ph.innerHTML=photo?`<div style="position:relative;display:inline-block"><img loading="lazy" decoding="async" src="${photo}" alt="Photo jointe" style="max-width:100%;max-height:220px;border-radius:12px;display:block"><button class="btn light" id="rirepDel" style="position:absolute;top:6px;right:6px;padding:4px 10px;width:auto">✕ Retirer</button></div>`:'';if(photo)$('#rirepDel',o).onclick=()=>{try{URL.revokeObjectURL(photo)}catch(e){}photo=null;b64=null;montrer()}};
+  const choisir=inp=>{inp.onchange=async()=>{const f=inp.files&&inp.files[0];inp.value='';if(!f)return;$('#rirepM',o).textContent='Préparation de la photo…';
+   try{const b=await rirPhoto(f);b64=await rirB64(b);photo=URL.createObjectURL(b);$('#rirepM',o).textContent='';montrer()}catch(e){$('#rirepM',o).textContent='Cette image ne peut pas être lue : essaie une autre photo.'}};inp.click()};
+  $('#rirepCam',o).onclick=()=>choisir($('#rirepFc',o));$('#rirepGal',o).onclick=()=>choisir($('#rirepFg',o));
+  $('#rirepOk',o).onclick=async()=>{const msg=$('#rirepT',o).value.trim();if(msg.length<3&&!b64){toast('Décris l’erreur en quelques mots.');return}
+   const b=$('#rirepOk',o);b.disabled=true;b.textContent='Envoi…';
+   const row={user_id:null,mat:String(q.m).slice(0,80),qid:String(qid).slice(0,120),question:String((q.s?q.s+' — ':'')+q.q).slice(0,2000),message:(msg||'(voir la photo)').slice(0,1000),statut:'nouveau',note:'',appareil:device(),eleve:rirEleve().slice(0,120)};
+   const it={row,b64};track('signalement',{photo:!!b64});
+   try{if(!navigator.onLine)throw new Error('hors ligne');await rirEnvoyer(it);o.remove();toast('Merci ! Ton signalement a été envoyé ✅')}
+   catch(e){const L=LS.get('ri_cloud_rq',[]);L.push(it);try{LS.set('ri_cloud_rq',L.slice(-20))}catch(x){it.b64=null;LS.set('ri_cloud_rq',L.slice(-20))}o.remove();toast('Hors ligne : le signalement partira dès le retour de la connexion')}}};
+ async function flushReports(){const L=LS.get('ri_cloud_rq',[]);if(!L.length||!navigator.onLine)return;const reste=[];
+  for(const x of L){const it=x&&x.row?x:{row:x};try{await rirEnvoyer(it)}catch(e){if(!/^4\d\d /.test(e.message))reste.push(it)}}
+  LS.set('ri_cloud_rq',reste)}
 
  /* ---------- branchements dans le moteur (sans modifier les fonctions d'origine) ---------- */
  if(typeof myMats==='function'){const _myMats=myMats;myMats=function(){const L=_myMats.apply(this,arguments);return RIC.off()?L:L.filter(m=>!RIC.hidden('matiere:'+m.id))};}

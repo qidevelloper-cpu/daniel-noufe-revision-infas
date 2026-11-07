@@ -1,10 +1,10 @@
 {
- "v": "135d2245f1",
+ "v": "8909c592fd",
  "date": "2026-10-25",
- "sig": "6c684e86040600711f328043a405389cfa6a40d2",
+ "sig": "a53943fa8d180424136deffa4dcb18cb399c8b96",
  "notes": [
   {
-   "t": "📚 Cours gratuits / Premium mis à jour dès le retour dans l'appli"
+   "t": "📷 Signaler une erreur avec une photo"
   }
  ],
  "mats": {
@@ -99,6 +99,15 @@
  },
  "hist": [
   {
+   "v": "8909c592fd",
+   "date": "2026-10-25",
+   "notes": [
+    {
+     "t": "📷 Signaler une erreur avec une photo"
+    }
+   ]
+  },
+  {
    "v": "135d2245f1",
    "date": "2026-10-25",
    "notes": [
@@ -176,15 +185,6 @@
    "notes": [
     {
      "t": "⚡ Premium activé en quelques secondes après validation du paiement"
-    }
-   ]
-  },
-  {
-   "v": "1ac06d90e3",
-   "date": "2026-10-25",
-   "notes": [
-    {
-     "t": "📱 Paiement : seul le numéro qui a payé est demandé"
     }
    ]
   }
