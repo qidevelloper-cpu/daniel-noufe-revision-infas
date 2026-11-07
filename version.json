@@ -1,10 +1,10 @@
 {
- "v": "338cbb640c",
+ "v": "754f1aeba1",
  "date": "2026-10-25",
- "sig": "afa542a20947bc7fe97a20df7cc3b5dcdbb8fdf1",
+ "sig": "a50f528ac80b70e073cdf4325db3bb8e60501059",
  "notes": [
   {
-   "t": "↩️ Retour à l'adresse GitHub · 🛠️ correctif d'ouverture hors connexion"
+   "t": "Paiement Wave : bouton Wave avec montant prérempli"
   }
  ],
  "mats": {
@@ -99,6 +99,15 @@
  },
  "hist": [
   {
+   "v": "754f1aeba1",
+   "date": "2026-10-25",
+   "notes": [
+    {
+     "t": "Paiement Wave : bouton Wave avec montant prérempli"
+    }
+   ]
+  },
+  {
    "v": "338cbb640c",
    "date": "2026-10-25",
    "notes": [
@@ -176,15 +185,6 @@
    "notes": [
     {
      "t": "💳 Premium par Mobile Money"
-    }
-   ]
-  },
-  {
-   "v": "4334c4331f",
-   "date": "2026-10-25",
-   "notes": [
-    {
-     "t": "🔐 Connexion Google en un geste, e-mail en option"
     }
    ]
   }

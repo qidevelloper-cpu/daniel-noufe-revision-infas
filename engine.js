@@ -2319,7 +2319,7 @@ const RIC={
  function finPremium(){const s=RIC.statut;return s&&s.premium_fin?new Date(s.premium_fin).toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'}):''}
  RIC.compte=function(mode){let o=$('#ricpt');if(o)o.remove();o=document.createElement('div');o.id='ricpt';o.className='pmod';mode=mode||'creer';
   if(RIC.session){const s=RIC.statut||{};const prem=RIC.isPremium();
-   const PA=(RIC.paiements||LS.get('ri_cloud_pay',[])).slice(0,3).map(p=>`<div class="muted small" style="margin:4px 0">${p.statut==='a_verifier'?'⏳ En vérification':p.statut==='valide'?'✅ Validé':'❌ Refusé'} · ${esc(p.plan_nom)} · ${fcfa(p.montant_xof)} · ${esc((OPS[p.operateur]||[p.operateur])[0])}${p.statut==='refuse'&&p.motif?' — '+esc(p.motif):''}</div>`).join('');
+   const PA=(RIC.paiements||LS.get('ri_cloud_pay',[])).slice(0,3).map(p=>`<div class="muted small" style="margin:4px 0">${p.statut==='a_verifier'?(p.operateur==='wave'&&/^cos-/.test(p.reference||'')?'⏳ Paiement Wave en attente':'⏳ En vérification'):p.statut==='valide'?'✅ Validé':'❌ Refusé'} · ${esc(p.plan_nom)} · ${fcfa(p.montant_xof)} · ${esc((OPS[p.operateur]||[p.operateur])[0])}${p.statut==='refuse'&&p.motif?' — '+esc(p.motif):''}</div>`).join('');
    o.innerHTML=`<div class="pbox"><h3>👤 Mon compte</h3><div class="li" style="cursor:default"><span class="em">✉️</span><span class="tx"><b>${esc(RIC.session.email||'Compte connecté')}</b><small>${s.statut==='bloque'?'Compte bloqué : contacte l’administrateur':prem?'⭐ Premium jusqu’au '+esc(finPremium()):'Version gratuite'}</small></span></div>${PA?`<div style="margin:8px 0"><b class="small">Mes paiements</b>${PA}</div>`:''}${!prem&&RIC.payOuvert()?`<button class="btn coral" style="width:100%;margin:6px 0" onclick="document.getElementById('ricpt').remove();RIC.payer()">💳 Passer Premium</button>`:''}<div class="muted small" style="margin:8px 0">Ton compte garde ton accès Premium. Il fonctionne sur 2 téléphones au maximum.</div><div class="row2"><button class="btn light" id="ricRef">🔄 Actualiser</button><button class="btn light" id="ricOut">Se déconnecter</button></div><button class="btn light" style="width:100%;margin-top:8px" id="ricX">Fermer</button></div>`;
    document.body.appendChild(o);$('#ricX',o).onclick=()=>o.remove();$('#ricRef',o).onclick=async()=>{await RIC.syncCompte();o.remove();toast(RIC.isPremium()?'⭐ Premium actif':'Compte à jour')};
    $('#ricOut',o).onclick=async()=>{try{const t=await token();if(t)await fetch(RIC.url+'/auth/v1/logout',{method:'POST',headers:Object.assign(H(),{Authorization:'Bearer '+t})})}catch(e){}logoutLocal();o.remove();render();toast('Déconnecté')};return}
@@ -2351,28 +2351,47 @@ const RIC={
 
  /* ---------- paiement manuel Mobile Money ---------- */
  const OPS={wave:['Wave','#1DC3F0'],orange:['Orange Money','#FF7900'],mtn:['MTN MoMo','#FFCB05'],moov:['Moov Money','#0066B3']};
- RIC.payOuvert=()=>{const c=RIC.cfg.paiement||{};return!!c.actif&&Object.keys(OPS).some(k=>c.numeros&&c.numeros[k])&&(RIC.cfg.plans||[]).length>0};
+ /* Wave automatique (API Wave + fonctions Supabase « wave-checkout » / « wave-webhook ») : réglage public.paiement.wave_auto */
+ const waveOn=c=>c.wave_auto===true||(c.wave_auto==='test'&&!!(RIC.statut&&RIC.statut.role==='admin'));const opOk=(c,k)=>!!(c.numeros&&c.numeros[k])||(k==='wave'&&waveOn(c));
+ RIC.payOuvert=()=>{const c=RIC.cfg.paiement||{};return!!c.actif&&Object.keys(OPS).some(k=>opOk(c,k))&&(RIC.cfg.plans||[]).length>0};
  const RAISON={ferme:'Le paiement est fermé pour le moment.',operateur:'Ce moyen de paiement n’est pas disponible.',pass:'Ce pass n’est plus proposé.',reference:'Identifiant de transaction invalide : recopie-le depuis le SMS, ou laisse la case vide.',telephone:'Numéro de téléphone invalide.',trop:'Tu as déjà 3 paiements en attente de vérification : attends la réponse de l’administrateur.',deja:'Cet identifiant de transaction a déjà été déclaré.',compte:'Ton compte est bloqué : contacte l’administrateur.',connexion:'Connecte-toi d’abord à ton compte.'};
+ /* retour depuis Wave : on nettoie l'adresse et on suit l'activation quelques minutes */
+ RIC.retourWave=function(){const m=location.search.match(/[?&]wave=(ok|erreur)/);if(!m)return;try{history.replaceState(null,'',location.pathname+location.hash)}catch(e){}
+  if(m[1]==='erreur'){RIC.info('Paiement non abouti','Le paiement Wave n’a pas été finalisé. Aucun montant n’a été validé : tu peux réessayer depuis « Passer Premium ».');return}
+  RIC.info('Paiement Wave reçu ✅','Ton accès Premium s’active dans quelques secondes, dès que Wave confirme le paiement.');let n=0;
+  const t=setInterval(async()=>{n++;try{await RIC.syncCompte();await RIC.verifPaiement()}catch(e){}if(RIC.isPremium()||n>40){clearInterval(t);if(RIC.isPremium()){try{render()}catch(e){}toast('⭐ Premium activé')}}},3000)};
+ setTimeout(()=>RIC.retourWave(),1500);
  RIC.payer=function(planId){if(!RIC.session){RIC.compte('creer');return}if(!RIC.payOuvert()){toast('Le paiement n’est pas encore ouvert.');return}
-  const c=RIC.cfg.paiement,ops=Object.keys(OPS).filter(k=>c.numeros[k]),plans=RIC.cfg.plans;let plan=planId&&plans.find(p=>p.id===planId)?planId:plans[0].id,op=ops[0];
+  const c=RIC.cfg.paiement,ops=Object.keys(OPS).filter(k=>opOk(c,k)),plans=RIC.cfg.plans;let plan=planId&&plans.find(p=>p.id===planId)?planId:plans[0].id,op=ops[0];
   let o=$('#ripayer');if(o)o.remove();o=document.createElement('div');o.id='ripayer';o.className='pmod';document.body.appendChild(o);
-  const draw=()=>{const P=plans.find(p=>p.id===plan),num=c.numeros[op];
+  const draw=()=>{const P=plans.find(p=>p.id===plan),num=(c.numeros||{})[op]||'',auto=op==='wave'&&waveOn(c),lien=op==='wave'&&P.prix_xof>0?(c.wave_lien||'https://pay.wave.com/m/M_ci_kAcBVdk53ehz/c/ci/')+'?amount='+P.prix_xof:'';
    o.innerHTML=`<div class="pbox"><h3>💳 Payer mon accès Premium</h3>
     <div class="small" style="font-weight:700;margin:6px 0">1. Choisis ton pass</div>
     ${plans.map(p=>`<div class="li ri-opt ${p.id===plan?'on':''}" data-plan="${esc(p.id)}"><span class="em">${p.id===plan?'🔘':'⚪'}</span><span class="tx"><b>${esc(p.nom)}</b><small>${p.jours} jours</small></span><b style="white-space:nowrap">${fcfa(p.prix_xof)}</b></div>`).join('')}
     <div class="small" style="font-weight:700;margin:12px 0 6px">2. Choisis ton moyen de paiement</div>
     <div style="display:flex;gap:6px;flex-wrap:wrap">${ops.map(k=>`<button class="ri-op ${k===op?'on':''}" data-op="${k}" style="--c:${OPS[k][1]}">${OPS[k][0]}</button>`).join('')}</div>
-    <div class="ri-envoi"><div>Envoie <b>${fcfa(P.prix_xof)}</b> par <b>${OPS[op][0]}</b> au</div><div class="ri-num">${esc(num)} <button class="ri-copy" id="riCopy">Copier</button></div>${c.nom?`<div class="muted small">Au nom de ${esc(c.nom)}</div>`:''}${c.consigne?`<div class="muted small" style="margin-top:4px">${esc(c.consigne)}</div>`:''}</div>
+${auto?`    <div class="ri-envoi"><div>Tu paies <b>${fcfa(P.prix_xof)}</b> directement dans l’appli <b>Wave</b>.</div><div class="muted small" style="margin-top:4px">Ton accès Premium s’active tout seul dès que Wave confirme le paiement : rien d’autre à envoyer.</div></div>
+    <div id="riPM" class="small" style="margin-top:8px;color:#c0392b"></div>
+    <button class="btn" style="width:100%;margin-top:10px;background:#1DC3F0;color:#fff" id="riWave">🌊 Payer ${fcfa(P.prix_xof)} avec Wave</button>
+`:`${lien?`    <a class="btn" id="riWLien" href="${esc(lien)}" target="_blank" rel="noopener" style="display:block;text-align:center;text-decoration:none;width:100%;box-sizing:border-box;margin-top:10px;background:#1DC3F0;color:#fff">🌊 Ouvrir Wave et payer ${fcfa(P.prix_xof)}</a>
+    <div class="muted small" style="margin-top:6px">Le montant est déjà rempli : valide simplement dans Wave, puis reviens ici.</div>
+`:''}    <div class="ri-envoi"><div>${lien?'Ou envoie':'Envoie'} <b>${fcfa(P.prix_xof)}</b> par <b>${OPS[op][0]}</b> au</div><div class="ri-num">${esc(num)} <button class="ri-copy" id="riCopy">Copier</button></div>${c.nom?`<div class="muted small">Au nom de ${esc(c.nom)}</div>`:''}${c.consigne?`<div class="muted small" style="margin-top:4px">${esc(c.consigne)}</div>`:''}</div>
     <div class="small" style="font-weight:700;margin:12px 0 6px">3. Après l’envoi, écris le numéro qui a payé</div>
     <input class="tin" id="riTel" type="tel" inputmode="tel" placeholder="Ex. 07 01 02 03 04" value="${esc(o.tel!=null?o.tel:LS.get('ri_pay_tel',''))}">
     ${o.refOn||o.ref?`<input class="tin" id="riRef" placeholder="Identifiant de la transaction (facultatif)" autocapitalize="characters" style="margin-top:8px" value="${esc(o.ref||'')}">`:`<button class="ri-lien" id="riRefOn">+ Ajouter l’identifiant du SMS (facultatif)</button>`}
     <div id="riPM" class="small" style="margin-top:8px;color:#c0392b"></div>
     <button class="btn coral" style="width:100%;margin-top:10px" id="riPOk">J’ai payé : envoyer pour vérification</button>
-    <button class="btn light" style="width:100%;margin-top:8px" id="riPX">Annuler</button></div>`;
-   const keep=()=>{o.tel=$('#riTel',o).value;o.ref=$('#riRef',o)?$('#riRef',o).value:o.ref};if($('#riRefOn',o))$('#riRefOn',o).onclick=()=>{keep();o.refOn=1;draw();const r=$('#riRef',o);if(r)r.focus()};
+`}    <button class="btn light" style="width:100%;margin-top:8px" id="riPX">Annuler</button></div>`;
+   const keep=()=>{const t=$('#riTel',o);if(!t)return;o.tel=t.value;o.ref=$('#riRef',o)?$('#riRef',o).value:o.ref};if($('#riRefOn',o))$('#riRefOn',o).onclick=()=>{keep();o.refOn=1;draw();const r=$('#riRef',o);if(r)r.focus()};
    $$('[data-plan]',o).forEach(e=>e.onclick=()=>{keep();plan=e.dataset.plan;draw()});
    $$('[data-op]',o).forEach(e=>e.onclick=()=>{keep();op=e.dataset.op;draw()});
-   $('#riCopy',o).onclick=()=>{try{navigator.clipboard.writeText(String(num).replace(/\s/g,''));toast('Numéro copié')}catch(e){toast(num)}};
+   if(auto){$('#riPX',o).onclick=()=>o.remove();$('#riWave',o).onclick=async()=>{const m=t=>{$('#riPM',o).textContent=t},b=$('#riWave',o);b.disabled=true;m('');
+     try{const t=await token();if(!t){m('Connecte-toi d’abord à ton compte.');b.disabled=false;return}
+      const r=await fetch(RIC.url+'/functions/v1/wave-checkout',{method:'POST',headers:Object.assign(H(),{Authorization:'Bearer '+t}),body:JSON.stringify({plan})});const j=await r.json().catch(()=>({}));
+      if(!j.ok||!j.url){m(RAISON[j.raison]||(j.raison==='wave'?'Wave ne répond pas pour le moment, réessaie dans un instant.':'Paiement impossible pour le moment, réessaie.'));b.disabled=false;return}
+      track('paiement_wave',{plan});LS.set('ri_wave_attente',Date.now());location.href=j.url}
+     catch(e){m(/fetch|network|Load failed/i.test(e.message)?'Pas de connexion internet.':'Paiement impossible pour le moment, réessaie.');b.disabled=false}};return}
+   if($('#riWLien',o))$('#riWLien',o).onclick=()=>{keep();track('paiement_wave_lien',{plan});setTimeout(()=>{const t=$('#riTel',o);if(t&&!t.value)t.focus()},800)};$('#riCopy',o).onclick=()=>{try{navigator.clipboard.writeText(String(num).replace(/\s/g,''));toast('Numéro copié')}catch(e){toast(num)}};
    $('#riPX',o).onclick=()=>o.remove();
    $('#riPOk',o).onclick=async()=>{const tel=$('#riTel',o).value.trim(),ref=($('#riRef',o)?$('#riRef',o).value:'').trim(),m=t=>{$('#riPM',o).textContent=t};
     if(tel.replace(/[^0-9]/g,'').length<8){m('Écris le numéro qui a envoyé l’argent.');return}if(ref&&ref.replace(/\s/g,'').length<4){m('Identifiant trop court : recopie-le depuis le SMS, ou laisse la case vide.');return}
