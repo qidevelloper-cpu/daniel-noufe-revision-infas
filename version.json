@@ -1,10 +1,10 @@
 {
- "v": "995dc89b2b",
+ "v": "f9c18f3781",
  "date": "2026-10-25",
- "sig": "a21e920b93cce5094811a803ef761cc974d6c08d",
+ "sig": "2f1facadd8ea53dfcd72defae3882ad0af3d55f3",
  "notes": [
   {
-   "t": "Codes d'activation, sujets Prépa D.E (ordre ou aléatoire), reprise d'un sujet, questions gratuites, images dans les cours, nouvelle calculatrice"
+   "t": "Nouvelle calculatrice : modèle de poche (AC, %, ×, ÷, +/-, = orange)"
   }
  ],
  "mats": {
@@ -103,6 +103,15 @@
  },
  "hist": [
   {
+   "v": "f9c18f3781",
+   "date": "2026-10-25",
+   "notes": [
+    {
+     "t": "Nouvelle calculatrice : modèle de poche (AC, %, ×, ÷, +/-, = orange)"
+    }
+   ]
+  },
+  {
    "v": "995dc89b2b",
    "date": "2026-10-25",
    "notes": [
@@ -188,15 +197,6 @@
    "notes": [
     {
      "t": "📡 Présence en direct pour le tableau de bord"
-    }
-   ]
-  },
-  {
-   "v": "5812e6e067",
-   "date": "2026-10-25",
-   "notes": [
-    {
-     "t": "📚 Cours ouverts à plusieurs années · 💬 Liens WhatsApp de la communauté"
     }
    ]
   }
