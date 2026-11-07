@@ -1,13 +1,13 @@
 {
- "v": "3a07caafa9",
+ "v": "f4c871c322",
  "date": "2026-10-25",
- "sig": "566ad4e89df1675546dd587b90a1d70eed3fd31b",
+ "sig": "c16f5ef04efb0f63f90d63478c2582e9810d4bb8",
  "notes": [
   {
-   "t": "✍️ Nouveau : Pédiatrie — Exercices & Corrigés (779 questions expliquées)"
+   "t": "✍️ Pédiatrie — Exercices & Corrigés : 779 questions en quiz, 59 fiches et flashcards"
   },
   {
-   "t": "📘 Nouveau cours : Pédiatrie — Exercices & Corrigés",
+   "t": "🔄 Cours mis à jour : Pédiatrie — Exercices & Corrigés",
    "m": "xpedexo"
   }
  ],
@@ -102,10 +102,23 @@
   },
   "xpedexo": {
    "t": "Pédiatrie — Exercices & Corrigés",
-   "h": "5bd0159259af52a99d787b349d682259127b8bc9"
+   "h": "405e714fab0a2c0dfb3775e8fdb55a16410948f6"
   }
  },
  "hist": [
+  {
+   "v": "f4c871c322",
+   "date": "2026-10-25",
+   "notes": [
+    {
+     "t": "✍️ Pédiatrie — Exercices & Corrigés : 779 questions en quiz, 59 fiches et flashcards"
+    },
+    {
+     "t": "🔄 Cours mis à jour : Pédiatrie — Exercices & Corrigés",
+     "m": "xpedexo"
+    }
+   ]
+  },
   {
    "v": "3a07caafa9",
    "date": "2026-10-25",
@@ -188,15 +201,6 @@
    "notes": [
     {
      "t": "👑 Badge « Membre Premium » ou « Version gratuite » sous le nom de l'élève"
-    }
-   ]
-  },
-  {
-   "v": "0dfa6af78e",
-   "date": "2026-10-25",
-   "notes": [
-    {
-     "t": "⏳ Compte à rebours du D.E 2026 · 🎨 Accueil retouché (tailles, titres de rubriques)"
     }
    ]
   }
