@@ -1,10 +1,14 @@
 {
- "v": "1c040da9af",
+ "v": "b7dace7fd1",
  "date": "2026-10-25",
- "sig": "3294a3e2e2a0932cf6ebb33c23c39bc1b1837948",
+ "sig": "567b23140b6234b15087e9b6ba83c56c6ba406af",
  "notes": [
   {
-   "t": "Correction nationale : tous les sujets en liste par épreuve (Gynéco-obstétrique, SSR / PF, Santé publique, Pédiatrie…), groupés par antenne"
+   "t": "Premium avec ton nom et ton code (sans Google) · Correction nationale : 53 nouveaux sujets S2 : 2025 et S3 : 2026"
+  },
+  {
+   "t": "🔄 Cours mis à jour : Correction Nationale 2025 — Examens blancs infirmier",
+   "m": "xmvkq4zed"
   }
  ],
  "mats": {
@@ -103,15 +107,6 @@
  },
  "hist": [
   {
-   "v": "1c040da9af",
-   "date": "2026-10-25",
-   "notes": [
-    {
-     "t": "Correction nationale : tous les sujets en liste par épreuve (Gynéco-obstétrique, SSR / PF, Santé publique, Pédiatrie…), groupés par antenne"
-    }
-   ]
-  },
-  {
    "v": "b7dace7fd1",
    "date": "2026-10-25",
    "notes": [
@@ -201,6 +196,15 @@
    "notes": [
     {
      "t": "Paiement Wave : bouton Wave avec montant prérempli"
+    }
+   ]
+  },
+  {
+   "v": "338cbb640c",
+   "date": "2026-10-25",
+   "notes": [
+    {
+     "t": "↩️ Retour à l'adresse GitHub · 🛠️ correctif d'ouverture hors connexion"
     }
    ]
   }
