@@ -1,10 +1,10 @@
 {
- "v": "f9c18f3781",
+ "v": "9d58a49401",
  "date": "2026-10-25",
- "sig": "2f1facadd8ea53dfcd72defae3882ad0af3d55f3",
+ "sig": "630b0bcf6593bf55a60f739846a65f0d2e88d238",
  "notes": [
   {
-   "t": "Nouvelle calculatrice : modèle de poche (AC, %, ×, ÷, +/-, = orange)"
+   "t": "Correction nationale : nouveaux sujets corrigés S2 : 2025 (Sage-femme) et S3 : 2026 (7 antennes)"
   }
  ],
  "mats": {
@@ -103,6 +103,15 @@
  },
  "hist": [
   {
+   "v": "9d58a49401",
+   "date": "2026-10-25",
+   "notes": [
+    {
+     "t": "Correction nationale : nouveaux sujets corrigés S2 : 2025 (Sage-femme) et S3 : 2026 (7 antennes)"
+    }
+   ]
+  },
+  {
    "v": "f9c18f3781",
    "date": "2026-10-25",
    "notes": [
@@ -188,15 +197,6 @@
    "notes": [
     {
      "t": "🚚 Nouvelle adresse : revision-infas.pages.dev (progression transférée automatiquement)"
-    }
-   ]
-  },
-  {
-   "v": "32e2867350",
-   "date": "2026-10-25",
-   "notes": [
-    {
-     "t": "📡 Présence en direct pour le tableau de bord"
     }
    ]
   }
