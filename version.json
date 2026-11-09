@@ -1,21 +1,17 @@
 {
- "v": "e1c2c67fcd",
+ "v": "41c309e8c3",
  "date": "2026-10-25",
- "sig": "37c18eef59aeff0fdb8e4e20020f22f9c1bb4d70",
+ "sig": "d064000f44bc82f406fbd3ff51e35a3b6ed260c4",
  "notes": [
   {
-   "t": "Nouveau : compositions par lien (le sujet s’ouvre directement, la note est envoyée à l’enseignant) · rubrique « RÉSUMÉS POUR LE D.E » avec le Résumé de Pédiatrie (17 fiches) · Révision de gynécologie · Préparation D.E (J)"
-  },
-  {
-   "t": "🔄 Cours mis à jour : Gynéco-Obstétrique",
-   "m": "gyneco"
+   "t": "Nouveau : compositions par lien (le sujet s’ouvre directement, la note est enregistrée) · rubrique « RÉSUMÉS POUR LE D.E » : Résumé de Pédiatrie à l’identique du PDF (17 fiches) · Révision de gynécologie · Préparation D.E (J) · Prépa D.E par chapitre dans les documents de révision"
   },
   {
    "t": "🔄 Cours mis à jour : Correction Nationale 2025 — Examens blancs infirmier",
    "m": "xmvkq4zed"
   },
   {
-   "t": "📘 Nouveau cours : Résumé de Pédiatrie pour le D.E",
+   "t": "🔄 Cours mis à jour : Résumé de Pédiatrie pour le D.E",
    "m": "xresped"
   }
  ],
@@ -54,7 +50,7 @@
   },
   "xmvkq4zed": {
    "t": "Correction Nationale 2025 — Examens blancs infirmier",
-   "h": "7929d289f8409089acfd2fa7dab8164d6f30aef5"
+   "h": "ecd8089f1a0f550609a5db35be9288bd6bb6ea6b"
   },
   "xmvkq53re": {
    "t": "Pharmacologie",
@@ -114,10 +110,27 @@
   },
   "xresped": {
    "t": "Résumé de Pédiatrie pour le D.E",
-   "h": "48d723b3672280c8850b829383265491cc34a38c"
+   "h": "21e1ab9721a143e8bd954eaa77f0507f40a30a4b"
   }
  },
  "hist": [
+  {
+   "v": "41c309e8c3",
+   "date": "2026-10-25",
+   "notes": [
+    {
+     "t": "Nouveau : compositions par lien (le sujet s’ouvre directement, la note est enregistrée) · rubrique « RÉSUMÉS POUR LE D.E » : Résumé de Pédiatrie à l’identique du PDF (17 fiches) · Révision de gynécologie · Préparation D.E (J) · Prépa D.E par chapitre dans les documents de révision"
+    },
+    {
+     "t": "🔄 Cours mis à jour : Correction Nationale 2025 — Examens blancs infirmier",
+     "m": "xmvkq4zed"
+    },
+    {
+     "t": "🔄 Cours mis à jour : Résumé de Pédiatrie pour le D.E",
+     "m": "xresped"
+    }
+   ]
+  },
   {
    "v": "e1c2c67fcd",
    "date": "2026-10-25",
@@ -220,15 +233,6 @@
    "notes": [
     {
      "t": "📚 Cours gratuits / Premium mis à jour dès le retour dans l'appli"
-    }
-   ]
-  },
-  {
-   "v": "754f1aeba1",
-   "date": "2026-10-25",
-   "notes": [
-    {
-     "t": "Paiement Wave : bouton Wave avec montant prérempli"
     }
    ]
   }

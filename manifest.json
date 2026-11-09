@@ -4,6 +4,12 @@
  "start_url": "./",
  "scope": "./",
  "display": "standalone",
+ "related_applications": [
+  {
+   "platform": "webapp",
+   "url": "manifest.json"
+  }
+ ],
  "background_color": "#F4F1EA",
  "theme_color": "#ffffff",
  "lang": "fr",
