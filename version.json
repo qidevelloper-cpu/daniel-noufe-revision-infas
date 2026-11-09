@@ -1,14 +1,22 @@
 {
- "v": "b7dace7fd1",
+ "v": "e1c2c67fcd",
  "date": "2026-10-25",
- "sig": "567b23140b6234b15087e9b6ba83c56c6ba406af",
+ "sig": "37c18eef59aeff0fdb8e4e20020f22f9c1bb4d70",
  "notes": [
   {
-   "t": "Premium avec ton nom et ton code (sans Google) · Correction nationale : 53 nouveaux sujets S2 : 2025 et S3 : 2026"
+   "t": "Nouveau : compositions par lien (le sujet s’ouvre directement, la note est envoyée à l’enseignant) · rubrique « RÉSUMÉS POUR LE D.E » avec le Résumé de Pédiatrie (17 fiches) · Révision de gynécologie · Préparation D.E (J)"
+  },
+  {
+   "t": "🔄 Cours mis à jour : Gynéco-Obstétrique",
+   "m": "gyneco"
   },
   {
    "t": "🔄 Cours mis à jour : Correction Nationale 2025 — Examens blancs infirmier",
    "m": "xmvkq4zed"
+  },
+  {
+   "t": "📘 Nouveau cours : Résumé de Pédiatrie pour le D.E",
+   "m": "xresped"
   }
  ],
  "mats": {
@@ -18,7 +26,7 @@
   },
   "gyneco": {
    "t": "Gynéco-Obstétrique",
-   "h": "eef4004fe76f1dccb2df8dc88ebc9ede7fb341a9"
+   "h": "ee5f6602625b3f1d7669ead4febc7723ef24d3a5"
   },
   "vih": {
    "t": "VIH & traitement ARV",
@@ -46,7 +54,7 @@
   },
   "xmvkq4zed": {
    "t": "Correction Nationale 2025 — Examens blancs infirmier",
-   "h": "47e720bf28e275247046c3bf20698c19db4d6a27"
+   "h": "7929d289f8409089acfd2fa7dab8164d6f30aef5"
   },
   "xmvkq53re": {
    "t": "Pharmacologie",
@@ -103,9 +111,34 @@
   "xpedexo": {
    "t": "Pédiatrie — Exercices & Corrigés",
    "h": "405e714fab0a2c0dfb3775e8fdb55a16410948f6"
+  },
+  "xresped": {
+   "t": "Résumé de Pédiatrie pour le D.E",
+   "h": "48d723b3672280c8850b829383265491cc34a38c"
   }
  },
  "hist": [
+  {
+   "v": "e1c2c67fcd",
+   "date": "2026-10-25",
+   "notes": [
+    {
+     "t": "Nouveau : compositions par lien (le sujet s’ouvre directement, la note est envoyée à l’enseignant) · rubrique « RÉSUMÉS POUR LE D.E » avec le Résumé de Pédiatrie (17 fiches) · Révision de gynécologie · Préparation D.E (J)"
+    },
+    {
+     "t": "🔄 Cours mis à jour : Gynéco-Obstétrique",
+     "m": "gyneco"
+    },
+    {
+     "t": "🔄 Cours mis à jour : Correction Nationale 2025 — Examens blancs infirmier",
+     "m": "xmvkq4zed"
+    },
+    {
+     "t": "📘 Nouveau cours : Résumé de Pédiatrie pour le D.E",
+     "m": "xresped"
+    }
+   ]
+  },
   {
    "v": "b7dace7fd1",
    "date": "2026-10-25",
@@ -196,15 +229,6 @@
    "notes": [
     {
      "t": "Paiement Wave : bouton Wave avec montant prérempli"
-    }
-   ]
-  },
-  {
-   "v": "338cbb640c",
-   "date": "2026-10-25",
-   "notes": [
-    {
-     "t": "↩️ Retour à l'adresse GitHub · 🛠️ correctif d'ouverture hors connexion"
     }
    ]
   }
