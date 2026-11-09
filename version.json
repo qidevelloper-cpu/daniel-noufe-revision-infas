@@ -1,18 +1,14 @@
 {
- "v": "41c309e8c3",
+ "v": "b5e0293016",
  "date": "2026-10-25",
- "sig": "d064000f44bc82f406fbd3ff51e35a3b6ed260c4",
+ "sig": "b046868bf45444d23742cf46d18828faadd204e8",
  "notes": [
   {
-   "t": "Nouveau : compositions par lien (le sujet s’ouvre directement, la note est enregistrée) · rubrique « RÉSUMÉS POUR LE D.E » : Résumé de Pédiatrie à l’identique du PDF (17 fiches) · Révision de gynécologie · Préparation D.E (J) · Prépa D.E par chapitre dans les documents de révision"
+   "t": "Sujets : « aléatoire » garde les cas cliniques groupés et dans l’ordre · énoncés de cas ajoutés (D.E blanc 2026) · ordre ou aléatoire dans la Correction Nationale"
   },
   {
    "t": "🔄 Cours mis à jour : Correction Nationale 2025 — Examens blancs infirmier",
    "m": "xmvkq4zed"
-  },
-  {
-   "t": "🔄 Cours mis à jour : Résumé de Pédiatrie pour le D.E",
-   "m": "xresped"
   }
  ],
  "mats": {
@@ -50,7 +46,7 @@
   },
   "xmvkq4zed": {
    "t": "Correction Nationale 2025 — Examens blancs infirmier",
-   "h": "ecd8089f1a0f550609a5db35be9288bd6bb6ea6b"
+   "h": "0c6615fcd06390c582f3e6eae3b848d886498bfc"
   },
   "xmvkq53re": {
    "t": "Pharmacologie",
@@ -114,6 +110,19 @@
   }
  },
  "hist": [
+  {
+   "v": "b5e0293016",
+   "date": "2026-10-25",
+   "notes": [
+    {
+     "t": "Sujets : « aléatoire » garde les cas cliniques groupés et dans l’ordre · énoncés de cas ajoutés (D.E blanc 2026) · ordre ou aléatoire dans la Correction Nationale"
+    },
+    {
+     "t": "🔄 Cours mis à jour : Correction Nationale 2025 — Examens blancs infirmier",
+     "m": "xmvkq4zed"
+    }
+   ]
+  },
   {
    "v": "41c309e8c3",
    "date": "2026-10-25",
@@ -224,15 +233,6 @@
    "notes": [
     {
      "t": "📷 Signaler une erreur avec une photo"
-    }
-   ]
-  },
-  {
-   "v": "135d2245f1",
-   "date": "2026-10-25",
-   "notes": [
-    {
-     "t": "📚 Cours gratuits / Premium mis à jour dès le retour dans l'appli"
     }
    ]
   }
