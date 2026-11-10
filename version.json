@@ -1,7 +1,7 @@
 {
- "v": "d647dfda2f",
+ "v": "73531e6db8",
  "date": "2026-10-25",
- "sig": "280dc738a909a8c3e6c6f6d455f8769274676cf6",
+ "sig": "5b5df87fccc6e050c03a5c8e5af4f0fab96d8db0",
  "notes": [
   {
    "t": "Nouvelle mise à jour"
@@ -106,6 +106,15 @@
   }
  },
  "hist": [
+  {
+   "v": "73531e6db8",
+   "date": "2026-10-25",
+   "notes": [
+    {
+     "t": "Nouvelle mise à jour"
+    }
+   ]
+  },
   {
    "v": "d647dfda2f",
    "date": "2026-10-25",
@@ -214,21 +223,9 @@
      "t": "Codes d'activation, sujets Prépa D.E (ordre ou aléatoire), reprise d'un sujet, questions gratuites, images dans les cours, nouvelle calculatrice"
     }
    ]
-  },
-  {
-   "v": "f4c871c322",
-   "date": "2026-10-25",
-   "notes": [
-    {
-     "t": "✍️ Pédiatrie — Exercices & Corrigés : 779 questions en quiz, 59 fiches et flashcards"
-    },
-    {
-     "t": "🔄 Cours mis à jour : Pédiatrie — Exercices & Corrigés",
-     "m": "xpedexo"
-    }
-   ]
   }
  ],
  "moteur": 2,
- "format": 2
+ "format": 2,
+ "oblig": 1
 }
