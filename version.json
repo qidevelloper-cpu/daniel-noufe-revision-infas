@@ -1,10 +1,10 @@
 {
- "v": "8c48d5c3b0",
+ "v": "d647dfda2f",
  "date": "2026-10-25",
- "sig": "2b95447bb481baf66d36122ab8cf45311078d822",
+ "sig": "280dc738a909a8c3e6c6f6d455f8769274676cf6",
  "notes": [
   {
-   "t": "Heures de connexion"
+   "t": "Nouvelle mise à jour"
   }
  ],
  "mats": {
@@ -106,6 +106,15 @@
   }
  },
  "hist": [
+  {
+   "v": "d647dfda2f",
+   "date": "2026-10-25",
+   "notes": [
+    {
+     "t": "Nouvelle mise à jour"
+    }
+   ]
+  },
   {
    "v": "8c48d5c3b0",
    "date": "2026-10-25",
@@ -215,19 +224,6 @@
     },
     {
      "t": "🔄 Cours mis à jour : Pédiatrie — Exercices & Corrigés",
-     "m": "xpedexo"
-    }
-   ]
-  },
-  {
-   "v": "3a07caafa9",
-   "date": "2026-10-25",
-   "notes": [
-    {
-     "t": "✍️ Nouveau : Pédiatrie — Exercices & Corrigés (779 questions expliquées)"
-    },
-    {
-     "t": "📘 Nouveau cours : Pédiatrie — Exercices & Corrigés",
      "m": "xpedexo"
     }
    ]
