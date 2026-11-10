@@ -1,14 +1,10 @@
 {
- "v": "b5e0293016",
+ "v": "8c48d5c3b0",
  "date": "2026-10-25",
- "sig": "b046868bf45444d23742cf46d18828faadd204e8",
+ "sig": "2b95447bb481baf66d36122ab8cf45311078d822",
  "notes": [
   {
-   "t": "Sujets : « aléatoire » garde les cas cliniques groupés et dans l’ordre · énoncés de cas ajoutés (D.E blanc 2026) · ordre ou aléatoire dans la Correction Nationale"
-  },
-  {
-   "t": "🔄 Cours mis à jour : Correction Nationale 2025 — Examens blancs infirmier",
-   "m": "xmvkq4zed"
+   "t": "Heures de connexion"
   }
  ],
  "mats": {
@@ -110,6 +106,15 @@
   }
  },
  "hist": [
+  {
+   "v": "8c48d5c3b0",
+   "date": "2026-10-25",
+   "notes": [
+    {
+     "t": "Heures de connexion"
+    }
+   ]
+  },
   {
    "v": "b5e0293016",
    "date": "2026-10-25",
@@ -224,15 +229,6 @@
     {
      "t": "📘 Nouveau cours : Pédiatrie — Exercices & Corrigés",
      "m": "xpedexo"
-    }
-   ]
-  },
-  {
-   "v": "8909c592fd",
-   "date": "2026-10-25",
-   "notes": [
-    {
-     "t": "📷 Signaler une erreur avec une photo"
     }
    ]
   }
