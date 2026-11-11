@@ -1,10 +1,22 @@
 {
- "v": "73531e6db8",
+ "v": "ca5b35f0ef",
  "date": "2026-10-25",
- "sig": "5b5df87fccc6e050c03a5c8e5af4f0fab96d8db0",
+ "sig": "8406c2685ad7b97c23555b610daa965fcc25895e",
  "notes": [
   {
    "t": "Nouvelle mise à jour"
+  },
+  {
+   "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
+   "m": "xmvkq4zed"
+  },
+  {
+   "t": "🔄 Cours mis à jour : Tous les sujets prépa D.E",
+   "m": "xprepade"
+  },
+  {
+   "t": "📘 Nouveau cours : Médecine — Annales corrigées L3 IDE",
+   "m": "xmedann"
   }
  ],
  "mats": {
@@ -41,8 +53,8 @@
    "h": "cc58c4abda2f9150c902b0bf78c71b6cee39ef42"
   },
   "xmvkq4zed": {
-   "t": "Correction Nationale 2025 — Examens blancs infirmier",
-   "h": "0c6615fcd06390c582f3e6eae3b848d886498bfc"
+   "t": "CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
+   "h": "3baa9742081ad395f15ae3de4cb44de7012e008d"
   },
   "xmvkq53re": {
    "t": "Pharmacologie",
@@ -53,7 +65,7 @@
    "h": "9129f94eecfc57e5beef373cca0332fefb8272f4"
   },
   "xmvkq5cba": {
-   "t": "Santé infantile",
+   "t": "SANTE INFANTILE",
    "h": "5417f6d4e43f6a00733fadaa2701eab07b0da154"
   },
   "xmvkq5gqn": {
@@ -86,7 +98,7 @@
   },
   "xprepade": {
    "t": "Tous les sujets prépa D.E",
-   "h": "6062aad8d5368b6f520739ab23b51737fac1dad0"
+   "h": "51a9644ac09ec37b3bdaa472a9b711bebffb6cd2"
   },
   "xformules": {
    "t": "Réviser les formules",
@@ -95,6 +107,10 @@
   "xmvm9jr75": {
    "t": "Ophtalmologie",
    "h": "864477f569d744990ba9ccbbd3a43fd64a031847"
+  },
+  "xmedann": {
+   "t": "Médecine — Annales corrigées L3 IDE",
+   "h": "da1668a3cde14d3203d0ee651fa460c299e649de"
   },
   "xpedexo": {
    "t": "Pédiatrie — Exercices & Corrigés",
@@ -106,6 +122,27 @@
   }
  },
  "hist": [
+  {
+   "v": "ca5b35f0ef",
+   "date": "2026-10-25",
+   "notes": [
+    {
+     "t": "Nouvelle mise à jour"
+    },
+    {
+     "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
+     "m": "xmvkq4zed"
+    },
+    {
+     "t": "🔄 Cours mis à jour : Tous les sujets prépa D.E",
+     "m": "xprepade"
+    },
+    {
+     "t": "📘 Nouveau cours : Médecine — Annales corrigées L3 IDE",
+     "m": "xmedann"
+    }
+   ]
+  },
   {
    "v": "73531e6db8",
    "date": "2026-10-25",
@@ -212,15 +249,6 @@
    "notes": [
     {
      "t": "Nouvelle calculatrice : modèle de poche (AC, %, ×, ÷, +/-, = orange)"
-    }
-   ]
-  },
-  {
-   "v": "995dc89b2b",
-   "date": "2026-10-25",
-   "notes": [
-    {
-     "t": "Codes d'activation, sujets Prépa D.E (ordre ou aléatoire), reprise d'un sujet, questions gratuites, images dans les cours, nouvelle calculatrice"
     }
    ]
   }
