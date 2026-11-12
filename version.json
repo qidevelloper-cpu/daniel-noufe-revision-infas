@@ -1,5 +1,5 @@
 {
- "v": "20299c2a01",
+ "v": "6f1514e29d",
  "date": "2026-11-12",
  "sig": "3f29e828893f86f8c8df1a538520b775573188e6",
  "notes": [
@@ -110,6 +110,15 @@
   }
  },
  "hist": [
+  {
+   "v": "6f1514e29d",
+   "date": "2026-11-12",
+   "notes": [
+    {
+     "t": "Nouvelle mise à jour"
+    }
+   ]
+  },
   {
    "v": "20299c2a01",
    "date": "2026-11-12",
@@ -224,19 +233,6 @@
     {
      "t": "📘 Nouveau cours : Résumé de Pédiatrie pour le D.E",
      "m": "xresped"
-    }
-   ]
-  },
-  {
-   "v": "b7dace7fd1",
-   "date": "2026-10-25",
-   "notes": [
-    {
-     "t": "Premium avec ton nom et ton code (sans Google) · Correction nationale : 53 nouveaux sujets S2 : 2025 et S3 : 2026"
-    },
-    {
-     "t": "🔄 Cours mis à jour : Correction Nationale 2025 — Examens blancs infirmier",
-     "m": "xmvkq4zed"
     }
    ]
   }
