@@ -1,7 +1,7 @@
 {
- "v": "b3d120d194",
- "date": "2026-10-25",
- "sig": "399ccd2c30dc031c949e5b82f6b060dde0d7e79f",
+ "v": "20299c2a01",
+ "date": "2026-11-12",
+ "sig": "3f29e828893f86f8c8df1a538520b775573188e6",
  "notes": [
   {
    "t": "Nouvelle mise à jour"
@@ -110,6 +110,15 @@
   }
  },
  "hist": [
+  {
+   "v": "20299c2a01",
+   "date": "2026-11-12",
+   "notes": [
+    {
+     "t": "Nouvelle mise à jour"
+    }
+   ]
+  },
   {
    "v": "b3d120d194",
    "date": "2026-10-25",
@@ -228,15 +237,6 @@
     {
      "t": "🔄 Cours mis à jour : Correction Nationale 2025 — Examens blancs infirmier",
      "m": "xmvkq4zed"
-    }
-   ]
-  },
-  {
-   "v": "9d58a49401",
-   "date": "2026-10-25",
-   "notes": [
-    {
-     "t": "Correction nationale : nouveaux sujets corrigés S2 : 2025 (Sage-femme) et S3 : 2026 (7 antennes)"
     }
    ]
   }
