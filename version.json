@@ -1,22 +1,10 @@
 {
- "v": "ca5b35f0ef",
+ "v": "b3d120d194",
  "date": "2026-10-25",
- "sig": "8406c2685ad7b97c23555b610daa965fcc25895e",
+ "sig": "399ccd2c30dc031c949e5b82f6b060dde0d7e79f",
  "notes": [
   {
    "t": "Nouvelle mise à jour"
-  },
-  {
-   "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-   "m": "xmvkq4zed"
-  },
-  {
-   "t": "🔄 Cours mis à jour : Tous les sujets prépa D.E",
-   "m": "xprepade"
-  },
-  {
-   "t": "📘 Nouveau cours : Médecine — Annales corrigées L3 IDE",
-   "m": "xmedann"
   }
  ],
  "mats": {
@@ -122,6 +110,15 @@
   }
  },
  "hist": [
+  {
+   "v": "b3d120d194",
+   "date": "2026-10-25",
+   "notes": [
+    {
+     "t": "Nouvelle mise à jour"
+    }
+   ]
+  },
   {
    "v": "ca5b35f0ef",
    "date": "2026-10-25",
@@ -240,15 +237,6 @@
    "notes": [
     {
      "t": "Correction nationale : nouveaux sujets corrigés S2 : 2025 (Sage-femme) et S3 : 2026 (7 antennes)"
-    }
-   ]
-  },
-  {
-   "v": "f9c18f3781",
-   "date": "2026-10-25",
-   "notes": [
-    {
-     "t": "Nouvelle calculatrice : modèle de poche (AC, %, ×, ÷, +/-, = orange)"
     }
    ]
   }
