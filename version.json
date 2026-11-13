@@ -1,10 +1,10 @@
 {
- "v": "6f1514e29d",
- "date": "2026-11-12",
- "sig": "3f29e828893f86f8c8df1a538520b775573188e6",
+ "v": "8b217fb890",
+ "date": "2026-11-13",
+ "sig": "03864c7d07c3b787b35d2397895d2f3b3807d6df",
  "notes": [
   {
-   "t": "Nouvelle mise à jour"
+   "t": "Nouveau : tableau d’honneur des étudiants qui améliorent l’appli 🏅"
   }
  ],
  "mats": {
@@ -111,6 +111,15 @@
  },
  "hist": [
   {
+   "v": "8b217fb890",
+   "date": "2026-11-13",
+   "notes": [
+    {
+     "t": "Nouveau : tableau d’honneur des étudiants qui améliorent l’appli 🏅"
+    }
+   ]
+  },
+  {
    "v": "6f1514e29d",
    "date": "2026-11-12",
    "notes": [
@@ -211,27 +220,6 @@
     },
     {
      "t": "🔄 Cours mis à jour : Résumé de Pédiatrie pour le D.E",
-     "m": "xresped"
-    }
-   ]
-  },
-  {
-   "v": "e1c2c67fcd",
-   "date": "2026-10-25",
-   "notes": [
-    {
-     "t": "Nouveau : compositions par lien (le sujet s’ouvre directement, la note est envoyée à l’enseignant) · rubrique « RÉSUMÉS POUR LE D.E » avec le Résumé de Pédiatrie (17 fiches) · Révision de gynécologie · Préparation D.E (J)"
-    },
-    {
-     "t": "🔄 Cours mis à jour : Gynéco-Obstétrique",
-     "m": "gyneco"
-    },
-    {
-     "t": "🔄 Cours mis à jour : Correction Nationale 2025 — Examens blancs infirmier",
-     "m": "xmvkq4zed"
-    },
-    {
-     "t": "📘 Nouveau cours : Résumé de Pédiatrie pour le D.E",
      "m": "xresped"
     }
    ]
