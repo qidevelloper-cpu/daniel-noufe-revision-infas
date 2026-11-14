@@ -1,10 +1,14 @@
 {
- "v": "8b217fb890",
- "date": "2026-11-13",
- "sig": "03864c7d07c3b787b35d2397895d2f3b3807d6df",
+ "v": "c97b3c663f",
+ "date": "2026-11-14",
+ "sig": "1d4d7ed831f5a8a177c6b401dbc9be3dd2c17d5e",
  "notes": [
   {
-   "t": "Nouveau : tableau d’honneur des étudiants qui améliorent l’appli 🏅"
+   "t": "Santé publique D.E blancs 2026 : réponses et explications corrigées pour les 8 antennes"
+  },
+  {
+   "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
+   "m": "xmvkq4zed"
   }
  ],
  "mats": {
@@ -42,7 +46,7 @@
   },
   "xmvkq4zed": {
    "t": "CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-   "h": "3baa9742081ad395f15ae3de4cb44de7012e008d"
+   "h": "bdf108e0e0558a62ec7084f355c77a6b07caaa1e"
   },
   "xmvkq53re": {
    "t": "Pharmacologie",
@@ -110,6 +114,19 @@
   }
  },
  "hist": [
+  {
+   "v": "c97b3c663f",
+   "date": "2026-11-14",
+   "notes": [
+    {
+     "t": "Santé publique D.E blancs 2026 : réponses et explications corrigées pour les 8 antennes"
+    },
+    {
+     "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
+     "m": "xmvkq4zed"
+    }
+   ]
+  },
   {
    "v": "8b217fb890",
    "date": "2026-11-13",
@@ -204,23 +221,6 @@
     {
      "t": "🔄 Cours mis à jour : Correction Nationale 2025 — Examens blancs infirmier",
      "m": "xmvkq4zed"
-    }
-   ]
-  },
-  {
-   "v": "41c309e8c3",
-   "date": "2026-10-25",
-   "notes": [
-    {
-     "t": "Nouveau : compositions par lien (le sujet s’ouvre directement, la note est enregistrée) · rubrique « RÉSUMÉS POUR LE D.E » : Résumé de Pédiatrie à l’identique du PDF (17 fiches) · Révision de gynécologie · Préparation D.E (J) · Prépa D.E par chapitre dans les documents de révision"
-    },
-    {
-     "t": "🔄 Cours mis à jour : Correction Nationale 2025 — Examens blancs infirmier",
-     "m": "xmvkq4zed"
-    },
-    {
-     "t": "🔄 Cours mis à jour : Résumé de Pédiatrie pour le D.E",
-     "m": "xresped"
     }
    ]
   }
