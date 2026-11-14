@@ -1,14 +1,10 @@
 {
- "v": "c97b3c663f",
+ "v": "343c5d0949",
  "date": "2026-11-14",
- "sig": "1d4d7ed831f5a8a177c6b401dbc9be3dd2c17d5e",
+ "sig": "7fe1203ba764cf5e3839ca4251fb3b525c8bd622",
  "notes": [
   {
-   "t": "Santé publique D.E blancs 2026 : réponses et explications corrigées pour les 8 antennes"
-  },
-  {
-   "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-   "m": "xmvkq4zed"
+   "t": "Calculatrice : nombres longs lisibles, copier et coller"
   }
  ],
  "mats": {
@@ -115,6 +111,15 @@
  },
  "hist": [
   {
+   "v": "343c5d0949",
+   "date": "2026-11-14",
+   "notes": [
+    {
+     "t": "Calculatrice : nombres longs lisibles, copier et coller"
+    }
+   ]
+  },
+  {
    "v": "c97b3c663f",
    "date": "2026-11-14",
    "notes": [
@@ -208,19 +213,6 @@
    "notes": [
     {
      "t": "Heures de connexion"
-    }
-   ]
-  },
-  {
-   "v": "b5e0293016",
-   "date": "2026-10-25",
-   "notes": [
-    {
-     "t": "Sujets : « aléatoire » garde les cas cliniques groupés et dans l’ordre · énoncés de cas ajoutés (D.E blanc 2026) · ordre ou aléatoire dans la Correction Nationale"
-    },
-    {
-     "t": "🔄 Cours mis à jour : Correction Nationale 2025 — Examens blancs infirmier",
-     "m": "xmvkq4zed"
     }
    ]
   }
