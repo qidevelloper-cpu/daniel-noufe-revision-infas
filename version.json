@@ -1,10 +1,14 @@
 {
- "v": "343c5d0949",
- "date": "2026-11-14",
- "sig": "7fe1203ba764cf5e3839ca4251fb3b525c8bd622",
+ "v": "04911e9463",
+ "date": "2026-11-15",
+ "sig": "89570f7ff164febb69db489c70238a570456ef3a",
  "notes": [
   {
-   "t": "Calculatrice : nombres longs lisibles, copier et coller"
+   "t": "Nouvelle mise à jour"
+  },
+  {
+   "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
+   "m": "xmvkq4zed"
   }
  ],
  "mats": {
@@ -42,7 +46,7 @@
   },
   "xmvkq4zed": {
    "t": "CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-   "h": "bdf108e0e0558a62ec7084f355c77a6b07caaa1e"
+   "h": "2c6a42096059bd776e5cd614422358b1b331f9cd"
   },
   "xmvkq53re": {
    "t": "Pharmacologie",
@@ -110,6 +114,19 @@
   }
  },
  "hist": [
+  {
+   "v": "04911e9463",
+   "date": "2026-11-15",
+   "notes": [
+    {
+     "t": "Nouvelle mise à jour"
+    },
+    {
+     "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
+     "m": "xmvkq4zed"
+    }
+   ]
+  },
   {
    "v": "343c5d0949",
    "date": "2026-11-14",
@@ -204,15 +221,6 @@
    "notes": [
     {
      "t": "Nouvelle mise à jour"
-    }
-   ]
-  },
-  {
-   "v": "8c48d5c3b0",
-   "date": "2026-10-25",
-   "notes": [
-    {
-     "t": "Heures de connexion"
     }
    ]
   }
