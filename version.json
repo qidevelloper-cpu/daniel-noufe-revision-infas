@@ -1,7 +1,7 @@
 {
- "v": "6bb20b2a6a",
+ "v": "6897e9d1c6",
  "date": "2026-11-16",
- "sig": "0c576bc6b846b580102c3afa5b506395fa0fadfb",
+ "sig": "a98307c40db9838bbf39d04e2d7ea08e1eeea33a",
  "notes": [
   {
    "t": "Télécharge et partage l'appli"
@@ -111,6 +111,15 @@
  },
  "hist": [
   {
+   "v": "6897e9d1c6",
+   "date": "2026-11-16",
+   "notes": [
+    {
+     "t": "Télécharge et partage l'appli"
+    }
+   ]
+  },
+  {
    "v": "6bb20b2a6a",
    "date": "2026-11-16",
    "notes": [
@@ -208,15 +217,6 @@
     {
      "t": "📘 Nouveau cours : Médecine — Annales corrigées L3 IDE",
      "m": "xmedann"
-    }
-   ]
-  },
-  {
-   "v": "73531e6db8",
-   "date": "2026-10-25",
-   "notes": [
-    {
-     "t": "Nouvelle mise à jour"
     }
    ]
   }
