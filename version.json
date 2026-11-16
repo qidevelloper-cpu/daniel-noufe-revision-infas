@@ -1,14 +1,10 @@
 {
- "v": "04911e9463",
- "date": "2026-11-15",
- "sig": "89570f7ff164febb69db489c70238a570456ef3a",
+ "v": "6bb20b2a6a",
+ "date": "2026-11-16",
+ "sig": "0c576bc6b846b580102c3afa5b506395fa0fadfb",
  "notes": [
   {
-   "t": "Nouvelle mise à jour"
-  },
-  {
-   "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-   "m": "xmvkq4zed"
+   "t": "Télécharge et partage l'appli"
   }
  ],
  "mats": {
@@ -115,6 +111,15 @@
  },
  "hist": [
   {
+   "v": "6bb20b2a6a",
+   "date": "2026-11-16",
+   "notes": [
+    {
+     "t": "Télécharge et partage l'appli"
+    }
+   ]
+  },
+  {
    "v": "04911e9463",
    "date": "2026-11-15",
    "notes": [
@@ -208,15 +213,6 @@
   },
   {
    "v": "73531e6db8",
-   "date": "2026-10-25",
-   "notes": [
-    {
-     "t": "Nouvelle mise à jour"
-    }
-   ]
-  },
-  {
-   "v": "d647dfda2f",
    "date": "2026-10-25",
    "notes": [
     {
