@@ -1,10 +1,14 @@
 {
- "v": "6897e9d1c6",
- "date": "2026-11-16",
- "sig": "a98307c40db9838bbf39d04e2d7ea08e1eeea33a",
+ "v": "26a9557a36",
+ "date": "2026-11-17",
+ "sig": "b7a84731936666144b689dbebe55fd92089a441f",
  "notes": [
   {
-   "t": "Télécharge et partage l'appli"
+   "t": "Nouveau : sujet J2 Médecine IDE3 corrigé et expliqué"
+  },
+  {
+   "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
+   "m": "xmvkq4zed"
   }
  ],
  "mats": {
@@ -42,7 +46,7 @@
   },
   "xmvkq4zed": {
    "t": "CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-   "h": "2c6a42096059bd776e5cd614422358b1b331f9cd"
+   "h": "89d1cf97515cc19d3cc947cf8d0a9b01340f126c"
   },
   "xmvkq53re": {
    "t": "Pharmacologie",
@@ -110,6 +114,19 @@
   }
  },
  "hist": [
+  {
+   "v": "26a9557a36",
+   "date": "2026-11-17",
+   "notes": [
+    {
+     "t": "Nouveau : sujet J2 Médecine IDE3 corrigé et expliqué"
+    },
+    {
+     "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
+     "m": "xmvkq4zed"
+    }
+   ]
+  },
   {
    "v": "6897e9d1c6",
    "date": "2026-11-16",
@@ -196,27 +213,6 @@
    "notes": [
     {
      "t": "Nouvelle mise à jour"
-    }
-   ]
-  },
-  {
-   "v": "ca5b35f0ef",
-   "date": "2026-10-25",
-   "notes": [
-    {
-     "t": "Nouvelle mise à jour"
-    },
-    {
-     "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-     "m": "xmvkq4zed"
-    },
-    {
-     "t": "🔄 Cours mis à jour : Tous les sujets prépa D.E",
-     "m": "xprepade"
-    },
-    {
-     "t": "📘 Nouveau cours : Médecine — Annales corrigées L3 IDE",
-     "m": "xmedann"
     }
    ]
   }
