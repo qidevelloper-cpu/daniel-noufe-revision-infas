@@ -1,10 +1,10 @@
 {
- "v": "26a9557a36",
+ "v": "f410873b74",
  "date": "2026-11-17",
- "sig": "b7a84731936666144b689dbebe55fd92089a441f",
+ "sig": "84ec8bf9f8f6ad926403c2addfae3d86f2b0a314",
  "notes": [
   {
-   "t": "Nouveau : sujet J2 Médecine IDE3 corrigé et expliqué"
+   "t": "Nouveau : sujet J2 Gynéco-obstétrique SF3 corrigé et expliqué"
   },
   {
    "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
@@ -46,7 +46,7 @@
   },
   "xmvkq4zed": {
    "t": "CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-   "h": "89d1cf97515cc19d3cc947cf8d0a9b01340f126c"
+   "h": "ec23233180ab648eda089e57c9f60ebb27059fb3"
   },
   "xmvkq53re": {
    "t": "Pharmacologie",
@@ -114,6 +114,19 @@
   }
  },
  "hist": [
+  {
+   "v": "f410873b74",
+   "date": "2026-11-17",
+   "notes": [
+    {
+     "t": "Nouveau : sujet J2 Gynéco-obstétrique SF3 corrigé et expliqué"
+    },
+    {
+     "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
+     "m": "xmvkq4zed"
+    }
+   ]
+  },
   {
    "v": "26a9557a36",
    "date": "2026-11-17",
@@ -201,15 +214,6 @@
   {
    "v": "20299c2a01",
    "date": "2026-11-12",
-   "notes": [
-    {
-     "t": "Nouvelle mise à jour"
-    }
-   ]
-  },
-  {
-   "v": "b3d120d194",
-   "date": "2026-10-25",
    "notes": [
     {
      "t": "Nouvelle mise à jour"
