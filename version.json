@@ -1,10 +1,10 @@
 {
- "v": "b168496602",
+ "v": "faa37e8e18",
  "date": "2026-11-18",
- "sig": "5563adcfcb9d6016363b80e483878afb4840af13",
+ "sig": "f925e2868f57fca3b34ee81c65ecfab4ba4744e7",
  "notes": [
   {
-   "t": "Nouveau : sujet J2 SSR/PF corrigé et expliqué"
+   "t": "Nouveau : sujet J2 Santé publique corrigé et expliqué"
   },
   {
    "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
@@ -46,7 +46,7 @@
   },
   "xmvkq4zed": {
    "t": "CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-   "h": "b31abda867e8cb7d8b36be91d2a04e0a6efb9f33"
+   "h": "faab9ec29fa6822300f8a15226f80b8d3a53bbfe"
   },
   "xmvkq53re": {
    "t": "Pharmacologie",
@@ -114,6 +114,19 @@
   }
  },
  "hist": [
+  {
+   "v": "faa37e8e18",
+   "date": "2026-11-18",
+   "notes": [
+    {
+     "t": "Nouveau : sujet J2 Santé publique corrigé et expliqué"
+    },
+    {
+     "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
+     "m": "xmvkq4zed"
+    }
+   ]
+  },
   {
    "v": "b168496602",
    "date": "2026-11-18",
@@ -216,15 +229,6 @@
     {
      "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
      "m": "xmvkq4zed"
-    }
-   ]
-  },
-  {
-   "v": "8b217fb890",
-   "date": "2026-11-13",
-   "notes": [
-    {
-     "t": "Nouveau : tableau d’honneur des étudiants qui améliorent l’appli 🏅"
     }
    ]
   }
