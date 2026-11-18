@@ -1,10 +1,10 @@
 {
- "v": "368cf41123",
+ "v": "b168496602",
  "date": "2026-11-18",
- "sig": "0bc53116661bdd3330c9a84d0dd3ee431d9986a8",
+ "sig": "5563adcfcb9d6016363b80e483878afb4840af13",
  "notes": [
   {
-   "t": "Nouveau : sujet J2 Pédiatrie IDE-SFM corrigé et expliqué"
+   "t": "Nouveau : sujet J2 SSR/PF corrigé et expliqué"
   },
   {
    "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
@@ -46,7 +46,7 @@
   },
   "xmvkq4zed": {
    "t": "CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-   "h": "2dae739dc9d0014554e6e71a56bbe7466aa6aceb"
+   "h": "b31abda867e8cb7d8b36be91d2a04e0a6efb9f33"
   },
   "xmvkq53re": {
    "t": "Pharmacologie",
@@ -114,6 +114,19 @@
   }
  },
  "hist": [
+  {
+   "v": "b168496602",
+   "date": "2026-11-18",
+   "notes": [
+    {
+     "t": "Nouveau : sujet J2 SSR/PF corrigé et expliqué"
+    },
+    {
+     "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
+     "m": "xmvkq4zed"
+    }
+   ]
+  },
   {
    "v": "368cf41123",
    "date": "2026-11-18",
@@ -212,15 +225,6 @@
    "notes": [
     {
      "t": "Nouveau : tableau d’honneur des étudiants qui améliorent l’appli 🏅"
-    }
-   ]
-  },
-  {
-   "v": "6f1514e29d",
-   "date": "2026-11-12",
-   "notes": [
-    {
-     "t": "Nouvelle mise à jour"
     }
    ]
   }
