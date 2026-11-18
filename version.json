@@ -1,10 +1,10 @@
 {
- "v": "faa37e8e18",
+ "v": "d6792a6aff",
  "date": "2026-11-18",
- "sig": "f925e2868f57fca3b34ee81c65ecfab4ba4744e7",
+ "sig": "43f479668ec73fa7613e32460fa2808f9820d484",
  "notes": [
   {
-   "t": "Nouveau : sujet J2 Santé publique corrigé et expliqué"
+   "t": "Nouvelle mise à jour"
   },
   {
    "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
@@ -46,7 +46,7 @@
   },
   "xmvkq4zed": {
    "t": "CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-   "h": "faab9ec29fa6822300f8a15226f80b8d3a53bbfe"
+   "h": "00e9c12235deb029455502db3e55659da6e2a84f"
   },
   "xmvkq53re": {
    "t": "Pharmacologie",
@@ -114,6 +114,19 @@
   }
  },
  "hist": [
+  {
+   "v": "d6792a6aff",
+   "date": "2026-11-18",
+   "notes": [
+    {
+     "t": "Nouvelle mise à jour"
+    },
+    {
+     "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
+     "m": "xmvkq4zed"
+    }
+   ]
+  },
   {
    "v": "faa37e8e18",
    "date": "2026-11-18",
@@ -216,19 +229,6 @@
    "notes": [
     {
      "t": "Calculatrice : nombres longs lisibles, copier et coller"
-    }
-   ]
-  },
-  {
-   "v": "c97b3c663f",
-   "date": "2026-11-14",
-   "notes": [
-    {
-     "t": "Santé publique D.E blancs 2026 : réponses et explications corrigées pour les 8 antennes"
-    },
-    {
-     "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-     "m": "xmvkq4zed"
     }
    ]
   }
