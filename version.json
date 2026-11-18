@@ -1,10 +1,10 @@
 {
- "v": "57d781583b",
+ "v": "0b98339f2d",
  "date": "2026-11-18",
- "sig": "84c813a9320eddd5b0c400f00ea2bfd1ac2a6518",
+ "sig": "d6dbe437bef316d6df307fce6bc0c1a19256f714",
  "notes": [
   {
-   "t": "Nouvelle mise à jour"
+   "t": "Nouveaux sujets J1 Gynéco-obstétrique et SSR / PF"
   },
   {
    "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
@@ -46,7 +46,7 @@
   },
   "xmvkq4zed": {
    "t": "CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-   "h": "fdd88b7c384a44b86b6d0f7e76bd58643d3ad278"
+   "h": "bf31ac35a946eaebed2a6de013cfa29dddaa2e7f"
   },
   "xmvkq53re": {
    "t": "Pharmacologie",
@@ -114,6 +114,19 @@
   }
  },
  "hist": [
+  {
+   "v": "0b98339f2d",
+   "date": "2026-11-18",
+   "notes": [
+    {
+     "t": "Nouveaux sujets J1 Gynéco-obstétrique et SSR / PF"
+    },
+    {
+     "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
+     "m": "xmvkq4zed"
+    }
+   ]
+  },
   {
    "v": "57d781583b",
    "date": "2026-11-18",
@@ -220,19 +233,6 @@
    "notes": [
     {
      "t": "Télécharge et partage l'appli"
-    }
-   ]
-  },
-  {
-   "v": "04911e9463",
-   "date": "2026-11-15",
-   "notes": [
-    {
-     "t": "Nouvelle mise à jour"
-    },
-    {
-     "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-     "m": "xmvkq4zed"
     }
    ]
   }
