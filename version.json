@@ -1,10 +1,14 @@
 {
- "v": "7143ea99e7",
- "date": "2026-11-18",
- "sig": "a7b9ad07c42625e116217b09b86f2d6e9973e29a",
+ "v": "62b3c1be72",
+ "date": "2026-11-19",
+ "sig": "bbb784f4b82a6920853b794539d488dd301d9a3c",
  "notes": [
   {
-   "t": "Nouveau sujet J1 Santé publique (IDE/SFM)"
+   "t": "Nouvelle mise à jour"
+  },
+  {
+   "t": "🔄 Cours mis à jour : Gynéco-Obstétrique",
+   "m": "gyneco"
   },
   {
    "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
@@ -18,7 +22,7 @@
   },
   "gyneco": {
    "t": "Gynéco-Obstétrique",
-   "h": "ee5f6602625b3f1d7669ead4febc7723ef24d3a5"
+   "h": "e49ee390477d595fbc7f7829294f0718a35ad112"
   },
   "vih": {
    "t": "VIH & traitement ARV",
@@ -46,7 +50,7 @@
   },
   "xmvkq4zed": {
    "t": "CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-   "h": "8ace4abd8793f1d82e7718a55bc71090d04f7942"
+   "h": "705d0e21855702d4c001651854c1564bea462a3d"
   },
   "xmvkq53re": {
    "t": "Pharmacologie",
@@ -114,6 +118,23 @@
   }
  },
  "hist": [
+  {
+   "v": "62b3c1be72",
+   "date": "2026-11-19",
+   "notes": [
+    {
+     "t": "Nouvelle mise à jour"
+    },
+    {
+     "t": "🔄 Cours mis à jour : Gynéco-Obstétrique",
+     "m": "gyneco"
+    },
+    {
+     "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
+     "m": "xmvkq4zed"
+    }
+   ]
+  },
   {
    "v": "7143ea99e7",
    "date": "2026-11-18",
@@ -228,15 +249,6 @@
     {
      "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
      "m": "xmvkq4zed"
-    }
-   ]
-  },
-  {
-   "v": "6897e9d1c6",
-   "date": "2026-11-16",
-   "notes": [
-    {
-     "t": "Télécharge et partage l'appli"
     }
    ]
   }
