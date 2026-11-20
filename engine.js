@@ -1689,7 +1689,28 @@ function corrPatch(){var J='j-preparation-de';function city(n){return String(n).
   var nu=_gf().filter(function(q){return statusOf(q.id)==='unseen'}).length;u.innerHTML='<label class="ri-unseen"><input type="checkbox" '+(cfgState.unseen?'checked':'')+'> 🆕 Seulement les questions pas encore traitées <b>'+nu+'</b></label>';u.querySelector('input').onchange=function(e){cfgState.unseen=e.target.checked;renderConfig()}}}catch(e){}
  var ub=document.getElementById('btn-start-unseen');if(ub){var nb=ub.cloneNode(true);ub.parentNode.replaceChild(nb,ub);nb.addEventListener('click',function(){if(nb.classList.contains('disabled'))return;openConfigWith({});cfgState.unseen=true;renderConfig()})}
  document.querySelectorAll('[id="btn-start-unseen"]').forEach(function(x){if(x!==document.getElementById('btn-start-unseen')){var c=x.cloneNode(true);x.parentNode.replaceChild(c,x);c.addEventListener('click',function(){openConfigWith({});cfgState.unseen=true;renderConfig()})}});
- /* plus de profil dans cette appli (le grade et les couleurs sont ceux de Révision INFAS) */
+ /* un seul clic : matière → l'écran descend aux années (J) / antennes (examens blancs) ; sujet d'une année (J) ou
+    antenne · année (examens blancs) → la session s'ouvre tout de suite, avec toutes ses questions (« Toutes » : sélection seulement) */
+ document.addEventListener('click',function(e){var t=e.target;if(!t||!t.closest)return;
+  if(t.closest('#cfg-mat .mat-tile')){setTimeout(function(){var c=document.getElementById('cfg-ant-card');if(c&&c.offsetParent!==null)c.scrollIntoView({behavior:'smooth',block:'start'})},80);return}
+  var ch=t.closest('#cfg-antennes .chip');if(ch&&!ch.classList.contains('more')&&String(ch.textContent).trim()!=='Toutes'){setTimeout(function(){var b=document.getElementById('btn-start-session');if(b&&!b.disabled)b.click()},80)}},true);
+ /* « Aller à ce sujet » (fin de compo) : Configurer la session, bon mode, bonne matière, la pastille du sujet repérée (elle s'ouvre d'un toucher) */
+(function(){var busy=0;function nz(s){return String(s||'').replace(/[\s­-]+/g,'').toLowerCase()}
+ function va(){var P=window.parent,V=P&&P.__riVaSujet;if(!V||busy||typeof openConfigWith!=='function'||typeof cfgState==='undefined'||!document.getElementById('cfg-mat'))return;
+  busy=1;P.__riVaSujet=null;var p=String(V.t||'').split(' · '),j=p[0]==='J'&&p.length>2,mat=nz(j?p[1]:p[0]);
+  try{openConfigWith({})}catch(e){}cfgState.mode=j?'j':'mat';cfgState.sujetSlug='all';cfgState.antenneSlug='all';cfgState.unseen=false;if(j){cfgState.jmat='';cfgState.jyear=0}renderConfig();
+  var tl=[].slice.call(document.querySelectorAll('#cfg-mat .mat-tile')).find(function(x){var b=x.querySelector('.mn,b,strong');return nz(b?b.textContent:x.textContent.split('\n')[0])===mat})||[].slice.call(document.querySelectorAll('#cfg-mat .mat-tile')).find(function(x){return nz(x.textContent).indexOf(mat)===0});
+  if(tl)tl.click();
+  var W={};(V.ids||[]).forEach(function(i){W[i]=1});var nW=Object.keys(W).length;
+  function raz(){cfgState.antenneSlug='all';if(j){cfgState.sujetSlug='all';cfgState.jyear=0}renderConfig()}
+  function chips(){return [].slice.call(document.querySelectorAll('#cfg-antennes .chip')).filter(function(c){return !c.classList.contains('more')&&String(c.textContent).trim()!=='Toutes'})}
+  raz();var L=chips(),best=-1,bs=0,i=0,got=null;P.__riSonde=function(ids){got=ids};
+  function fin(){raz();var c=chips()[best];function tire(){var sc=c||document.getElementById('cfg-ant-card');if(sc)sc.scrollIntoView({behavior:'smooth',block:c?'center':'start'})}
+   if(c){c.click();setTimeout(function(){P.__riSonde=null;busy=0;c=(c.isConnected?c:document.querySelector('#cfg-antennes .chip.active'))||c;var K=nz(c.textContent),row=c.closest('.ri-antrow'),KR=row?nz(row.textContent.split('\n')[0]):'',stop=0;var mk=function(){if(stop)return;[].slice.call(document.querySelectorAll('#cfg-antennes .chip')).forEach(function(x){var r=x.closest('.ri-antrow');var on=nz(x.textContent)===K&&(!KR||(r&&nz(r.textContent.split('\n')[0])===KR));if(on!==x.classList.contains('ri-va'))x.classList.toggle('ri-va',on)})};mk();var iv=setInterval(mk,300);var off=function(){stop=1;clearInterval(iv);document.removeEventListener('pointerdown',off,true);[].slice.call(document.querySelectorAll('.chip.ri-va')).forEach(function(x){x.classList.remove('ri-va')})};setTimeout(function(){document.addEventListener('pointerdown',off,true)},300);setTimeout(off,120000);tire()},400)}else{P.__riSonde=null;busy=0;tire()}}
+  (function suite(){if(i>=L.length||bs===1){fin();return}raz();var c=chips()[i];if(!c){fin();return}got=null;c.click();setTimeout(function(){if(got&&nW){var n=0,u={};got.forEach(function(x){u[x]=1});Object.keys(u).forEach(function(x){if(W[x])n++});var s=n/(Object.keys(u).length+nW-n);if(s>bs&&s>=.5){bs=s;best=i}}i++;suite()},220)})()}
+ setInterval(va,400);
+ var st=document.createElement('style');st.textContent='@keyframes riVa{0%,100%{box-shadow:0 0 0 0 rgba(232,119,46,.0)}50%{box-shadow:0 0 0 5px rgba(232,119,46,.55)}}.chip.ri-va{animation:riVa 1s ease 6;outline:2px solid #E8772E;outline-offset:1px}';(document.head||document.documentElement).appendChild(st)})();
+/* plus de profil dans cette appli (le grade et les couleurs sont ceux de Révision INFAS) */
  function noProfile(){var b=document.querySelector('#bnav button[data-go="profile"]');if(b)b.remove()}
  var st=document.createElement('style');st.textContent='html,body{-webkit-tap-highlight-color:transparent;touch-action:manipulation}.mat-tile,.chip,.ri-antc,.ri-js,#cfg-mode button,.config-card button{-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;transition:transform .12s ease,background-color .15s ease,border-color .15s ease}.mat-tile:active,.chip:active,.ri-antc:active,.ri-js:active,#cfg-mode button:active{transform:scale(.97)}.lq-h .t{font-size:18px!important;letter-spacing:.03em!important}.lq-h .n{font-size:12.5px!important}#cfg-antennes{display:flex!important;flex-direction:column!important;gap:5px!important}#cfg-antennes>.chip{align-self:flex-start}.ri-antrow{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) minmax(0,1fr);gap:6px;align-items:center}.ri-ants{min-width:0}.ri-antc{font-weight:800;font-size:13.5px}.ri-ants .chip{width:100%!important;box-sizing:border-box!important;overflow:hidden;display:flex!important;justify-content:space-between!important;gap:4px;padding:6px 8px!important;font-size:12.5px!important;min-height:0!important;margin:0!important;white-space:nowrap}#cfg-antennes .chip-count{font-size:10.5px!important;padding:1px 5px!important}.ri-3 .ri-ants .chip{flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:2px!important;padding:5px 3px!important;white-space:normal!important;text-align:center}.ri-3 .ri-antc{font-size:12.5px}.ri-subh{font-weight:900;font-size:13px;text-transform:uppercase;letter-spacing:.4px;margin:12px 4px 4px;opacity:.85}.ri-jyear{display:flex;flex-direction:column;gap:6px;margin-top:4px}.ri-jyh{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 4px 2px;cursor:pointer;border-radius:10px}.ri-jyh.on .ri-antc::after{content:" ✓"}.ri-jgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.ri-jgrid .chip{width:100%!important;box-sizing:border-box!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:2px!important;padding:6px 4px!important;margin:0!important;min-height:0!important;text-align:center;white-space:normal!important;font-size:12.5px!important}.ri-jl{font-weight:800;line-height:1.2}.ri-js{font-size:10.5px;opacity:.75;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.ri-jgrid .chip-count{margin:0!important}@media(max-width:380px){.ri-jgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}';document.head.appendChild(st);
  noProfile();fixList();setInterval(function(){noProfile();fixList()},500);try{renderHome()}catch(e){}}
@@ -2244,6 +2265,7 @@ function filPont(){var P=window.parent;function pose(){var o=window.startSession
 const _appExtraFil=appExtra;appExtra=function(m){const r=_appExtraFil.apply(this,arguments);if(m&&FIL_APPLI[m.src]&&typeof PROGMAP!=='undefined'&&PROGMAP[FIL_APPLI[m.src]])r.js+='<script>('+filPont.toString()+')()<'+'/script>';return r};
 window.riFilAppli=function(win,ids,titre){const mid=VIEW==='appview'&&ctx&&ctx.id;const m=mid&&MATI[mid];const a=m&&FIL_APPLI[m.src]&&PROGMAP[FIL_APPLI[m.src]];if(!a)return false;
  const map={},L=[];(ids||[]).forEach(k=>{const i=cleQuestion(a,k);if(i==null)return;const id=a.m+'.'+i;if(!QI[id]||map[id])return;map[id]=k;L.push(id)});if(!L.length)return false;
+ if(window.__riSonde){try{window.__riSonde(L)}catch(e){}return true}
  startFil(a.m,L,titre||m.title,'app',null);if(FILS)FILS.app={win,map,a};return true};
 /* la progression de l'appli (ses propres compteurs, format « seenCount ») suit : par l'appli si son cadre est encore affiché, sinon
    directement dans sa clé (le cadre rechargé la relit). La fusion vers la progression unique est déjà faite une fois pour toutes. */
@@ -3245,7 +3267,9 @@ function riOuvrirResume(id){const m=MATI[id];if(!m)return;const key='matiere:'+i
   else if(vueSuj(m)&&p.length>1)parts=p;else parts=[Tx('cp.ou.suj','Sujets'),t];
   return [Tx('cp.ou.acc','Accueil'),(m.emo?m.emo+' ':'')+(m.title||m.short)].concat(parts).join(' › ')}
  function ouHTML(mid,k){const c=ouChemin(mid,k);if(!c)return'';return `<div class="small" style="margin-top:10px;text-align:left;line-height:1.5">📍 ${T('cp.ou','Tu peux retrouver ce sujet dans l’appli :')} <b>${esc(c)}</b>${S.onb?`<br><button class="btn light" style="margin-top:6px" onclick="riCompoCours()">${T('cp.ou.go','📂 Aller à ce sujet')}</button>`:''}</div>`}
- window.riCompoCours=function(){const mid=C&&C.mid;voirAutres();if(mid&&MATI[mid]&&S.onb){try{openMat(mid)}catch(e){}}};
+ window.riCompoCours=function(){const mid=C&&C.mid,ids=C&&C.ids&&C.ids.slice(),t=C&&sujTitre(mid,C.k);voirAutres();if(!(mid&&MATI[mid]&&S.onb))return;
+  try{if(FIL_APPLI[MATI[mid].src]&&RIC.can('matiere:'+mid+'/appli')){window.__riVaSujet={mid,ids,t};VSTACK=[];go('appview',{id:mid});return}}catch(e){}
+  try{openMat(mid)}catch(e){}};
  /* ---------- « Voir d'autres sujets » : fin de la compo, accueil de l'appli (ou premier accueil si première visite) ---------- */
  function voirAutres(){const nom=C&&C.nom;C=null;fermer();if(NOTE){document.body.appendChild(NOTE);NOTE=null}clearInterval(FILT);FILS=null;
   LS.set(PK,'');if(!S.onb&&nom&&!S.name)S.name=nom;tab('home');window.scrollTo(0,0)}
@@ -3316,12 +3340,17 @@ function riOuvrirResume(id){const m=MATI[id];if(!m)return;const key='matiere:'+i
    :e==='refus'?`<div class="fb bad" style="margin-top:10px"><div class="h">${T('cp.refus','⚠️ La note n’a pas pu être enregistrée')}</div></div>`
    :`<div class="muted small" style="margin-top:10px">${T('cp.envoi','⏳ Enregistrement de ta note…')}</div>`;
   return `<div class="card sf center"><h3>${T('cp.fini','🏁 Composition terminée')}</h3><div class="muted small">${esc(C.nom)}</div><div style="font-size:28px;font-weight:800">${sc}/20</div><div class="muted">${T('fil.score','{ok} bonne(s) réponse(s) sur {n}',{ok:s.ok,n:s.n})}</div>${st}
-   ${C.recompo&&!(C.fin&&C.fin<Date.now())?`<button class="btn" style="margin-top:12px;width:100%" onclick="riCompoRecomposer()">${T('cp.recomp','🔄 Recomposer ce sujet')}</button>`:''}
-   <button class="btn coral" style="margin-top:${C.recompo?8:12}px;width:100%" onclick="riCompoAutres()">${T('cp.autres','📚 Voir d’autres sujets')}</button></div>`};
+   ${C.recompo&&!(C.fin&&C.fin<Date.now())?`<button class="btn" style="margin-top:12px;width:100%" onclick="riCompoRecomposer()">${T('cp.recomp','🔄 Recomposer ce sujet')}</button>`
+    :`<button class="btn" id="riReprendre" style="margin-top:12px;width:100%" onclick="riCompoReprendre()">${T('cp.reprendre','🔁 Reprendre ce sujet')}</button><div class="muted small" style="margin-top:4px">${T('cp.reprendre.s','Pour t’entraîner : ta note de compo reste celle-ci.')}</div>`}
+   <button class="btn coral" style="margin-top:8px;width:100%" onclick="riCompoAutres()">${T('cp.autres','📚 Voir d’autres sujets')}</button></div>`};
  /* compo « recomposer plusieurs fois » : nouvelle copie, même nom, même chrono ; la copie précédente reste enregistrée (ou en file d'envoi) */
  window.riCompoRecomposer=function(){if(!C||!C.recompo||!enFil()||!FILS.fin)return;const nom=C.nom;
   if(C.envoi&&C.note!=null&&(C.meilleure==null||C.note>C.meilleure))C.meilleure=C.note;C.essais=(C.essais||0)+1;
   C.envoi=null;C.etat=null;C.lance=false;clearInterval(FILT);FILS=null;lancer(nom)};
+ /* « Reprendre ce sujet » (compo sans recomposition) : les mêmes questions en entraînement, sur la même page, en haut ; rien n'est envoyé */
+ window.riCompoReprendre=function(){if(!C||!enFil()||!FILS.fin)return;const mid=C.mid,ids=C.ids.slice(),k=C.k,lab=(C.titre?C.titre+' · ':'')+C.sujet;
+  C=null;fermer();if(NOTE){document.body.appendChild(NOTE);NOTE=null}clearInterval(FILT);FILS=null;LS.set(PK,'');
+  startFil(mid,ids,lab,'suj',k);window.scrollTo(0,0)};
  window.riCompoDemanderRemise=function(){let o=$('#riremise');if(o)o.remove();o=document.createElement('div');o.id='riremise';o.className='pmod';const s=FILS?nb():{n:0};
   const r=FILS?Object.keys(FILS.ans).filter(id=>!FILS.ans[id].pending).length:0;
   o.innerHTML=`<div class="pbox"><h3>${T('cp.rq.h','🏁 Terminer la compo ?')}</h3><div class="muted small">${T('cp.rq','Tu as répondu à {r} question(s) sur {n}. Ensuite, tu ne pourras plus répondre.',{r,n:s.n})}</div>
