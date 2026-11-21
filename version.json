@@ -1,10 +1,14 @@
 {
- "v": "95a64fddcc",
- "date": "2026-11-20",
- "sig": "be5687e94b1f0dbf0161849683a9f9575fb1f649",
+ "v": "1b5099343c",
+ "date": "2026-11-21",
+ "sig": "aa3f5556c171078501799a9db85ad2be36a35833",
  "notes": [
   {
-   "t": "Nouvelle mise à jour"
+   "t": "Nouveaux sujets J : J2 à J4 corrigés et expliqués"
+  },
+  {
+   "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
+   "m": "xmvkq4zed"
   }
  ],
  "mats": {
@@ -42,7 +46,7 @@
   },
   "xmvkq4zed": {
    "t": "CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-   "h": "853d63682d817d68fc1ebcb5f334bc9b184d26f1"
+   "h": "ed53b9ea94ce65891005717e8b01766956836d2e"
   },
   "xmvkq53re": {
    "t": "Pharmacologie",
@@ -110,6 +114,19 @@
   }
  },
  "hist": [
+  {
+   "v": "1b5099343c",
+   "date": "2026-11-21",
+   "notes": [
+    {
+     "t": "Nouveaux sujets J : J2 à J4 corrigés et expliqués"
+    },
+    {
+     "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
+     "m": "xmvkq4zed"
+    }
+   ]
+  },
   {
    "v": "95a64fddcc",
    "date": "2026-11-20",
@@ -226,22 +243,9 @@
      "m": "xmvkq4zed"
     }
    ]
-  },
-  {
-   "v": "368cf41123",
-   "date": "2026-11-18",
-   "notes": [
-    {
-     "t": "Nouveau : sujet J2 Pédiatrie IDE-SFM corrigé et expliqué"
-    },
-    {
-     "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-     "m": "xmvkq4zed"
-    }
-   ]
   }
  ],
  "moteur": 2,
  "format": 2,
- "auto": 3
+ "auto": 4
 }
