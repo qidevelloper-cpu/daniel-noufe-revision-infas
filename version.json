@@ -1,10 +1,10 @@
 {
- "v": "d62b270f9a",
+ "v": "56622f64db",
  "date": "2026-11-21",
- "sig": "dc2ed8da40f1e847910675989bd0d49497422d23",
+ "sig": "644cadf42a32569234889b60c71a712b10a17623",
  "notes": [
   {
-   "t": "Sujets J5 : Médecine, Chirurgie, Pédiatrie, Santé publique, Gynéco, SSR/PF"
+   "t": "Nouvelle mise à jour"
   },
   {
    "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
@@ -46,7 +46,7 @@
   },
   "xmvkq4zed": {
    "t": "CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-   "h": "1179e1215879a2123c3469931e003bbb757d4482"
+   "h": "2443ab31d4f4eefa5421c9580fc7cc686d444f54"
   },
   "xmvkq53re": {
    "t": "Pharmacologie",
@@ -114,6 +114,19 @@
   }
  },
  "hist": [
+  {
+   "v": "56622f64db",
+   "date": "2026-11-21",
+   "notes": [
+    {
+     "t": "Nouvelle mise à jour"
+    },
+    {
+     "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
+     "m": "xmvkq4zed"
+    }
+   ]
+  },
   {
    "v": "d62b270f9a",
    "date": "2026-11-21",
@@ -230,22 +243,9 @@
      "m": "xmvkq4zed"
     }
    ]
-  },
-  {
-   "v": "faa37e8e18",
-   "date": "2026-11-18",
-   "notes": [
-    {
-     "t": "Nouveau : sujet J2 Santé publique corrigé et expliqué"
-    },
-    {
-     "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-     "m": "xmvkq4zed"
-    }
-   ]
   }
  ],
  "moteur": 2,
  "format": 2,
- "oblig": 1
+ "auto": 3
 }
