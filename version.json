@@ -1,10 +1,10 @@
 {
- "v": "3807a283da",
+ "v": "6c14b57be5",
  "date": "2026-11-22",
- "sig": "b6b58b3250977a493c367109a945c1bc6c6013f7",
+ "sig": "d0ac97a216187fb0ff52fd35d861eb407553f899",
  "notes": [
   {
-   "t": "Nouveau : partage un sujet à tes amis sur WhatsApp 📤"
+   "t": "Partage plus facilement tes sujets : bouton vert 📤"
   }
  ],
  "mats": {
@@ -111,6 +111,15 @@
  },
  "hist": [
   {
+   "v": "6c14b57be5",
+   "date": "2026-11-22",
+   "notes": [
+    {
+     "t": "Partage plus facilement tes sujets : bouton vert 📤"
+    }
+   ]
+  },
+  {
    "v": "3807a283da",
    "date": "2026-11-22",
    "notes": [
@@ -212,19 +221,6 @@
     {
      "t": "🔄 Cours mis à jour : Gynéco-Obstétrique",
      "m": "gyneco"
-    },
-    {
-     "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-     "m": "xmvkq4zed"
-    }
-   ]
-  },
-  {
-   "v": "7143ea99e7",
-   "date": "2026-11-18",
-   "notes": [
-    {
-     "t": "Nouveau sujet J1 Santé publique (IDE/SFM)"
     },
     {
      "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
