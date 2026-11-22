@@ -1,10 +1,14 @@
 {
- "v": "fa14c65a1b",
- "date": "2026-11-21",
- "sig": "c5bc828ab53853602a90815e093eb8b8b2c45c4a",
+ "v": "86ad393b3d",
+ "date": "2026-11-22",
+ "sig": "3e907d1ea0c25a8d9d560ea677e528ec24fdb559",
  "notes": [
   {
-   "t": "Nouvelle mise à jour"
+   "t": "Sujets J6 : Médecine, Chirurgie, Pédiatrie, Santé publique, Gynéco, SSR/PF"
+  },
+  {
+   "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
+   "m": "xmvkq4zed"
   }
  ],
  "mats": {
@@ -42,7 +46,7 @@
   },
   "xmvkq4zed": {
    "t": "CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-   "h": "2443ab31d4f4eefa5421c9580fc7cc686d444f54"
+   "h": "e1fc854f5932802106cd46c3e39a14d95b4ee98d"
   },
   "xmvkq53re": {
    "t": "Pharmacologie",
@@ -110,6 +114,19 @@
   }
  },
  "hist": [
+  {
+   "v": "86ad393b3d",
+   "date": "2026-11-22",
+   "notes": [
+    {
+     "t": "Sujets J6 : Médecine, Chirurgie, Pédiatrie, Santé publique, Gynéco, SSR/PF"
+    },
+    {
+     "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
+     "m": "xmvkq4zed"
+    }
+   ]
+  },
   {
    "v": "fa14c65a1b",
    "date": "2026-11-21",
@@ -222,22 +239,9 @@
      "m": "xmvkq4zed"
     }
    ]
-  },
-  {
-   "v": "57d781583b",
-   "date": "2026-11-18",
-   "notes": [
-    {
-     "t": "Nouvelle mise à jour"
-    },
-    {
-     "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-     "m": "xmvkq4zed"
-    }
-   ]
   }
  ],
  "moteur": 2,
  "format": 2,
- "auto": 3
+ "auto": 4
 }
