@@ -1,14 +1,10 @@
 {
- "v": "86ad393b3d",
+ "v": "3807a283da",
  "date": "2026-11-22",
- "sig": "3e907d1ea0c25a8d9d560ea677e528ec24fdb559",
+ "sig": "b6b58b3250977a493c367109a945c1bc6c6013f7",
  "notes": [
   {
-   "t": "Sujets J6 : Médecine, Chirurgie, Pédiatrie, Santé publique, Gynéco, SSR/PF"
-  },
-  {
-   "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-   "m": "xmvkq4zed"
+   "t": "Nouveau : partage un sujet à tes amis sur WhatsApp 📤"
   }
  ],
  "mats": {
@@ -115,6 +111,15 @@
  },
  "hist": [
   {
+   "v": "3807a283da",
+   "date": "2026-11-22",
+   "notes": [
+    {
+     "t": "Nouveau : partage un sujet à tes amis sur WhatsApp 📤"
+    }
+   ]
+  },
+  {
    "v": "86ad393b3d",
    "date": "2026-11-22",
    "notes": [
@@ -220,19 +225,6 @@
    "notes": [
     {
      "t": "Nouveau sujet J1 Santé publique (IDE/SFM)"
-    },
-    {
-     "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-     "m": "xmvkq4zed"
-    }
-   ]
-  },
-  {
-   "v": "0b98339f2d",
-   "date": "2026-11-18",
-   "notes": [
-    {
-     "t": "Nouveaux sujets J1 Gynéco-obstétrique et SSR / PF"
     },
     {
      "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
