@@ -1,14 +1,10 @@
 {
- "v": "61e4a73926",
+ "v": "fba2a06bd1",
  "date": "2026-11-23",
- "sig": "17594e4fb24e86204096ed621479585fb4722f79",
+ "sig": "d913bbf092a4ca1b7b979847056efabf8e7e7b4b",
  "notes": [
   {
-   "t": "Mise à jour des explications de Santé publique"
-  },
-  {
-   "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-   "m": "xmvkq4zed"
+   "t": "Nouveau : relis le cas clinique sans remonter 📋"
   }
  ],
  "mats": {
@@ -115,6 +111,15 @@
  },
  "hist": [
   {
+   "v": "fba2a06bd1",
+   "date": "2026-11-23",
+   "notes": [
+    {
+     "t": "Nouveau : relis le cas clinique sans remonter 📋"
+    }
+   ]
+  },
+  {
    "v": "61e4a73926",
    "date": "2026-11-23",
    "notes": [
@@ -218,18 +223,9 @@
      "m": "xmvkq4zed"
     }
    ]
-  },
-  {
-   "v": "95a64fddcc",
-   "date": "2026-11-20",
-   "notes": [
-    {
-     "t": "Nouvelle mise à jour"
-    }
-   ]
   }
  ],
  "moteur": 2,
  "format": 2,
- "auto": 3
+ "auto": 4
 }
