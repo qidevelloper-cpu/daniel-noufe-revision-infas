@@ -1,14 +1,14 @@
 {
- "v": "a0172be8d7",
+ "v": "61e4a73926",
  "date": "2026-11-23",
- "sig": "13cbe2447f69fe6a4b0eb25893c70030505618b1",
+ "sig": "17594e4fb24e86204096ed621479585fb4722f79",
  "notes": [
   {
-   "t": "🎉 Tous les cours sont maintenant ouverts à tous"
+   "t": "Mise à jour des explications de Santé publique"
   },
   {
-   "t": "🔄 Cours mis à jour : Chirurgie ",
-   "m": "chir"
+   "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
+   "m": "xmvkq4zed"
   }
  ],
  "mats": {
@@ -46,7 +46,7 @@
   },
   "xmvkq4zed": {
    "t": "CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-   "h": "e1fc854f5932802106cd46c3e39a14d95b4ee98d"
+   "h": "83af34b22326c0bd7e00a6279ce44bf5ad8652d0"
   },
   "xmvkq53re": {
    "t": "Pharmacologie",
@@ -114,6 +114,19 @@
   }
  },
  "hist": [
+  {
+   "v": "61e4a73926",
+   "date": "2026-11-23",
+   "notes": [
+    {
+     "t": "Mise à jour des explications de Santé publique"
+    },
+    {
+     "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
+     "m": "xmvkq4zed"
+    }
+   ]
+  },
   {
    "v": "a0172be8d7",
    "date": "2026-11-23",
@@ -214,22 +227,9 @@
      "t": "Nouvelle mise à jour"
     }
    ]
-  },
-  {
-   "v": "b538d80b20",
-   "date": "2026-11-20",
-   "notes": [
-    {
-     "t": "🔊 Écoute les explications à voix haute"
-    },
-    {
-     "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-     "m": "xmvkq4zed"
-    }
-   ]
   }
  ],
  "moteur": 2,
  "format": 2,
- "auto": 4
+ "auto": 3
 }
