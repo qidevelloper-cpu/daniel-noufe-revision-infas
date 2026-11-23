@@ -1,10 +1,14 @@
 {
- "v": "6c14b57be5",
- "date": "2026-11-22",
- "sig": "d0ac97a216187fb0ff52fd35d861eb407553f899",
+ "v": "a0172be8d7",
+ "date": "2026-11-23",
+ "sig": "13cbe2447f69fe6a4b0eb25893c70030505618b1",
  "notes": [
   {
-   "t": "Partage plus facilement tes sujets : bouton vert 📤"
+   "t": "🎉 Tous les cours sont maintenant ouverts à tous"
+  },
+  {
+   "t": "🔄 Cours mis à jour : Chirurgie ",
+   "m": "chir"
   }
  ],
  "mats": {
@@ -34,7 +38,7 @@
   },
   "chir": {
    "t": "Chirurgie ",
-   "h": "318b901d2c73dc7a60704bc0452e8cc9046bcd22"
+   "h": "35cade549c5034ab5b782d93143d330c565a3b25"
   },
   "endo": {
    "t": "Endocrinologie & Oncologie",
@@ -110,6 +114,19 @@
   }
  },
  "hist": [
+  {
+   "v": "a0172be8d7",
+   "date": "2026-11-23",
+   "notes": [
+    {
+     "t": "🎉 Tous les cours sont maintenant ouverts à tous"
+    },
+    {
+     "t": "🔄 Cours mis à jour : Chirurgie ",
+     "m": "chir"
+    }
+   ]
+  },
   {
    "v": "6c14b57be5",
    "date": "2026-11-22",
@@ -204,23 +221,6 @@
    "notes": [
     {
      "t": "🔊 Écoute les explications à voix haute"
-    },
-    {
-     "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-     "m": "xmvkq4zed"
-    }
-   ]
-  },
-  {
-   "v": "62b3c1be72",
-   "date": "2026-11-19",
-   "notes": [
-    {
-     "t": "Nouvelle mise à jour"
-    },
-    {
-     "t": "🔄 Cours mis à jour : Gynéco-Obstétrique",
-     "m": "gyneco"
     },
     {
      "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
