@@ -1,10 +1,10 @@
 {
- "v": "062ddac6c6",
+ "v": "d2c049d5aa",
  "date": "2026-11-24",
- "sig": "971695871c2471a03e243a8951432c1185b22cd9",
+ "sig": "6c1a2ee475463922a3e22e2d5ddf3610fc661b60",
  "notes": [
   {
-   "t": "Nouvelle mise à jour de l'appli"
+   "t": "Nouvelle mise à jour"
   }
  ],
  "mats": {
@@ -111,6 +111,15 @@
  },
  "hist": [
   {
+   "v": "d2c049d5aa",
+   "date": "2026-11-24",
+   "notes": [
+    {
+     "t": "Nouvelle mise à jour"
+    }
+   ]
+  },
+  {
    "v": "062ddac6c6",
    "date": "2026-11-24",
    "notes": [
@@ -206,22 +215,9 @@
      "m": "xmvkq4zed"
     }
    ]
-  },
-  {
-   "v": "d62b270f9a",
-   "date": "2026-11-21",
-   "notes": [
-    {
-     "t": "Sujets J5 : Médecine, Chirurgie, Pédiatrie, Santé publique, Gynéco, SSR/PF"
-    },
-    {
-     "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-     "m": "xmvkq4zed"
-    }
-   ]
   }
  ],
  "moteur": 2,
  "format": 2,
- "auto": 3
+ "auto": 4
 }
