@@ -1,10 +1,10 @@
 {
- "v": "fba2a06bd1",
- "date": "2026-11-23",
- "sig": "d913bbf092a4ca1b7b979847056efabf8e7e7b4b",
+ "v": "062ddac6c6",
+ "date": "2026-11-24",
+ "sig": "971695871c2471a03e243a8951432c1185b22cd9",
  "notes": [
   {
-   "t": "Nouveau : relis le cas clinique sans remonter 📋"
+   "t": "Nouvelle mise à jour de l'appli"
   }
  ],
  "mats": {
@@ -111,6 +111,15 @@
  },
  "hist": [
   {
+   "v": "062ddac6c6",
+   "date": "2026-11-24",
+   "notes": [
+    {
+     "t": "Nouvelle mise à jour de l'appli"
+    }
+   ]
+  },
+  {
    "v": "fba2a06bd1",
    "date": "2026-11-23",
    "notes": [
@@ -210,22 +219,9 @@
      "m": "xmvkq4zed"
     }
    ]
-  },
-  {
-   "v": "1b5099343c",
-   "date": "2026-11-21",
-   "notes": [
-    {
-     "t": "Nouveaux sujets J : J2 à J4 corrigés et expliqués"
-    },
-    {
-     "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-     "m": "xmvkq4zed"
-    }
-   ]
   }
  ],
  "moteur": 2,
  "format": 2,
- "auto": 4
+ "auto": 3
 }
