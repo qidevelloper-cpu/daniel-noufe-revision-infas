@@ -1,10 +1,14 @@
 {
- "v": "d2c049d5aa",
- "date": "2026-11-24",
- "sig": "6c1a2ee475463922a3e22e2d5ddf3610fc661b60",
+ "v": "6daf3bf34b",
+ "date": "2026-11-27",
+ "sig": "477f6a0d0673e3e506198add8d5dd0edf1a1ad5f",
  "notes": [
   {
-   "t": "Nouvelle mise à jour"
+   "t": "Nouveaux sujets J7 à J10 en Préparation D.E"
+  },
+  {
+   "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
+   "m": "xmvkq4zed"
   }
  ],
  "mats": {
@@ -42,7 +46,7 @@
   },
   "xmvkq4zed": {
    "t": "CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-   "h": "83af34b22326c0bd7e00a6279ce44bf5ad8652d0"
+   "h": "c63f778b83eee112d56d9f48a677d87067765c0d"
   },
   "xmvkq53re": {
    "t": "Pharmacologie",
@@ -110,6 +114,19 @@
   }
  },
  "hist": [
+  {
+   "v": "6daf3bf34b",
+   "date": "2026-11-27",
+   "notes": [
+    {
+     "t": "Nouveaux sujets J7 à J10 en Préparation D.E"
+    },
+    {
+     "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
+     "m": "xmvkq4zed"
+    }
+   ]
+  },
   {
    "v": "d2c049d5aa",
    "date": "2026-11-24",
@@ -200,19 +217,6 @@
    "notes": [
     {
      "t": "Nouvelle mise à jour"
-    }
-   ]
-  },
-  {
-   "v": "56622f64db",
-   "date": "2026-11-21",
-   "notes": [
-    {
-     "t": "Nouvelle mise à jour"
-    },
-    {
-     "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-     "m": "xmvkq4zed"
     }
    ]
   }
