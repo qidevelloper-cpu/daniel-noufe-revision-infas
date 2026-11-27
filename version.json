@@ -1,10 +1,14 @@
 {
- "v": "f7c9d6683d",
+ "v": "18a36dac26",
  "date": "2026-11-27",
- "sig": "a745907b1df1b3e62b226b83f870af9b6927c1ef",
+ "sig": "4154df563d019483633a0f5a6b8a08378462af98",
  "notes": [
   {
-   "t": "Nouveau : reprends tous tes sujets commencés depuis l'accueil"
+   "t": "Nouveaux sujets J en Médecine, Chirurgie et pour les auxiliaires"
+  },
+  {
+   "t": "🔄 Cours mis à jour : CORRECTION NATIONALE DES EXAMENS BLANCS IDE/SF MAE",
+   "m": "xmvkq4zed"
   }
  ],
  "mats": {
@@ -42,7 +46,7 @@
   },
   "xmvkq4zed": {
    "t": "CORRECTION NATIONALE DES EXAMENS BLANCS IDE/SF MAE",
-   "h": "c63f778b83eee112d56d9f48a677d87067765c0d"
+   "h": "6a877c35a92e021230a8a102e28cef54601e1d0b"
   },
   "xmvkq53re": {
    "t": "Pharmacologie",
@@ -110,6 +114,19 @@
   }
  },
  "hist": [
+  {
+   "v": "18a36dac26",
+   "date": "2026-11-27",
+   "notes": [
+    {
+     "t": "Nouveaux sujets J en Médecine, Chirurgie et pour les auxiliaires"
+    },
+    {
+     "t": "🔄 Cours mis à jour : CORRECTION NATIONALE DES EXAMENS BLANCS IDE/SF MAE",
+     "m": "xmvkq4zed"
+    }
+   ]
+  },
   {
    "v": "f7c9d6683d",
    "date": "2026-11-27",
@@ -202,18 +219,10 @@
      "m": "chir"
     }
    ]
-  },
-  {
-   "v": "6c14b57be5",
-   "date": "2026-11-22",
-   "notes": [
-    {
-     "t": "Partage plus facilement tes sujets : bouton vert 📤"
-    }
-   ]
   }
  ],
  "moteur": 2,
  "format": 2,
- "auto": 4
+ "oblig": 1,
+ "auto": 2
 }
