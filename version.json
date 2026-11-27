@@ -1,10 +1,10 @@
 {
- "v": "facd259fcb",
+ "v": "1a3ffa4f47",
  "date": "2026-11-27",
- "sig": "4154df563d019483633a0f5a6b8a08378462af98",
+ "sig": "8a26ee32ce9c8e94aa3856c99c0a9bf86f352ed7",
  "notes": [
   {
-   "t": "Tous les J sur revisioninfas.org"
+   "t": "Nouvelle mise à jour"
   }
  ],
  "mats": {
@@ -111,6 +111,15 @@
  },
  "hist": [
   {
+   "v": "1a3ffa4f47",
+   "date": "2026-11-27",
+   "notes": [
+    {
+     "t": "Nouvelle mise à jour"
+    }
+   ]
+  },
+  {
    "v": "facd259fcb",
    "date": "2026-11-27",
    "notes": [
@@ -198,22 +207,10 @@
      "t": "Nouveau : relis le cas clinique sans remonter 📋"
     }
    ]
-  },
-  {
-   "v": "61e4a73926",
-   "date": "2026-11-23",
-   "notes": [
-    {
-     "t": "Mise à jour des explications de Santé publique"
-    },
-    {
-     "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-     "m": "xmvkq4zed"
-    }
-   ]
   }
  ],
  "moteur": 2,
  "format": 2,
- "auto": 3
+ "oblig": 1,
+ "auto": 1
 }
