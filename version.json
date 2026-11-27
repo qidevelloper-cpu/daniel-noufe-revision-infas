@@ -1,14 +1,10 @@
 {
- "v": "6daf3bf34b",
+ "v": "9000ac90e2",
  "date": "2026-11-27",
- "sig": "477f6a0d0673e3e506198add8d5dd0edf1a1ad5f",
+ "sig": "82a04b7bbc89ac85f0068200dc99d9f8b0694c1b",
  "notes": [
   {
-   "t": "Nouveaux sujets J7 à J10 en Préparation D.E"
-  },
-  {
-   "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-   "m": "xmvkq4zed"
+   "t": "Nouveau : les J de la Correction nationale en accès direct"
   }
  ],
  "mats": {
@@ -115,6 +111,15 @@
  },
  "hist": [
   {
+   "v": "9000ac90e2",
+   "date": "2026-11-27",
+   "notes": [
+    {
+     "t": "Nouveau : les J de la Correction nationale en accès direct"
+    }
+   ]
+  },
+  {
    "v": "6daf3bf34b",
    "date": "2026-11-27",
    "notes": [
@@ -208,15 +213,6 @@
     {
      "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
      "m": "xmvkq4zed"
-    }
-   ]
-  },
-  {
-   "v": "fa14c65a1b",
-   "date": "2026-11-21",
-   "notes": [
-    {
-     "t": "Nouvelle mise à jour"
     }
    ]
   }
