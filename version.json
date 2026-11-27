@@ -1,10 +1,10 @@
 {
- "v": "9000ac90e2",
+ "v": "a82dbbbad2",
  "date": "2026-11-27",
- "sig": "82a04b7bbc89ac85f0068200dc99d9f8b0694c1b",
+ "sig": "82a195ca2150435f0e0efe9f413f39fa15bc6ff1",
  "notes": [
   {
-   "t": "Nouveau : les J de la Correction nationale en accès direct"
+   "t": "Nouvelle mise à jour"
   }
  ],
  "mats": {
@@ -41,7 +41,7 @@
    "h": "cc58c4abda2f9150c902b0bf78c71b6cee39ef42"
   },
   "xmvkq4zed": {
-   "t": "CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
+   "t": "CORRECTION NATIONALE DES EXAMENS BLANCS IDE/SF MAE",
    "h": "c63f778b83eee112d56d9f48a677d87067765c0d"
   },
   "xmvkq53re": {
@@ -110,6 +110,15 @@
   }
  },
  "hist": [
+  {
+   "v": "a82dbbbad2",
+   "date": "2026-11-27",
+   "notes": [
+    {
+     "t": "Nouvelle mise à jour"
+    }
+   ]
+  },
   {
    "v": "9000ac90e2",
    "date": "2026-11-27",
@@ -202,22 +211,9 @@
      "t": "Nouveau : partage un sujet à tes amis sur WhatsApp 📤"
     }
    ]
-  },
-  {
-   "v": "86ad393b3d",
-   "date": "2026-11-22",
-   "notes": [
-    {
-     "t": "Sujets J6 : Médecine, Chirurgie, Pédiatrie, Santé publique, Gynéco, SSR/PF"
-    },
-    {
-     "t": "🔄 Cours mis à jour : CORRECTION NATIONAL DES EXAMENS BLANC IDE/SF MAE",
-     "m": "xmvkq4zed"
-    }
-   ]
   }
  ],
  "moteur": 2,
  "format": 2,
- "auto": 4
+ "auto": 3
 }
