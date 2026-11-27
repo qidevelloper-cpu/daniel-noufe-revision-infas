@@ -1,14 +1,10 @@
 {
- "v": "18a36dac26",
+ "v": "facd259fcb",
  "date": "2026-11-27",
  "sig": "4154df563d019483633a0f5a6b8a08378462af98",
  "notes": [
   {
-   "t": "Nouveaux sujets J en Médecine, Chirurgie et pour les auxiliaires"
-  },
-  {
-   "t": "🔄 Cours mis à jour : CORRECTION NATIONALE DES EXAMENS BLANCS IDE/SF MAE",
-   "m": "xmvkq4zed"
+   "t": "Tous les J sur revisioninfas.org"
   }
  ],
  "mats": {
@@ -115,6 +111,15 @@
  },
  "hist": [
   {
+   "v": "facd259fcb",
+   "date": "2026-11-27",
+   "notes": [
+    {
+     "t": "Tous les J sur revisioninfas.org"
+    }
+   ]
+  },
+  {
    "v": "18a36dac26",
    "date": "2026-11-27",
    "notes": [
@@ -206,23 +211,9 @@
      "m": "xmvkq4zed"
     }
    ]
-  },
-  {
-   "v": "a0172be8d7",
-   "date": "2026-11-23",
-   "notes": [
-    {
-     "t": "🎉 Tous les cours sont maintenant ouverts à tous"
-    },
-    {
-     "t": "🔄 Cours mis à jour : Chirurgie ",
-     "m": "chir"
-    }
-   ]
   }
  ],
  "moteur": 2,
  "format": 2,
- "oblig": 1,
- "auto": 2
+ "auto": 3
 }
