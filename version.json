@@ -1,10 +1,10 @@
 {
- "v": "a82dbbbad2",
+ "v": "f7c9d6683d",
  "date": "2026-11-27",
- "sig": "82a195ca2150435f0e0efe9f413f39fa15bc6ff1",
+ "sig": "a745907b1df1b3e62b226b83f870af9b6927c1ef",
  "notes": [
   {
-   "t": "Nouvelle mise à jour"
+   "t": "Nouveau : reprends tous tes sujets commencés depuis l'accueil"
   }
  ],
  "mats": {
@@ -111,6 +111,15 @@
  },
  "hist": [
   {
+   "v": "f7c9d6683d",
+   "date": "2026-11-27",
+   "notes": [
+    {
+     "t": "Nouveau : reprends tous tes sujets commencés depuis l'accueil"
+    }
+   ]
+  },
+  {
    "v": "a82dbbbad2",
    "date": "2026-11-27",
    "notes": [
@@ -202,18 +211,9 @@
      "t": "Partage plus facilement tes sujets : bouton vert 📤"
     }
    ]
-  },
-  {
-   "v": "3807a283da",
-   "date": "2026-11-22",
-   "notes": [
-    {
-     "t": "Nouveau : partage un sujet à tes amis sur WhatsApp 📤"
-    }
-   ]
   }
  ],
  "moteur": 2,
  "format": 2,
- "auto": 3
+ "auto": 4
 }
