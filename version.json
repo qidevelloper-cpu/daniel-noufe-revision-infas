@@ -1,7 +1,7 @@
 {
- "v": "1a3ffa4f47",
+ "v": "038dce5904",
  "date": "2026-11-27",
- "sig": "8a26ee32ce9c8e94aa3856c99c0a9bf86f352ed7",
+ "sig": "b1bf63c2f071851d7ea9da175d23e90435644b04",
  "notes": [
   {
    "t": "Nouvelle mise à jour"
@@ -111,6 +111,15 @@
  },
  "hist": [
   {
+   "v": "038dce5904",
+   "date": "2026-11-27",
+   "notes": [
+    {
+     "t": "Nouvelle mise à jour"
+    }
+   ]
+  },
+  {
    "v": "1a3ffa4f47",
    "date": "2026-11-27",
    "notes": [
@@ -196,15 +205,6 @@
    "notes": [
     {
      "t": "Nouvelle mise à jour de l'appli"
-    }
-   ]
-  },
-  {
-   "v": "fba2a06bd1",
-   "date": "2026-11-23",
-   "notes": [
-    {
-     "t": "Nouveau : relis le cas clinique sans remonter 📋"
     }
    ]
   }
