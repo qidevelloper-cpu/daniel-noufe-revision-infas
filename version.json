@@ -1,5 +1,5 @@
 {
- "v": "fc9d360a80",
+ "v": "a77e15dd03",
  "date": "2026-11-28",
  "sig": "860eeed2be91281e919796b4792079a40711d4f4",
  "notes": [
@@ -111,6 +111,15 @@
  },
  "hist": [
   {
+   "v": "a77e15dd03",
+   "date": "2026-11-28",
+   "notes": [
+    {
+     "t": "Nouvelle mise à jour"
+    }
+   ]
+  },
+  {
    "v": "fc9d360a80",
    "date": "2026-11-28",
    "notes": [
@@ -198,18 +207,9 @@
      "m": "xmvkq4zed"
     }
    ]
-  },
-  {
-   "v": "d2c049d5aa",
-   "date": "2026-11-24",
-   "notes": [
-    {
-     "t": "Nouvelle mise à jour"
-    }
-   ]
   }
  ],
  "moteur": 2,
  "format": 2,
- "auto": 4
+ "oblig": 1
 }
