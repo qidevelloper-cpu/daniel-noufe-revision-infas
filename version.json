@@ -1,7 +1,7 @@
 {
- "v": "038dce5904",
- "date": "2026-11-27",
- "sig": "b1bf63c2f071851d7ea9da175d23e90435644b04",
+ "v": "fc9d360a80",
+ "date": "2026-11-28",
+ "sig": "860eeed2be91281e919796b4792079a40711d4f4",
  "notes": [
   {
    "t": "Nouvelle mise à jour"
@@ -111,6 +111,15 @@
  },
  "hist": [
   {
+   "v": "fc9d360a80",
+   "date": "2026-11-28",
+   "notes": [
+    {
+     "t": "Nouvelle mise à jour"
+    }
+   ]
+  },
+  {
    "v": "038dce5904",
    "date": "2026-11-27",
    "notes": [
@@ -198,19 +207,9 @@
      "t": "Nouvelle mise à jour"
     }
    ]
-  },
-  {
-   "v": "062ddac6c6",
-   "date": "2026-11-24",
-   "notes": [
-    {
-     "t": "Nouvelle mise à jour de l'appli"
-    }
-   ]
   }
  ],
  "moteur": 2,
  "format": 2,
- "oblig": 1,
- "auto": 1
+ "auto": 4
 }

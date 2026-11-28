@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-27",
+ "maj": "2026-11-28",
  "base": "https://qidevelloper-cpu.github.io/daniel-noufe-revision-infas/",
  "groupes": [
   {
@@ -47,12 +47,6 @@
        "d": "2026-11-22"
       },
       {
-       "t": "J MÉDECINE · PRÉPA D.E J10 (SF3) · J6 ET J10 IDENTIQUES",
-       "n": 54,
-       "l": "https://qidevelloper-cpu.github.io/daniel-noufe-revision-infas/?sujet=eyJtIjoieG12a3E0emVkIiwidCI6IkogTcOpZGVjaW5lIMK3IFByw6lwYSBELkUgSjEwIChTRjMpIMK3IEo2IGV0IEoxMCBpZGVudGlxdWVzIiwiaSI6W1sieG12a3E0emVkLiIsIjg1NjEtODU3Myw4NTc1LTg2MDYsODYwOC04NjE2Il1dfQ",
-       "d": "2026-11-27"
-      },
-      {
        "t": "J MÉDECINE · PRÉPA D.E J7 (IDE3)",
        "n": 49,
        "l": "https://qidevelloper-cpu.github.io/daniel-noufe-revision-infas/?sujet=eyJtIjoieG12a3E0emVkIiwidCI6IkogTcOpZGVjaW5lIMK3IFByw6lwYSBELkUgSjcgKElERTMpIiwiaSI6W1sieG12a3E0emVkLiIsIjkxNTctOTE3Miw5MTc0LTkxODEsOTE4My05MTk1LDkxOTctOTIwMCw5MjAyLTkyMDMsOTIwNi05MjExIl1dfQ",
@@ -68,6 +62,12 @@
        "t": "J MÉDECINE · PRÉPA D.E J9 (IDE-SF-M)",
        "n": 45,
        "l": "https://qidevelloper-cpu.github.io/daniel-noufe-revision-infas/?sujet=eyJtIjoieG12a3E0emVkIiwidCI6IkogTcOpZGVjaW5lIMK3IFByw6lwYSBELkUgSjkgKElERS1TRi1NKSIsImkiOltbInhtdmtxNHplZC4iLCI5MjY2LTkyNjgsOTI3MC05Mjg1LDkyODctOTI4OCw5MjkwLTkyOTUsOTI5Ny05MzE0Il1dfQ",
+       "d": "2026-11-27"
+      },
+      {
+       "t": "J MÉDECINE · PRÉPA D.E J10 (SF3) · J6 ET J10 IDENTIQUES",
+       "n": 54,
+       "l": "https://qidevelloper-cpu.github.io/daniel-noufe-revision-infas/?sujet=eyJtIjoieG12a3E0emVkIiwidCI6IkogTcOpZGVjaW5lIMK3IFByw6lwYSBELkUgSjEwIChTRjMpIMK3IEo2IGV0IEoxMCBpZGVudGlxdWVzIiwiaSI6W1sieG12a3E0emVkLiIsIjg1NjEtODU3Myw4NTc1LTg2MDYsODYwOC04NjE2Il1dfQ",
        "d": "2026-11-27"
       }
      ]
@@ -149,16 +149,16 @@
        "d": "2026-11-09"
       },
       {
-       "t": "J GYNÉCO-OBSTÉTRIQUE · PRÉPA D.E J2 (SF3)",
-       "n": 49,
-       "l": "https://qidevelloper-cpu.github.io/daniel-noufe-revision-infas/?sujet=eyJtIjoieG12a3E0emVkIiwidCI6IkogR3luw6ljby1vYnN0w6l0cmlxdWUgwrcgUHLDqXBhIEQuRSBKMiAoU0YzKSIsImkiOltbInhtdmtxNHplZC4iLCI2NzU3LTY3NTksNjc2Mi02NzY3LDY3NjktNjc4NCw2Nzg2LTY3OTUsNjc5Nyw2Nzk5LTY4MTEiXV19",
-       "d": "2026-11-17"
-      },
-      {
        "t": "J GYNÉCO-OBSTÉTRIQUE · PRÉPA D.E J1 (SFM)",
        "n": 38,
        "l": "https://qidevelloper-cpu.github.io/daniel-noufe-revision-infas/?sujet=eyJtIjoieG12a3E0emVkIiwidCI6IkogR3luw6ljby1vYnN0w6l0cmlxdWUgwrcgUHLDqXBhIEQuRSBKMSAoU0ZNKSIsImkiOltbInhtdmtxNHplZC4iLCI3MDQwLTcwNDUsNzA0Ny03MDcyLDcwNzQtNzA3OSJdXX0",
        "d": "2026-11-18"
+      },
+      {
+       "t": "J GYNÉCO-OBSTÉTRIQUE · PRÉPA D.E J2 (SF3)",
+       "n": 49,
+       "l": "https://qidevelloper-cpu.github.io/daniel-noufe-revision-infas/?sujet=eyJtIjoieG12a3E0emVkIiwidCI6IkogR3luw6ljby1vYnN0w6l0cmlxdWUgwrcgUHLDqXBhIEQuRSBKMiAoU0YzKSIsImkiOltbInhtdmtxNHplZC4iLCI2NzU3LTY3NTksNjc2Mi02NzY3LDY3NjktNjc4NCw2Nzg2LTY3OTUsNjc5Nyw2Nzk5LTY4MTEiXV19",
+       "d": "2026-11-17"
       },
       {
        "t": "J GYNÉCO-OBSTÉTRIQUE · PRÉPA D.E J3 (SF3)",
@@ -221,15 +221,15 @@
        "d": "2026-11-15"
       },
       {
-       "t": "J SANTÉ PUBLIQUE · PRÉPA D.E J2 (IDE/SFM) · J2, J5 ET J10 IDENTIQUES",
-       "n": 58,
-       "l": "https://qidevelloper-cpu.github.io/daniel-noufe-revision-infas/?sujet=eyJtIjoieG12a3E0emVkIiwidCI6IkogU2FudMOpIHB1YmxpcXVlIMK3IFByw6lwYSBELkUgSjIgKElERS9TRk0pIMK3IEoyLCBKNSBldCBKMTAgaWRlbnRpcXVlcyIsImkiOltbInhtdmtxNHplZC4iLCI2OTMzLTY5OTAiXV19",
-       "d": "2026-11-18"
-      },
-      {
        "t": "J SANTÉ PUBLIQUE · PRÉPA D.E J1 (IDE/SFM)",
        "n": 48,
        "l": "https://qidevelloper-cpu.github.io/daniel-noufe-revision-infas/?sujet=eyJtIjoieG12a3E0emVkIiwidCI6IkogU2FudMOpIHB1YmxpcXVlIMK3IFByw6lwYSBELkUgSjEgKElERS9TRk0pIiwiaSI6W1sieG12a3E0emVkLiIsIjcxMzUtNzEzOCw3MTQwLDcxNDItNzE4NCJdXX0",
+       "d": "2026-11-18"
+      },
+      {
+       "t": "J SANTÉ PUBLIQUE · PRÉPA D.E J2 (IDE/SFM) · J2, J5 ET J10 IDENTIQUES",
+       "n": 58,
+       "l": "https://qidevelloper-cpu.github.io/daniel-noufe-revision-infas/?sujet=eyJtIjoieG12a3E0emVkIiwidCI6IkogU2FudMOpIHB1YmxpcXVlIMK3IFByw6lwYSBELkUgSjIgKElERS9TRk0pIMK3IEoyLCBKNSBldCBKMTAgaWRlbnRpcXVlcyIsImkiOltbInhtdmtxNHplZC4iLCI2OTMzLTY5OTAiXV19",
        "d": "2026-11-18"
       },
       {
@@ -281,21 +281,15 @@
      "emo": "👶🏾",
      "sujets": [
       {
-       "t": "J SSR / PF · PRÉPA D.E DU 10 OCTOBRE 2026 · IDENTIQUE AU J8",
-       "n": 57,
-       "l": "https://qidevelloper-cpu.github.io/daniel-noufe-revision-infas/?sujet=eyJtIjoieG12a3E0emVkIiwidCI6IkogU1NSIC8gUEYgwrcgUHLDqXBhIEQuRSBkdSAxMCBvY3RvYnJlIDIwMjYgwrcgaWRlbnRpcXVlIGF1IEo4IiwiaSI6W1sieG12a3E0emVkLiIsIjYzMDQtNjM2MCJdXX0",
-       "d": "2026-11-09"
+       "t": "J SSR / PF · PRÉPA D.E J1 (SFM) · J1 ET J6 IDENTIQUES",
+       "n": 53,
+       "l": "https://qidevelloper-cpu.github.io/daniel-noufe-revision-infas/?sujet=eyJtIjoieG12a3E0emVkIiwidCI6IkogU1NSIC8gUEYgwrcgUHLDqXBhIEQuRSBKMSAoU0ZNKSDCtyBKMSBldCBKNiBpZGVudGlxdWVzIiwiaSI6W1sieG12a3E0emVkLiIsIjcwODAtNzExNCw3MTE3LTcxMzQiXV19",
+       "d": "2026-11-18"
       },
       {
        "t": "J SSR / PF · PRÉPA D.E J2 (MAN SF3)",
        "n": 59,
        "l": "https://qidevelloper-cpu.github.io/daniel-noufe-revision-infas/?sujet=eyJtIjoieG12a3E0emVkIiwidCI6IkogU1NSIC8gUEYgwrcgUHLDqXBhIEQuRSBKMiAoTUFOIFNGMykiLCJpIjpbWyJ4bXZrcTR6ZWQuIiwiNjg3My02OTA4LDY5MTAtNjkzMiJdXX0",
-       "d": "2026-11-18"
-      },
-      {
-       "t": "J SSR / PF · PRÉPA D.E J1 (SFM) · J1 ET J6 IDENTIQUES",
-       "n": 53,
-       "l": "https://qidevelloper-cpu.github.io/daniel-noufe-revision-infas/?sujet=eyJtIjoieG12a3E0emVkIiwidCI6IkogU1NSIC8gUEYgwrcgUHLDqXBhIEQuRSBKMSAoU0ZNKSDCtyBKMSBldCBKNiBpZGVudGlxdWVzIiwiaSI6W1sieG12a3E0emVkLiIsIjcwODAtNzExNCw3MTE3LTcxMzQiXV19",
        "d": "2026-11-18"
       },
       {
@@ -329,6 +323,12 @@
        "d": "2026-11-27"
       },
       {
+       "t": "J SSR / PF · PRÉPA D.E J8 (= PRÉPA D.E DU 10 OCTOBRE)",
+       "n": 57,
+       "l": "https://qidevelloper-cpu.github.io/daniel-noufe-revision-infas/?sujet=eyJtIjoieG12a3E0emVkIiwidCI6IkogU1NSIC8gUEYgwrcgUHLDqXBhIEQuRSBKOCAoPSBQcsOpcGEgRC5FIGR1IDEwIG9jdG9icmUpIiwiaSI6W1sieG12a3E0emVkLiIsIjYzMDQtNjM2MCJdXX0",
+       "d": "2026-11-09"
+      },
+      {
        "t": "J SSR / PF · PRÉPA D.E J9 (SFM)",
        "n": 55,
        "l": "https://qidevelloper-cpu.github.io/daniel-noufe-revision-infas/?sujet=eyJtIjoieG12a3E0emVkIiwidCI6IkogU1NSIC8gUEYgwrcgUHLDqXBhIEQuRSBKOSAoU0ZNKSIsImkiOltbInhtdmtxNHplZC4iLCI4OTU2LTkwMTAiXV19",
@@ -353,16 +353,16 @@
        "d": "2026-11-09"
       },
       {
-       "t": "J PÉDIATRIE · PRÉPA D.E J2 (IDE-SFM)",
-       "n": 52,
-       "l": "https://qidevelloper-cpu.github.io/daniel-noufe-revision-infas/?sujet=eyJtIjoieG12a3E0emVkIiwidCI6IkogUMOpZGlhdHJpZSDCtyBQcsOpcGEgRC5FIEoyIChJREUtU0ZNKSIsImkiOltbInhtdmtxNHplZC4iLCI2ODE0LTY4MTgsNjgyMC02ODIxLDY4MjMtNjgyNiw2ODI4LTY4MzEsNjgzNC02ODQzLDY4NDUtNjg2Miw2ODY0LTY4NzIiXV19",
-       "d": "2026-11-18"
-      },
-      {
        "t": "J PÉDIATRIE · PRÉPA D.E J1 (IDE-SFM)",
        "n": 52,
        "l": "https://qidevelloper-cpu.github.io/daniel-noufe-revision-infas/?sujet=eyJtIjoieG12a3E0emVkIiwidCI6IkogUMOpZGlhdHJpZSDCtyBQcsOpcGEgRC5FIEoxIChJREUtU0ZNKSIsImkiOltbInhtdmtxNHplZC4iLCI3MTg1LDcxODctNzE5Miw3MTk0LTcyMzgiXV19",
        "d": "2026-11-19"
+      },
+      {
+       "t": "J PÉDIATRIE · PRÉPA D.E J2 (IDE-SFM)",
+       "n": 52,
+       "l": "https://qidevelloper-cpu.github.io/daniel-noufe-revision-infas/?sujet=eyJtIjoieG12a3E0emVkIiwidCI6IkogUMOpZGlhdHJpZSDCtyBQcsOpcGEgRC5FIEoyIChJREUtU0ZNKSIsImkiOltbInhtdmtxNHplZC4iLCI2ODE0LTY4MTgsNjgyMC02ODIxLDY4MjMtNjgyNiw2ODI4LTY4MzEsNjgzNC02ODQzLDY4NDUtNjg2Miw2ODY0LTY4NzIiXV19",
+       "d": "2026-11-18"
       },
       {
        "t": "J PÉDIATRIE · PRÉPA D.E J3 (IDE/SFM) · J3 ET J10 IDENTIQUES",
